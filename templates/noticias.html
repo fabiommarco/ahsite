@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% block name %}noticias{% endblock %}
+{% block noticias %} class="active"{% endblock %}
+{% block content_class %}page-noticias{% endblock %}
+{% load project_tags %}
+{% block css %}
+                <link rel="stylesheet" type="text/css" href="/media/colorbox/css/colorbox.css" media="screen" />
+{% endblock %}
+{% block javascript %}
+                <script type="text/javascript" src="/media/colorbox/js/jquery.colorbox-min.js"></script>
+                <script type="text/javascript" charset="utf-8">
+                        $(document).ready(function(){
+                                $("a[rel='imagem-noticia']").colorbox({current:"Imagem {current} de {total}"});
+                                {% if ultima_noticia %}$("a#exibe-video").colorbox({width:"500px", height:"500px", iframe:true, title:'{{ ultima_noticia.titulo }}'});{% endif %}
+                        });
+                </script>
+{% endblock %}
+{% block title %}Notícias | {{ ultima_noticia.titulo }} | {% endblock %}
+
+{% block content %}
+<!-- Notícias -->
+<div id="noticias">
+        {% if ultima_noticia %}
+        <!-- Conteudo Editavel -->
+        <div id="conteudo-editavel">
+                <h2 class="noticias-titulo">
+                        <span class="titulo-prev">Notícia mais recente</span>
+                        <span class="titulo-arrow">»</span><br />
+                        <a href="/noticias/{{ ultima_noticia.id }}/{{ ultima_noticia.slug }}" title="{{ ultima_noticia.titulo }}">{{ ultima_noticia.titulo }}</a>
+                </h2>
+                {% include "compartilhe.html" %}
+                <span class="noticias-data">Postado {{ ultima_noticia.data|date:"l,"|lower }} {{ ultima_noticia.data|date:"j \de F \à\s G:i" }}.</span>
+                {% if ultima_noticia.mostra_principal %}
+                {{ ultima_noticia.conteudo|primeiro_paragrafo|safe }}
+                <div class="noticias-inner-image">
+                        <a href="{{ ultima_noticia.imagem_principal.imagem.extra_thumbnails.noticia_big }}" title="{{ ultima_noticia.imagem_principal.descricao }}" rel="imagem-noticia">
+                                <img src="{{ ultima_noticia.imagem_principal.imagem.extra_thumbnails.noticia_medium }}" alt="{{ ultima_noticia.imagem_principal.descricao }}"/>
+                        </a>
+                        <span class="noticias-inner-subtitle">{{ ultima_noticia.imagem_principal.descricao }}</span>
+                </div>
+                {{ ultima_noticia.conteudo|restante|safe }}
+                {% else %}
+                {{ ultima_noticia.conteudo|safe }}
+                {% endif %}
+        </div><!-- /Conteudo Editavel -->
+        
+        {% if exibe_imagens == True or ultima_noticia.video or ultima_noticia.anexos.all %}
+        <!-- Galerias Diversas -->
+        <div id="galerias-diversas">
+                {% if exibe_imagens == True %}
+                <!-- Galeria de Imagens -->
+                <div id="galeria-imagens">
+                        <h3>{{ ultima_noticia.titulo_galeria|default:"Galeria de Imagens" }}</h3>
+                        <ul>
+                                {% for imagem in ultima_noticia.imagens.all %}
+                                {% if ultima_noticia.mostra_principal and imagem.imagem_principal %}{% else %}
+                                <li><a href="{{ imagem.imagem.extra_thumbnails.noticia_big }}" title="{{ imagem.descricao }}" rel="imagem-noticia"><img src="{{ imagem.imagem.extra_thumbnails.noticia_small }}" alt="{{ imagem.descricao }}"/></a></li>
+                                {% endif %}
+                                {% endfor %}
+                        </ul>
+                </div><!-- /Galeria de Imagens -->
+                {% endif %}
+                
+                {% if ultima_noticia.video %}
+                <!-- Galeria de Videos -->
+                <div id="galeria-videos">
+                        <h3>Para saber mais, assista:</h3>
+                        <ul>
+                                <li>
+                                        <a href="http://www.youtube.com/embed/{{ ultima_noticia.video|extract_youtube_key }}" title="Clique na imagem para assistir o vídeo" id="exibe-video" rel="blank">
+                                                <span></span>
+                                                <img src="http://img.youtube.com/vi/{{ ultima_noticia.video|extract_youtube_key }}/2.jpg" alt="Clique na imagem para assistir o vídeo" />
+                                        </a>
+                                </li>
+                        </ul>
+                </div><!-- /Galeria de Videos -->
+                {% endif %}
+                
+                {% if ultima_noticia.anexos.all %}
+                <!-- Galeria de Anexos -->
+                <div id="galeria-anexos">
+                        <h3>Anexos:</h3>
+                        <ul>
+                                {% for anexo in ultima_noticia.anexos.all %}
+                                <li>
+                                        <a href="{{ anexo.anexo.url }}" title="{{ anexo.descricao }}" class="{{ anexo.anexo.url|get_file_type }}">
+                                                <span class="nome-arquivo">{{ anexo.anexo.url|get_file_name }}</span>
+                                                <span class="tamanho-arquivo">{{ anexo.anexo.size|filesizeformat }}</span>
+                                        </a>
+                                </li>
+                                {% endfor %}
+                        </ul>
+                </div><!-- /Galeria de Anexos -->
+                {% endif %}
+        </div><!-- Galerias Diversas -->
+        {% endif %}
+        
+        <!-- Notícias Anteriores -->
+        <div id="ultimas-noticias">
+                <!-- noticias-wrap -->
+                <div id="noticias-wrap">
+                        <h2>Notícias Anteriores</h2>
+                        <a href="/noticias/feed/" title="Assine o nosso Feed de Notícias" class="noticias-assine-o-feed" rel="blank"><span>Assine o nosso Feed de Notícias</span></a>
+                        <br class="clear" />
+                        {% if noticias %}
+                        <ul id="noticias-lista">
+                                {% for noticia in noticias %}
+                                <li>
+                                        <a href="/noticias/{{ noticia.id }}/{{ noticia.slug }}" title="{{ noticia.titulo }}">{{ noticia.titulo }}</a>
+                                        <span class="noticias-data">Postado {{ noticia.data|date:"l,"|lower }} {{ noticia.data|date:"j \de F \à\s G:i" }}.</span>
+                                </li>
+                                {% endfor %}
+                        </ul>
+                        <a href="/noticias/todas/" title="Veja todas as notícias" class="big-button">Veja todas as notícias</a>
+                        {% else %}
+                        <span class="nenhum-registro">Nenhuma notícia cadastrada.</span>
+                        {% endif %}
+                </div><!-- /noticias-wrap -->
+        </div><!-- /Notícias Anteriores -->
+        {% else %}
+        <div id="conteudo-editavel">
+                <h2 class="noticias-titulo">Notícias</h2>
+                <p>Nenhuma notícia cadastrada.</p>
+        </div>
+        {% endif %}
+</div><!-- /Notícias -->
+
+{% endblock %}

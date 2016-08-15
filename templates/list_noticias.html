@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block name %}noticias{% endblock %}
+{% block noticias %} class="active"{% endblock %}
+{% block content_class %}page-noticias{% endblock %}
+{% load project_tags %}
+
+{% block content %}
+<!-- Notícias -->
+<div id="noticias" class="noticias-list">
+        {% if noticias %}
+        <!-- Notícias Anteriores -->
+        <div id="ultimas-noticias">
+                <!-- noticias-wrap -->
+                <div id="noticias-wrap">
+                        <h2>Listando todas as Notícias já publicadas</h2>
+                        <a href="/noticias/feed/" title="Assine o nosso Feed de Notícias" class="noticias-assine-o-feed" rel="blank"><span>Assine o nosso Feed de Notícias</span></a>
+                        <br class="clear" />
+                        {% if noticias %}
+                        <ul id="noticias-lista">
+                                {% for noticia in noticias %}
+                                <li>
+                                        <a href="/noticias/{{ noticia.id }}/{{ noticia.slug }}" title="{{ noticia.titulo }}">{{ noticia.titulo }}</a>
+                                        <span class="noticias-data">Postado {{ noticia.data|date:"l,"|lower }} {{ noticia.data|date:"j \de F \à\s G:i" }}.</span>
+                                </li>
+                                {% endfor %}
+                        </ul>
+                        {% else %}
+                        <span class="nenhum-registro">Nenhuma notícia cadastrada.</span>
+                        {% endif %}
+                </div><!-- /noticias-wrap -->
+        </div><!-- /Notícias Anteriores -->
+        
+        {% endif %}
+</div><!-- /Notícias -->
+
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block name %}clientes{% endblock %}
+{% block clientes %} class="active"{% endblock %}
+{% block content_class %}page-clientes{% endblock %}
+{% block title %}{{ cliente.nome }} | {% endblock %}
+{% load project_tags %}
+{% block css %}
+                <link rel="stylesheet" type="text/css" href="/media/colorbox/css/colorbox.css" media="screen" />
+{% endblock %}
+{% block javascript %}
+                <script type="text/javascript" src="/media/colorbox/js/jquery.colorbox-min.js"></script>
+                <script type="text/javascript" charset="utf-8">
+                        $(document).ready(function(){
+                                $("#item-imagens a[rel='imagem-servico']").colorbox({current:"Imagem {current} de {total}"});
+                                $("a#exibe-video").colorbox({width:"500px", height:"500px", iframe:true, title:'{{ cliente.nome }}'});
+                        });
+                </script>
+{% endblock %}
+
+{% block content %}
+<!-- Clientes -->
+<div id="clientes" class="pagina-detalhes">
+        
+        <!-- Detalhes do Cliente -->
+        <div id="detalhes-do-servico">
+                <h2 class="item-titulo">
+                        <span class="titulo-prev">Clientes</span>
+                        <span class="titulo-arrow">»</span>
+                        <span class="titulo-servico">{{ cliente.nome }}</a>
+                </h2>
+                
+                {% include "compartilhe.html" %}
+        
+                <!-- Conteudo Editavel -->
+                <div id="conteudo-editavel">
+                        <!-- Informações do Cliente -->
+                        <div id="servico-informacoes">
+                                <h3>Informações sobre o cliente</h3>
+                        
+                                <!-- Painel de Imagens e Video -->
+                                <div id="item-imagens">
+                                        <a href="#" class="Clique na imagem para ampliar" class="ampliar">Clique na imagem para ampliar</a>
+                                        <div id="imagem-principal">
+                                                <a href="{{ cliente.logomarca.extra_thumbnails.big }}" rel="imagem-servico" title="{{ cliente.nome }}">
+                                                        <img src="{{ cliente.logomarca.extra_thumbnails.detalhes }}" title="{{ cliente.nome }}" />
+                                                </a>
+                                        </div>
+                                
+                                        <!-- Lista de thumbnails -->
+                                        <ul>
+                                                {% for imagem in cliente.imagens.all %}
+                                                {% if not imagem.imagem_principal %}<li><a href="{{ imagem.imagem.extra_thumbnails.produto_big }}" rel="imagem-servico" title="{{ imagem.descricao }}" class="servico-thumbnail"><img src="{{ imagem.imagem.extra_thumbnails.miniaturas }}" title="{{ imagem.descricao }}" /></a></li>{% endif %}
+                                                {% endfor %}
+                                                {% if cliente.video %}
+                                                <li class="thumbnail-youtube"><a href="http://www.youtube.com/embed/{{ cliente.video|extract_youtube_key }}" id="exibe-video" class="servico-thumbnail"><span></span><img src="http://img.youtube.com/vi/{{ cliente.video|extract_youtube_key }}/2.jpg" title="Clique para assistir ao vídeo" /></a></li>
+                                                {% endif %}
+                                        </ul><!-- /Lista de Thumbnails -->
+                                </div><!-- /Painel de Imagens e Video -->
+                        
+                                <!-- Descrição do Cliente -->
+                                {{ cliente.descricao|safe }}
+                                
+                                {% if cliente.anexos.all %}
+                                <!-- Galeria de Anexos -->
+                                <div id="galeria-anexos">
+                                        <h3>Anexos:</h3>
+                                        <ul>
+                                                {% for anexo in cliente.anexos.all %}
+                                                <li>
+                                                        <a href="{{ anexo.anexo.url }}" title="{{ anexo.descricao }}" class="{{ anexo.anexo.url|get_file_type }}">
+                                                                <span class="nome-arquivo">{{ anexo.anexo.url|get_file_name }}</span>
+                                                                <span class="tamanho-arquivo">{{ anexo.anexo.size|filesizeformat }}</span>
+                                                        </a>
+                                                </li>
+                                                {% endfor %}
+                                        </ul>
+                                </div><!-- /Galeria de Anexos -->
+                                {% endif %}
+                                
+                        </div><!-- /Informações do Serviço -->
+                </div><!-- Conteudo Editavel -->
+        </div><!-- /Detalhes do Serviço -->
+</div><!-- /Serviços -->
+
+{% endblock %}

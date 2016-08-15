@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block name %}servicos{% endblock %}
+{% block servicos %} class="active"{% endblock %}
+{% block content_class %}page-servicos{% endblock %}
+{% block title %}Serviços | {% endblock %}
+{% load project_tags %}
+
+{% block content %}
+<!-- Servicos -->
+<div id="servicos" class="pagina-lista">
+        
+        <!-- Serviços -->
+        <div id="lista-de-itens">
+                <h2 class="item-titulo">
+                        <span class="titulo-prev">Serviços</span>
+                        <span class="titulo-arrow">»</span>
+                        <span class="titulo-categoria">Todos</a>
+                </h2>
+                {% if servicos.object_list %}
+                <ul class="itens-lista">
+                        {% for servico in servicos.object_list %}
+                        <li>
+                                <a class="item-imagem" href="/servicos/{{ servico.id }}/{{ servico.slug }}" title="{{ servico.nome }}">
+                                        <img src="{{ servico.imagem_principal.imagem.extra_thumbnails.catalogo_servicos }}" title="{{ servico.imagem_principal.descricao }}" />
+                                </a>
+                                <a class="item-nome" href="/servicos/{{ servico.id }}/{{ servico.slug }}" title="{{ servico.nome }}">{{ servico.nome }}</a>
+                        </li>
+                        {% endfor %}
+                </ul>
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if servicos.has_previous %}
+                            <a href="?page={{ servicos.previous_page_number }}" class="pagination-left">&laquo; Anterior</a>
+                        {% endif %}
+
+                        <span class="current">
+                            Página {{ servicos.number }} de {{ servicos.paginator.num_pages }}
+                        </span>
+
+                        {% if servicos.has_next %}
+                            <a href="?page={{ servicos.next_page_number }}" class="pagination-right">Próxima &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
+                {% else %}
+                <p class="nenhum-item">Nenhum serviço cadastrado.</p>
+                {% endif %}
+        </div><!-- /Serviços -->
+        
+</div><!-- /Serviços -->
+
+{% endblock %}

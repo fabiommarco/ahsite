@@ -1,0 +1,657 @@
+/*************************************/
+/****Estilos Comuns*******************/
+/*************************************/
+html, body { height: 100%; }
+body {
+    font: normal 14px Geneva, Tahoma, Verdana;
+    margin: 0;
+    padding: 0;
+    color: #B0B1B3;
+}
+
+* { 
+    padding:0;
+    margin:0;
+    border:0px;
+    text-indent:0;
+    list-style:none;
+    outline: none;
+}
+
+a {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.clear { clear: left; }
+
+#site-container { min-width: 1000px; /* Hack do Webkit e Firefox */ }
+
+.site-wrap, #footer {
+    clear: left;
+    position: relative;
+    width: 964px;
+    overflow: hidden;
+    padding: 0 18px;
+    margin: 0 auto;
+}
+
+/* Lista dos menus */
+.site-menu li { float: left; }
+.site-menu a:hover {color: #171f4d;}
+a { font-weight: normal; color: #B0B1B3; }
+a:hover { text-decoration: underline; }
+
+h2, h3, h4 { font-weight: normal; font-size: 18px; }
+h3 { font-size: 17px; }
+
+.left-column { float: left; }
+.right-column { float: right; }
+
+/* Alinhamento Centralizado Vertical e Horizontalmente */
+.alinha-centro {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+.alinha-centro * { vertical-align: middle; }
+
+div.loader { height: 0; width: 0; background: url(../images/submenu-background.png); }
+
+/*************************************/
+/****Header***************************/
+/*************************************/
+#site-header { 
+    position: relative;
+    float: left;
+    width: 100%;
+    margin: 0 0 20px 0;
+}
+
+.index #site-header { margin: 0; }
+
+#site-header .site-wrap { height: 126px; overflow: visible;    background: url(../images/image10.png) no-repeat top right; }
+
+#site-logo {
+    display: block;
+    float: left;
+    margin: 20px 0;
+}
+
+#site-logo a {
+    float: left;
+    display: block;
+    height: 86px;
+}
+
+#site-menu {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+ 
+}
+
+#site-menu a { font-weight: normal; }
+#site-menu li { position: relative; }
+#site-menu li a {
+    display: block;
+    height: 20px;
+    padding: 4px 12px 14px;
+    text-decoration: none;
+    position: relative; 
+}
+
+#site-menu li.active a { background-position: center top; }
+#site-menu li.active a:hover { background-position: center top; }
+#site-menu li a:hover { background-position: center -38px; }
+#site-menu li:hover .site-submenu, #site-menu li.over .site-submenu { display: block !important; }
+
+.dropdown a { z-index: 9999; }
+.dropdown a:hover { background: none !important; }
+
+.site-submenu {
+    display: none;
+    position: absolute;
+    top: -9px;
+    left: -8px;
+    z-index: 8888;
+    width: 274px;
+}
+
+.site-submenu ul {
+    overflow: hidden;
+    background: url(../images/submenu-background.png) no-repeat top left; 
+}
+
+.site-submenu ul li.primeiro { margin-top: 50px; }
+.site-submenu ul li {
+    margin-left: 5px;
+    clear: left;
+    width: 100%
+}
+
+.site-submenu .submenu-bottom {
+    clear: left;
+    height: 10px;
+    background: url(../images/submenu-background.png) no-repeat bottom left; 
+}
+
+.site-submenu a:hover { 
+    border-left: solid 2px #dcdcdc;
+}
+
+.site-submenu a {
+    border-left: solid 2px white;
+    padding: 8px !important;
+}
+
+/*TODO*/
+#site-content { 
+    clear: both;
+    float: left;
+    width: 100%;
+}
+
+#site-content a { 
+    color: #338AB6;
+    font-weight: bold;
+}
+
+#site-content p { margin-bottom: 8px; }
+
+#site-content .horizontal-rule {
+    height: 1px;
+    background-color: #F8F8F8;
+    margin: 10px 0;
+}
+
+#site-content #conteudo-esquerdo{
+	
+		float:right;
+		border-style: dotted;	
+	
+	
+	}
+.inner-img {
+    display: block;
+    float: right;
+    overflow: hidden;
+    border: solid 4px #EBEBEB;
+}
+
+.inner-img img { float: right; }
+
+/*************************************/
+/****Footer***************************/
+/*************************************/
+#site-footer {
+    background: #171f4d;
+    position: relative;
+}
+
+#site-footer .site-footer-inner-wrap { height: 185px; position: relative; }
+
+#site-menu-inferior { 
+    margin-top: 15px;
+    padding: 24px 0;
+    font-size: 12px;
+    text-align: center;
+}
+
+#site-menu-inferior li { display: inline; float: none; }
+#site-menu-inferior li a { font-weight: normal !important; color: white; padding: 0 15px; }
+#site-menu-inferior .menu-inferior-direita { float: right; }
+#site-menu-inferior .ultimo { margin-right: 0; }
+
+#site-footer hr {
+    height: 1px;
+    background:  repeat;
+}
+
+#site-telefone-endereco-email {
+    margin-top: 15px;
+    font-size: 12px;
+    line-height: 1.5em;
+    clear: left;
+    color: white;
+}
+
+#site-telefone-endereco-email li { float: left; }
+#site-telefone-endereco-email li.site-endereco-saopaulo { margin-right: 58px; }
+#site-telefone-endereco-email li.site-emails { float: right; }
+
+#site-telefone-endereco-email span { display: block; }
+
+#footer-white-bar { background: white; height: 60px; }
+
+#site-direitos-autorais, #site-creditos{ 
+    font-size: 12px;
+    line-height: 60px;
+}
+
+#site-creditos {
+    margin: 22px 0 0 0;
+    float: right;
+    width: 55px;
+    height: 15px;
+    background: url(../images/lf.png) no-repeat right top;
+}
+
+#site-creditos:hover { background-position: left -16px; }
+
+#site-creditos span { display: none; }
+
+/*************************************/
+/****Página Inicial*******************/
+/*************************************/
+    
+    .left-column { width: 415px; }
+    .right-column { margin: 40px 0 0 0; width: 520px; }
+    
+    #orcamento {
+        clear: left;
+        float: left;
+        margin-top: 40px;
+    }
+    
+    /*************************************/
+    /****Banner***************************/
+    /*************************************/
+    #site-banner { 
+        clear: left;
+        background: #069 url(../images/banner-background.png) no-repeat top center;
+        height: 266px;
+    }
+    
+    .site-banner-general {
+        height: 100px !important;
+        background-image: url(../images/banner-background-general.png) !important; 
+    }
+    
+    .site-banner-general h2 {
+        font-size: 20px;
+        color: white;
+        text-shadow: 1px 1px 3px #000;
+        line-height: 100px;
+    }
+    
+    .site-banner-general h2 .arrow { color: #F29189; }
+    .site-banner-general h2 span { color: #D2E5EF; font-size: 18px; }
+
+    #especialidades {
+        display: none;
+    }
+
+        /*************************************/
+        /****Slideshow************************/
+        /*************************************/
+        #slideshow {
+            float: right;
+            width: 522px;
+            height: 302px;
+            overflow: hidden;
+            background: url(../images/loading.gif) no-repeat 50% 55%
+        }
+        
+        #slideshow .todos-os-slides {
+            margin: 32px 0 0 8px;
+            position: relative;
+        }
+        
+        #slideshow img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+        
+        #slideshow .nivo-controlNav {
+            position: absolute;
+            right: 0;
+            top: -23px;
+        }
+        
+        #slideshow .nivo-controlNav .nivo-control {
+            display: block;
+            float: left;
+            margin-left: 4px;
+            text-indent: -9999px;
+            height: 5px;
+            width: 28px;
+            background: #81B8D4;
+        }
+        
+        #slideshow .nivo-controlNav .active { background: white; }
+        
+        
+    /*************************************/
+    /****Galeria de Imagens***************/
+    /*************************************/
+    #galeria { margin: 0 0 15px 14px; overflow: hidden; }
+    #galeria ul { margin: 15px 0 0 0; }
+    #galeria ul li { float: left; padding: 0 15px 15px 0; }
+    #galeria ul li a {
+        display: block;
+        overflow: hidden;
+        border: solid 8px #EBEBEB;
+        height: 76px;
+    }
+    #galeria ul li a img { float: left; }
+    #galeria ul li a:hover { border-color: #338AB6; }
+    
+    /*************************************/
+    /****Sobre a empresa******************/
+    /*************************************/
+    #sobre-a-empresa, #orcamento { text-align: justify; }
+    
+    #sobre-a-empresa .inner-img {
+        float: left;
+        margin: 0 15px 0 0;
+    }
+    
+    /*************************************/
+    /****Twitter**************************/
+    /*************************************/
+    #twitter {
+        float: left;
+        width: 394px;
+    }
+    
+    #twitter h2 {
+        display: block;
+        height: 47px;
+        width: 394px;
+        background: url(../images/twitter-background.png) no-repeat left 5px;
+
+        font-weight: normal;
+        text-align: right;
+        line-height: 44px;
+        color: #3F80A2;
+    }
+    
+    #twitter ul {
+        float: left;
+        display: inline; /* IE6 hack*/
+        margin-left: 12px;
+        width: 382px;
+        background: #E8F4F9;
+    }
+    
+    #twitter ul li {
+        padding: 0 15px;
+        font-size: 13px;
+        margin: 9px 0;
+    }
+    
+    #twitter ul li .twitterTime { 
+        display: inline-block;
+        width: 160px;
+        font-size: 11px;
+        color: #7D7D7D;
+    }
+    
+    #twitter-lista .twitterStatus a { 
+        font-weight: bold;
+        color: #3A7D9F;
+    }
+    
+    #twitter-siga {
+        float: left;
+        clear: left;
+        display: block;
+        width: 394px;
+        line-height: 40px;
+        background: url(../images/twitter-background.png) no-repeat left -41px;
+        
+        text-align: right;
+        font-size: 12px;
+        font-weight: normal;
+    }
+    
+    /*************************************/
+    /****Parceiros************************/
+    /*************************************/
+    #parceiros {
+        margin-top: 20px;
+        float: left;
+        clear: left;
+        width: 100%;
+    }
+    
+    #parceiros h2 { margin-left: 12px; }
+    #parceiros ul { margin: 15px 0 0 0; }
+    
+    #parceiros ul li {
+        float: left;
+        width: 160px;
+        text-align: center;
+    }
+    
+
+/*************************************/
+/****Conteudo Editável****************/
+/*************************************/
+#conteudo-editavel { overflow: hidden; }
+#conteudo-editavel h2, #conteudo-editavel h3 { display: block; margin-bottom: 12px; }
+#conteudo-editavel h3 { margin-top: 10px; }
+#conteudo-editavel p { margin-bottom: 10px; text-align: justify; }
+
+#conteudo-editavel h2, #conteudo-editavel h3 { display: block; float: left; clear: left; width: 100%; }
+
+#conteudo-editavel blockquote, #conteudo-editavel blockquote span {
+    display: block;
+    clear: left;
+    float: left;
+    width: 965px;
+    background: #ccd7ce url(../images/blockquote.gif) no-repeat left top;
+    padding: 30px 0 0 0;
+}
+
+#conteudo-editavel blockquote span { 
+    display: block; background-position: -965px bottom;
+    width: 905px;
+    padding: 0 30px 30px 30px;
+    text-align: center;
+    font-style: italic;
+}
+
+/*************************************/
+/****Galerias Diversas****************/
+/*************************************/
+#galerias-diversas { margin-top: 15px; }
+
+    /*************************************/
+    /****Galeria de Imagens***************/
+    /*************************************/
+    #galeria-imagens { 
+        margin: 20px 0 0 0;
+        float: left;
+    }
+
+    #galeria-imagens ul { overflow: hidden; margin-top: 15px; }
+
+    #galeria-imagens ul li {
+        float: left;
+        padding: 0 12px;
+    }
+
+    /*************************************/
+    /****Videos***************************/
+    /*************************************/
+    #galeria-videos {
+        margin: 20px 0 0 0;
+        float: right;
+    }
+    
+    #galeria-videos ul { overflow: hidden; margin-top: 15px; }
+    
+    #galeria-videos ul iframe { float: right; margin-right: 5px ;}
+    
+    #galeria-videos h3 { display: block; text-align: right; margin-right: 5px; }
+
+
+/*************************************/
+/****Notícias*************************/
+/*************************************/
+#noticias span.noticias-data { margin-bottom: 15px; }
+.noticias-inner-image { margin: 15px 0; }
+.noticias-inner-subtitle {
+    display: block;
+    clear: left;
+    font-size: 11px;
+}
+
+
+/*************************************/
+/****Quem-somos***********************/
+/*************************************/
+.quem-somos h2, .quem-somos p, .quem-somos hr { clear: left; float: left; width: 100%; }
+.quem-somos h2.spacer { margin-top: 20px; }
+.quem-somos #parceiros h2 { margin: 0; }
+.lista-imagens { float: left; clear: left; margin-top: 15px; }
+.lista-imagens li { float: left; margin-right: 15px; }
+.lista-imagens-vidro { float:left; clear: left; margin-top: 30px; margin-left: 140px; }
+.servicos-liv { margin-left: 240px; }
+
+.lista-imagens-vidro li { float: inherit; margin-right: 30px; width: 220px; }
+.align-center { text-align: center; }
+
+
+/*************************************/
+/****Contato**************************/
+/*************************************/
+.contato .right-column { margin: 0; width: 395px; }
+.contato .left-column { width: 550px; }
+.contato #status {
+    padding: 5px;
+    background: red;
+    color: white;
+    margin: 0 0 -10px 15px;
+    width: 280px;
+    text-indent: 5px;
+    display: none;
+}
+
+.contato .sucesso { background: green !important; }
+
+#mapas { 
+    margin-top: 5px;
+    position: relative;
+    width: 384px;
+    height: 200px;
+    float: right;
+}
+#mapa-sao-paulo, #mapa-baixada-santista {
+    position: absolute;
+    z-index: 1;
+    width: 384px;
+    height: 200px;
+    right: 0;
+}
+
+#mapa-baixada-santista { z-index: 0 !important; }
+#mapa-localizacao { text-align: right; }
+
+#mapa-localizacao a {
+    font-weight: normal;
+    color: #585858 !important; 
+    font-size: 12px; 
+}
+
+#mapa-localizacao a.active, #mapa-localizacao a:hover {
+    color: #338AB6 !important;
+    font-weight: bold !important;
+    text-decoration: none;
+}
+
+.contato #twitter { margin-top: 20px; }
+
+    /*************************************/
+    /****Formulário***********************/
+    /*************************************/
+    .formulario { 
+        margin: 20px 0 0 15px;
+    }
+    .formulario label {
+        color: #666;
+        display: block;
+        clear: left;
+    }
+
+    .formulario input, .formulario textarea {
+        font-size: 16px;
+        padding: 4px;
+        border: solid 1px #ccc;
+        color: #666;
+        width: 280px;
+        margin: 5px 0 10px;
+    
+        clear: left;
+        float: left;
+    }
+
+    .formulario textarea {
+        width: 400px;
+        height: 100px;
+    }
+
+    .formulario input.button {
+        width: auto !important;
+        -moz-border-radius:2px 2px 2px 2px;
+        background:url("../images/button.png") repeat-x scroll 0 0 #E9EAEA;
+        border:1px solid #CCCCCC;
+        color:#333333;
+        cursor:pointer;
+        font: bold 1em/1.4em "Helvetica Neue",Arial,sans-serif;
+        padding:0.365em 10px;
+        text-shadow:1px 1px 0 #FFFFFF;
+    }
+    
+    
+/*************************************/
+/****Depoimentos**********************/
+/*************************************/
+.depoimentos img.recomendacao { margin: 15px 0 3px 0; }
+.subtitulo-da-recomendacao { font-size: 12px; display: block; }
+
+
+/*************************************/
+/****Clientes*************************/
+/*************************************/
+.lista-de-clientes { overflow: hidden; margin: 20px 0 15px 0; }
+.lista-de-clientes li {
+    float: left;
+    margin: 0 20px 15px 0;
+}
+.lista-de-clientes li a {
+    float: left;
+    border: solid 4px #eee;
+    width: 160px;
+    text-align: center;
+    padding-top: 4px;
+}
+.lista-de-clientes li a img { margin: 0 auto; }
+.clientes .seja-cliente {
+    display: block;
+    float: left;
+    clear: left;
+}
+
+/*************************************/
+/****Servicos*************************/
+/*************************************/
+.servicos h2, .servicos p, .servicos hr, .servicos a.saiba-mais { clear: right; float: right; width: 100%; }
+.servicos h2.spacer { margin-top: 20px; }
+.servicos #parceiros h2 { margin: 0; }
+.servicos #galeria {
+    float: left;
+    clear: left;
+    margin: 0;
+}
+.servicos #galeria ul li { padding-right: 10px; !important }
+
+.msg_fim {
+        margin-top: 40px;
+        float: left;
+}
+.servicos #lista-imagnes-vidro p {font-size: 8px; color: red;}

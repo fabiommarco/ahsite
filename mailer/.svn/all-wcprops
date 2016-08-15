@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/maximize/!svn/ver/371/trunk/mailer
+END
+admin.py
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/maximize/!svn/ver/371/trunk/mailer/admin.py
+END
+lockfile.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/maximize/!svn/ver/371/trunk/mailer/lockfile.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/maximize/!svn/ver/371/trunk/mailer/__init__.py
+END
+models.py
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/maximize/!svn/ver/371/trunk/mailer/models.py
+END
+engine.py
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/maximize/!svn/ver/371/trunk/mailer/engine.py
+END
+backend.py
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/maximize/!svn/ver/371/trunk/mailer/backend.py
+END

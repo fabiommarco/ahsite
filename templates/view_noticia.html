@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block name %}noticias{% endblock %}
+{% block noticias %} class="active"{% endblock %}
+{% block content_class %}page-noticias{% endblock %}
+{% load project_tags %}
+{% block css %}
+                <link rel="stylesheet" type="text/css" href="/media/colorbox/css/colorbox.css" media="screen" />
+{% endblock %}
+{% block javascript %}
+                <script type="text/javascript" src="/media/colorbox/js/jquery.colorbox-min.js"></script>
+                <script type="text/javascript" charset="utf-8">
+                        $(document).ready(function(){
+                                $("a[rel='imagem-noticia']").colorbox({current:"Imagem {current} de {total}"});
+                                $("a#exibe-video").colorbox({width:"500px", height:"500px", iframe:true, title:'{{ noticia.titulo }}'});
+                        });
+                </script>
+{% endblock %}
+{% block title %}{{ noticia.titulo }} | {% endblock %}
+
+{% block content %}
+<!-- Notícias -->
+<div id="noticias" class="noticias-view">
+        {% if noticia %}
+        <!-- Conteudo Editavel -->
+        <div id="conteudo-editavel">
+                <h2 class="noticias-titulo">{{ noticia.titulo }}</h2>
+                {% include "compartilhe.html" %}
+                <span class="noticias-data">Postado {{ noticia.data|date:"l,"|lower }} {{ noticia.data|date:"j \de F \à\s G:i" }}.</span>
+                {% if noticia.mostra_principal %}
+                {{ noticia.conteudo|primeiro_paragrafo|safe }}
+                <div class="noticias-inner-image">
+                        <a href="{{ noticia.imagem_principal.imagem.extra_thumbnails.noticia_big }}" title="{{ noticia.imagem_principal.descricao }}" rel="imagem-noticia">
+                                <img src="{{ noticia.imagem_principal.imagem.extra_thumbnails.noticia_medium }}" alt="{{ noticia.imagem_principal.descricao }}"/>
+                        </a>
+                        <span class="noticias-inner-subtitle">{{ noticia.imagem_principal.descricao }}</span>
+                </div>
+                {{ noticia.conteudo|restante|safe }}
+                {% else %}
+                {{ noticia.conteudo|safe }}
+                {% endif %}
+        </div><!-- /Conteudo Editavel -->
+        
+        {% if exibe_imagens == True or noticia.video or noticia.anexos.all %}
+        <!-- Galerias Diversas -->
+        <div id="galerias-diversas">
+                {% if exibe_imagens == True %}
+                <!-- Galeria de Imagens -->
+                <div id="galeria-imagens">
+                        <h3>{{ noticia.titulo_galeria|default:"Galeria de Imagens" }}</h3>
+                        <ul>
+                                {% for imagem in noticia.imagens.all %}
+                                {% if noticia.mostra_principal and imagem.imagem_principal %}{% else %}
+                                <li><a href="{{ imagem.imagem.extra_thumbnails.noticia_big }}" title="{{ imagem.descricao }}" rel="imagem-noticia"><img src="{{ imagem.imagem.extra_thumbnails.noticia_small }}" alt="{{ imagem.descricao }}"/></a></li>
+                                {% endif %}
+                                {% endfor %}
+                        </ul>
+                </div><!-- /Galeria de Imagens -->
+                {% endif %}
+                
+                {% if noticia.video %}
+                <!-- Galeria de Videos -->
+                <div id="galeria-videos">
+                        <h3>Para saber mais, assista:</h3>
+                        <ul>
+                                <li>
+                                        <a href="http://www.youtube.com/embed/{{ noticia.video|extract_youtube_key }}" title="Clique na imagem para assistir o vídeo" id="exibe-video" rel="blank">
+                                                <span></span>
+                                                <img src="http://img.youtube.com/vi/{{ noticia.video|extract_youtube_key }}/2.jpg" alt="Clique na imagem para assistir o vídeo" />
+                                        </a>
+                                </li>
+                        </ul>
+                </div><!-- /Galeria de Videos -->
+                {% endif %}
+                
+                {% if noticia.anexos.all %}
+                <!-- Galeria de Anexos -->
+                <div id="galeria-anexos">
+                        <h3>Anexos:</h3>
+                        <ul>
+                                {% for anexo in noticia.anexos.all %}
+                                <li>
+                                        <a href="{{ anexo.anexo.url }}" title="{{ anexo.descricao }}" class="{{ anexo.anexo.url|get_file_type }}">
+                                                <span class="nome-arquivo">{{ anexo.anexo.url|get_file_name }}</span>
+                                                <span class="tamanho-arquivo">{{ anexo.anexo.size|filesizeformat }}</span>
+                                        </a>
+                                </li>
+                                {% endfor %}
+                        </ul>
+                </div><!-- /Galeria de Anexos -->
+                {% endif %}
+        </div><!-- Galerias Diversas -->
+        {% endif %}
+        {% else %}
+        <div id="conteudo-editavel">
+                <h2 class="noticias-titulo">Notícias</h2>
+                <p>Notícia não cadastrada.</p>
+        </div>
+        {% endif %}
+        <a href="/noticias/" title="Voltar para Notícias" class="big-button">Voltar para Notícias</a>
+</div><!-- /Notícias -->
+
+{% endblock %}

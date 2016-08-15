@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block name %}contato{% endblock %}
+{% block contato %} class="active"{% endblock %}
+{% block content_class %}page-contato{% endblock %}
+{% block title %}Contato | {% endblock %}
+{% block javascript %}{% if configuracoes.exibe_mapa_contato  == "True" %}
+                <!-- Javascript: Mapa -->
+                <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAIllENGKSKCX1YqGbpHl2xBTbRQeafCmXv-LZrJdWH05IrTKc9xRiWr2_ezSex4yKvF1hLrr0RwZ8AQ" type="text/javascript"></script>
+                <script type="text/javascript" charset="utf-8">
+                    $(document).ready(function(){
+                        if (GBrowserIsCompatible()) {
+                            var map = new GMap2(document.getElementById("mapa-localizacao"));
+                            var point = new GLatLng(-51.386587,-22.119471);
+                            map.addOverlay(new GMarker(point));
+                            map.addControl(new GSmallMapControl());
+                            map.setCenter(point, 14);
+                        }
+                    });
+                </script>
+                {% endif %}{% endblock %}
+
+{% load project_tags %}
+
+{% block content %}
+<!-- Contato -->
+<div id="contato">
+        
+        <!-- Left Column -->
+        <div class="left-column">
+                <h2>Entre em contato conosco!</h2>
+                <p class="descricao">Teremos o prazer de respondê-lo assim que pudermos.</p>
+                
+                <div id="form-status"></div>
+                
+                <!-- Formulário de Contato -->
+                <form action="/contato/new/" method="post" class="formulario" id="contato-form" accept-charset="utf-8">
+                    <label for="nome">Nome completo:</label><input type="text" name="nome" value="" id="nome" />
+                        <label for="cidade">Cidade:</label><input type="text" name="cidade" value="" id="cidade" />
+                        <label for="telefone">Telefone:</label><input type="text" name="telefone" value="" id="telefone" />
+                        <label for="email">E-mail:</label><input type="text" name="email" value="" id="email" />
+                        <label for="mensagem">Mensagem:</label><textarea name="mensagem" id="mensagem"></textarea>
+                        <p class="submit-spinner"><input type="submit" class="button" value="Enviar Contato &rarr;" /><span class="spinner"></span></p>
+                </form><!-- /Formulário de Contato -->
+        </div><!-- /Left Column -->
+        
+        <!-- Right Column -->
+        <div class="right-column">
+                {% if configuracoes.exibe_mapa_contato == "True" %}
+                <h2>Mapa de Localização</h2>
+                <p class="descricao">Encontre-nos através do mapa abaixo.</p>
+                <div id="mapa-localizacao"></div>
+                {% endif %}
+                
+                <div id="dados-da-empresa">
+                        <span class="nome-da-empresa"><strong>{{ configuracoes.nome_da_empresa }}</strong></span>
+                        <span class="endereco-logradouro">{{ configuracoes.endereco_logradouro }}</span>
+                        <span class="cidade-estado">{{ configuracoes.cidade }} - {{ configuracoes.estado }}</span>
+                        <span class="telefone">{{ configuracoes.telefone }}</span>
+                </div>
+        </div>
+        <!-- /Right Column -->
+        
+</div><!-- /Contato -->
+
+{% endblock %}

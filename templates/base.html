@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+        <head>
+                <title>Tor Investimentos</title>
+
+                <!-- Meta Data -->
+                <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+                <meta name="author" content="luizanao.com" />
+                <meta http-equiv="Content-Language" content="pt-br"/>
+                
+                
+                <!-- CSS References -->
+                <link rel="stylesheet" type="text/css" href="../media/css/main.css" media="screen" />
+         
+				
+				<!-- Javascript -->
+                <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+                <script type="text/javascript" src="/media/js/resetdefaultvalue.js"></script>
+                <script type="text/javascript" src="/media/js/general.js"></script>{% block javascript %}{% endblock %}
+
+                {% if "swf" in banner.url %}
+                <script type="text/javascript" src="http://jquery.thewikies.com/swfobject/jquery.swfobject.1-1-1.min.js"></script>
+                <script type="text/javascript" charset="utf-8">
+                        $(document).ready(function() {
+                                $('#swf-banner').flash({
+                                        swf:'../meida/uploads/banner/banner1.jpg', 
+                                        width:965, 
+                                        height:164
+                                });
+                        });
+                </script>
+                {% endif %}
+                			
+				
+        </head>
+
+        <body>
+                <!-- site-container -->
+                <div id="site-container">
+                        <!-- site-header -->
+                        <div id="site-header">
+                                <!-- site-wrap -->
+                                <div class="site-wrap">
+                                        <!-- Logo do site -->
+                                        <h1 id="site-logo">
+                                                <a href="/" title="Tor Investimentos">
+                                                        <img src="../media/images/logo.jpg" alt="Tor Investimentos" />
+                                                </a>
+                                        </h1><!-- /Logo do site -->
+                                
+                                        <!-- Menu do site -->
+                                        <ul id="site-menu" class="site-menu">
+                                                <li><a href="/">Página Inicial</a></li>
+                                                <li><a href="/quem-somos/">Institucional</a></li>
+                                                <li><a  href="/servicos/">Serviços</a></li>
+                                                <li><a  href="/clientes/">Parceiros</a></li>
+                                                <li><a  href="contato/">Contato</a></li>
+                                        </ul><!-- /Menu do site -->
+
+									<!-- Banner do site -->
+                                        <ul id="site-banner">
+                                                <li>{% if "swf" not in banner.url %}<img src="{{ banner.url }}" alt="{{ banner.descricao }}" />{% else %}<div id="swf-banner"></div>{% endif %}</li>
+                                        </ul><!-- /Banner do site -->
+						
+                                </div><!-- /site-wrap -->
+                                 
+                               
+                                
+                                        </div><!-- /site-wrap -->
+							
+                             
+                        </div><!-- /site-header -->
+                                
+                        <!-- site-wrap -->
+                        <div class="site-wrap">
+                                <!-- site-content -->
+                                <div id="site-content">
+												
+									<div class="right-column">
+                                               {% block content %}{% endblock %}
+									</div><!-- right column-->
+									
+									<div id="left-colmun">
+														    
+											<div id="box-esquerda">	
+												<img src="../media/images/mesa.png">
+							 					<img src="../media/images/icone_telefone.gif"/>												<span> {{ configuracoes.tel_mesa }}</span> 				
+											</div><!-- ox esquerdo-->	
+													
+											<div id="box-esquerda">	
+												<img src="../media/images/operacoes.png">
+							 					<img src="../media/images/icone_telefone.gif">	 													<span> {{ configuracoes.tel_operacoes }}</span> 
+												<center><a href="mailto:ouvidoria@torinvestimentos.com.br">ouvidoria@torinvestimentos.com.br</a></center>
+											</div><!-- box esquerdo-->
+
+										
+											<div id="box-esquerda">				
+													<img src="../media/images/cotacao.png">													
+ 													<script type="text/javascript">
+													var advfn_pquote_parameters = new Object();
+													advfn_pquote_parameters['main_background_color'] = "f0f0f0";
+													advfn_pquote_parameters['text_primary_color'] = "000000";
+													advfn_pquote_parameters['text_secondary_color'] = "ffffff";
+													advfn_pquote_parameters['value_up'] = "1c8f34";
+													advfn_pquote_parameters['value_down'] = "c20000";
+													advfn_pquote_parameters['th_background_color'] = "9bc7d8";
+													advfn_pquote_parameters['th_border_color'] = "4e7787";
+													advfn_pquote_parameters['alt_background'] = "FFFFFF";
+													advfn_pquote_parameters['hr_primary_color'] = "c5c5c5";
+													advfn_pquote_parameters['hr_secondary_color'] = "ffffff";
+													advfn_pquote_parameters['branding_image'] = "http://images.advfn.com/imagesnew/2/br/pquote/pquote-branding-advfn.jpg";
+												</script>					
+												
+
+
+													<div id="advfn_pquote_container">
+															<form onsubmit="advfn_pquote_open(); return false;">
+																	<input id="advfn_pquote_input" value="IBOV" onclick="this.value=''" type="text" class="input"><br>
+																		<input id="advfn_pquote_button" class="button" onclick="advfn_pquote_open()" value="OK" type="button"><br>
+															</form>
+													</div><!--advfn-->
+
+<!-- TÉRMINO DO CÓDIGO POP-UP DE COTAÇÃO ADVFN -->
+
+
+											</div><!--cotacao-->	
+
+
+								
+												
+									</div>
+									</div>
+								<div id="facebook">
+												<iframe src="http://www.facebook.com/plugins/activity.php?site=torinvestimentos.com.br&amp;width=200&amp;height=200&amp;header=true&amp;colorscheme=light&amp;font=arial&amp;border_color=%23171f4d&amp;recommendations=true" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:200px;" allowTransparency="true"></iframe>
+											</div><!--facebook-->
+	
+									</div><!-- /fim esquerdo -->
+
+								<div><!-- /site-content -->
+                        		
+									<div class="redes-sociais">									 {% if configuracoes.twitter %}<a class="midia-social-twitter" rel="blank" href="{{ configuracoes.twitter }}" title="Twitter"><img src="/media/images/media-icons/twitter.png" alt="Twitter"/></a{% endif %}
+                                             {% if configuracoes.orkut %}
+<a class="midia-social-orkut" rel="blank" href="{{ configuracoes.orkut }}" title="Orkut"><img src="/media/images/media-icons/orkut.png" alt="Orkut"/></a>{% endif %}
+                                             {% if configuracoes.facebook %}
+<a class="midia-social-facebook" rel="blank" href="{{ configuracoes.facebook }}" title="Facebook"><img src="/media/images/media-icons/facebook.png" alt="Facebook"/></a>{% endif %}
+                                             {% if configuracoes.youtube %}<a class="midia-social-youtube" rel="blank" href="{{ configuracoes.youtube }}" title="Youtube"><img src="/media/images/media-icons/youtube.png" alt="Youtube"/></a{% endif %}
+                                             {% if configuracoes.flickr %}<a class="midia-social-flickr" rel="blank" href="{{ configuracoes.flickr }}" title="Flickr"><img src="/media/images/media-icons/flickr.png" alt="Flickr"/></a>{% endif %}
+                                             {% if configuracoes.linkedin %}<a class="midia-social-linkedin" rel="blank" href="{{ configuracoes.linkedin }}" title="LinkedIn"><img src="/media/images/media-icons/linkedin.png" alt="LinkedIn"/></a>{% endif %}
+                                             {% if configuracoes.delicious %}<a class="midia-social-delicious" rel="blank" href="{{ configuracoes.delicious }}" title="Del.icio.us"><img src="/media/images/media-icons/delicious.png" alt="Del.icio.us"/></a>{% endif %}
+                                             {% if configuracoes.digg %}<a class="midia-social-digg" rel="blank" href="{{ configuracoes.digg }}" title="Digg"><img src="/media/images/media-icons/digg.png" alt="Digg"/></a>{% endif %}
+                                             {% if configuracoes.myspace %}<a class="midia-social-myspace" rel="blank" href="{{ configuracoes.myspace }}" title="MySpace"><img src="/media/images/media-icons/myspace.png" alt="MySpace"/></a{% endif %}
+                                             {% if configuracoes.formspring %}<a class="midia-social-formspring" rel="blank" href="{{ configuracoes.formspring }}" title="formspring"><img src="/media/images/media-icons/formspring.png" alt="Formspring"/></a>{% endif %}
+                                             {% if configuracoes.blog %}<a class="midia-social-blog" rel="blank" href="{{ configuracoes.blog }}" title="Blog"><img src="/media/images/media-icons/blog.png" alt="Blog"/></a>{% endif %}
+						
+										</div><!--redes sociais-->			
+											
+
+						</div><!-- /site-wrap -->
+                    	
+                        <!-- site-footer -->
+                        <div id="site-footer">
+                                <!-- site-wrap -->
+                                <div class="site-wrap site-footer-inner-wrap">
+                                        <hr class="horizontal-rule" />
+                                        
+                                        <!-- Endereços, Telefones e E-mail -->
+                                        <ul id="site-telefone-endereco-email">
+                                                <li class="site-endereco-saopaulo">
+                                                        <!-- Telefone e Endereço -->
+                                                        <span class="endereco-cidade"><strong>Unidade {{ configuracoes.cidade }}</strong></span>
+                                                        <span class="endereco-logradouro">{{configuracoes.endereco_logradouro }}</span>
+                                                        <span class="endereco-telefone"><strong>{{ configuracoes.telefone }} </strong></span>
+                                                </li>
+                                                
+                                                <li class="site-emails">
+                                                        <!-- Telefone e Endereço -->
+                                                        <span class="site-email"><strong>E-mails de Contato:</strong></span>
+                                                        <span class="site-email-contato">atendimento@torinvestimetnos.com.br</span>
+                                
+                                                </li>
+                                        </ul><!-- /Logomarca e Endereço -->
+                                </div><!-- /site-wrap -->
+                                
+                                <!-- Barra Inferior Footer -->
+                                <div id="footer-white-bar">                                       
+									<!-- site-wrap -->
+                                        <div class="site-wrap">
+                                                <!-- Diretos autorais -->
+                                                <span id="site-direitos-autorais">
+                                                        <center><strong>{{ configuracoes.nome_da_empresa }}</strong> Todos os direitos reservados - Copyright © 2011
+                                                </span></center><!-- /Direitos Autorais -->
+
+                                                <!-- Créditos -->
+                                                <a href="http://www.luizanao.com" title="	LF Marques - Tecnologia da Informação" id="site-creditos">
+                                                        <span><strong>luizanao.com</strong></span>
+                                                </a><!-- /Créditos -->
+                                        </div><!-- /site-wrap -->
+                                </div><!-- Barra Inferior Footer -->
+                        </div><!-- /site-footer -->
+                </div><!-- /site-container -->
+                        
+                
+        </body>
+</html>
+

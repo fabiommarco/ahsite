@@ -1,0 +1,40 @@
+{% extends "admin/base_site.html" %}
+
+<!-- LOADING -->
+{% load i18n admin_modify adminmedia grp_tags %}
+
+<!-- JAVASCRIPTS -->
+{% block javascripts %}
+    {{ block.super }}
+    {% url admin:jsi18n as jsi18nurl %}
+    <script type="text/javascript" src="{{ jsi18nurl|default:"../../../jsi18n/" }}"></script>
+    <link rel="stylesheet" media="screen" type="text/css" href="../../../media/colorpicker/css/colorpicker.css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+    {{ media }}
+{% endblock %}
+
+<!-- COLTYPE/BODYCLASS -->
+{% block content-class %}content-flexible{% endblock %}
+
+<!-- BREADCRUMBS -->
+{% block breadcrumbs %}
+    {% if not is_popup %}
+        <div id="breadcrumbs">
+             <a href="../">{% trans "Home" %}</a> &rsaquo;
+             <a href="/admin/">Conteúdo Dinâmico</a> &rsaquo;
+             <a href="/admin/app/newsletter/">Newsletter</a> &rsaquo;
+             Exportando Newsletter             
+        </div>
+    {% endif %}
+{% endblock %}
+
+<!-- CONTENT -->
+{% block content %}
+    <div class="container-flexible">
+        <div class="form-container">
+            {% for item in newsletter %}
+            "{{ item.nome }}" &lt;{{ item.email }}&gt;{% if not forloop.last %},{% endif %} <br />
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

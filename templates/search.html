@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block name %}search{% endblock %}
+{% block content_class %}page-search{% endblock %}
+{% block title %}Resultado da busca por {{ keyword }} | {% endblock %}
+{% load project_tags %}
+{% load highlight %} 
+
+{% block content %}
+<!-- Resultado da Busca -->
+<div id="search">
+        <div id="resultados">
+                <h2>Resultado da busca por <strong>{{ keyword }}</strong></h2>
+                {% regroup results by verbose_name_plural as tipos %}
+                {% for tipo in tipos %}
+                <div class="tipo-busca">
+                        <h3>{{ tipo.grouper }}</h3>
+                        <ul>
+                                {% for resultado in tipo.list %}
+                                <li>
+                                        <a href="{{ resultado.object.get_absolute_url }}" title="{{ resultado.object.titulo }}" class="resultado-titulo">
+                                                {% if resultado.object.titulo %}
+                                                {% highlight resultado.object.titulo with keyword %}
+                                                {% else %}
+                                                {% if resultado.object.nome %}
+                                                {% highlight resultado.object.nome with keyword %}
+                                                {% endif %}
+                                                {% endif %}
+                                        </a>
+                                        <p class="resultado-fragmento">
+                                                {% if resultado.object.descricao %}
+                                                {% highlight resultado.object.descricao with keyword %}
+                                                {% else %}
+                                                {% if resultado.object.conteudo %}
+                                                {% highlight resultado.object.conteudo with keyword %}
+                                                {% endif %}
+                                                {% endif %}
+                                        </p>
+                                </li>
+                                {% endfor %}   
+                        </ul>
+                </div>
+                {% empty %}
+                <p class="nenhum-resultado">Nenhum resultado encontrado.</p>
+                {% endfor %}
+        </div>
+</div><!-- /Resultado da Busca -->
+
+{% endblock %}

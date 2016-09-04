@@ -1,0 +1,26 @@
+"""
+    
+"""
+from django.conf.urls import url
+from django.contrib import admin
+from django.conf.urls import url, include
+from app import views
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+	
+	url(r'^$', views.home, name='home'),
+	url(r'^quem-somos/$', views.about_company, name='about_company'),
+    
+	#includes
+	url(r'^grappelli/', include('grappelli.urls')),
+    url(r'^tinymce/', include('tinymce.urls')),
+    #admin
+    url(r'^admin/', admin.site.urls),
+
+]#+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+# from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+# urlpatterns += staticfiles_urlpatterns()

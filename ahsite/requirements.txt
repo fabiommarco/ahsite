@@ -1,0 +1,6 @@
+dj-database-url==0.4.1
+Django==1.10.1
+django-grappelli==2.8.1
+django-tinymce==2.4.0
+gunicorn==19.6.0
+Pillow==3.3.1

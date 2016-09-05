@@ -30,45 +30,58 @@
 
 <body id="page-top" class="index">
     <a class="logo" href="/">
-        <img id="logo" src="{% static 'img/logo-header.png'%}" title="Voltar à pagina inicial">
+        <img id="logo" src="{% static 'img/logo-header.png'%}" title="Agropecuária AH - Página Inicial">
     </a>
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
         <div class="container">
-            <div class="collapse navbar-collapse navbar-collapse-left " id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse navbar-collapse-left">
                 <ul class="nav navbar-nav navbar-left">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
+                    <li>
+                        <a href="/quem-somos">Institucional</a>
+                        <ul>
+                            <li><a href="/quem-somos#agropecuaria-ah">Agropecuária AH</a></li>
+                            <li><a href="/quem-somos#missao-e-valores">Missão e Visão</a></li>
+                            <li><a href="/quem-somos#valores-e-competencia">Valores e Competência</a></li>
+                            <li><a href="/quem-somos#localizacoes">Localizações</a></li>
+                        </ul>
                     </li>
-                    <li class="page-scroll">
-                        <a href="#portfolio">Institucional</a>
+                    <li>
+                        <a href="/negocios">Negócios</a>
+                        <ul>
+                            <li><a href="/negocios/venda">Venda</a></li>
+                            <li><a href="/negocios/compra">Compra</a></li>
+                        </ul>
                     </li>
-                    <li class="page-scroll">
-                        <a href="#about">Negócios</a>
+                    <li>
+                        <a href="/midia">Mídia</a>
+                        <ul>
+                            <li><a href="/midia/noticias">Notícias AH</a></li>
+                            <li><a href="/midia/pagina-um">Página Um</a></li>
+                            <li><a href="/midia/cotacoes">Cotações Agrícolas</a></li>
+                            <li><a href="/midia/glossario">Glossário</a></li>
+                        </ul>
                     </li>
-                    <li class="page-scroll">
-                        <a href="#contact">Mídia</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#contact">Parceria AH</a>
+                    <li>
+                        <a href="/parcerias">Parcerias</a>
+                        <ul>
+                            <li><a href="/parcerias/bezerro">Fomento Bezerro AH+</a></li>
+                            <li><a href="/parcerias/suinocultura">Parceria Suinocultura</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
-            <div class="collapse navbar-collapse navbar-collapse-right" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse navbar-collapse-right">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
+                    <li>
+                        <a href="/responsabilidade-social">Responsabilidade Social</a>
+                        <ul>
+                            <li><a href="/responsabilidade-social/fundacao">Fundação AH</a></li>
+                            <li><a href="/responsabilidade-social/escola-rural">Escola Rural</a></li>
+                        </ul>
                     </li>
-                    <li class="page-scroll">
-                        <a href="#portfolio">Responsabilidade Social</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#about">Trabalhe Conosco</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#contact" class="contact-menu-icon">
-                            <i class="fa fa-phone" aria-hidden="true"></i>
-                        </a>
-                    </li>
+                    <li class="single-nav"><a href="/trabalhe-conosco">Trabalhe Conosco</a></li>
+                    <li class="single-nav"><a href="/contato" class="contact-menu-icon" title="Entre em contato conosco"><i class="fa fa-phone" aria-hidden="true"></i></a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -94,41 +107,41 @@
                 <div class="row">
                     <div class="footer-col col-md-2">
                         <ul>
-                            <li class="link-title"><a href="">Institucional</a></li>
-                            <li><a href="">Agropecuária AH</a></li>
-                            <li><a href="">Missão e Visão</a></li>
-                            <li><a href="">Valores e Competência</a></li>
-                            <li><a href="">Localizações</a></li>
+                            <li class="link-title"><a href="/quem-somos">Institucional</a></li>
+                            <li><a href="/quem-somos#agropecuaria-ah">Agropecuária AH</a></li>
+                            <li><a href="/quem-somos#missao-e-valores">Missão e Visão</a></li>
+                            <li><a href="/quem-somos#valores-e-competencia">Valores e Competência</a></li>
+                            <li><a href="/quem-somos#localizacoes">Localizações</a></li>
                         </ul>
                     </div>
                     <div class="footer-col col-md-2">
                         <ul >
-                            <li class="link-title"><a href="">Negócios</a></li>
-                            <li><a href="">Venda</a></li>
-                            <li><a href="">Compra</a></li>
+                            <li class="link-title"><a href="/negocios">Negócios</a></li>
+                            <li><a href="/negocios/venda">Venda</a></li>
+                            <li><a href="/negocios/compra">Compra</a></li>
                         </ul>
                     </div>
                     <div class="footer-col col-md-3">
                         <ul >
-                            <li class="link-title"><a href="">Parcerias</a></li>
-                            <li><a href="">Fomento Bezerro AH+</a></li>
-                            <li><a href="">Parceria Suinocultura</a></li>
+                            <li class="link-title"><a href="/parcerias">Parcerias</a></li>
+                            <li><a href="/parcerias/bezerro">Fomento Bezerro AH+</a></li>
+                            <li><a href="/parcerias/suinocultura">Parceria Suinocultura</a></li>
                         </ul>
                     </div>
                     <div class="footer-col col-md-3">
                         <ul >
-                            <li class="link-title"><a href="">Responsabilidade Social</a></li>
-                            <li><a href="">Fundação AH</a></li>
-                            <li><a href="">Escola Rural</a></li>
+                            <li class="link-title"><a href="/responsabilidade-social">Responsabilidade Social</a></li>
+                            <li><a href="/responsabilidade-social/fundacao">Fundação AH</a></li>
+                            <li><a href="/responsabilidade-social/escola-rural">Escola Rural</a></li>
                         </ul>
                     </div>
                     <div class="footer-col col-md-2">
                         <ul >
-                            <li class="link-title"><a href="">Mídia</a></li>
-                            <li><a href="">Notícias</a></li>
-                            <li><a href="">Página Um</a></li>
-                            <li><a href="">Cotações Agrícolas</a></li>
-                            <li><a href="">Glossário</a></li>
+                            <li class="link-title"><a href="/midia">Mídia</a></li>
+                            <li><a href="/midia/noticias">Notícias</a></li>
+                            <li><a href="/midia/pagina">Página Um</a></li>
+                            <li><a href="/midia/cotacoes">Cotações Agrícolas</a></li>
+                            <li><a href="/midia/glossario">Glossário</a></li>
                         </ul>
                     </div>
                 </div>

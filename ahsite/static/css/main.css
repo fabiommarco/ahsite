@@ -130,9 +130,15 @@ header .intro-text .skills {
   font-weight: 100;
   font-size: 16px;
 }
+.navbar-custom .navbar-nav li {
+    position:relative;
+}
 .navbar-custom .navbar-nav li a {
   color: white;
   text-shadow: 1px 1px 3px rgba(0,0,0, 0.5);
+}
+.navbar-custom .navbar-nav li:hover ul {
+  display: block;
 }
 .navbar-custom .navbar-nav li a.contact-menu-icon {
   text-shadow: 0 0 0;
@@ -158,6 +164,51 @@ header .intro-text .skills {
 .navbar-custom .navbar-nav li.active a:active {
   color: white;
 }
+
+.navbar-custom .navbar-nav ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  padding: 10px 20px;
+  width: 220px;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-custom .navbar-nav > li:not(.single-nav):hover:after {
+  content: "";
+  left: 50%;
+  margin-left: -10px;
+  bottom: 0;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 7px solid white;
+}
+
+.navbar-custom .navbar-nav ul a {
+  color: #444444;
+  text-shadow: none;
+}
+
+.navbar-custom .navbar-nav ul a:hover {
+  color: #2D6D87;
+  text-decoration: none;
+}
+
+.navbar-custom .navbar-nav ul li {
+  display: block;
+  padding: 8px 4px;
+  border-bottom: solid 1px #eee;
+}
+
+.navbar-custom .navbar-nav ul li:last-child {
+  border-bottom: none;
+}
+
 .navbar-custom .navbar-toggle {
   color: white;
   font-size: 10px;
@@ -215,7 +266,7 @@ section.success {
   text-align: center;
   z-index: 9999;
   background: white;
-  box-shadow: 1px 1px 1px 1px rgba(0,0,0, 0.1)
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
 
 .about-ah {
@@ -522,7 +573,7 @@ section.success {
 }
 
 #miscellaneous .noticias a:hover {
-  text-decoration: none
+  text-decoration: none;
 }
 
 #miscellaneous .responsabilidade-social h3,

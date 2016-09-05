@@ -1,56 +1,36 @@
   {% extends "base.html" %}
 {% load static %}
-    
+
   {% block content %}
     <!-- Contact Section -->
-    <section id="contact">
+    <section id="work-for-us" class="ah-background">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Trabalhe Conosco</h2>
-                    <hr class="star-primary">
-                </div>
+            <div class="col-lg-10 col-lg-offset-1">
+                <h2>Trabalhe Conosco</h2>
+                <p>Deseja trabalhar em uma empresa séria, em franco crescimento e com ótimas oportunidades de carreira? <br>Cadastre seu curriculum através do formulário para que possamos contactar você.</p>
             </div>
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1 ">
-                    <p>Deseja trabalhar em uma empresa séria, em franco crescimento e com ótimas oportunidades de carreira? Cadastre seu curriculum através do formulário para que possamos contactar você.</p>
-                </div>
-            </div>
-                {% if is_apply_job %}
-                    {% if messages %}
-                        <ul class="messages" style="list-style=:none;">
-                            {% for message in messages %}
-                            <li {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
+
+            <div class="col-lg-10 col-lg-offset-1 vagas">
+                <h3>Vagas disponíveis</h3>
+                {% if is_apply_job and messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
                 {% endif %}
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Vagas disponiveis</h2>
-                    <hr class="star-primary">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
-                  {% for job in jobs%}
-                        <div class="panel panel-default">
-                          <div class="panel-heading">
-                            <h3 class="panel-title">{{job}} | {{job.job_date}}</h3>
-                          </div>
-                          <div class="panel-body">
-                            {{job.job_description|safe}}
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <a href="#applyModal" data-toggle="modal">
-                                         <button type="button" class="btn btn-default btn-apply-job" data-role="{{job}}" data-desc="{{job.job_description|safe}}" data-jobid="{{job.id}}">Aplicar</button>
-                                    </a>
-                                </div>
-                            </div>
-                          </div>
-                        </div>
-                    {% endfor %}
-                </div>
+                {% for job in jobs %}
+                    <div class="job-listing">
+                        <h4>{{job}}</h4>
+                        <span class="date-posted">{{job.job_date}}</span>
+                        <p>{{job.job_description|safe}}</p>
+                        <a href="#applyModal" data-toggle="modal" data-role="{{job}}" data-desc="{{job.job_description|safe}}" data-jobid="{{job.id}}" class="btn btn-success btn-apply-job">
+                            Enviar currículo
+                        </a>
+                    </div>
+                {% empty %}
+                    <p>Nenhuma vaga disponível no momento. <a href="/fale-conosco">Entre em contato conosco para mais esclarecimendos</a>.</p>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -76,14 +56,14 @@
                                     {% include '_contact_form.html' %}
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Fechar</button>
+                            <a href="#" data-dismiss="modal"><i class="fa fa-times"></i> Fechar</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-{% endblock content %}  
+{% endblock content %}
 
 {% block javascript %}
     <script src="{% static 'js/jqBootstrapValidation.js'%}"></script>

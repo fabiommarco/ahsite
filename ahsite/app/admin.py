@@ -32,7 +32,12 @@ class EventAdmin(admin.ModelAdmin):
     # list_display = ('scaped_html', )
     inlines = [ImagemInline]
 
+class NewsletterAdmin(admin.ModelAdmin):
+    list_display = ('news_date','news_name','news_email',)
+    ordering = ['news_date']
+    
 admin.site.register(Jobs)
+admin.site.register(Newsletter,NewsletterAdmin)
 admin.site.register(Magazine)
 admin.site.register(AboutCompany)
 admin.site.register(GeneralConfig)

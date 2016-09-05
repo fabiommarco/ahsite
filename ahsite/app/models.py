@@ -124,9 +124,32 @@ class Magazine(models.Model):
 class Research(models.Model):
     reserach_date = models.DateField(default=datetime.datetime.now)
     reserach_title = models.CharField(u"Título", max_length=300)
-    reserach_type = models.CharField(u"Tipo de Relatorio",choices=TIPO_RELATORIO, max_length=200,help_text="O relatório Cotação Agrícola controla a exibição de todos os outro. Portanto sempre adicione um Cotação agrícola para validar a exibição de todos.")
+    reserach_type = models.CharField(u"Tipo de Relatorio",choices=TIPO_RELATORIO, max_length=200
+                                    ,help_text="O relatório Cotação Agrícola controla a exibição de todos os outro.\
+                                    Portanto sempre adicione um Cotação agrícola para validar a exibição de todos.")
     reserach_description = tinymce_models.HTMLField(u"Descrição")
     research_file = models.FileField("Arquivo", upload_to=get_upload_path, max_length=100)
     
     class Meta:
        verbose_name_plural = u"Researchs"
+
+
+class Newsletter(models.Model):
+    news_date = models.DateTimeField(default=datetime.datetime.now)
+    news_name = models.CharField("Nome",max_length=200)
+    news_email = models.EmailField('Email')
+    
+    def __unicode__(self):
+        return self.news_name
+
+class Sale(models.Model):
+    sale_description = tinymce_models.HTMLField(u"Texto da Página",help_text='Conteúdo da página de Vendas')
+    sale_email = models.EmailField('Email',blank=True, help_text='O email do formulário da Página de Vendas será enviado para\
+                                                                  o email registrado no menu <a href="/admin/app/generalconfig/">Configurações Gerais</a>.\
+                                                                  Use este campo para registrar um email adicional utilizado na Página de Vendas.')
+    
+    def __unicode__(self):
+        return self.sale_description
+
+    class Meta:
+        verbose_name_plural = u"Página de Vendas"

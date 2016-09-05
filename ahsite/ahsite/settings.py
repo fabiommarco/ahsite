@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
     AH Website - LFMarques - 2016
     luizfelipe.unesp@gmail.com
@@ -109,7 +110,9 @@ TINYMCE_DEFAULT_CONFIG = {
 TINYMCE_SPELLCHECKER = True
 TINYMCE_COMPRESSOR = True
 
-#heroku
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+# Configurações para envio de e-mail
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'noreply.ahagropecuaria@gmail.com'
+EMAIL_HOST_PASSWORD = 'AhAgro@005#'
+EMAIL_PORT = 587

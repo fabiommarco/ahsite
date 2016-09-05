@@ -1,0 +1,44 @@
+<form name="sentMessage" id="contactForm" novalidate>
+    <div class="row control-group">
+        <div class="form-group col-xs-12 floating-label-form-group controls">
+            <label>Nome</label>
+            <input type="text" class="form-control" placeholder="Nome" id="name" required data-validation-required-message="Campo Nome é obrigatório.">
+            <p class="help-block text-danger"></p>
+        </div>
+    </div>
+    <div class="row control-group">
+        <div class="form-group col-xs-12 floating-label-form-group controls">
+            <label>Email</label>
+            <input type="email" class="form-control" placeholder="Email" id="email" required data-validation-required-message="Campo Email é obrigatório.">
+            <p class="help-block text-danger"></p>
+        </div>
+    </div>
+    <div class="row control-group">
+        <div class="form-group col-xs-12 floating-label-form-group controls">
+            <label>Telefone</label>
+            <input type="tel" class="form-control" placeholder="Telefone" id="phone" required data-validation-required-message="Campo Telefone é obrigatório.">
+            <p class="help-block text-danger"></p>
+        </div>
+    </div>
+    <div class="row control-group">
+        <div class="form-group col-xs-12 floating-label-form-group controls">
+            <label>Cidade</label>
+            <input type="text" class="form-control" placeholder="Cidade" id="city" required data-validation-required-message="Campo Cidade é obrigatório.">
+            <p class="help-block text-danger"></p>
+        </div>
+    </div>
+    <div class="row control-group">
+        <div class="form-group col-xs-12 floating-label-form-group controls">
+            <label>Messagem</label>
+            <textarea rows="5" class="form-control" placeholder="Messagem" id="message" required data-validation-required-message="Campo Mensagem é obrigatório."></textarea>
+            <p class="help-block text-danger"></p>
+        </div>
+    </div>
+    <br>
+    <div id="success"></div>
+    <div class="row">
+        <div class="form-group col-xs-12">
+            <button type="submit" class="btn btn-success btn-lg">Enviar</button>
+        </div>
+    </div>
+</form>

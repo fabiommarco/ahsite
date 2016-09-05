@@ -13,6 +13,9 @@ urlpatterns = [
 	
 	url(r'^$', views.home, name='home'),
 	url(r'^quem-somos/$', views.about_company, name='about_company'),
+    url(r'^fale-conosco/$', views.talk_with_us, name='talk_with_us'),
+    
+    url(r'^new_contact/(?P<contact_type>.*)$', views.new_contact, name='new_contact'),
     
 	#includes
 	url(r'^grappelli/', include('grappelli.urls')),

@@ -494,7 +494,7 @@ section.success {
 }
 
 #miscellaneous .noticias h3 {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 #miscellaneous .noticias #na_main {
@@ -514,7 +514,7 @@ section.success {
   background: none !important;
 }
 
-#miscellaneous .noticias ul li:nth-child(n+5) {
+#miscellaneous .noticias ul li:nth-child(n+6) {
   display: none;
 }
 
@@ -528,6 +528,80 @@ section.success {
 #miscellaneous .noticias a:hover {
   text-decoration: none
 }
+
+#miscellaneous .responsabilidade-social h3,
+#miscellaneous .trabalhe-conosco h3 {
+  margin-bottom: 30px;
+  color: #9B9B9B;
+}
+
+#miscellaneous .responsabilidade-social ul {
+  margin: 0;
+  padding: 0;
+}
+
+#miscellaneous .responsabilidade-social li {
+  display: block;
+  position: relative;
+}
+
+#miscellaneous .responsabilidade-social li a {
+  display: block;
+  border: solid 1px rgba(216, 216, 216, 0.5);
+  border-radius: 4px;
+  padding: 15px;
+  margin: 0 0 10px 0;
+  color: #9B9B9B;
+}
+
+#miscellaneous .responsabilidade-social li .fa {
+  position: absolute;
+  right: 20px;
+  top: 26px;
+  font-size: 1.4em;
+}
+
+#miscellaneous .responsabilidade-social li a:hover {
+  color: #9B9B9B;
+  text-decoration: none;
+  border: solid 1px #1A83A3;
+}
+
+
+
+#miscellaneous .responsabilidade-social img.icon {
+  float: left;
+  margin: 5px 20px 0 0;
+}
+
+#miscellaneous .responsabilidade-social .meta strong {
+  color: #1A83A3;
+  display: block;
+}
+
+#miscellaneous .trabalhe-conosco h3 {
+  margin-bottom: 20px;
+}
+
+#miscellaneous .trabalhe-conosco {
+  margin-top: 30px;
+}
+
+#miscellaneous .trabalhe-conosco p {
+  font-size: 15px;
+  line-height: 1.8em;
+  margin-bottom: 20px;
+}
+
+#miscellaneous .trabalhe-conosco .btn {
+  background: #6DAC78;
+  padding: 10px 20px;
+  background: #6DAC78;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+
 
 .floating-label-form-group {
   position: relative;

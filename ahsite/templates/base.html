@@ -12,21 +12,15 @@
 
     <title>AH Agropecuária</title>
 
-    <!-- Bootstrap Core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/main.css'%}" rel="stylesheet">
 
-    <!-- Theme CSS -->
-    <link href="{% static 'css/freelancer.css'%}" rel="stylesheet">
-    <link href="{% static 'css/proxima-nova.css'%}" rel="stylesheet">
-
-    <!-- Custom Fonts -->
+    <link href="{% static 'vendor/proxima-nova/proxima-nova.min.css'%}" rel="stylesheet" type="text/css">
     <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css'%}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
     <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico'%}"/>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -38,10 +32,8 @@
     <a class="logo" href="/">
         <img id="logo" src="{% static 'img/logo-header.png'%}" title="Voltar à pagina inicial">
     </a>
-    <!-- Navigation -->
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
         <div class="container">
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-collapse-left " id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-left">
                     <li class="hidden">
@@ -83,19 +75,17 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-        <!-- Header -->
-        <header>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
 
-                    </div>
-                </div>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12"></div>
             </div>
-        </header>
+        </div>
+    </header>
 
     {% block content %}{% endblock content %}
-
 
     <!-- Footer -->
     <footer class="text-center">
@@ -165,27 +155,9 @@
         </div>
     </footer>
 
-    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
-    <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
-        <a class="btn btn-primary" href="#page-top">
-            <i class="fa fa-chevron-up"></i>
-        </a>
-    </div>
-
-    <!-- jQuery -->
     <script src="{% static 'vendor/jquery/jquery.min.js'%}"></script>
-
-    <!-- Bootstrap Core JavaScript -->
     <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js'%}"></script>
-
-    <!-- Theme JavaScript -->
-    <script src="{% static 'js/freelancer.min.js'%}"></script>
-
-    <!-- Pages JS -->
+    <script src="{% static 'js/main.js'%}"></script>
     {% block javascript %}{% endblock javascript %}
-
-    <script src="{% static 'js/freelancer.js'%}"></script>
-
 </body>
-
 </html>

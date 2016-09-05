@@ -215,6 +215,7 @@ section.success {
   text-align: center;
   z-index: 9999;
   background: white;
+  box-shadow: 1px 1px 1px 1px rgba(0,0,0, 0.1)
 }
 
 .about-ah {

@@ -137,7 +137,7 @@ header .intro-text .skills {
 .navbar-custom .navbar-nav li a.contact-menu-icon {
   text-shadow: 0 0 0;
   font-size: 1.2em;
-  border: 1px solid #B99A89;
+  border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 6px;
   padding: 10px 12px;
   margin-top: 4px;
@@ -243,11 +243,6 @@ section.success {
   display: block;
 }
 
-#logo_bottom {
-  -webkit-filter: brightness(0) invert(1);
-  filter: brightness(0) invert(1);
-  width: 80px;
-}
 .social-icon{ margin: 0 10px; }
 
 .link-title{ font-weight: bold;}
@@ -686,10 +681,30 @@ footer .footer-above li{
 footer .footer-col {
   margin-bottom: 50px;
 }
+footer .footer-col:first-child {
+  text-align: left;
+}
+footer .footer-col:last-child {
+  text-align: right;
+}
 footer .footer-below {
-  padding: 50px 0;
+  padding: 30px 0;
   background-color: #404040;
 }
+
+footer .footer-below .social {
+  margin-top: 10px;
+}
+
+footer .footer-below .links {
+  margin-top: 6px;
+}
+
+footer .footer-below .copyright {
+  font-weight: 100;
+  color: rgba(255, 255, 255, 0.5);
+}
+
 .btn-outline {
   color: white;
   font-size: 20px;

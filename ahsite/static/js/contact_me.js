@@ -28,13 +28,13 @@ $(function() {
             $.ajax({
                 url: server_url,
                 type: "POST",
-                data: {
-                    name: name,
-                    phone: phone,
-                    email: email,
-                    city: city,
-                    message: message
-                },
+                 data: {
+                     name: name,
+                     phone: phone,
+                     email: email,
+                     city: city,
+                     message: message
+                 },
                 cache: false,
                 success: function() {
                     // Enable button & show success message

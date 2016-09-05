@@ -1,29 +1,30 @@
-<form name="sentMessage" id="contactForm" novalidate data-url='{{url_contact}}'>
+<form name="sentMessage" id="contactForm" method="post" novalidate  enctype="multipart/form-data" {% if is_apply_job %} action="{{url_contact}}"{% else %}data-url='{{url_contact}}'{% endif %} >
+    {% csrf_token %}
     <div class="row control-group">
         <div class="form-group col-xs-12 floating-label-form-group controls">
             <label>Nome</label>
-            <input type="text" class="form-control" placeholder="Nome" id="name" required data-validation-required-message="Campo Nome é obrigatório.">
+            <input type="text" class="form-control" placeholder="Nome" id="name" name="name" required data-validation-required-message="Campo Nome é obrigatório.">
             <p class="help-block text-danger"></p>
         </div>
     </div>
     <div class="row control-group">
         <div class="form-group col-xs-12 floating-label-form-group controls">
             <label>Email</label>
-            <input type="email" class="form-control" placeholder="Email" id="email" required data-validation-required-message="Campo Email é obrigatório.">
+            <input type="email" class="form-control" placeholder="Email" id="email" name="email"required data-validation-required-message="Campo Email é obrigatório.">
             <p class="help-block text-danger"></p>
         </div>
     </div>
     <div class="row control-group">
         <div class="form-group col-xs-12 floating-label-form-group controls">
             <label>Telefone</label>
-            <input type="tel" class="form-control" placeholder="Telefone" id="phone" required data-validation-required-message="Campo Telefone é obrigatório.">
+            <input type="tel" class="form-control" placeholder="Telefone" id="phone" name="phone" required data-validation-required-message="Campo Telefone é obrigatório.">
             <p class="help-block text-danger"></p>
         </div>
     </div>
     <div class="row control-group">
         <div class="form-group col-xs-12 floating-label-form-group controls">
             <label>Cidade</label>
-            <input type="text" class="form-control" placeholder="Cidade" id="city" required data-validation-required-message="Campo Cidade é obrigatório.">
+            <input type="text" class="form-control" placeholder="Cidade" name="city" id="city" required data-validation-required-message="Campo Cidade é obrigatório.">
             <p class="help-block text-danger"></p>
         </div>
     </div>
@@ -32,7 +33,7 @@
         <div class="row control-group">
             <div class="form-group col-xs-12 floating-label-form-group controls">
                 <label>Curriculum</label>
-                <input rows="5" type="file" class="form-control" placeholder="Curriculum" id="attach" required data-validation-required-message="Campo Curriculum é obrigatório."></input>
+                <input rows="5" type="file" class="form-control" placeholder="Curriculum" name="attach" id="attach" required data-validation-required-message="Campo Curriculum é obrigatório."></input>
                 <label for="attach">Curriculum</label>
                 <p class="help-block text-danger"></p>
             </div>
@@ -42,11 +43,12 @@
     <div class="row control-group">
         <div class="form-group col-xs-12 floating-label-form-group controls">
             <label>Messagem</label>
-            <textarea rows="5" class="form-control" placeholder="Messagem" id="message" required data-validation-required-message="Campo Mensagem é obrigatório."></textarea>
+            <textarea rows="5" class="form-control" placeholder="Messagem" id="message" name="message" required data-validation-required-message="Campo Mensagem é obrigatório."></textarea>
             <p class="help-block text-danger"></p>
         </div>
     </div>
     <br>
+    <input type="hidden" value="" name="job_id" id="job_id"></input>
     <div id="success"></div>
     <div class="row">
         <div class="form-group col-xs-12">

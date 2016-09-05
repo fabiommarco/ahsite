@@ -12,10 +12,28 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
+                <div class="col-lg-10 col-lg-offset-1 ">
                     <p>Deseja trabalhar em uma empresa séria, em franco crescimento e com ótimas oportunidades de carreira? Cadastre seu curriculum através do formulário para que possamos contactar você.</p>
-                    
-                    {% for job in jobs%}
+                </div>
+            </div>
+                {% if is_apply_job %}
+                    {% if messages %}
+                        <ul class="messages" style="list-style=:none;">
+                            {% for message in messages %}
+                            <li {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endif %}
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Vagas disponiveis</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                  {% for job in jobs%}
                         <div class="panel panel-default">
                           <div class="panel-heading">
                             <h3 class="panel-title">{{job}} | {{job.job_date}}</h3>
@@ -24,7 +42,9 @@
                             {{job.job_description|safe}}
                             <div class="row">
                                 <div class="col-lg-12">
-                                     <button type="button" class="btn btn-default btn-apply-job">Aplicar</button>
+                                    <a href="#applyModal" data-toggle="modal">
+                                         <button type="button" class="btn btn-default btn-apply-job" data-role="{{job}}" data-desc="{{job.job_description|safe}}" data-jobid="{{job.id}}">Aplicar</button>
+                                    </a>
                                 </div>
                             </div>
                           </div>
@@ -32,16 +52,51 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
-                    {% include '_contact_form.html' %}
+        </div>
+    </section>
+
+    <div class="portfolio-modal modal fade" id="applyModal" tabindex="-1" role="dialog" aria-hidden="true" style="z-index:9999;">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2 id="apply-modal-title"></h2>
+                            <hr class="star-primary">
+                            <p id="apply-modal-desc"></p>
+                            <p><strong>Para se candidatar, por favor preencha o formulário abaixo e analisaremos seu curriculum.</strong></p>
+                            <div class="row">
+                                <div class="col-lg-8 col-lg-offset-2">
+                                    {% include '_contact_form.html' %}
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Fechar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 {% endblock content %}  
 
 {% block javascript %}
     <script src="{% static 'js/jqBootstrapValidation.js'%}"></script>
-    <script src="{% static 'js/contact_me.js'%}"></script>
+    <script type="text/javascript">
+        $('.btn-apply-job').on('click', function(){
+        var title = $(this).data('role');
+        var description = $(this).data('desc');
+        var job_id = $(this).data('jobid');
+        $('#apply-modal-title').html(title);
+        $('#apply-modal-desc').html(description);
+        $('input#job_id').val(job_id);
+        console.log(job_id)
+    })
+
+    </script>
 {% endblock javascript %}

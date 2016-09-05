@@ -1,5 +1,5 @@
 from app.utils import envia_email
-from app.models import GeneralConfig
+from app.models import GeneralConfig, Jobs
 
 from django.template import loader, Context
 from django import forms
@@ -33,7 +33,33 @@ class ContactForm(forms.Form):
 
 class ApplyJobForm(ContactForm):
     attach = forms.FileField()
+    # job_id = forms.HiddenInput()
+    job_id = forms.CharField(widget=forms.HiddenInput())
 
     def __init__(self, *args, **kwargs):
         super(ApplyJobForm, self).__init__(*args, **kwargs)
-        self.fields.keyOrder = ['name', 'email', 'phone','city','attach','message']
+        self.fields.keyOrder = ['name', 'email', 'phone','city','attach','message','job_id']
+
+    def send(self,request):
+        config = GeneralConfig.objects.latest('id')
+
+        job = Jobs.objects.get(id=self.cleaned_data['job_id'])
+        cv = self.cleaned_data["attach"]
+        # Body
+        th = loader.get_template('emails/trabalhe.html')
+        tt = loader.get_template('emails/trabalhe.txt')
+        c = Context({
+            'name': self.cleaned_data["name"],
+            'city': self.cleaned_data["city"],
+            'phone': self.cleaned_data["phone"],
+            'email': self.cleaned_data["email"],
+            'message': self.cleaned_data["message"],
+            'job_title': job.job_title
+        })
+        
+        html_body = th.render(c)
+        txt_body = tt.render(c)
+        envia_email(txt_body, html_body, 
+        			subject= 'E-mail de Candidatura Vaga - Site', 
+        			to=[config.config_email,], attach=cv,
+        			from_sender="%s <%s>" % (self.cleaned_data["name"], self.cleaned_data["email"]))

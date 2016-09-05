@@ -265,7 +265,10 @@ section.success {
 
 .link-title{ font-weight: bold;}
 
-.btn-apply-job{float: right;}
+.btn-apply-job {
+  margin-top: 10px;
+}
+
 /*********************************************/
 .ah-background {
   background-image: url('../img/subheader.png');
@@ -620,7 +623,7 @@ ul.information-block {
   padding: 10px;
 }
 
-#contact {
+#contact, #work-for-us {
   padding: 20px 0 70px;
   margin-top: 40px;
 }
@@ -640,6 +643,47 @@ ul.information-block {
 
 #contact .small {
   margin-top: 20px;
+}
+
+#work-for-us p {
+  font-size: 16px;
+}
+
+#work-for-us .vagas h3 {
+  color: #9B9B9B;
+  padding: 20px 0;
+}
+
+#work-for-us .messages li {
+  padding: 0;
+  font-size: 1.1em;
+}
+
+#work-for-us .messages li.alert-error { color: #8B2D27; }
+#work-for-us .messages li.alert-success { color: #1A83A3; }
+
+
+.job-listing {
+  border: solid 1px #eee;
+  padding: 30px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.job-listing .date-posted {
+  color: #666;
+}
+
+.job-listing h4 {
+  font-size: 1.5em;
+  color: #1A83A3;
+  font-weight: 700;
+}
+
+.job-listing p {
+  margin-top: 10px;
+  line-height: 1.6em;
 }
 
 .floating-label-form-group {
@@ -888,7 +932,7 @@ fieldset[disabled] .btn-success.active {
   box-shadow: none;
   border: none;
   min-height: 100%;
-  padding: 100px 0;
+  padding: 10px 0;
   text-align: center;
   z-index: 9999;
 }

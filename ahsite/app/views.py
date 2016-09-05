@@ -56,7 +56,7 @@ def new_contact(request,contact_type):
     if request.method == "POST":
         return_data = {'success': True}
         apply_job_context = False
-    
+
         if contact_type == 'contact':
             contactForm = ContactForm(request.POST)
         elif contact_type == 'apply_job':
@@ -64,10 +64,10 @@ def new_contact(request,contact_type):
             apply_job_context = True
         else:
             return_data = {'success': False}
-        
+
         if not contactForm.is_valid():
             return_data = {'success': False, 'errors' : [(k, v[0]) for k, v in contactForm.errors.items()] }
-            messages.add_message(request, messages.ERROR, 'Parece que algo de errado aconteceu . Por favor, tente novamente mais tarde!')
+            messages.add_message(request, messages.ERROR, 'Parece que algo de errado aconteceu. Por favor, tente novamente mais tarde!')
         else:
             contactForm.send(request)
             messages.add_message(request, messages.SUCCESS, 'Obrigado! Sua mensagem foi enviada.')
@@ -75,5 +75,5 @@ def new_contact(request,contact_type):
             # return render(request, 'work-with-us.html', {})
             return HttpResponseRedirect(reverse('work_with_us', args=()))
         return HttpResponse(json.dumps(return_data, ensure_ascii=False)) #, content_type='application/json; charset=UTF-8'
-    
+
     return HttpResponseRedirect("/")

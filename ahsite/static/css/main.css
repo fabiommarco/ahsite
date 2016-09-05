@@ -29,39 +29,6 @@ h6 {
   font-weight: 300;
   color: #88000c;
 }
-hr.star-light,
-hr.star-primary {
-  padding: 0;
-  border: none;
-  border-top: solid 5px;
-  text-align: center;
-  max-width: 250px;
-  margin: 25px auto 30px;
-}
-hr.star-light:after,
-hr.star-primary:after {
-  content: "\f005";
-  font-family: FontAwesome;
-  display: inline-block;
-  position: relative;
-  top: -0.8em;
-  font-size: 2em;
-  padding: 0 0.25em;
-}
-hr.star-light {
-  border-color: white;
-}
-hr.star-light:after {
-  background-color: #18BC9C;
-  color: white;
-}
-hr.star-primary {
-  border-color: #2C3E50;
-}
-hr.star-primary:after {
-  background-color: white;
-  color: #2C3E50;
-}
 .img-centered {
   margin: 0 auto;
 }
@@ -238,10 +205,6 @@ header .intro-text .skills {
     font-size: 1.5em;
   }
 }
-section h2 {
-  margin: 0;
-  font-size: 3em;
-}
 section.success {
   background: #18BC9C;
   color: white;
@@ -301,11 +264,14 @@ section.success {
 
 .btn-apply-job{float: right;}
 /*********************************************/
-#portfolio {
+.ah-background {
   background-image: url('../img/subheader.png');
+  background-size: cover;
+}
+
+#portfolio {
   line-height: 2.5em;
   padding: 95px 0;
-  background-size: cover;
 }
 #portfolio h3 {
   margin-bottom: 1em;
@@ -582,17 +548,17 @@ section.success {
   color: #9B9B9B;
 }
 
-#miscellaneous .responsabilidade-social ul {
+ul.information-block {
   margin: 0;
   padding: 0;
 }
 
-#miscellaneous .responsabilidade-social li {
+.information-block li {
   display: block;
   position: relative;
 }
 
-#miscellaneous .responsabilidade-social li a {
+.information-block li a {
   display: block;
   border: solid 1px rgba(216, 216, 216, 0.5);
   border-radius: 4px;
@@ -601,27 +567,25 @@ section.success {
   color: #9B9B9B;
 }
 
-#miscellaneous .responsabilidade-social li .fa {
+.information-block li .fa-angle-right {
   position: absolute;
   right: 20px;
   top: 26px;
   font-size: 1.4em;
 }
 
-#miscellaneous .responsabilidade-social li a:hover {
+.information-block li a:hover {
   color: #9B9B9B;
   text-decoration: none;
   border: solid 1px #1A83A3;
 }
 
-
-
-#miscellaneous .responsabilidade-social img.icon {
+.information-block img.icon {
   float: left;
   margin: 5px 20px 0 0;
 }
 
-#miscellaneous .responsabilidade-social .meta strong {
+.information-block .meta strong {
   color: #1A83A3;
   display: block;
 }
@@ -648,13 +612,39 @@ section.success {
   font-weight: 400;
 }
 
+#contactForm {
+  margin-top: 20px;
+  padding: 10px;
+}
 
+#contact {
+  padding: 20px 0 70px;
+  margin-top: 40px;
+}
+
+#contact .address-list h2 {
+  color: #9B9B9B;
+}
+
+#contact .address-list .information-block {
+  margin-top: 30px;
+  background: white;
+}
+
+#contact .address-list .meta span {
+  display: block;
+}
+
+#contact .small {
+  margin-top: 20px;
+}
 
 .floating-label-form-group {
   position: relative;
-  margin-bottom: 0;
+  margin-bottom: 0.5em;
   padding-bottom: 0.5em;
-  border-bottom: 1px solid #eeeeee;
+  border: 1px solid #eeeeee;
+  background: white;
 }
 .floating-label-form-group input,
 .floating-label-form-group textarea {

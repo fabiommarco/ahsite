@@ -25,9 +25,10 @@ INSTALLED_APPS = [
     #apps
     'app',
     #custom
-    'tinymce',
+    'ckeditor',
 ]
-
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
+CKEDITOR_UPLOAD_PATH = "uploads/"
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

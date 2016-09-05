@@ -5,12 +5,14 @@
 """
 from __future__ import unicode_literals
 from django.db import models
-from tinymce import models as tinymce_models
+# from tinymce import models as tinymce_models
 from django.contrib.contenttypes.fields import GenericForeignKey,GenericRelation
 from django.contrib.contenttypes.models import ContentType
 
 import datetime
 import uuid
+
+from ckeditor.fields import RichTextField
 
 def get_upload_path(instance, filename):
         f, ext = os.path.splitext(filename)
@@ -64,10 +66,10 @@ class GeneralConfig(models.Model):
 
 
 class AboutCompany(models.Model):
-    ac_about = tinymce_models.HTMLField(u"Conteúdo do 'Quem Somos'", blank = False)
-    ac_vision = tinymce_models.HTMLField(u"Conteúdo do 'Visão'", blank = False)
-    ac_mission = tinymce_models.HTMLField(u"Conteúdo do 'Missão'", blank = False)
-    ac_values = tinymce_models.HTMLField(u"Conteúdo do 'Valores'", blank = False)
+    ac_about =  RichTextField(u"Conteúdo do 'Quem Somos'", blank = False)
+    ac_vision = RichTextField(u"Conteúdo do 'Visão'", blank = False)
+    ac_mission =RichTextField(u"Conteúdo do 'Missão'", blank = False)
+    ac_values = RichTextField(u"Conteúdo do 'Valores'", blank = False)
     
     def __unicode__(self):
         return self.ac_about
@@ -112,7 +114,7 @@ class Jobs(models.Model):
 class Magazine(models.Model):
     magazine_date = models.DateTimeField(default=datetime.datetime.now)
     magazine_title = models.CharField(u"Titúlo da Edição", max_length=300)
-    magazine_description = tinymce_models.HTMLField(u"Descrição",max_length=300,blank=True)
+    magazine_description = RichTextField(u"Descrição",max_length=300,blank=True)
     magazine_file = models.FileField("Arquivo", upload_to=get_upload_path, max_length=100)
     
     def __unicode__(self):
@@ -127,7 +129,7 @@ class Research(models.Model):
     reserach_type = models.CharField(u"Tipo de Relatorio",choices=TIPO_RELATORIO, max_length=200
                                     ,help_text="O relatório Cotação Agrícola controla a exibição de todos os outro.\
                                     Portanto sempre adicione um Cotação agrícola para validar a exibição de todos.")
-    reserach_description = tinymce_models.HTMLField(u"Descrição")
+    reserach_description = RichTextField(u"Descrição")
     research_file = models.FileField("Arquivo", upload_to=get_upload_path, max_length=100)
     
     class Meta:
@@ -143,7 +145,7 @@ class Newsletter(models.Model):
         return self.news_name
 
 class Sale(models.Model):
-    sale_description = tinymce_models.HTMLField(u"Texto da Página",help_text='Conteúdo da página de Vendas')
+    sale_description = RichTextField(u"Texto da Página",help_text='Conteúdo da página de Vendas')
     sale_email = models.EmailField('Email',blank=True, help_text='O email do formulário da Página de Vendas será enviado para\
                                                                   o email registrado no menu <a href="/admin/app/generalconfig/">Configurações Gerais</a>.\
                                                                   Use este campo para registrar um email adicional utilizado na Página de Vendas.')

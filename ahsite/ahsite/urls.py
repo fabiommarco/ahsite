@@ -20,6 +20,7 @@ urlpatterns = [
     
 	#includes
 	url(r'^grappelli/', include('grappelli.urls')),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     #admin
     url(r'^admin/', admin.site.urls),
 

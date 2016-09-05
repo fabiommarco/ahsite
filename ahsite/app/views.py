@@ -8,15 +8,30 @@ from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 from django.urls import reverse
 from app.forms import ContactForm,ApplyJobForm
-from app.models import Jobs
-
+from app.models import Jobs, AboutCompany, GeneralConfig
+import functools
 import json
+from collections import MutableMapping
+
+def load_basic_info(method):
+    '''general_info
+        add a global variable in globals() named general_info
+    '''
+    @functools.wraps(method)
+    def wrapper(request, *args, **kwargs):
+        g = method.func_globals
+        g['general_info'] = GeneralConfig.objects.latest('id')
+        res = method(request,*args, **kwargs)
+        return res
+    return wrapper
 
 def home(request):
     return render(request, 'index.html', {'is_index':True})
 
-def about_company(request):
-    return render(request, 'about_company.html', {})
+@load_basic_info
+def about_company(request,r=None):
+    about = AboutCompany.objects.latest('id')
+    return render(request, 'about_company.html', {'about':about,'general_info':general_info})
 
 def talk_with_us(request):
     context = {'url_contact':reverse('new_contact', args=['contact'])}

@@ -112,7 +112,7 @@ header .intro-text .skills {
 .navbar-collapse-right{float: right!important;}
 .navbar-collapse-left{float: left!important;}
 
-  
+
 .navbar-custom a:focus {
   outline: none;
 }
@@ -322,12 +322,17 @@ section.success {
 }
 
 
-#negocios .col-content {
+.col-content {
   height: 520px;
   color: white;
 }
 
-#negocios .col-content h3 {
+.col-content h3,
+.col-content h4 {
+  color: white;
+}
+
+.col-content h3 {
   padding-top: 40px;
   margin-top: 0;
   font-weight: bold;
@@ -335,17 +340,18 @@ section.success {
   line-height: 1.2em;
 }
 
-#negocios .col-content h3 span {
+.col-content h3 span {
   display: block;
   font-weight: 100;
   font-size: 0.7em;
+  color: rgba(255, 255, 255, 0.8);
 }
 
-#negocios .col-content p {
+.col-content p {
   display: block;
   font-size: 1em;
   line-height: 2em;
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
 #negocios .col-content a.cta {
@@ -353,7 +359,7 @@ section.success {
   display: block;
 }
 
-#negocios .col-content .btn {
+.col-content .btn {
   background: none;
   border: solid 1px rgba(255, 255, 255, 0.5);
   margin-top: 40px;
@@ -374,40 +380,40 @@ section.success {
   position: absolute;
 }
 
-.col-center {
+#negocios .col-center {
   width: 360px;
   left: 50%;
   margin-left: -180px;
 }
 
-.col-center .col-content {
+#negocios .col-center .col-content {
   text-align: center;
   background: url('../img/negocios/section-suinos.png') right center no-repeat;
   padding: 0 40px;
 }
 
-.col-left {
+#negocios .col-left {
   width: 50%;
   left: 0;
   margin-left: -180px;
   background: url('../img/negocios/section-bovinos.png') right center no-repeat;
 }
 
-.col-left .col-content {
+#negocios .col-left .col-content {
   float: right;
   padding-right: 40px;
   text-align: right;
   width: 300px;
 }
 
-.col-right {
+#negocios .col-right {
   width: 50%;
   right: 0;
   margin-right: -180px;
   background: url('../img/negocios/section-cafe.png') left center no-repeat;
 }
 
-.col-right .col-content {
+#negocios .col-right .col-content {
   padding: 0 40px;
   width: 300px;
 }
@@ -438,9 +444,53 @@ section.success {
 }
 
 #localizacoes .container img {
-/*  max-width: 100%;
-  height: auto;*/
   margin: 0 auto;
+}
+
+#parcerias {
+  margin-top: 100px;
+  height: 590px;
+  position: relative;
+}
+
+#parcerias .col-content h4 {
+  margin-top: 30px;
+}
+
+#parcerias .col-content ul {
+  line-height: 2em;
+}
+
+#parcerias .col-content .btn {
+  margin-top: 30px;
+}
+
+#parcerias .col-left, .col-right {
+  position: absolute;
+}
+
+#parcerias .col-left {
+  width: 50%;
+  left: 0;
+  background: url('../img/parcerias/section-bovinos.png') right center no-repeat;
+}
+
+#parcerias .col-left .col-content {
+  float: right;
+  padding-right: 40px;
+  width: 450px;
+}
+
+#parcerias .col-right {
+  width: 50%;
+  right: 0;
+  background: url('../img/parcerias/section-suinos.png') left center no-repeat;
+}
+
+#parcerias .col-right .col-content {
+  float: left;
+  padding-left: 40px;
+  width: 450px;
 }
 
 .floating-label-form-group {
@@ -521,7 +571,7 @@ footer .footer-above ul{
   list-style: none;
 }
 footer .footer-above li{
-  margin-top: 5px;  
+  margin-top: 5px;
 }
 footer .footer-col {
   margin-bottom: 50px;

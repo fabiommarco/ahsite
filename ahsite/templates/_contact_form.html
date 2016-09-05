@@ -1,4 +1,4 @@
-<form name="sentMessage" id="contactForm" novalidate>
+<form name="sentMessage" id="contactForm" novalidate data-url='{{url_contact}}'>
     <div class="row control-group">
         <div class="form-group col-xs-12 floating-label-form-group controls">
             <label>Nome</label>
@@ -27,6 +27,18 @@
             <p class="help-block text-danger"></p>
         </div>
     </div>
+    
+    {% if is_apply_job %}
+        <div class="row control-group">
+            <div class="form-group col-xs-12 floating-label-form-group controls">
+                <label>Curriculum</label>
+                <input rows="5" type="file" class="form-control" placeholder="Curriculum" id="attach" required data-validation-required-message="Campo Curriculum é obrigatório."></input>
+                <label for="attach">Curriculum</label>
+                <p class="help-block text-danger"></p>
+            </div>
+        </div>
+    {% endif %}
+    
     <div class="row control-group">
         <div class="form-group col-xs-12 floating-label-form-group controls">
             <label>Messagem</label>

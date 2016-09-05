@@ -31,3 +31,9 @@ class ContactForm(forms.Form):
         			to=[config.config_email,], 
         			from_sender="%s <%s>" % (self.cleaned_data["name"], self.cleaned_data["email"]))
 
+class ApplyJobForm(ContactForm):
+    attach = forms.FileField()
+
+    def __init__(self, *args, **kwargs):
+        super(ApplyJobForm, self).__init__(*args, **kwargs)
+        self.fields.keyOrder = ['name', 'email', 'phone','city','attach','message']

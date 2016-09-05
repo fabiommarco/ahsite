@@ -5,8 +5,11 @@
 """
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
-from app.forms import ContactForm
 from django.http import HttpResponse,HttpResponseRedirect
+from django.urls import reverse
+from app.forms import ContactForm,ApplyJobForm
+from app.models import Jobs
+
 import json
 
 def home(request):
@@ -16,7 +19,19 @@ def about_company(request):
 	return render(request, 'about_company.html', {})
 
 def talk_with_us(request):
-	return render(request, 'talk-with-us.html', {})
+	context = {'url_contact':reverse('new_contact', args=['contact'])}
+	print context
+
+	return render(request, 'talk-with-us.html', context)
+
+def work_with_us(request):
+	context = {'url_contact':reverse('new_contact', args=['apply_job'])}
+	
+	jobs = Jobs.objects.filter()
+
+	context.update({'jobs':jobs,'is_apply_job':True})
+
+	return render(request, 'work-with-us.html', context)
 
 @csrf_exempt
 def new_contact(request,contact_type):
@@ -25,17 +40,16 @@ def new_contact(request,contact_type):
     	:params:
     		contact_type: str - contact (to user email contact) or apply_job (user sending CV)
     '''
-    import ipdb; ipdb.set_trace()
     if request.method == "POST":
-        
+        return_data = {'success': True}
+
         if contact_type == 'contact':
         	contactForm = ContactForm(request.POST)
-        # elif contact_type == 'apply_job':
-        # 	contactForm = ContactForm(request.POST)
-        # else:
-        # 	contactForm = ContactForm(request.POST)
+        elif contact_type == 'apply_job':
+        	contactForm = ApplyJobForm(request.POST)
+        else:
+        	return_data = {'success': False}
         
-        return_data = {'success': True}
         if not contactForm.is_valid():
             return_data = {'success': False, 'errors' : [(k, v[0]) for k, v in contactForm.errors.items()] }
         else:

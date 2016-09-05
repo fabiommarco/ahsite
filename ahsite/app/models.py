@@ -100,7 +100,7 @@ class Event(models.Model):
 class Jobs(models.Model):
     job_date = models.DateTimeField(default=datetime.datetime.now)
     job_title = models.CharField(u"Titúlo da Vaga", max_length=300)
-    job_description = tinymce_models.HTMLField(u"Descrição",help_text='Desreva aqui as especificações da vaga e seus pré-requisitos',\
+    job_description = models.TextField(u"Descrição",help_text='Desreva aqui as especificações da vaga e seus pré-requisitos',\
                                         max_length=300)
     
     def __unicode__(self):

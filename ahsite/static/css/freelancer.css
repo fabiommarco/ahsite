@@ -251,6 +251,8 @@ section.success {
 .social-icon{ margin: 0 10px; }
 
 .link-title{ font-weight: bold;}
+
+.btn-apply-job{float: right;}
 /*********************************************/
 #portfolio {
   background-image: url('../img/subheader.png');

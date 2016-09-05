@@ -9,7 +9,9 @@ $(function() {
             // Prevent spam click and default submit behaviour
             $("#btnSubmit").attr("disabled", true);
             event.preventDefault();
-            
+                
+            var server_url = $form.data('url') 
+
             // get values from FORM
             var name = $("input#name").val();
             var email = $("input#email").val();
@@ -22,8 +24,9 @@ $(function() {
             if (firstName.indexOf(' ') >= 0) {
                 firstName = name.split(' ').slice(0, -1).join(' ');
             }
+            
             $.ajax({
-                url: "http://localhost:8000/new_contact/contact",
+                url: server_url,
                 type: "POST",
                 data: {
                     name: name,

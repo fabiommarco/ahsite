@@ -35,10 +35,10 @@ h6 {
 header {
     text-align: center;
     color: white;
-    min-height: 230px;
+    min-height: 200px;
 }
 header.is-home-page {
-  min-height: 530px;
+  min-height: 500px;
 }
 .navbar-custom {
   background: rgba(0,0,0,0.4);
@@ -49,6 +49,21 @@ header.is-home-page {
 .navbar-collapse-right{float: right!important;}
 .navbar-collapse-left{float: left!important;}
 
+.fotorama__nav {
+  margin-top: -30px;
+}
+
+.fotorama__nav__shaft {
+  padding: 0 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px 3px 0 0;
+}
+
+.fotorama__dot {
+  width: 6px;
+  height: 6px;
+  border-color: #FFF;
+}
 
 .navbar-custom a:focus {
   outline: none;

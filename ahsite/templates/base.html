@@ -13,6 +13,7 @@
     <title>AH Agropecuária</title>
 
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{% static 'vendor/fotorama/fotorama.min.css'%}" rel="stylesheet">
     <link href="{% static 'css/main.css'%}" rel="stylesheet">
 
     <link href="{% static 'vendor/proxima-nova/proxima-nova.min.css'%}" rel="stylesheet" type="text/css">
@@ -91,10 +92,22 @@
 
     <!-- Header -->
     <header class="{% if is_index == True %}is-home-page{% endif %}">
-        <div class="container">
-            <div class="row">
-            
-            </div>
+        <div class="fotorama"
+             data-autoplay="true"
+             data-width="100%"
+             data-height="{% if is_index == True %}500{% else %}200{% endif %}px"
+             data-fit="cover">
+        <a href="{% static 'img/banner/1.jpg'%}"></a>
+        <a href="{% static 'img/banner/2.jpg'%}"></a>
+        <a href="{% static 'img/banner/3.jpg'%}"></a>
+        <a href="{% static 'img/banner/4.jpg'%}"></a>
+        <a href="{% static 'img/banner/5.jpg'%}"></a>
+        <a href="{% static 'img/banner/6.jpg'%}"></a>
+        <a href="{% static 'img/banner/7.jpg'%}"></a>
+        <a href="{% static 'img/banner/8.jpg'%}"></a>
+        <a href="{% static 'img/banner/9.jpg'%}"></a>
+        <a href="{% static 'img/banner/10.jpg'%}"></a>
+        <a href="{% static 'img/banner/11.jpg'%}"></a>
         </div>
     </header>
 
@@ -170,8 +183,8 @@
 
     <script src="{% static 'vendor/jquery/jquery.min.js'%}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'vendor/fotorama/fotorama.min.js'%}"></script>
     <script src="{% static 'js/main.js'%}"></script>
-    
     {% block javascript %}{% endblock javascript %}
 </body>
 </html>

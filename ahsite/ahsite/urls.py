@@ -18,6 +18,8 @@ urlpatterns = [
     url(r'^responsabilidade-social/$', views.events, name='events'),
     url(r'^responsabilidade-social/(?P<event_slug>.*)$', views.event_view, name='event_view'),
     
+    url(r'^vendas/$', views.vendas, name='vendas'),
+    
     url(r'^fale-conosco/$', views.talk_with_us, name='talk_with_us'),
     url(r'^trabalhe-conosco/$', views.work_with_us, name='work_with_us'),
     

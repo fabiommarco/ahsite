@@ -11,7 +11,7 @@ class ContactForm(forms.Form):
     phone    = forms.CharField()
     message    = forms.CharField()
 
-    def send(self,request):
+    def send(self,request,extra_recipient=None):
         config = GeneralConfig.objects.latest('id')
         # Body
         th = loader.get_template('emails/contato.html')
@@ -26,9 +26,12 @@ class ContactForm(forms.Form):
         
         html_body = th.render(c)
         txt_body = tt.render(c)
+        to = [config.config_email]
+        if extra_recipient:
+            to.append(extra_recipient)
         envia_email(txt_body, html_body, 
         			subject= 'E-mail de Contato - Site', 
-        			to=[config.config_email,], 
+        			to=to, 
         			from_sender="%s <%s>" % (self.cleaned_data["name"], self.cleaned_data["email"]))
 
 class ApplyJobForm(ContactForm):

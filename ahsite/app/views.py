@@ -65,6 +65,10 @@ def event_view(request, event_slug=None):
     return render(request, 'event_view.html', 
                  {'event':get_object_or_404(Event, event_slug = event_slug)})
     
+def vendas(request):
+    return render(request, 'sales.html', 
+                 {'sale':Sale.objects.latest("id"),
+                  'url_contact':reverse('new_contact', args=['sale'])})
 
 def talk_with_us(request):
     context = {'url_contact':reverse('new_contact', args=['contact'])}
@@ -88,7 +92,7 @@ def new_contact(request,contact_type):
         return_data = {'success': True}
         apply_job_context = False
 
-        if contact_type == 'contact':
+        if contact_type == 'contact' or contact_type == 'sale' :
             contactForm = ContactForm(request.POST)
         elif contact_type == 'apply_job':
             contactForm = ApplyJobForm(request.POST, request.FILES)
@@ -100,7 +104,11 @@ def new_contact(request,contact_type):
             return_data = {'success': False, 'errors' : [(k, v[0]) for k, v in contactForm.errors.items()] }
             messages.add_message(request, messages.ERROR, 'Parece que algo de errado aconteceu. Por favor, tente novamente mais tarde!')
         else:
-            contactForm.send(request)
+            if contact_type == 'sale':
+                extra_recipient = Sale.objects.latest('id')
+                contactForm.send(request, extra_recipient.sale_email)
+            else:
+                contactForm.send(request)
             messages.add_message(request, messages.SUCCESS, 'Obrigado! Sua mensagem foi enviada.')
         if apply_job_context:
             # return render(request, 'work-with-us.html', {})

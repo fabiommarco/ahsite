@@ -38,8 +38,14 @@ class NewsletterAdmin(admin.ModelAdmin):
 
 class AboutCompanyAdmin(admin.ModelAdmin):
     list_display = ('scaped_html', )
+
+
+class SaleAdmin(admin.ModelAdmin):
+    list_display = ('sale_email', )
     
 admin.site.register(Jobs)
+admin.site.register(Sale, SaleAdmin)
+
 admin.site.register(Newsletter,NewsletterAdmin)
 admin.site.register(Magazine)
 admin.site.register(AboutCompany,AboutCompanyAdmin)

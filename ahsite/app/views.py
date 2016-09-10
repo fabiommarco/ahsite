@@ -4,11 +4,14 @@
     luizfelipe.unesp@gmail.com
 """
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.urls import reverse
+from django.contrib import messages
+from django.core.paginator import Paginator, InvalidPage, EmptyPage
+
 from app.forms import ContactForm,ApplyJobForm
-from app.models import Jobs, AboutCompany, GeneralConfig
+from app.models import *
 import functools
 import json
 from collections import MutableMapping
@@ -25,13 +28,43 @@ def load_basic_info(method):
         return res
     return wrapper
 
+@load_basic_info
 def home(request):
-    return render(request, 'index.html', {'is_index':True})
+    return render(request, 'index.html', {'is_index':True, 'general_info':general_info})
 
 @load_basic_info
 def about_company(request,r=None):
     about = AboutCompany.objects.latest('id')
     return render(request, 'about_company.html', {'about':about,'general_info':general_info})
+
+def agricutural_prices(request):
+    prices = AgriculturalFiles.objects.order_by('-ap_date')[:5]
+    return render(request, 'agricutural_prices.html', {'prices':prices,})
+
+def events(request):
+    all_events = Event.objects.filter()
+
+    paginator = Paginator(all_events, 6)
+
+    # Make sure page request is an int. If not, deliver first page.
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+
+    # If page request (9999) is out of range, deliver last page of results.
+    try:
+        all_events = paginator.page(all_events)
+    except (EmptyPage, InvalidPage):
+        all_events = paginator.page(paginator.num_pages)
+
+    return render(request, 'events.html', {'all_events':all_events})
+
+
+def event_view(request, event_slug=None):
+    return render(request, 'event_view.html', 
+                 {'event':get_object_or_404(Event, event_slug = event_slug)})
+    
 
 def talk_with_us(request):
     context = {'url_contact':reverse('new_contact', args=['contact'])}
@@ -51,8 +84,6 @@ def new_contact(request,contact_type):
         :params:
             contact_type: str - contact (to user email contact) or apply_job (user sending CV)
     '''
-    # from django.contrib.messages import constants as messages
-    from django.contrib import messages
     if request.method == "POST":
         return_data = {'success': True}
         apply_job_context = False

@@ -13,6 +13,11 @@ urlpatterns = [
 	
 	url(r'^$', views.home, name='home'),
 	url(r'^quem-somos/$', views.about_company, name='about_company'),
+    url(r'^cotacoes-agricolas/$', views.agricutural_prices, name='agricutural_prices'),
+    
+    url(r'^responsabilidade-social/$', views.events, name='events'),
+    url(r'^responsabilidade-social/(?P<event_slug>.*)$', views.event_view, name='event_view'),
+    
     url(r'^fale-conosco/$', views.talk_with_us, name='talk_with_us'),
     url(r'^trabalhe-conosco/$', views.work_with_us, name='work_with_us'),
     
@@ -24,4 +29,8 @@ urlpatterns = [
     #admin
     url(r'^admin/', admin.site.urls),
 
-]
+    # Media
+    # url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+    # url(r'^media/admin/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT + 'admin/'}),
+    
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

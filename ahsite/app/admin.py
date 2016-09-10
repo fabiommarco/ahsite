@@ -35,12 +35,16 @@ class EventAdmin(admin.ModelAdmin):
 class NewsletterAdmin(admin.ModelAdmin):
     list_display = ('news_date','news_name','news_email',)
     ordering = ['news_date']
+
+class AboutCompanyAdmin(admin.ModelAdmin):
+    list_display = ('scaped_html', )
     
 admin.site.register(Jobs)
 admin.site.register(Newsletter,NewsletterAdmin)
 admin.site.register(Magazine)
-admin.site.register(AboutCompany)
+admin.site.register(AboutCompany,AboutCompanyAdmin)
 admin.site.register(GeneralConfig)
 admin.site.register(Event,EventAdmin)
+admin.site.register(AgriculturalFiles)
 
 

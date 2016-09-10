@@ -59,8 +59,12 @@ WSGI_APPLICATION = 'ahsite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME':'ahsite',
+        'USER':'root',
+        'PASSWORD': '123'
     }
 }
 
@@ -96,6 +100,11 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     '/home/luizfelipe/Documents/codes/ah-website/ahsite/static/',
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR + '/media/'
+UPLOAD_ROOT = os.path.join(BASE_DIR,"media/")
+
 
 ##### custom 
 CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'

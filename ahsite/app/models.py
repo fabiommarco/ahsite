@@ -5,15 +5,16 @@
 """
 from __future__ import unicode_literals
 from django.db import models
-# from tinymce import models as tinymce_models
 from django.contrib.contenttypes.fields import GenericForeignKey,GenericRelation
 from django.contrib.contenttypes.models import ContentType
+from django.utils.html import format_html
+from django.template.defaultfilters import truncatechars,slugify
 
-import datetime
-import uuid
 
 from ckeditor.fields import RichTextField
-
+import datetime
+import uuid
+import os
 def get_upload_path(instance, filename):
         f, ext = os.path.splitext(filename)
         new_filename = '%s%s' % (uuid.uuid4().hex, ext)
@@ -54,6 +55,7 @@ class GeneralConfig(models.Model):
                                                 max_length = 15, blank = True)
     
     config_social_facebook = models.URLField(u'Facebook', help_text = 'Formato: https://www.facebook.com/SUA_PAGINA', blank = True)
+    # config_social_twitter = models.URLField(u'Twitter', help_text = 'Formato: https://www.twitter.com/SUA_PAGINA', blank = True)
     config_social_youtube = models.URLField(u'Youtube', help_text = 'Formato: https://www.youtube.com/user/SEU_CANAL', blank = True)
     config_social_instagram = models.URLField(u'Instagram', help_text = 'Formato: https://www.instagram.com/SEU_PERFIL', blank = True)
         
@@ -71,6 +73,15 @@ class AboutCompany(models.Model):
     ac_mission =RichTextField(u"Conteúdo do 'Missão'", blank = False)
     ac_values = RichTextField(u"Conteúdo do 'Valores'", blank = False)
     
+    def scaped_html(self):
+        text = format_html(self.ac_about)
+        try:
+            text = truncatechars(self.ac_about.split('<p>',1)[1].split('</p>')[0],100)
+        except Exception, e:
+            pass
+        return text
+    scaped_html.allow_tags = True
+
     def __unicode__(self):
         return self.ac_about
     
@@ -79,12 +90,16 @@ class AboutCompany(models.Model):
 
 
 class Event(models.Model):
+    '''
+        called as resposabilidade social in the system
+    '''
     event_date = models.DateTimeField(default=datetime.datetime.now)
     event_title = models.CharField(u"Evento", max_length=300)
     event_local = models.CharField(u"Local", max_length=300)
     event_slug = models.SlugField(unique=True, max_length=100, editable=False)
-    event_description = models.TextField(u"Descrição")
-    event_video = models.CharField("Vídeo do YouTube", max_length=150, blank=True, help_text="Digite a URL do vídeo seguindo este exemplo: <strong>http://www.youtube.com/watch?v=aAkurCTifE0</strong>")
+    event_description = RichTextField(u"Descrição")
+    event_video = models.CharField("Vídeo do YouTube", max_length=150, blank=True, help_text="Digite somente a parte em <strong>negrito</strong> da URL do vídeo seguindo este exemplo:http://www.youtube.com/watch?v=<strong>aAkurCTifE0</strong>")
+    event_thumbnail = models.ImageField(upload_to=get_upload_path) 
 
     event_galery_title = models.CharField("Título da Galeria de Imagens", blank=True, max_length=200, help_text="Digite um nome para a Galeria de Imagens, deixe o campo em branco caso queira manter o nome como Galeria de Imagens.")
     event_galery = GenericRelation(Imagem)
@@ -102,7 +117,7 @@ class Event(models.Model):
 class Jobs(models.Model):
     job_date = models.DateTimeField(default=datetime.datetime.now)
     job_title = models.CharField(u"Titúlo da Vaga", max_length=300)
-    job_description = models.TextField(u"Descrição",help_text='Desreva aqui as especificações da vaga e seus pré-requisitos',\
+    job_description = RichTextField(u"Descrição",help_text='Desreva aqui as especificações da vaga e seus pré-requisitos',\
                                         max_length=300)
     
     def __unicode__(self):
@@ -115,7 +130,7 @@ class Magazine(models.Model):
     magazine_date = models.DateTimeField(default=datetime.datetime.now)
     magazine_title = models.CharField(u"Titúlo da Edição", max_length=300)
     magazine_description = RichTextField(u"Descrição",max_length=300,blank=True)
-    magazine_file = models.FileField("Arquivo", upload_to=get_upload_path, max_length=100)
+    magazine_file = models.FileField("Arquivo", upload_to=get_upload_path)
     
     def __unicode__(self):
         return self.magazine_title
@@ -155,3 +170,17 @@ class Sale(models.Model):
 
     class Meta:
         verbose_name_plural = u"Página de Vendas"
+
+class AgriculturalFiles(models.Model):
+    
+    ap_date = models.DateTimeField(default=datetime.datetime.now)
+    ap_file = models.FileField("Arquivo", upload_to=get_upload_path)
+    ap_brief_desc = models.CharField(u"Descrição",max_length=150,blank=True)
+    
+
+    def __unicode__(self):
+        return self.ap_brief_desc
+
+    class Meta:
+        verbose_name_plural = u"Cotações Agrícolas"
+    

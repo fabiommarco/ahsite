@@ -130,7 +130,7 @@ class News(models.Model):
         super(News, self).save()
 
     class Meta:
-        verbose_name_plural = u"Noticias"
+        verbose_name_plural = u"Notícias"
 
 class Partners(models.Model):
     partner_date = models.DateTimeField(default=datetime.datetime.now)

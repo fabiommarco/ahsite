@@ -523,11 +523,17 @@ section.success {
   font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   font-size: 20px;
   color: #1A83A3;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 #miscellaneous .noticias a:hover {
   text-decoration: none;
+}
+
+#miscellaneous .noticias p{
+    font-size: 15px;
+    line-height: 1.8em;
+    margin-bottom: 20px;
 }
 
 #miscellaneous .responsabilidade-social h3,

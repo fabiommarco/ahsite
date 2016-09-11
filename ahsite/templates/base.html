@@ -78,8 +78,9 @@
                     <li>
                         <a href="/responsabilidade-social">Responsabilidade Social</a>
                         <ul>
-                            <li><a href="/responsabilidade-social/fundacao">Fundação AH</a></li>
-                            <li><a href="/responsabilidade-social/escola-rural">Escola Rural</a></li>
+                        {% for link in events_link  %}
+                            <li><a href="{% url 'event_view' link.event_slug%}">{{link.event_title}}</a></li>
+                        {% endfor %}
                         </ul>
                     </li>
                     <li class="single-nav"><a href="/trabalhe-conosco">Trabalhe Conosco</a></li>

@@ -24,13 +24,18 @@ def load_basic_info(method):
     def wrapper(request, *args, **kwargs):
         g = method.func_globals
         g['general_info'] = GeneralConfig.objects.latest('id')
+        g['events_link'] = Event.objects.all()
         res = method(request,*args, **kwargs)
         return res
     return wrapper
 
 @load_basic_info
 def home(request):
-    return render(request, 'index.html', {'is_index':True, 'general_info':general_info})
+    latest_feeds = News.objects.order_by('-news_date')[:5]    
+    return render(request, 'index.html', {'is_index':True, 
+                                          'general_info':general_info,
+                                          'events_link':events_link,
+                                          'news':latest_feeds})
 
 @load_basic_info
 def about_company(request,r=None):

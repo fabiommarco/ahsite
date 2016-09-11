@@ -124,33 +124,31 @@
             <div class="col-md-1"></div>
             <div class="col-md-5 noticias">
                 <h3>Notícias <strong>AH</strong></h3>
-                <script type="text/javascript" src="http://www.noticiasagricolas.com.br/widget/noticias.js.php?subsecao=2,3,6,7,8,10,64,80,85,5,4,11,12,40,60,13,97,14,95,15,1,84,28,99,26,69,90,62,27,92,132,76&largura=300px&altura=250px&fonte=Arial%2C%20Helvetica%2C%20sans-serif&tamanho=10pt&cortexto=333333&corlink=006666&qtd=15&output=js"></script>
+                {% for news in  news %}
+                    <div class="row">
+                        <a href="{% url 'news_view' news.news_slug%}">{{news.news_title}}</a><br/>
+                        <small>{{news.news_date|date:"F Y"}}</small>
+                        <p>{{news.news_description|safe|truncatechars:200}}</p>
+                    </div>
+                {% endfor %}
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-4">
                 <section class="responsabilidade-social">
                     <h3>Responsabilidade <strong>Social</strong></h3>
                     <ul class="information-block">
-                        <li>
-                            <a href="/responsabilidade-social/fundacao">
-                                <img src="{% static 'img/social/fundacao-icon.png'%}" title="" class="icon">
-                                <div class="meta">
-                                    <strong>Fundação AH</strong>
-                                    <span>Saiba mais sobre a fundação</span>
-                                </div>
-                                <i class="fa fa-angle-right" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/responsabilidade-social/escola-rural">
-                                <img src="{% static 'img/social/escola-icon.png'%}" title="" class="icon">
-                                <div class="meta">
-                                    <strong>Escola Rural</strong>
-                                    <span>Fazenda Cambara MT</span>
-                                </div>
-                                <i class="fa fa-angle-right" aria-hidden="true"></i>
-                            </a>
-                        </li>
+                        {% for event in events_link  %}
+                            <li>
+                                <a href="{% url 'event_view' event.event_slug %}">
+                                    <img src="{% get_media_prefix %}{{event.event_thumbnail}}" class="icon">
+                                    <div class="meta">
+                                        <strong>{{event.event_title}}</strong>
+                                        <span>Saiba mais</span>
+                                    </div>
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </section>
 

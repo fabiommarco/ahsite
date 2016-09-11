@@ -93,10 +93,8 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-    '/home/luizfelipe/Documents/codes/ah-website/ahsite/static/',
-]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static-production')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR + '/media/'

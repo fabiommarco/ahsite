@@ -10,7 +10,7 @@ from django.urls import reverse
 from django.contrib import messages
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 
-from app.forms import ContactForm,ApplyJobForm
+from app.forms import ContactForm, ApplyJobForm, NewsletterForm
 from app.models import *
 import functools
 import json
@@ -66,7 +66,7 @@ def events(request):
 
 
 def event_view(request, event_slug=None):
-    return render(request, 'event_view.html', 
+    return render(request, 'event_view.html',
                  {'event':get_object_or_404(Event, event_slug = event_slug)})
 
 
@@ -90,12 +90,12 @@ def news(request):
 
 
 def news_view(request, news_slug=None):
-    return render(request, 'news_view.html', 
+    return render(request, 'news_view.html',
                  {'news':get_object_or_404(News, news_slug = news_slug)})
 
-    
+
 def sales(request):
-    return render(request, 'sales.html', 
+    return render(request, 'sales.html',
                  {'sale':Sale.objects.latest("id"),
                   'url_contact':reverse('new_contact', args=['sale'])})
 
@@ -144,4 +144,20 @@ def new_contact(request,contact_type):
             return HttpResponseRedirect(reverse('work_with_us', args=()))
         return HttpResponse(json.dumps(return_data, ensure_ascii=False)) #, content_type='application/json; charset=UTF-8'
 
+    return HttpResponseRedirect("/")
+
+
+@csrf_exempt
+def new_newsletter(request):
+    if request.method == "POST":
+        newsletterForm = NewsletterForm(request.POST)
+        data = {'success': True}
+        if not newsletterForm.is_valid():
+            data = {
+                'success': False,
+                'errors': [(k, v[0]) for k, v in newsletterForm.errors.items()]
+            }
+        else:
+            newsletterForm.save()
+        return HttpResponse(json.dumps(data, ensure_ascii=False))
     return HttpResponseRedirect("/")

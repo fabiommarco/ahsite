@@ -26,4 +26,37 @@
         });
     });
 
+    $('#newsletter-form').submit(function() {
+        $.ajax({
+          url: $('#newsletter-form').attr('action'),
+          type: 'POST',
+          dataType: 'json',
+          data: $('#newsletter-form').serialize(),
+          success: function(data) {
+            if (data.success) {
+                $('#form-status')
+                    .fadeOut('fast')
+                    .html('Você foi cadastrado com sucesso!')
+                    .removeClass('error')
+                    .addClass('success')
+                    .fadeIn();
+                $('#newsletter-form')[0].reset();
+            } else {
+                var msg = data.errors[0][1];
+                if (msg === 'Este campo é obrigatório.') {
+                    msg = 'Preencha todos os campos.';
+                }
+
+                $('#form-status')
+                    .fadeOut('fast')
+                    .html(msg)
+                    .removeClass('success')
+                    .addClass('error')
+                    .fadeIn();
+            }
+          }
+        });
+        return false;
+    });
+
 })(jQuery); // End of use strict

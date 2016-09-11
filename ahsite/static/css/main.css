@@ -526,20 +526,27 @@ section.success {
   font-weight: 600;
 }
 
+#miscellaneous h3 {
+  color: #9B9B9B;
+}
+
+#miscellaneous .noticias h3 {
+  color: #88000c;
+  margin-bottom: 30px;
+}
+
 #miscellaneous .noticias a:hover {
   text-decoration: none;
 }
 
-#miscellaneous .noticias p{
+#miscellaneous .noticias p {
     font-size: 15px;
     line-height: 1.8em;
     margin-bottom: 20px;
 }
 
-#miscellaneous .responsabilidade-social h3,
-#miscellaneous .trabalhe-conosco h3 {
+#miscellaneous .responsabilidade-social h3 {
   margin-bottom: 30px;
-  color: #9B9B9B;
 }
 
 ul.information-block {
@@ -584,26 +591,45 @@ ul.information-block {
   display: block;
 }
 
+#miscellaneous section {
+  margin-bottom: 30px;
+}
+
 #miscellaneous .trabalhe-conosco h3 {
   margin-bottom: 20px;
 }
 
-#miscellaneous .trabalhe-conosco {
-  margin-top: 30px;
-}
-
-#miscellaneous .trabalhe-conosco p {
+#miscellaneous .trabalhe-conosco p,
+#miscellaneous .newsletter p {
   font-size: 15px;
   line-height: 1.8em;
   margin-bottom: 20px;
 }
 
-#miscellaneous .trabalhe-conosco .btn {
+#miscellaneous .btn {
   background: #6DAC78;
   padding: 10px 20px;
-  background: #6DAC78;
   font-size: 16px;
   font-weight: 400;
+}
+
+#miscellaneous .newsletter .actions {
+  margin-top: 10px;
+}
+
+#miscellaneous .newsletter p {
+  margin-bottom: 5px;
+}
+
+#miscellaneous .newsletter #form-status {
+    display: none;
+}
+
+#miscellaneous .newsletter #form-status.success { color: #6DAC78; }
+#miscellaneous .newsletter #form-status.error { color: #88000c; }
+
+#miscellaneous .newsletter input {
+  padding: 5px;
 }
 
 #contactForm {

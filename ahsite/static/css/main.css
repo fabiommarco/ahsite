@@ -507,22 +507,21 @@ section.success {
 
 #miscellaneous .noticias ul {
   margin-top: 20px;
+  padding: 0 20px 0 0;
 }
 
 #miscellaneous .noticias li {
-  padding: 0 0 20px 0;
+  padding: 0 0 30px 0;
   line-height: 2em;
-  background: none !important;
-}
-
-#miscellaneous .noticias ul li:nth-child(n+6) {
-  display: none;
+  display: block;
 }
 
 #miscellaneous .noticias a {
-  font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
-  font-size: 20px;
   color: #1A83A3;
+}
+
+#miscellaneous .noticias a.title {
+  font-size: 20px;
   font-weight: 600;
 }
 
@@ -542,7 +541,7 @@ section.success {
 #miscellaneous .noticias p {
     font-size: 15px;
     line-height: 1.8em;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 #miscellaneous .responsabilidade-social h3 {

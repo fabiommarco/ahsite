@@ -20,6 +20,7 @@
     <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css'%}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    {% block css %}{% endblock css %}
 
     <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico'%}"/>
     <!--[if lt IE 9]>
@@ -120,17 +121,17 @@
                 <div class="row">
                     <div class="footer-col col-md-2">
                         <ul>
-                            <li class="link-title"><a href="/quem-somos">Institucional</a></li>
-                            <li><a href="/quem-somos#agropecuaria-ah">Agropecuária AH</a></li>
-                            <li><a href="/quem-somos#missao-e-valores">Missão e Visão</a></li>
-                            <li><a href="/quem-somos#valores-e-competencia">Valores e Competência</a></li>
-                            <li><a href="/quem-somos#localizacoes">Localizações</a></li>
+                            <li class="link-title"><a href="{% url 'about_company'%}">Institucional</a></li>
+                            <li><a href="{% url 'about_company'%}#agropecuaria-ah">Agropecuária AH</a></li>
+                            <li><a href="{% url 'about_company'%}#missao-e-valores">Missão e Visão</a></li>
+                            <li><a href="{% url 'about_company'%}#valores-e-competencia">Valores e Competência</a></li>
+                            {# <li><a href="{% url 'about_company'%}#localizacoes">Localizações</a></li> #}
                         </ul>
                     </div>
                     <div class="footer-col col-md-2">
                         <ul >
-                            <li class="link-title"><a href="/negocios">Negócios</a></li>
-                            <li><a href="/negocios/venda">Venda</a></li>
+                            <li class="link-title"><a href="#">Negócios</a></li>
+                            <li><a href="{% url 'sales'%}">Venda</a></li>
                             <li><a href="/negocios/compra">Compra</a></li>
                         </ul>
                     </div>
@@ -143,7 +144,7 @@
                     </div>
                     <div class="footer-col col-md-3">
                         <ul >
-                            <li class="link-title"><a href="/responsabilidade-social">Responsabilidade Social</a></li>
+                            <li class="link-title"><a href="{% url 'events'%}">Responsabilidade Social</a></li>
                             <li><a href="/responsabilidade-social/fundacao">Fundação AH</a></li>
                             <li><a href="/responsabilidade-social/escola-rural">Escola Rural</a></li>
                         </ul>
@@ -151,10 +152,9 @@
                     <div class="footer-col col-md-2">
                         <ul >
                             <li class="link-title"><a href="/midia">Mídia</a></li>
-                            <li><a href="/midia/noticias">Notícias</a></li>
+                            <li><a href="{% url 'news' %}">Notícias</a></li>
                             <li><a href="/midia/pagina">Página Um</a></li>
-                            <li><a href="/midia/cotacoes">Cotações Agrícolas</a></li>
-                            <li><a href="/midia/glossario">Glossário</a></li>
+                            <li><a href="{% url 'agricutural_prices'%}">Cotações Agrícolas</a></li>
                         </ul>
                     </div>
                 </div>
@@ -167,10 +167,10 @@
                           <a title="Voltar à pagina inicial" href="/"><img id="logo_bottom" src="{% static 'img/logo-footer.png'%}"></a>
                     </div>
                     <div class="col-lg-4 social">
-                        {% if general_info.config_social_facebook %}<a href=""><i class="social-icon fa fa-facebook-square fa-3x" aria-hidden="true"></i></a>{% endif %}
-                        {% if general_info.config_social_instagram %}<a href=""><i class="social-icon fa fa-instagram fa-3x" aria-hidden="true"></i></a>{% endif %}
-                        {% if general_info.config_social_youtube %}<a href=""><i class="social-icon fa fa-youtube-play fa-3x" aria-hidden="true"></i></a>{% endif %}
-                        {% if general_info.config_social_twitter %}<a href=""><i class="social-icon fa fa-twitter-square fa-3x" aria-hidden="true"></i></a>{% endif %}
+                        {% if general_info.config_social_facebook %}<a href="{{general_info.config_social_facebook}}"><i class="social-icon fa fa-facebook-square fa-3x" aria-hidden="true"></i></a>{% endif %}
+                        {% if general_info.config_social_instagram %}<a href="general_info.config_social_instagram"><i class="social-icon fa fa-instagram fa-3x" aria-hidden="true"></i></a>{% endif %}
+                        {% if general_info.config_social_youtube %}<a href="general_info.config_social_youtube"><i class="social-icon fa fa-youtube-play fa-3x" aria-hidden="true"></i></a>{% endif %}
+                        {% if general_info.config_social_twitter %}<a href="general_info.config_social_twitter"><i class="social-icon fa fa-twitter-square fa-3x" aria-hidden="true"></i></a>{% endif %}
                     </div>
                     <div class="col-lg-4 links">
                         <a href="/fale-conosco">Fale Conosco</a> | <a href="/trabalhe-conosco">Trabalhe Conosco</a><br/>

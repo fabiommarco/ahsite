@@ -100,7 +100,6 @@ class Event(models.Model):
     event_description = RichTextField(u"Descrição")
     event_video = models.CharField("Vídeo do YouTube", max_length=150, blank=True, help_text="Digite somente a parte em <strong>negrito</strong> da URL do vídeo seguindo este exemplo:http://www.youtube.com/watch?v=<strong>aAkurCTifE0</strong>")
     event_thumbnail = models.ImageField(upload_to=get_upload_path) 
-
     event_galery_title = models.CharField("Título da Galeria de Imagens", blank=True, max_length=200, help_text="Digite um nome para a Galeria de Imagens, deixe o campo em branco caso queira manter o nome como Galeria de Imagens.")
     event_galery = GenericRelation(Imagem)
     
@@ -113,6 +112,26 @@ class Event(models.Model):
 
     class Meta:
         verbose_name_plural = u"Eventos"
+
+class News(models.Model):
+    news_date = models.DateTimeField(default=datetime.datetime.now)
+    news_title = models.CharField(u"Titúlo da Notícia", max_length=300)
+    news_slug = models.SlugField(unique=True, max_length=100, editable=False)
+    news_description = RichTextField(u"Descrição")
+    
+    news_galery_title = models.CharField("Título da Galeria de Imagens", blank=True, max_length=200, help_text="Digite um nome para a Galeria de Imagens, deixe o campo em branco caso queira manter o nome como Galeria de Imagens.")
+    news_galery = GenericRelation(Imagem)
+    
+    def __unicode__(self):
+        return self.news_title
+
+    def save(self):
+        self.news_slug = slugify(self.news_title)
+        super(News, self).save()
+
+    class Meta:
+        verbose_name_plural = u"Noticias"
+
 
 class Jobs(models.Model):
     job_date = models.DateTimeField(default=datetime.datetime.now)

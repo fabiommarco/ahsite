@@ -32,6 +32,10 @@ class EventAdmin(admin.ModelAdmin):
     # list_display = ('scaped_html', )
     inlines = [ImagemInline]
 
+class NewsAdmin(admin.ModelAdmin):
+    # list_display = ('scaped_html', )
+    inlines = [ImagemInline]
+
 class NewsletterAdmin(admin.ModelAdmin):
     list_display = ('news_date','news_name','news_email',)
     ordering = ['news_date']
@@ -45,7 +49,7 @@ class SaleAdmin(admin.ModelAdmin):
     
 admin.site.register(Jobs)
 admin.site.register(Sale, SaleAdmin)
-
+admin.site.register(News, NewsAdmin)
 admin.site.register(Newsletter,NewsletterAdmin)
 admin.site.register(Magazine)
 admin.site.register(AboutCompany,AboutCompanyAdmin)

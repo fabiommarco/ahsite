@@ -1,46 +1,45 @@
   {% extends "base.html" %}
   {% load static %}
   {% block content %}
-    <!-- Portfolio .imagemGrid Section -->
     <section id="download-price-file">
       <div class="container">
           <div class="row">
               <div class="col-sm-12">
-                  <img src="{% get_media_prefix %}{{event.event_thumbnail}}">
-                  <h1>{{event.event_title}}</h1>
-                  <small>{{event.event_local}} - {{event.event_date|date:"d/m/Y"}}</small>
+                  <h1>{{news.news_title}}</h1>
+                  <small>{{news.news_date|date:"d/m/Y"}}</small>
             </div>
           </div>
           <div class="row">
-            <p>{{event.event_description|safe}}</p>
+            <p>{{news.news_description|safe}}</p>
           </div>    
-          {% if event.event_video %}
+          {% if news.news_video %}
             <div class="row">
                 <h3>Confira o Video do evento</h3>
                 <iframe width="420" height="315"src="https://www.youtube.com/embed/Gy85aZaYL1A"></iframe>
             </div>
           {% endif %}
-          {% if event.event_galery %}
+          {% if news.news_galery %}
           <div class="row">
-            {% if event.event_galery_title %}
-                <h3>{{event.event_galery_title}}</h3>
+            {% if news.news_galery_title %}
+                <h3>{{news.news_galery_title}}</h3>
             {% else %}
                 <h3>Galeria de Imagens</h3>
             {% endif %}
-              {% for imagem in event.event_galery.all %}
+              {% for imagem in news.news_galery.all %}
                     <div class="col-xs-6 col-md-3">
-                          <a class="fancybox thumbnail" rel="group" href="{% get_media_prefix %}{{ imagem.imagem }}">
-                              <img src="{% get_media_prefix %}{{ imagem.imagem }}" alt="" />
-                          </a>
+                        <a class="fancybox thumbnail" rel="group" href="{% get_media_prefix %}{{ imagem.imagem }}">
+                          <img src="{% get_media_prefix %}{{ imagem.imagem }}" alt="" />
+                        </a>
                     </div>
               {% endfor %}
           </div>
           {% endif %}
+              
       </div>
     </section>
   {% endblock content %}  
-
-{% block css %}
+  
+  {% block css %}
     <link rel="stylesheet" href="{% static 'css/jquery.fancybox.css' %}?v=2.1.5" type="text/css" media="screen" />
     
     <style type="text/css">
@@ -58,4 +57,4 @@
     $(".fancybox").fancybox();
   });
 </script>
-  {% endblock javascript %}    
+  {% endblock javascript %}

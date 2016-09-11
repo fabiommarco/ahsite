@@ -11,10 +11,10 @@
                 <div class="thumbnail">
                   <img src="{% get_media_prefix %}{{event.event_thumbnail}}">
                   <div class="caption">
-                    <h3>{{event.event_title|date:"d/m/Y"}}</h3>
+                    <h3>{{event.event_title}}</h3>
                     <small>{{event.event_local}} - {{event.event_date|date:"d/m/Y"}}</small>
                     <p>{{event.event_description|safe|truncatechars:200 }}</p>
-                    <p><a href="{% url 'events' %}{{event.event_slug}}" class="btn btn-primary" role="button">Leia Mais</a></p>
+                    <p><a href="{% url 'event_view' event.event_slug %}" class="btn btn-primary" role="button">Leia Mais</a></p>
                   </div>
                 </div>
             </div>

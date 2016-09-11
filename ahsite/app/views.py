@@ -43,7 +43,6 @@ def agricutural_prices(request):
 
 def events(request):
     all_events = Event.objects.filter()
-
     paginator = Paginator(all_events, 6)
 
     # Make sure page request is an int. If not, deliver first page.
@@ -64,8 +63,33 @@ def events(request):
 def event_view(request, event_slug=None):
     return render(request, 'event_view.html', 
                  {'event':get_object_or_404(Event, event_slug = event_slug)})
+
+
+def news(request):
+    all_news = News.objects.filter()
+    paginator = Paginator(all_news, 6)
+
+    # Make sure page request is an int. If not, deliver first page.
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+
+    # If page request (9999) is out of range, deliver last page of results.
+    try:
+        all_news = paginator.page(all_news)
+    except (EmptyPage, InvalidPage):
+        all_news = paginator.page(paginator.num_pages)
+
+    return render(request, 'news.html', {'all_news':all_news})
+
+
+def news_view(request, news_slug=None):
+    return render(request, 'news_view.html', 
+                 {'news':get_object_or_404(News, news_slug = news_slug)})
+
     
-def vendas(request):
+def sales(request):
     return render(request, 'sales.html', 
                  {'sale':Sale.objects.latest("id"),
                   'url_contact':reverse('new_contact', args=['sale'])})

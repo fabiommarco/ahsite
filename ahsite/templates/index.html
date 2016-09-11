@@ -121,23 +121,26 @@
     <!-- Misc Section -->
     <section id="miscellaneous">
         <div class="container">
-            <div class="col-md-1"></div>
-            <div class="col-md-5 noticias">
+            <div class="col-md-6 col-lg-offset-1 noticias">
                 <h3>Notícias <strong>AH</strong></h3>
-                {% for news in  news %}
-                    <div class="row">
-                        <a href="{% url 'news_view' news.news_slug%}">{{news.news_title}}</a><br/>
+                <ul>
+                    {% for news in news %}
+                    <li>
+                        <a href="{% url 'news_view' news.news_slug%}" class="title">{{news.news_title}}</a><br/>
                         <small>{{news.news_date|date:"F Y"}}</small>
-                        <p>{{news.news_description|safe|truncatechars:200}}</p>
-                    </div>
-                {% endfor %}
+                        <p>{{news.news_description|safe|truncatewords:30}}</p>
+                        <a href="{% url 'news_view' news.news_slug%}">Leia mais</a>
+                    </li>
+                    {% empty %}
+                        <p>Nenhuma notícia encontrada.</p>
+                    {% endfor %}
+                </ul>
             </div>
-            <div class="col-md-1"></div>
             <div class="col-md-4">
                 <section class="responsabilidade-social">
                     <h3>Responsabilidade <strong>Social</strong></h3>
                     <ul class="information-block">
-                        {% for event in events_link  %}
+                        {% for event in events_link %}
                             <li>
                                 <a href="{% url 'event_view' event.event_slug %}">
                                     <img src="{% get_media_prefix %}{{event.event_thumbnail}}" class="icon">
@@ -148,6 +151,8 @@
                                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                                 </a>
                             </li>
+                        {% empty %}
+                            <li>Nenhum item encontrado.</li>
                         {% endfor %}
                     </ul>
                 </section>

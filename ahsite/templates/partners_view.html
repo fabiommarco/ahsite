@@ -1,0 +1,18 @@
+  {% extends "base.html" %}
+  {% load static %}
+  {% block content %}
+    <!-- Portfolio .imagemGrid Section -->
+    <section id="download-price-file">
+      <div class="container">
+          <div class="row">
+              <div class="col-sm-12">
+                  <h1>{{partner.partner_title}}</h1>
+                  <small>{{partner.partner_date|date:"d/m/Y"}}</small>
+            </div>
+          </div>
+          <div class="row">
+            <p>{{partner.partner_description|safe}}</p>
+          </div>    
+      </div>
+    </section>
+  {% endblock content %}  

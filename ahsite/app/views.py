@@ -25,6 +25,8 @@ def load_basic_info(method):
         g = method.func_globals
         g['general_info'] = GeneralConfig.objects.latest('id')
         g['events_link'] = Event.objects.all()
+        g['partners_link'] = Partners.objects.all()
+        
         res = method(request,*args, **kwargs)
         return res
     return wrapper
@@ -35,41 +37,42 @@ def home(request):
     return render(request, 'index.html', {'is_index':True, 
                                           'general_info':general_info,
                                           'events_link':events_link,
+                                          'partners_link':partners_link,
                                           'news':latest_feeds})
 
 @load_basic_info
 def about_company(request,r=None):
     about = AboutCompany.objects.latest('id')
-    return render(request, 'about_company.html', {'about':about,'general_info':general_info})
+    return render(request, 'about_company.html', {'about':about,
+                                                  'general_info':general_info,
+                                                  'events_link':events_link,
+                                                  'partners_link':partners_link,})
 
+@load_basic_info
 def agricutural_prices(request):
     prices = AgriculturalFiles.objects.order_by('-ap_date')[:5]
-    return render(request, 'agricutural_prices.html', {'prices':prices,})
+    return render(request, 'agricutural_prices.html', {'prices':prices,
+                                                       'general_info':general_info,
+                                                       'events_link':events_link,
+                                                       'partners_link':partners_link,})
 
-def events(request):
-    all_events = Event.objects.filter()
-    paginator = Paginator(all_events, 6)
-
-    # Make sure page request is an int. If not, deliver first page.
-    try:
-        page = int(request.GET.get('page', '1'))
-    except ValueError:
-        page = 1
-
-    # If page request (9999) is out of range, deliver last page of results.
-    try:
-        all_events = paginator.page(all_events)
-    except (EmptyPage, InvalidPage):
-        all_events = paginator.page(paginator.num_pages)
-
-    return render(request, 'events.html', {'all_events':all_events})
-
-
+@load_basic_info
 def event_view(request, event_slug=None):
     return render(request, 'event_view.html',
-                 {'event':get_object_or_404(Event, event_slug = event_slug)})
+                 {'event':get_object_or_404(Event, event_slug = event_slug),
+                  'general_info':general_info,
+                  'events_link':events_link,
+                  'partners_link':partners_link,})
 
+@load_basic_info
+def partners_view(request, partner_slug=None):
+    return render(request, 'partners_view.html',
+                 {'partner':get_object_or_404(Partners, partner_slug = partner_slug),
+                  'general_info':general_info,
+                  'events_link':events_link,
+                  'partners_link':partners_link,})
 
+@load_basic_info
 def news(request):
     all_news = News.objects.filter()
     paginator = Paginator(all_news, 6)
@@ -86,29 +89,43 @@ def news(request):
     except (EmptyPage, InvalidPage):
         all_news = paginator.page(paginator.num_pages)
 
-    return render(request, 'news.html', {'all_news':all_news})
+    return render(request, 'news.html', {'all_news':all_news,
+                                         'general_info':general_info,
+                                         'events_link':events_link,
+                                         'partners_link':partners_link,})
 
-
+@load_basic_info
 def news_view(request, news_slug=None):
     return render(request, 'news_view.html',
-                 {'news':get_object_or_404(News, news_slug = news_slug)})
+                 {'news':get_object_or_404(News, news_slug = news_slug),
+                  'general_info':general_info,
+                  'events_link':events_link,
+                  'partners_link':partners_link,})
 
-
+@load_basic_info
 def sales(request):
     return render(request, 'sales.html',
                  {'sale':Sale.objects.latest("id"),
+                  'general_info':general_info,
+                  'events_link':events_link,
+                  'partners_link':partners_link,
                   'url_contact':reverse('new_contact', args=['sale'])})
-
+@load_basic_info
 def talk_with_us(request):
-    context = {'url_contact':reverse('new_contact', args=['contact'])}
-    return render(request, 'talk-with-us.html', context)
+    return render(request, 'talk-with-us.html', {'url_contact':reverse('new_contact', args=['contact']),
+                                                 'general_info':general_info,
+                                                 'events_link':events_link,
+                                                 'partners_link':partners_link,})
 
+@load_basic_info
 def work_with_us(request):
-    context = {'url_contact':reverse('new_contact', args=['apply_job'])}
-    jobs = Jobs.objects.filter()
-    context.update({'jobs':jobs,'is_apply_job':True})
-
-    return render(request, 'work-with-us.html', context)
+    return render(request, 'work-with-us.html',{'jobs':Jobs.objects.filter(),
+                                                'is_apply_job':True,
+                                                'url_contact':reverse('new_contact', args=['contact']),
+                                                'general_info':general_info,
+                                                'events_link':events_link,
+                                                'partners_link':partners_link,}
+)
 
 @csrf_exempt
 def new_contact(request,contact_type):

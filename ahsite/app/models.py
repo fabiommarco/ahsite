@@ -132,6 +132,21 @@ class News(models.Model):
     class Meta:
         verbose_name_plural = u"Noticias"
 
+class Partners(models.Model):
+    partner_date = models.DateTimeField(default=datetime.datetime.now)
+    partner_title = models.CharField(u"Nome da Parceria", max_length=300)
+    partner_slug = models.SlugField(unique=True, max_length=100, editable=False)
+    partner_description = RichTextField(u"Descrição")
+    
+    def __unicode__(self):
+        return self.partner_title
+
+    def save(self):
+        self.partner_slug = slugify(self.partner_title)
+        super(Partners, self).save()
+
+    class Meta:
+        verbose_name_plural = u"Parcerias"
 
 class Jobs(models.Model):
     job_date = models.DateTimeField(default=datetime.datetime.now)

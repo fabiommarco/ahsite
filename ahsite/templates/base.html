@@ -42,33 +42,33 @@
                     <li>
                         <a href="/quem-somos">Institucional</a>
                         <ul>
-                            <li><a href="/quem-somos#agropecuaria-ah">Agropecuária AH</a></li>
-                            <li><a href="/quem-somos#missao-e-valores">Missão e Visão</a></li>
-                            <li><a href="/quem-somos#valores-e-competencia">Valores e Competência</a></li>
-                            <li><a href="/quem-somos#localizacoes">Localizações</a></li>
+                            <li><a href="{% url 'about_company' %}#agropecuaria-ah">Agropecuária AH</a></li>
+                            <li><a href="{% url 'about_company' %}#missao-e-valores">Missão e Visão</a></li>
+                            <li><a href="{% url 'about_company' %}#valores-e-competencia">Valores e Competência</a></li>
+                            <li><a href="{% url 'about_company' %}#localizacoes">Localizações</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="/negocios">Negócios</a>
                         <ul>
-                            <li><a href="/negocios/venda">Venda</a></li>
+                            <li><a href="{% url 'sales'%}">Venda</a></li>
                             <li><a href="/negocios/compra">Compra</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="/parcerias">Parcerias</a>
+                        <a href="#">Parcerias</a>
                         <ul>
-                            <li><a href="/parcerias/bezerro">Fomento Bezerro AH+</a></li>
-                            <li><a href="/parcerias/suinocultura">Parceria Suinocultura</a></li>
+                            {% for link in partners_link  %}
+                                <li><a href="{% url 'partners_view' link.partner_slug%}">{{link.partner_title}}</a></li>
+                            {% endfor %}
                         </ul>
                     </li>
                     <li>
                         <a href="/midia">Mídia</a>
                         <ul>
-                            <li><a href="/midia/noticias">Notícias AH</a></li>
+                            <li><a href="{% url 'news' %}">Notícias AH</a></li>
                             <li><a href="/midia/pagina-um">Página Um</a></li>
-                            <li><a href="/midia/cotacoes">Cotações Agrícolas</a></li>
-                            <li><a href="/midia/glossario">Glossário</a></li>
+                            <li><a href="{% url 'agricutural_prices' %}">Cotações Agrícolas</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -83,8 +83,8 @@
                         {% endfor %}
                         </ul>
                     </li>
-                    <li class="single-nav"><a href="/trabalhe-conosco">Trabalhe Conosco</a></li>
-                    <li class="single-nav"><a href="/fale-conosco" class="contact-menu-icon" title="Entre em contato conosco"><i class="fa fa-phone" aria-hidden="true"></i></a></li>
+                    <li class="single-nav"><a href="{% url 'work_with_us' %}">Trabalhe Conosco</a></li>
+                    <li class="single-nav"><a href="{% url 'talk_with_us' %}" class="contact-menu-icon" title="Entre em contato conosco"><i class="fa fa-phone" aria-hidden="true"></i></a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -138,21 +138,23 @@
                     </div>
                     <div class="footer-col col-md-3">
                         <ul >
-                            <li class="link-title"><a href="/parcerias">Parcerias</a></li>
-                            <li><a href="/parcerias/bezerro">Fomento Bezerro AH+</a></li>
-                            <li><a href="/parcerias/suinocultura">Parceria Suinocultura</a></li>
+                            <li class="link-title"><a href="#">Parcerias</a></li>
+                            {% for link in partners_link  %}
+                                <li><a href="{% url 'partners_view' link.partner_slug%}">{{link.partner_title}}</a></li>
+                            {% endfor %}
                         </ul>
                     </div>
                     <div class="footer-col col-md-3">
                         <ul >
-                            <li class="link-title"><a href="{% url 'events'%}">Responsabilidade Social</a></li>
-                            <li><a href="/responsabilidade-social/fundacao">Fundação AH</a></li>
-                            <li><a href="/responsabilidade-social/escola-rural">Escola Rural</a></li>
+                            <li class="link-title"><a href="#">Responsabilidade Social</a></li>
+                            {% for link in events_link  %}
+                                <li><a href="{% url 'event_view' link.event_slug%}">{{link.event_title}}</a></li>
+                            {% endfor %}
                         </ul>
                     </div>
                     <div class="footer-col col-md-2">
                         <ul >
-                            <li class="link-title"><a href="/midia">Mídia</a></li>
+                            <li class="link-title"><a href="#">Mídia</a></li>
                             <li><a href="{% url 'news' %}">Notícias</a></li>
                             <li><a href="/midia/pagina">Página Um</a></li>
                             <li><a href="{% url 'agricutural_prices'%}">Cotações Agrícolas</a></li>

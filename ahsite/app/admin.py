@@ -48,6 +48,7 @@ class SaleAdmin(admin.ModelAdmin):
     list_display = ('sale_email', )
     
 admin.site.register(Jobs)
+admin.site.register(Partners)
 admin.site.register(Sale, SaleAdmin)
 admin.site.register(News, NewsAdmin)
 admin.site.register(Newsletter,NewsletterAdmin)

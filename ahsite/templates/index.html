@@ -157,6 +157,19 @@
                     <p>Nossa empresa tem o desejo de transformar o País. Para isso, precisamos de uma equipe forte e coesa, formada por gente de qualidade.</p>
                     <a href="{% url 'work_with_us'%}" class="btn btn-success btn-lg">Envie seu currículo</a>
                 </section>
+
+                <section class="newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Receba nossas novidades diretamente no seu e-mail.</p>
+                    <form action="/newsletter/" id="newsletter-form" method="post">
+                        <fieldset id="newsletter-fieldset">
+                            <div id="form-status"></div>
+                            <input type="text" name="nome" placeholder="Digite o seu nome." id="newsletter-nome" />
+                            <input type="text" name="email" placeholder="Digite o seu e-mail." id="newsletter-email" />
+                            <div class="actions"><input type="submit" value="Enviar" class="btn btn-success btn-lg" /></div>
+                        </fieldset>
+                    </form>
+                </section>
             </div>
         </div>
     </section>

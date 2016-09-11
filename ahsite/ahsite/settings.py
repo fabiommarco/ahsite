@@ -154,3 +154,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'noreply.ahagropecuaria@gmail.com'
 EMAIL_HOST_PASSWORD = 'AhAgro@005#'
 EMAIL_PORT = 587
+
+GRAPPELLI_ADMIN_TITLE = 'Agropecuária AH'

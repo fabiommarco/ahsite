@@ -6,6 +6,9 @@ __pycache__/
 # Mac stuff
 .DS_Store
 
+# Django
+/ahsite/media
+
 # C extensions
 *.so
 

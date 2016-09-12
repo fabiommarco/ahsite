@@ -1,24 +1,28 @@
   {% extends "base.html" %}
   {% load static %}
+  {% block class %}dynamic-content ah-background page-prices{% endblock class%}
   {% block content %}
-    <!-- Portfolio Grid Section -->
-    <section id="download-price-file">
     <div class="container">
-        <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <h2>Cotações Agrícolas</h2>
+        <p>Nós disponibilizamos cotações agrícolas periodicamente. Faça o download abaixo:</p>
+
+        <ul class="information-block download-pdf">
           {% for price in prices %}
-            <div class="col-sm-6 col-md-4">
-              <div class="thumbnail">
-                <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                <div class="caption">
-                  <h3>{{price.ap_date|date:"d/m/Y"}}</h3>
-                  <p>{{price.ap_brief_desc}}</p>
-                  <p><a href="{% get_media_prefix %}{{price.ap_file}}" class="btn btn-primary" role="button">Download</a></p>
-                </div>
-              </div>
-          </div>
-        {% endfor %}
-        </div>    
+            <li>
+                <a href="{% get_media_prefix %}{{price.ap_file}}" title="Clique para fazer o download.">
+                     <i class="fa fa-file-pdf-o fa-4" aria-hidden="true"></i>
+                    <div class="meta">
+                        <strong>{{price.ap_date|date:"d/m/Y"}}</strong>
+                        <p>{{price.ap_brief_desc}}</p>
+                    </div>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+          {% empty %}
+            <li>Nenhum item encontrado.</li>
+          {% endfor %}
+      </ul>
     </div>
-    </section>
-  {% endblock content %}  
-    
+  </div>
+  {% endblock content %}

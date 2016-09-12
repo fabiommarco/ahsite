@@ -236,7 +236,7 @@ class Products(models.Model):
     product_date = models.DateTimeField(default=datetime.datetime.now)
     product_name = models.CharField("Nome do Produto", max_length=200)
     product_slug = models.SlugField(unique=True, max_length=100, editable=False)
-    product_description = models.TextField(u"Descrição")
+    product_description = RichTextField(u"Descrição")
     product_galery_title = models.CharField("Título da Galeria de Imagens", blank=True, max_length=200, help_text="Digite um nome para a Galeria de Imagens, deixe o campo em branco caso queira manter o nome como Galeria de Imagens.")
     product_galery = GenericRelation(Imagem)
 

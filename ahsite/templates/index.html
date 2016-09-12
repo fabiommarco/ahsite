@@ -42,38 +42,23 @@
 
     <!-- Portfolio Grid Section -->
     <section id="negocios">
-        <div class="col-left">
-            <div class="col-content">
-                <h3><span>Negócios <i class="fa fa-angle-right" aria-hidden="true"></i></span> Bovinos</h3>
-                <p>O Programa Fomento AH+ consiste em fomentar a inseminação artificial, e o cruzamento com as raças.</p>
-                <a href="/negocios" class="cta negocios-cta">
-                    <img src="{% static 'img/negocios/cta-bovinos.png'%}" title="Saiba mais">
-                </a>
-                <a href="/negocios" class="btn btn-lg">Saiba Mais</a>
-            </div>
-        </div>
-
-        <div class="col-center">
-            <div class="col-content">
-                <h3><span>Negócios <i class="fa fa-angle-right" aria-hidden="true"></i></span> Suínos</h3>
-                <p>O Programa Fomento AH+ consiste em fomentar a inseminação artificial, e o cruzamento com as raças.</p>
-                <a href="/negocios" class="cta negocios-cta">
-                    <img src="{% static 'img/negocios/cta-suinos.png'%}" title="Saiba mais">
-                </a>
-                <a href="/negocios" class="btn btn-lg">Saiba Mais</a>
-            </div>
-        </div>
-
-        <div class="col-right">
-            <div class="col-content">
-                <h3><span>Negócios <i class="fa fa-angle-right" aria-hidden="true"></i></span> Café</h3>
-                <p>O Programa Fomento AH+ consiste em fomentar a inseminação artificial, e o cruzamento com as raças.</p>
-                <a href="/negocios" class="cta negocios-cta">
-                    <img src="{% static 'img/negocios/cta-cafe.png'%}" title="Saiba mais">
-                </a>
-                <a href="/negocios" class="btn btn-lg">Saiba Mais</a>
-            </div>
-        </div>
+        {% for product in products %}
+                 {% if 'bovinos' in product.product_name.lower %}
+                    {% with position="left" image='img/negocios/cta-bovinos.png' %}
+                          {% include "_prod.html"%}
+                   {%endwith%}
+                  {% endif %}
+                  {% if 'suíno' in product.product_name.lower %}
+                    {% with position="center" image='img/negocios/cta-suinos.png' %}
+                          {% include "_prod.html"%}
+                   {%endwith%}
+                  {% endif %}
+                  {% if 'café' in product.product_name.lower %}
+                    {% with position="right" image='img/negocios/cta-cafe.png' %}
+                          {% include "_prod.html"%}
+                   {%endwith%}
+                  {% endif %}
+            {% endfor %}
     </section>
 
     <!-- Locations Section -->
@@ -94,26 +79,26 @@
         <div class="col-left">
             <div class="col-content">
                 <h3><span>Parcerias <i class="fa fa-angle-right" aria-hidden="true"></i></span> Fomento Bezerro AH+</h3>
-                <p>O Programa Fomento AH+ consiste em fomentar a inseminação artificial, e o cruzamento com as raças Angus e Hereford. Garantimos em contrato, e por um valor diferenciado atrelado indicador CEPEA, a compra de toda a progênie do cruzamento provenientes do programa.</p>
+                <p>O Programa Fomento AH+ consiste em fomentar a inseminação artificial (Convencional e/ou em Tempo Fixo – IATF), e o cruzamento com as raças Aangus e Hereford. A AGROPECUARIA AH garante em contrato e por um valor diferenciado atrelado indicador CEPEA...</p>
                 <h4>Benefícios</h4>
                 <ul>
                     <li>Solicitação de adiantamento de sêmen</li>
                     <li>Retenção de até 50% de fêmeas para reposição</li>
                 </ul>
-                <a href="/parcerias/bezerro" class="btn btn-lg">Saiba Mais</a>
+                <a href="/parcerias/fomento-bezerro-ah" class="btn btn-lg">Saiba Mais</a>
             </div>
         </div>
 
         <div class="col-right">
             <div class="col-content">
                 <h3><span>Parcerias <i class="fa fa-angle-right" aria-hidden="true"></i></span> Parceria Suinocultura</h3>
-                <p>A Parceria Suinocultura consiste no sistema de criação de animais em que a Agropecuária AH transfere a fase de terminação da engorda de suínos ao produtor rural integrado, além das melhores tecnologias existentes. O produtor é responsável pelas instalações, equipamentos e manejo.</p>
+                <p>A parceria suinocultura consiste no sistema de criação de animais em que a AGROPECUARIA AH transfere a fase de terminação da engorda de suínos ao produtor rural INTEGRADO, além das melhores tecnologias existentes, de animais com a melhor genética...</p>
                 <h4>Benefícios</h4>
                 <ul>
-                    <li>Seleção de animais de melhor genética</li>
-                    <li>Remuneração por produtividade de lote</li>
+                    <li>Índices de eficência no topo melhores padrões mundiais</li>
+                    <li>Forte foco especialização pelos parceiros</li>
                 </ul>
-                <a href="/parcerias/suinocultura" class="btn btn-lg">Saiba Mais</a>
+                <a href="/parcerias/parceria-suinocultura" class="btn btn-lg">Saiba Mais</a>
             </div>
         </div>
     </section>

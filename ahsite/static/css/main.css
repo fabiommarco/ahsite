@@ -251,6 +251,16 @@ section.success {
   margin-top: 10px;
 }
 
+.page404{
+  min-height: 500px;
+  padding-top: 120px;
+  text-align: center;
+ 
+}
+.page404 h1{
+  font-size: 105px;
+  font-weight: 700;
+}
 /*********************************************/
 .ah-background {
   background-image: url('../img/subheader.png');

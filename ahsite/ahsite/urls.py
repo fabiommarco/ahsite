@@ -38,5 +38,5 @@ urlpatterns = [
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^admin/', admin.site.urls),
-
+  
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

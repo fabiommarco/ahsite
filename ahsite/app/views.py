@@ -143,8 +143,7 @@ def work_with_us(request):
                                                 'url_contact':reverse('new_contact', args=['contact']),
                                                 'general_info':general_info,
                                                 'events_link':events_link,
-                                                'partners_link':partners_link,}
-)
+                                                'partners_link':partners_link,})
 
 @csrf_exempt
 def new_contact(request,contact_type):
@@ -197,3 +196,9 @@ def new_newsletter(request):
             newsletterForm.save()
         return HttpResponse(json.dumps(data, ensure_ascii=False))
     return HttpResponseRedirect("/")
+
+
+def handler404(request):
+    response = render(request,'404.html',{})
+    response.status_code = 404
+    return response

@@ -56,7 +56,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">Parcerias</a>
+                        <a href="#" class="noop">Parcerias</a>
                         <ul>
                             {% for link in partners_link  %}
                                 <li><a href="{% url 'partners_view' link.partner_slug%}">{{link.partner_title}}</a></li>
@@ -64,7 +64,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">Mídia</a>
+                        <a href="#" class="noop">Mídia</a>
                         <ul>
                             <li><a href="{% url 'news' %}">AH Notícias</a></li>
                             <li><a href="/midia/pagina-um">Página Um</a></li>
@@ -76,7 +76,7 @@
             <div class="collapse navbar-collapse navbar-collapse-right">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="/responsabilidade-social">Responsabilidade Social</a>
+                        <a href="#" class="noop">Responsabilidade Social</a>
                         <ul>
                         {% for link in events_link  %}
                             <li><a href="{% url 'event_view' link.event_slug%}">{{link.event_title}}</a></li>
@@ -133,14 +133,14 @@
                     </div>
                     <div class="footer-col col-md-2">
                         <ul >
-                            <li class="link-title"><a href="#">Negócios</a></li>
+                            <li class="link-title">Negócios</li>
                                 <li><a href="{% url 'products_list'%}">Venda</a></li>
                                 <li><a href="{% url 'sales'%}">Compra</a></li>
                         </ul>
                     </div>
                     <div class="footer-col col-md-3">
                         <ul >
-                            <li class="link-title"><a href="#">Parcerias</a></li>
+                            <li class="link-title">Parcerias</li>
                             {% for link in partners_link  %}
                                 <li><a href="{% url 'partners_view' link.partner_slug%}">{{link.partner_title}}</a></li>
                             {% endfor %}
@@ -148,7 +148,7 @@
                     </div>
                     <div class="footer-col col-md-3">
                         <ul >
-                            <li class="link-title"><a href="#">Responsabilidade Social</a></li>
+                            <li class="link-title">Responsabilidade Social</li>
                             {% for link in events_link  %}
                                 <li><a href="{% url 'event_view' link.event_slug%}">{{link.event_title}}</a></li>
                             {% endfor %}
@@ -156,7 +156,7 @@
                     </div>
                     <div class="footer-col col-md-2">
                         <ul >
-                            <li class="link-title"><a href="#">Mídia</a></li>
+                            <li class="link-title">Mídia</li>
                             <li><a href="{% url 'news' %}">Notícias</a></li>
                             <li><a href="/midia/pagina">Página Um</a></li>
                             <li><a href="{% url 'agricutural_prices'%}">Cotações Agrícolas</a></li>

@@ -60,7 +60,6 @@ class GeneralConfig(models.Model):
     config_social_youtube = models.URLField(u'Youtube', help_text = 'Formato: https://www.youtube.com/user/SEU_CANAL', blank = True)
     config_social_instagram = models.URLField(u'Instagram', help_text = 'Formato: https://www.instagram.com/SEU_PERFIL', blank = True)
 
-
     class Meta:
         verbose_name = u"Configuração Geral"
         verbose_name_plural = "Configurações Gerais"
@@ -70,22 +69,27 @@ class GeneralConfig(models.Model):
 
 
 class AboutCompany(models.Model):
-    ac_about =  RichTextField(u"Conteúdo do 'Quem Somos'", blank = False)
-    ac_vision = RichTextField(u"Conteúdo do 'Visão'", blank = False)
-    ac_mission =RichTextField(u"Conteúdo do 'Missão'", blank = False)
-    ac_values = RichTextField(u"Conteúdo do 'Valores'", blank = False)
+    ac_content = RichTextField(u"Conteúdo da página", blank=False)
+    gallery_title = models.CharField(
+        "Título da Galeria de Imagens",
+        blank=True,
+        max_length=200,
+        help_text="Digite um nome para a Galeria de Imagens, deixe o campo em"
+                  "branco caso queira manter o nome como Galeria de Imagens.")
+    gallery = GenericRelation(Imagem)
 
     def scaped_html(self):
-        text = format_html(self.ac_about)
+        text = format_html(self.ac_content)
         try:
-            text = truncatechars(self.ac_about.split('<p>',1)[1].split('</p>')[0],100)
+            text = truncatechars(
+                self.ac_content.split('<p>', 1)[1].split('</p>')[0], 100)
         except Exception, e:
             pass
         return text
     scaped_html.allow_tags = True
 
     def __unicode__(self):
-        return self.ac_about
+        return self.ac_content
 
     class Meta:
         verbose_name = u"Sobre a Empresa"
@@ -235,14 +239,14 @@ class Products(models.Model):
     product_description = models.TextField(u"Descrição")
     product_galery_title = models.CharField("Título da Galeria de Imagens", blank=True, max_length=200, help_text="Digite um nome para a Galeria de Imagens, deixe o campo em branco caso queira manter o nome como Galeria de Imagens.")
     product_galery = GenericRelation(Imagem)
-    
+
     def save(self):
         self.product_slug = slugify(self.product_name)
         super(Products, self).save()
-    
+
     def __unicode__(self):
         return self.product_name
-    
+
     class Meta:
         verbose_name = "Produto"
         verbose_name_plural = "Produtos"

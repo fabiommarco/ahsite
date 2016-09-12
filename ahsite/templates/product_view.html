@@ -11,8 +11,8 @@
           </div>
           <div class="row">
             <p>{{product.product_description|safe}}</p>
-          </div>    
-          
+          </div>
+
           {% if product.product_galery.all %}
           <div class="row">
             {% if product.product_galery_title %}
@@ -31,24 +31,16 @@
           {% endif %}
       </div>
     </section>
-  {% endblock content %}  
+  {% endblock content %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'css/jquery.fancybox.css' %}?v=2.1.5" type="text/css" media="screen" />
-    
-    <style type="text/css">
-        .fancybox-wrap{
-          z-index: 99999!important;
-        }
-    </style>
-  {% endblock css %}
-  {% block javascript %}
-    <!-- Add fancyBox -->
-      <script type="text/javascript" src="{% static 'js/jquery.fancybox.pack.js' %}?v=2.1.5"></script>
-
-      <script type="text/javascript">
-  $(document).ready(function() {
-    $(".fancybox").fancybox();
-  });
-</script>
-  {% endblock javascript %}    
+  <link rel="stylesheet" href="{% static 'css/jquery.fancybox.css' %}?v=2.1.5" type="text/css" media="screen" />
+{% endblock css %}
+{% block javascript %}
+  <script type="text/javascript" src="{% static 'js/jquery.fancybox.pack.js' %}?v=2.1.5"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".fancybox").fancybox();
+    });
+  </script>
+{% endblock javascript %}

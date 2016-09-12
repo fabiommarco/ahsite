@@ -9,7 +9,7 @@ ImagemGenericFormSet = generic_inlineformset_factory(Imagem, extra=1)
 class ImagemInlineFormset(ImagemGenericFormSet):
     def clean(self):
         principal_count = 0
-        
+
         for form in self.forms:
             try:
                 if form.cleaned_data:
@@ -17,7 +17,7 @@ class ImagemInlineFormset(ImagemGenericFormSet):
                         principal_count += 1
             except:
                 pass
-        
+
         if principal_count > 1:
             raise forms.ValidationError("Selecione apenas uma imagem como Principal.")
 
@@ -42,6 +42,7 @@ class NewsletterAdmin(admin.ModelAdmin):
 
 class AboutCompanyAdmin(admin.ModelAdmin):
     list_display = ('scaped_html', )
+    inlines = [ImagemInline]
 
 
 class SaleAdmin(admin.ModelAdmin):

@@ -1,39 +1,40 @@
   {% extends "base.html" %}
+  {% block class %}dynamic-content ah-background{% endblock class%}
   {% block content %}
-    <!-- Portfolio Grid Section -->
-    <section id="about-us">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3>A AH Agropecuária</h3>
-                    <p>{{about.ac_about|safe}}</p>
-                    <br/>
-                </div>
-            </div>
-        </div>
-    </section>
-   <section id="about-us">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3>Nossa Visão</h3>
-                    <p>{{about.ac_vision|safe}}</p>
-                    <br/>
-                </div>
-            </div>
-        </div>
-    </section>
+    {% load static %}
+    <div class="container">
+      <div class="col-md-10 col-md-offset-1">
+        <h2>Institucional</h2>
+        {{about.ac_content|safe}}
 
-   <section id="about-us">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3>Nossos Valores</h3>
-                    <p>{{about.ac_values|safe}}</p>
-                    <br/>
-                </div>
+        {% if about.gallery.all %}
+          {% if about.gallery_title %}
+            <h3>{{about.gallery_title}}</h3>
+          {% else %}
+            <h3>Galeria de Imagens</h3>
+          {% endif %}
+          {% for imagem in about.gallery.all %}
+            <div class="col-xs-6 col-md-3">
+              <a class="fancybox thumbnail" rel="group" href="{% get_media_prefix %}{{ imagem.imagem }}">
+                <img src="{% get_media_prefix %}{{ imagem.imagem }}" alt="{{ imagem.descricao }}" />
+              </a>
             </div>
-        </div>
-    </section>
-  {% endblock content %}  
-    
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+
+  {% endblock content %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/jquery.fancybox.css' %}?v=2.1.5" type="text/css" media="screen" />
+{% endblock css %}
+{% block javascript %}
+  <!-- Add fancyBox -->
+  <script type="text/javascript" src="{% static 'js/jquery.fancybox.pack.js' %}?v=2.1.5"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".fancybox").fancybox();
+    });
+  </script>
+{% endblock javascript %}

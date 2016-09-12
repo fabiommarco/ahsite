@@ -93,10 +93,8 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-    '/home/luizfelipe/Documents/codes/ah-website/ahsite/static/',
-]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static-production')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR + '/media/'
@@ -154,3 +152,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'noreply.ahagropecuaria@gmail.com'
 EMAIL_HOST_PASSWORD = 'AhAgro@005#'
 EMAIL_PORT = 587
+
+GRAPPELLI_ADMIN_TITLE = 'Agropecuária AH'

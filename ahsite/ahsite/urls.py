@@ -18,7 +18,10 @@ urlpatterns = [
     # url(r'^responsabilidade-social/$', views.events, name='events'),
     url(r'^responsabilidade-social/(?P<event_slug>.*)$', views.event_view, name='event_view'),
 
-    url(r'^vendas/$', views.sales, name='sales'),
+    url(r'^compras/$', views.sales, name='sales'),
+    url(r'^vendas/$', views.products_list, name='products_list'),
+    url(r'^vendas/(?P<product_slug>.*)$', views.product_view, name='product_view'),
+
 
     url(r'^noticias/$', views.news, name='news'),
     url(r'^noticias/(?P<news_slug>.*)$', views.news_view, name='news_view'),

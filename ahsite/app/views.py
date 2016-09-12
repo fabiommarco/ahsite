@@ -110,6 +110,25 @@ def sales(request):
                   'events_link':events_link,
                   'partners_link':partners_link,
                   'url_contact':reverse('new_contact', args=['sale'])})
+
+@load_basic_info
+def products_list(request):
+    return render(request, 'products_list.html',
+                 {'products':Products.objects.all(),
+                  'general_info':general_info,
+                  'events_link':events_link,
+                  'partners_link':partners_link})
+
+@load_basic_info
+def product_view(request, product_slug=None):
+
+    return render(request, 'product_view.html',
+                 {'product':get_object_or_404(Products, product_slug = product_slug),
+                  'general_info':general_info,
+                  'events_link':events_link,
+                  'partners_link':partners_link,})
+
+
 @load_basic_info
 def talk_with_us(request):
     return render(request, 'talk-with-us.html', {'url_contact':reverse('new_contact', args=['contact']),

@@ -217,4 +217,22 @@ class AgriculturalFiles(models.Model):
 
     class Meta:
         verbose_name_plural = u"Cotações Agrícolas"
+
+class Products(models.Model):
+    product_date = models.DateTimeField(default=datetime.datetime.now)
+    product_name = models.CharField("Nome do Produto", max_length=200)
+    product_slug = models.SlugField(unique=True, max_length=100, editable=False)
+    product_description = models.TextField(u"Descrição")
+    product_galery_title = models.CharField("Título da Galeria de Imagens", blank=True, max_length=200, help_text="Digite um nome para a Galeria de Imagens, deixe o campo em branco caso queira manter o nome como Galeria de Imagens.")
+    product_galery = GenericRelation(Imagem)
     
+    def save(self):
+        self.product_slug = slugify(self.product_name)
+        super(Products, self).save()
+    
+    def __unicode__(self):
+        return self.product_name
+    
+    class Meta:
+        verbose_name = "Produto"
+        verbose_name_plural = "Produtos"

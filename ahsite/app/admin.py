@@ -46,7 +46,11 @@ class AboutCompanyAdmin(admin.ModelAdmin):
 
 class SaleAdmin(admin.ModelAdmin):
     list_display = ('sale_email', )
-    
+
+class ProdAdmin(admin.ModelAdmin):
+    inlines = [ImagemInline]
+
+admin.site.register(Products, ProdAdmin)
 admin.site.register(Jobs)
 admin.site.register(Partners)
 admin.site.register(Sale, SaleAdmin)

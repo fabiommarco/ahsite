@@ -1,47 +1,41 @@
   {% extends "base.html" %}
+  {% block class %}dynamic-content ah-background{% endblock class%}
   {% load static %}
   {% block content %}
     <!-- Portfolio Grid Section -->
     <section id="download-price-file">
     <div class="container">
+      <div class="col-md-10 col-md-offset-2">
         {% if magazine %}
           <div class="row magazine_viwer">
               <h1>{{magazine.magazine_title}}</h1>
-              <div class="row">
-                <p>{{magazine.magazine_description|safe}}</p>
-              </div>
-              <div class="row">
-                <div class="col-md-8 col-lg-offset-2">
-                  <embed src="{% get_media_prefix %}{{magazine.magazine_file}}" width="800" height="1170" type='application/pdf'>
-                </div>
-              </div>
+              <p>{{magazine.magazine_description|safe}}</p>
+              <embed src="{% get_media_prefix %}{{magazine.magazine_file}}" width="800" height="1170" type='application/pdf'>
           </div>
-          
+
           <div class="row">
           <h2>Confira as Edições Anteriores</h2>
-          <div class="col-md-12">
-            <ul class="information-block download-pdf">
-                {% for item in old_versions %}
-                    <li>
-                        <a href="{% get_media_prefix %}{{item.magazine_file}}">
-                             <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                            <div class="meta">
-                                <strong>{{item.magazine_title}}</strong>
-                                <span>Download</span>
-                            </div>
-                            <i class="fa fa-angle-right" aria-hidden="true"></i>
-                        </a>
-                    </li>
-                {% empty %}
-                    <li>Nenhum item encontrado.</li>
-                {% endfor %}
-            </ul>
-          </div>
-        </div>  
-        {%else %}
-          nenhuma revista disponivel.  
+          <ul class="information-block download-pdf">
+              {% for item in old_versions %}
+                  <li>
+                      <a href="{% get_media_prefix %}{{item.magazine_file}}">
+                           <i class="fa fa-file-pdf-o fa-3" aria-hidden="true"></i>
+                          <div class="meta">
+                              <strong>{{item.magazine_title}}</strong>
+                              <span>Download</span>
+                          </div>
+                          <i class="fa fa-angle-right" aria-hidden="true"></i>
+                      </a>
+                  </li>
+              {% empty %}
+                <li>Nenhum item encontrado.</li>
+              {% endfor %}
+          </ul>
+        </div>
+        {% else %}
+          Nenhuma revista disponivel.
         {% endif %}
+      </div>
     </div>
     </section>
-  {% endblock content %}  
-    
+  {% endblock content %}

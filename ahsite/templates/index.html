@@ -10,7 +10,7 @@
                     <h3>AH Apropecuária</h3>
                     <p>A AH é uma das importantes agropecuárias do Brasil, com áreas produtivas que somam mais de 40.000 hectares e sistemas de produção implantados em três estados brasileiros - Mato Grosso do Sul, Mato Grosso e Minas Gerais.</p>
                     <br/>
-                    <a href="{% url 'about_compan'y %}" class="btn btn-success btn-lg">Conheca a nossa história</a>
+                    <a href="{% url 'about_company' %}" class="btn btn-success btn-lg">Conheca a nossa história</a>
                 </div>
                 <div class="col-md-6">
                     <ul class="about-list">
@@ -129,7 +129,7 @@
                         <a href="{% url 'news_view' news.news_slug%}" class="title">{{news.news_title}}</a><br/>
                         <small>{{news.news_date|date:"F Y"}}</small>
                         <p>{{news.news_description|safe|truncatewords:30}}</p>
-                        <a href="{% url 'news_view' news.news_slug%}">Leia mais</a>
+                        <a href="{% url 'news_view' news.news_slug%}">Leia mais <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                     </li>
                     {% empty %}
                         <p>Nenhuma notícia encontrada.</p>

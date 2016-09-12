@@ -261,6 +261,17 @@ section.success {
   font-size: 105px;
   font-weight: 700;
 }
+
+.magazine_viwer{
+  min-height: 900px;
+}
+.magazine_viwer embed{
+  height: 1170px;
+}
+.download-pdf{
+  width: 270px;
+}
+
 /*********************************************/
 .ah-background {
   background-image: url('../img/subheader.png');

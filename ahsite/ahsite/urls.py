@@ -22,11 +22,12 @@ urlpatterns = [
     url(r'^vendas/$', views.products_list, name='products_list'),
     url(r'^vendas/(?P<product_slug>.*)$', views.product_view, name='product_view'),
 
-
     url(r'^noticias/$', views.news, name='news'),
     url(r'^noticias/(?P<news_slug>.*)$', views.news_view, name='news_view'),
 
     url(r'^parcerias/(?P<partner_slug>.*)$', views.partners_view, name='partners_view'),
+
+    url(r'^revista-pagina-um/$', views.magazine, name='magazine'),
 
     url(r'^fale-conosco/$', views.talk_with_us, name='talk_with_us'),
     url(r'^trabalhe-conosco/$', views.work_with_us, name='work_with_us'),

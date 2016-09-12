@@ -110,6 +110,21 @@ def sales(request):
                   'events_link':events_link,
                   'partners_link':partners_link,
                   'url_contact':reverse('new_contact', args=['sale'])})
+@load_basic_info
+def magazine(request):
+    
+    magazines = Magazine.objects.order_by('magazine_date')[:5]
+    
+    magazine = {}
+    if magazines:
+        magazine = magazines[0]
+    return render(request, 'magazine.html',
+                 {'magazine': magazine,
+                  'old_versions': magazines[1:],
+                  'general_info':general_info,
+                  'events_link':events_link,
+                  'partners_link':partners_link})
+
 
 @load_basic_info
 def products_list(request):

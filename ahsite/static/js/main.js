@@ -26,6 +26,10 @@
         });
     });
 
+    $('.noop').click(function(e) {
+        e.preventDefault();
+    });
+
     $('#newsletter-form').submit(function() {
         $.ajax({
           url: $('#newsletter-form').attr('action'),

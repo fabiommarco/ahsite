@@ -26,15 +26,15 @@ def load_basic_info(method):
         g['general_info'] = GeneralConfig.objects.latest('id')
         g['events_link'] = Event.objects.all()
         g['partners_link'] = Partners.objects.all()
-        
+
         res = method(request,*args, **kwargs)
         return res
     return wrapper
 
 @load_basic_info
 def home(request):
-    latest_feeds = News.objects.order_by('-news_date')[:5]    
-    return render(request, 'index.html', {'is_index':True, 
+    latest_feeds = News.objects.order_by('-news_date')[:5]
+    return render(request, 'index.html', {'is_index':True,
                                           'general_info':general_info,
                                           'events_link':events_link,
                                           'partners_link':partners_link,
@@ -112,9 +112,9 @@ def sales(request):
                   'url_contact':reverse('new_contact', args=['sale'])})
 @load_basic_info
 def magazine(request):
-    
-    magazines = Magazine.objects.order_by('magazine_date')[:5]
-    
+
+    magazines = Magazine.objects.order_by('-magazine_date')[:5]
+
     magazine = {}
     if magazines:
         magazine = magazines[0]

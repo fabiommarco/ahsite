@@ -1043,3 +1043,16 @@ fieldset[disabled] .btn-success.active {
 .fancybox-wrap {
   z-index: 99999!important;
 }
+
+.page-prices .download-pdf {
+  width: 100%;
+}
+
+.page-prices .information-block li {
+  min-width: 300px;
+  display: inline-block;
+}
+
+.page-prices .information-block li .fa-file-pdf-o {
+  font-size: 40px;
+}

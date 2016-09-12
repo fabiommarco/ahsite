@@ -42,10 +42,10 @@
                     <li>
                         <a href="/quem-somos">Institucional</a>
                         <ul>
-                            <li><a href="{% url 'about_company' %}#agropecuaria-ah">Agropecuária AH</a></li>
-                            <li><a href="{% url 'about_company' %}#missao-e-valores">Missão e Visão</a></li>
-                            <li><a href="{% url 'about_company' %}#valores-e-competencia">Valores e Competência</a></li>
-                            <li><a href="{% url 'about_company' %}#localizacoes">Localizações</a></li>
+                            <li><a href="{% url 'about_company' %}#sobre-nos">Agropecuária AH</a></li>
+                            <li><a href="{% url 'about_company' %}#nossa-missao">Missão e Visão</a></li>
+                            <li><a href="{% url 'about_company' %}#nossos-valores">Valores e Competência</a></li>
+                            <li><a href="{% url 'talk_with_us' %}">Localizações</a></li>
                         </ul>
                     </li>
                     <li>
@@ -93,11 +93,11 @@
     </nav>
 
     <!-- Header -->
-    <header class="{% if is_index == True %}is-home-page{% endif %}">
+    <header class="{% if is_index %}is-home-page{% endif %}">
         <div class="fotorama"
              data-autoplay="true"
              data-width="100%"
-             data-height="{% if is_index == True %}500{% else %}200{% endif %}px"
+             data-height="{% if is_index %}500{% else %}300{% endif %}px"
              data-fit="cover">
         <a href="{% static 'img/banner/1.jpg'%}"></a>
         <a href="{% static 'img/banner/2.jpg'%}"></a>
@@ -113,7 +113,9 @@
         </div>
     </header>
 
-    {% block content %}{% endblock content %}
+    <div class="{% block class %}{% endblock class %}">
+        {% block content %}{% endblock content %}
+    </div>
 
     <!-- Footer -->
     <footer class="text-center">
@@ -123,10 +125,10 @@
                     <div class="footer-col col-md-2">
                         <ul>
                             <li class="link-title"><a href="{% url 'about_company'%}">Institucional</a></li>
-                            <li><a href="{% url 'about_company'%}#agropecuaria-ah">Agropecuária AH</a></li>
-                            <li><a href="{% url 'about_company'%}#missao-e-valores">Missão e Visão</a></li>
-                            <li><a href="{% url 'about_company'%}#valores-e-competencia">Valores e Competência</a></li>
-                            {# <li><a href="{% url 'about_company'%}#localizacoes">Localizações</a></li> #}
+                            <li><a href="{% url 'about_company' %}#sobre-nos">Agropecuária AH</a></li>
+                            <li><a href="{% url 'about_company' %}#nossa-missao">Missão e Visão</a></li>
+                            <li><a href="{% url 'about_company' %}#nossos-valores">Valores e Competência</a></li>
+                            <li><a href="{% url 'talk_with_us' %}">Localizações</a></li>
                         </ul>
                     </div>
                     <div class="footer-col col-md-2">

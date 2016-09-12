@@ -1036,7 +1036,7 @@ fieldset[disabled] .btn-success.active {
 }
 
 .dynamic-content p {
-  font-size: 16px;
+  font-size: 18px;
   margin-bottom: 15px;
 }
 
@@ -1055,4 +1055,9 @@ fieldset[disabled] .btn-success.active {
 
 .page-prices .information-block li .fa-file-pdf-o {
   font-size: 40px;
+}
+
+.page-noticias .caption .news-title {
+  text-decoration: none;
+  color: #eee;
 }

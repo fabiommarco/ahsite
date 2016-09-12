@@ -2,7 +2,7 @@
 <div class="col-{{position}}">
     <div class="col-content">
           <h3>{{product.product_name}}</h3>
-          <p style="min-height:140px;">{{product.product_description|safe|truncatechars:200}}</p>
+          <p>{{product.product_description|safe|truncatechars:200}}</p>
           <a href="{% url 'product_view' product.product_slug %}" class="cta negocios-cta">
               <img src="{% static image %}" title="Saiba mais">
           </a>

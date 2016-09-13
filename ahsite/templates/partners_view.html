@@ -1,18 +1,12 @@
   {% extends "base.html" %}
   {% load static %}
+  {% block class %}dynamic-content ah-background page-responsabilidade-social{% endblock class%}
   {% block content %}
-    <!-- Portfolio .imagemGrid Section -->
-    <section id="download-price-file">
-      <div class="container">
-          <div class="row">
-              <div class="col-sm-12">
-                  <h1>{{partner.partner_title}}</h1>
-                  <small>{{partner.partner_date|date:"d/m/Y"}}</small>
-            </div>
-          </div>
-          <div class="row">
-            <p>{{partner.partner_description|safe}}</p>
-          </div>    
+    <div class="container">
+      <div class="col-md-10 col-md-offset-1">
+          <h1>{{partner.partner_title}}</h1>
+          <p><span class="small">{{partner.partner_date|date:"d/m/Y"}}</span></p>
+          {{partner.partner_description|safe}}
       </div>
-    </section>
-  {% endblock content %}  
+    </div>
+  {% endblock content %}

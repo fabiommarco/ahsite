@@ -1,36 +1,30 @@
   {% extends "base.html" %}
   {% load static %}
+  {% block class %}dynamic-content ah-background{% endblock class%}
   {% block content %}
-    <!-- Portfolio .imagemGrid Section -->
-    <section id="download-price-file">
-      <div class="container">
-          <div class="row">
-              <div class="col-sm-12">
-                  <h1>{{product.product_name}}</h1>
-              </div>
-          </div>
-          <div class="row">
-            <p>{{product.product_description|safe}}</p>
-          </div>
+    <div class="container">
+        <div class="col-md-10 col-md-offset-1">
+            <h1>{{product.product_name}}</h1>
+            <div class="description">
+                {{product.product_description|safe}}
+            </div>
 
-          {% if product.product_galery.all %}
-          <div class="row">
-            {% if product.product_galery_title %}
-                <h3>{{product.product_galery_title}}</h3>
-            {% else %}
-                <h3>Galeria de Imagens</h3>
-            {% endif %}
-              {% for imagem in product.product_galery.all %}
+            {% if product.product_galery.all %}
+                {% if product.product_galery_title %}
+                  <h3>{{product.product_galery_title}}</h3>
+                {% else %}
+                  <h3>Galeria de Imagens</h3>
+                {% endif %}
+                {% for imagem in product.product_galery.all %}
                     <div class="col-xs-6 col-md-3">
-                          <a class="fancybox thumbnail" rel="group" href="{% get_media_prefix %}{{ imagem.imagem }}">
-                              <img src="{% get_media_prefix %}{{ imagem.imagem }}" alt="" />
-                          </a>
+                        <a class="fancybox thumbnail" rel="group" href="{% get_media_prefix %}{{ imagem.imagem }}">
+                            <img src="{% get_media_prefix %}{{ imagem.imagem }}" alt="" />
+                        </a>
                     </div>
-              {% endfor %}
-          </div>
-          {% endif %}
-      </div>
-    </section>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
   {% endblock content %}
 
 {% block css %}

@@ -161,8 +161,7 @@ class Partners(models.Model):
 class Jobs(models.Model):
     job_date = models.DateTimeField(default=datetime.datetime.now)
     job_title = models.CharField(u"Titúlo da Vaga", max_length=300)
-    job_description = RichTextField(u"Descrição",help_text='Desreva aqui as especificações da vaga e seus pré-requisitos',\
-                                        max_length=300)
+    job_description = RichTextField(u"Descrição",help_text='Desreva aqui as especificações da vaga e seus pré-requisitos')
 
     def __unicode__(self):
         return self.job_title
@@ -237,6 +236,7 @@ class Products(models.Model):
     product_name = models.CharField("Nome do Produto", max_length=200)
     product_slug = models.SlugField(unique=True, max_length=100, editable=False)
     product_description = RichTextField(u"Descrição")
+    product_short_description = models.TextField(u"Descrição Curta",help_text='Essa descrição irá aparecer na homepage.', max_length=200)
     product_galery_title = models.CharField("Título da Galeria de Imagens", blank=True, max_length=200, help_text="Digite um nome para a Galeria de Imagens, deixe o campo em branco caso queira manter o nome como Galeria de Imagens.")
     product_galery = GenericRelation(Imagem)
 

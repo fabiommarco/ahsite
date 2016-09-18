@@ -214,6 +214,9 @@ def new_newsletter(request):
     return HttpResponseRedirect("/")
 
 
+def list_newsletter(request):
+    return render(request, 'admin/newsletter/list_newsletter.html',{'newsletter':Newsletter.objects.filter()})
+
 def handler404(request):
     response = render(request,'404.html',{})
     response.status_code = 404

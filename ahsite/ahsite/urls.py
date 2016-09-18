@@ -39,5 +39,6 @@ urlpatterns = [
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^admin/', admin.site.urls),
-  
+    url(r'^admin/list_newsletter$', views.list_newsletter, name='list_newsletter'),
+    
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

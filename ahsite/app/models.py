@@ -4,21 +4,22 @@
     luizfelipe.unesp@gmail.com
 """
 from __future__ import unicode_literals
+
+import datetime
+import uuid
+import os
+
 from django.db import models
 from django.contrib.contenttypes.fields import GenericForeignKey,GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.utils.html import format_html
 from django.template.defaultfilters import truncatechars,slugify
-
-
 from ckeditor.fields import RichTextField
-import datetime
-import uuid
-import os
+
 def get_upload_path(instance, filename):
-        f, ext = os.path.splitext(filename)
-        new_filename = '%s%s' % (uuid.uuid4().hex, ext)
-        return os.path.join('uploads',str(uuid.uuid4()), new_filename)
+    _f, ext = os.path.splitext(filename)
+    new_filename = '%s%s' % (uuid.uuid4().hex, ext)
+    return os.path.join('uploads', str(uuid.uuid4()), new_filename)
 
 TIPO_RELATORIO = (
     ('cotacao_agricola', 'Cotação Agrícola'),
@@ -28,8 +29,8 @@ TIPO_RELATORIO = (
 
 )
 # =================================================
-class Imagem(models.Model):
 
+class Imagem(models.Model):
     imagem = models.ImageField("Imagem", upload_to=get_upload_path)
     descricao = models.CharField(u"Descrição breve", max_length=200, blank=True)
     main_image = models.BooleanField(u"Imagem Principal")
@@ -43,22 +44,50 @@ class Imagem(models.Model):
 
 
 class GeneralConfig(models.Model):
-    config_street = models.CharField(u"Logradouro", help_text = "Exemplo: Rua Rio Branco",\
-                                     max_length = 200, blank = False)
-    config_number = models.IntegerField(u"Número", blank = False)
-    config_neighbourhood = models.CharField(u"Bairro", help_text = "Exemplo: Vila Falcão",\
-                                            max_length = 200, blank = False)
-    config_email = models.EmailField(u"Email", help_text = '<strong>Atenção! </strong>Através desse email \
-                                        você receberá os contados enviados pelo site.', blank = False)
-    config_phone = models.CharField(u"Telefone", help_text = "Formato: (18) 9900-5544",\
-                                    max_length = 15, blank = False)
-    config_phone_alternative = models.CharField(u"Telefone Alternativo", help_text = "Formato: (18) 9900-5544",\
-                                                max_length = 15, blank = True)
-
-    config_social_facebook = models.URLField(u'Facebook', help_text = 'Formato: https://www.facebook.com/SUA_PAGINA', blank = True)
-    # config_social_twitter = models.URLField(u'Twitter', help_text = 'Formato: https://www.twitter.com/SUA_PAGINA', blank = True)
-    config_social_youtube = models.URLField(u'Youtube', help_text = 'Formato: https://www.youtube.com/user/SEU_CANAL', blank = True)
-    config_social_instagram = models.URLField(u'Instagram', help_text = 'Formato: https://www.instagram.com/SEU_PERFIL', blank = True)
+    config_street = models.CharField(
+        u"Logradouro", 
+        help_text="Exemplo: Rua Rio Branco",
+        max_length=200,
+        blank=False)
+    config_number = models.IntegerField(u"Número", blank=False)
+    config_neighbourhood = models.CharField(
+        u"Bairro",
+        help_text="Exemplo: Vila Falcão",
+        max_length=200,
+        blank=False)
+    
+    config_email = models.EmailField(
+        u"Email", 
+        help_text='<strong>Atenção! </strong>Através'
+                  'desse email você receberá os contados'
+                  'enviados pelo site.',
+        blank=False)
+    config_phone = models.CharField(
+        u"Telefone",
+        help_text="Formato: (18) 9900-5544",
+        max_length=15,
+        blank=False)
+    config_phone_alternative = models.CharField(
+        u"Telefone Alternativo",
+        help_text="Formato: (18) 9900-5544",
+        max_length=15, 
+        blank=True)
+    config_social_facebook = models.URLField(
+        u'Facebook',
+        help_text='Formato: https://www.facebook.com/SUA_PAGINA',
+        blank=True)
+    config_social_twitter = models.URLField(
+        u'Twitter',
+        help_text='Formato: https://www.twitter.com/SUA_PAGINA',
+        blank=True)
+    config_social_youtube = models.URLField(
+        u'Youtube', 
+        help_text='Formato: https://www.youtube.com/user/SEU_CANAL',
+        blank=True)
+    config_social_instagram = models.URLField(
+        u'Instagram', 
+        help_text='Formato: https://www.instagram.com/SEU_PERFIL',
+        blank=True)
 
     class Meta:
         verbose_name = u"Configuração Geral"
@@ -105,9 +134,19 @@ class Event(models.Model):
     event_local = models.CharField(u"Local", max_length=300)
     event_slug = models.SlugField(unique=True, max_length=100, editable=False)
     event_description = RichTextField(u"Descrição")
-    event_video = models.CharField("Vídeo do YouTube", max_length=150, blank=True, help_text="Digite somente a parte em <strong>negrito</strong> da URL do vídeo seguindo este exemplo:http://www.youtube.com/watch?v=<strong>aAkurCTifE0</strong>")
+    event_video = models.CharField(
+        "Vídeo do YouTube",
+        max_length=150,
+        blank=True,
+        help_text="Digite somente a parte em <strong>negrito</strong> da URL do vídeo"
+        "seguindo este exemplo:http://www.youtube.com/watch?v=<strong>aAkurCTifE0</strong>")
     event_thumbnail = models.ImageField(upload_to=get_upload_path)
-    event_galery_title = models.CharField("Título da Galeria de Imagens", blank=True, max_length=200, help_text="Digite um nome para a Galeria de Imagens, deixe o campo em branco caso queira manter o nome como Galeria de Imagens.")
+    event_galery_title = models.CharField(
+        "Título da Galeria de Imagens",
+        blank=True,
+        max_length=200,
+        help_text="Digite um nome para a Galeria de Imagens,"
+        " deixe o campo em branco caso queira manter o nome como Galeria de Imagens.")
     event_galery = GenericRelation(Imagem)
 
     def __unicode__(self):
@@ -127,7 +166,12 @@ class News(models.Model):
     news_slug = models.SlugField(unique=True, max_length=100, editable=False)
     news_description = RichTextField(u"Descrição")
 
-    news_galery_title = models.CharField("Título da Galeria de Imagens", blank=True, max_length=200, help_text="Digite um nome para a Galeria de Imagens, deixe o campo em branco caso queira manter o nome como Galeria de Imagens.")
+    news_galery_title = models.CharField(
+        "Título da Galeria de Imagens", 
+        blank=True,
+        max_length=200,
+        help_text="Digite um nome para a Galeria de Imagens, "
+        "deixe o campo em branco caso queira manter o nome como Galeria de Imagens.")
     news_galery = GenericRelation(Imagem)
 
     def __unicode__(self):
@@ -161,7 +205,9 @@ class Partners(models.Model):
 class Jobs(models.Model):
     job_date = models.DateTimeField(default=datetime.datetime.now)
     job_title = models.CharField(u"Titúlo da Vaga", max_length=300)
-    job_description = RichTextField(u"Descrição",help_text='Desreva aqui as especificações da vaga e seus pré-requisitos')
+    job_description = RichTextField(
+        u"Descrição",
+        help_text='Desreva aqui as especificações da vaga e seus pré-requisitos')
 
     def __unicode__(self):
         return self.job_title
@@ -173,7 +219,7 @@ class Jobs(models.Model):
 class Magazine(models.Model):
     magazine_date = models.DateTimeField(default=datetime.datetime.now)
     magazine_title = models.CharField(u"Titúlo da Edição", max_length=300)
-    magazine_description = RichTextField(u"Descrição",max_length=300,blank=True)
+    magazine_description = RichTextField(u"Descrição", max_length=300, blank=True)
     magazine_file = models.FileField("Arquivo", upload_to=get_upload_path)
 
     def __unicode__(self):
@@ -186,29 +232,35 @@ class Magazine(models.Model):
 class Research(models.Model):
     reserach_date = models.DateField(default=datetime.datetime.now)
     reserach_title = models.CharField(u"Título", max_length=300)
-    reserach_type = models.CharField(u"Tipo de Relatorio",choices=TIPO_RELATORIO, max_length=200
-                                    ,help_text="O relatório Cotação Agrícola controla a exibição de todos os outro.\
-                                    Portanto sempre adicione um Cotação agrícola para validar a exibição de todos.")
+    reserach_type = models.CharField(
+        u"Tipo de Relatorio",
+        choices=TIPO_RELATORIO,
+        max_length=200,
+        help_text="O relatório Cotação Agrícola controla a exibição de todos os outro."
+        "Portanto sempre adicione um Cotação agrícola para validar a exibição de todos.")
     reserach_description = RichTextField(u"Descrição")
     research_file = models.FileField("Arquivo", upload_to=get_upload_path, max_length=100)
 
     class Meta:
-       verbose_name_plural = u"Researchs"
+        verbose_name_plural = u"Researchs"
 
 
 class Newsletter(models.Model):
     news_date = models.DateTimeField(default=datetime.datetime.now)
-    news_name = models.CharField("Nome",max_length=200)
+    news_name = models.CharField("Nome", max_length=200)
     news_email = models.EmailField('Email')
 
     def __unicode__(self):
         return self.news_name
 
 class Sale(models.Model):
-    sale_description = RichTextField(u"Texto da Página",help_text='Conteúdo da página de Vendas')
-    sale_email = models.EmailField('Email',blank=True, help_text='O email do formulário da Página de Vendas será enviado para\
-                                                                  o email registrado no menu <a href="/admin/app/generalconfig/">Configurações Gerais</a>.\
-                                                                  Use este campo para registrar um email adicional utilizado na Página de Vendas.')
+    sale_description = RichTextField(u"Texto da Página", help_text='Conteúdo da página de Vendas')
+    sale_email = models.EmailField(
+        u'Email',
+        blank=True,
+        help_text='O email do formulário da Página de Vendas será enviado para'
+                  'o email registrado no menu <a href="/admin/app/generalconfig/">Configurações Gerais</a>.'
+                  'Use este campo para registrar um email adicional utilizado na Página de Vendas.')
 
     def __unicode__(self):
         return self.sale_description
@@ -221,7 +273,7 @@ class AgriculturalFiles(models.Model):
 
     ap_date = models.DateTimeField(default=datetime.datetime.now)
     ap_file = models.FileField("Arquivo", upload_to=get_upload_path)
-    ap_brief_desc = models.CharField(u"Descrição",max_length=150,blank=True)
+    ap_brief_desc = models.CharField(u"Descrição", max_length=150, blank=True)
 
 
     def __unicode__(self):
@@ -236,8 +288,16 @@ class Products(models.Model):
     product_name = models.CharField("Nome do Produto", max_length=200)
     product_slug = models.SlugField(unique=True, max_length=100, editable=False)
     product_description = RichTextField(u"Descrição")
-    product_short_description = models.TextField(u"Descrição Curta",help_text='Essa descrição irá aparecer na homepage.', max_length=200)
-    product_galery_title = models.CharField("Título da Galeria de Imagens", blank=True, max_length=200, help_text="Digite um nome para a Galeria de Imagens, deixe o campo em branco caso queira manter o nome como Galeria de Imagens.")
+    product_short_description = models.TextField(
+        u"Descrição Curta",
+        help_text='Essa descrição irá aparecer na homepage.',
+        max_length=200)
+    product_galery_title = models.CharField(
+        "Título da Galeria de Imagens",
+        blank=True,
+        max_length=200,
+        help_text="Digite um nome para a Galeria de Imagens, deixe o campo em branco caso queira"
+                  "manter o nome como Galeria de Imagens.")
     product_galery = GenericRelation(Imagem)
 
     def save(self):

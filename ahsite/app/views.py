@@ -4,10 +4,12 @@
     luizfelipe.unesp@gmail.com
 """
 import functools
+import random
 import json
 
 from app.models import *
 from app.forms import ContactForm, ApplyJobForm, NewsletterForm
+from app.utils import reload_sys
 
 from collections import MutableMapping
 from django.views.decorators.csrf import csrf_exempt
@@ -16,6 +18,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
+from django.conf import settings
 
 
 def load_basic_info(method):
@@ -47,8 +50,10 @@ def home(request):
 @load_basic_info
 def about_company(request,r=None):
     about = AboutCompany.objects.latest('id')
+    print random.randrange(1, 11)
     return render(request, 'about_company.html', 
                   {'about':about,
+                   'random_img': random.randrange(1, 11),
                    'general_info':general_info,
                    'events_link':events_link,
                    'partners_link':partners_link,})
@@ -58,14 +63,17 @@ def agricutural_prices(request):
     prices = AgriculturalFiles.objects.order_by('-ap_date')[:5]
     return render(request, 'agricutural_prices.html', 
                   {'prices':prices,
+                   'random_img': random.randrange(1, 11),
                    'general_info':general_info,
                    'events_link':events_link,
                    'partners_link':partners_link,})
 
 @load_basic_info
 def event_view(request, event_slug=None):
+    event = get_object_or_404(Event, event_slug=event_slug)
     return render(request, 'event_view.html',
-                  {'event':get_object_or_404(Event, event_slug=event_slug),
+                  {'event':event,
+                   'random_img': random.randrange(1, 11),
                    'general_info':general_info,
                    'events_link':events_link,
                    'partners_link':partners_link,})
@@ -74,9 +82,10 @@ def event_view(request, event_slug=None):
 def partners_view(request, partner_slug=None):
     return render(request, 'partners_view.html',
                   {'partner':get_object_or_404(Partners, partner_slug=partner_slug),
-                    'general_info':general_info,
-                    'events_link':events_link,
-                    'partners_link':partners_link,})
+                   'random_img': random.randrange(1, 11),
+                   'general_info':general_info,
+                   'events_link':events_link,
+                   'partners_link':partners_link,})
 
 @load_basic_info
 def news(request):
@@ -94,6 +103,7 @@ def news(request):
         all_news = paginator.page(paginator.num_pages)
 
     return render(request, 'news.html', {'all_news':all_news,
+                                         'random_img': random.randrange(1, 11),
                                          'general_info':general_info,
                                          'events_link':events_link,
                                          'partners_link':partners_link,})
@@ -102,6 +112,7 @@ def news(request):
 def news_view(request, news_slug=None):
     return render(request, 'news_view.html',
                   {'news':get_object_or_404(News, news_slug=news_slug),
+                   'random_img': random.randrange(1, 11),
                    'general_info':general_info,
                    'events_link':events_link,
                    'partners_link':partners_link,})
@@ -110,6 +121,7 @@ def news_view(request, news_slug=None):
 def sales(request):
     return render(request, 'sales.html',
                   {'sale':Sale.objects.latest("id"),
+                   'random_img': random.randrange(1, 11),
                    'general_info':general_info,
                    'events_link':events_link,
                    'partners_link':partners_link,
@@ -125,6 +137,7 @@ def magazine(request):
     return render(request, 'magazine.html',
                   {'magazine': magazine,
                    'old_versions': magazines[1:],
+                   'random_img': random.randrange(1, 11),
                    'general_info':general_info,
                    'events_link':events_link,
                    'partners_link':partners_link})
@@ -134,14 +147,29 @@ def magazine(request):
 def products_list(request):
     return render(request, 'products_list.html',
                  {'products':Products.objects.all(),
+                  'random_img': random.randrange(1, 11),
                   'general_info':general_info,
                   'events_link':events_link,
                   'partners_link':partners_link})
 
 @load_basic_info
 def product_view(request, product_slug=None):
+    product = get_object_or_404(Products, product_slug=product_slug)
+    #switch img products cases
+    rand_img = 0
+    reload_sys()
+    if 'Bovinos' in product.product_name:
+        rand_img = random.choice(settings.BANNER_IMG['cow'])
+    elif 'Suíno'.decode().encode('utf-8') in product.product_name:
+        rand_img = random.choice(settings.BANNER_IMG['pork'])
+    elif 'Café' in product.product_name:
+        rand_img = random.choice(settings.BANNER_IMG['coffee'])
+    else:
+      rand_img = random.randrange(1, 11),
+    
     return render(request, 'product_view.html',
-                  {'product':get_object_or_404(Products, product_slug=product_slug),
+                  {'product':product,
+                   'random_img': rand_img,
                    'general_info':general_info,
                    'events_link':events_link,
                    'partners_link':partners_link,})
@@ -151,6 +179,7 @@ def product_view(request, product_slug=None):
 def talk_with_us(request):
     return render(request, 'talk-with-us.html', 
                   {'url_contact':reverse('new_contact', args=['contact']),
+                  'random_img': random.randrange(1, 11),
                    'general_info':general_info,
                    'events_link':events_link,
                    'partners_link':partners_link})
@@ -159,6 +188,7 @@ def talk_with_us(request):
 def work_with_us(request):
     return render(request, 'work-with-us.html',
                   {'jobs':Jobs.objects.filter(),
+                   'random_img': random.randrange(1, 11),
                    'is_apply_job':True,
                    'url_contact':reverse('new_contact', args=['contact']),
                    'general_info':general_info,

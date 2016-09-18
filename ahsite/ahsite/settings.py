@@ -154,3 +154,9 @@ EMAIL_HOST_PASSWORD = 'AhAgro@005#'
 EMAIL_PORT = 587
 
 GRAPPELLI_ADMIN_TITLE = 'Agropecuária AH'
+
+BANNER_IMG = {
+    'cow': [1,5,7,8,9,11],
+    'pork' : [2,3,4,10],
+    'coffee':[]
+    }

@@ -448,7 +448,7 @@ section.success {
 
 
 #localizacoes .container {
-  margin-top: 70px;
+  padding: 100px 0;
   position: relative;
 }
 
@@ -476,7 +476,6 @@ section.success {
 }
 
 #parcerias {
-  margin-top: 100px;
   height: 590px;
   position: relative;
 }
@@ -581,6 +580,7 @@ ul.information-block {
 }
 
 .information-block li {
+  background: white;
   display: block;
   position: relative;
 }

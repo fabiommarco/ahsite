@@ -45,7 +45,7 @@ class Imagem(models.Model):
 
 class GeneralConfig(models.Model):
     config_street = models.CharField(
-        u"Logradouro", 
+        u"Logradouro",
         help_text="Exemplo: Rua Rio Branco",
         max_length=200,
         blank=False)
@@ -55,9 +55,9 @@ class GeneralConfig(models.Model):
         help_text="Exemplo: Vila Falcão",
         max_length=200,
         blank=False)
-    
+
     config_email = models.EmailField(
-        u"Email", 
+        u"Email",
         help_text='<strong>Atenção! </strong>Através'
                   'desse email você receberá os contados'
                   'enviados pelo site.',
@@ -70,7 +70,7 @@ class GeneralConfig(models.Model):
     config_phone_alternative = models.CharField(
         u"Telefone Alternativo",
         help_text="Formato: (18) 9900-5544",
-        max_length=15, 
+        max_length=15,
         blank=True)
     config_social_facebook = models.URLField(
         u'Facebook',
@@ -81,11 +81,11 @@ class GeneralConfig(models.Model):
         help_text='Formato: https://www.twitter.com/SUA_PAGINA',
         blank=True)
     config_social_youtube = models.URLField(
-        u'Youtube', 
+        u'Youtube',
         help_text='Formato: https://www.youtube.com/user/SEU_CANAL',
         blank=True)
     config_social_instagram = models.URLField(
-        u'Instagram', 
+        u'Instagram',
         help_text='Formato: https://www.instagram.com/SEU_PERFIL',
         blank=True)
 
@@ -129,8 +129,8 @@ class Event(models.Model):
     '''
         called as resposabilidade social in the system
     '''
-    event_date = models.DateTimeField(default=datetime.datetime.now)
-    event_title = models.CharField(u"Evento", max_length=300)
+    event_date = models.DateTimeField(u"Data", default=datetime.datetime.now)
+    event_title = models.CharField(u"Título", max_length=300)
     event_local = models.CharField(u"Local", max_length=300)
     event_slug = models.SlugField(unique=True, max_length=100, editable=False)
     event_description = RichTextField(u"Descrição")
@@ -140,7 +140,7 @@ class Event(models.Model):
         blank=True,
         help_text="Digite somente a parte em <strong>negrito</strong> da URL do vídeo"
         "seguindo este exemplo:http://www.youtube.com/watch?v=<strong>aAkurCTifE0</strong>")
-    event_thumbnail = models.ImageField(upload_to=get_upload_path)
+    event_thumbnail = models.ImageField(u"Thumbnail", upload_to=get_upload_path)
     event_galery_title = models.CharField(
         "Título da Galeria de Imagens",
         blank=True,
@@ -157,8 +157,8 @@ class Event(models.Model):
         super(Event, self).save()
 
     class Meta:
-        verbose_name = u"Evento"
-        verbose_name_plural = u"Eventos"
+        verbose_name = u"Responsabilidade Social"
+        verbose_name_plural = u"Responsabilidade Social"
 
 class News(models.Model):
     news_date = models.DateTimeField(default=datetime.datetime.now)
@@ -167,7 +167,7 @@ class News(models.Model):
     news_description = RichTextField(u"Descrição")
 
     news_galery_title = models.CharField(
-        "Título da Galeria de Imagens", 
+        "Título da Galeria de Imagens",
         blank=True,
         max_length=200,
         help_text="Digite um nome para a Galeria de Imagens, "

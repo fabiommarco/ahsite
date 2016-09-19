@@ -1,21 +1,17 @@
   {% extends "base.html" %}
 {% load static %}
-
+  {% block class %}dynamic-content ah-background{%endblock class%}
   {% block content %}
-    <!-- Contact Section -->
-    <section id="contact" class="ah-background">
-        <div class="container">
-            <div class="col-lg-12">
-                <h2>Compras</h2>
-                <p>{{sale.sale_description|safe}}</p>
-            </div>
-        
-            <div class="col-lg-7">
-                <p class="small">Preencha o formulário abaixo para entrar em contato com um de nossos consultores. teremos prazer de responde-lo o mais rápido possível.</p>
-                {% include '_contact_form.html' %}
-            </div>
-        </div>
-    </section>
+  <div class="container">
+    <div class="col-md-10 col-md-offset-1">
+        <h2>Compras</h2>
+        <p>{{sale.sale_description|safe}}</p>
+    </div>
+    <div class="col-lg-7 col-md-offset-1">
+        <p class="small">Preencha o formulário abaixo para entrar em contato com um de nossos consultores. Teremos prazer de respondê-lo o mais rápido possível.</p>
+        {% include '_contact_form.html' %}
+    </div>
+</div>
 {% endblock content %}
 
 {% block javascript %}

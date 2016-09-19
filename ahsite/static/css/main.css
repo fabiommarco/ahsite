@@ -117,17 +117,13 @@ header.is-home-page {
   color: #88000C;
   outline: none;
 }
-.navbar-custom .navbar-nav li a:focus,
-.navbar-custom .navbar-nav li a:active {
-  color: white;
-}
-.navbar-custom .navbar-nav li.active a {
-  color: white;
-}
+.navbar-custom .navbar-nav li.active a,
 .navbar-custom .navbar-nav li.active a:hover,
 .navbar-custom .navbar-nav li.active a:focus,
-.navbar-custom .navbar-nav li.active a:active {
-  color: white;
+.navbar-custom .navbar-nav li.active a:active,
+.navbar-custom .navbar-nav li a:focus,
+.navbar-custom .navbar-nav li a:active {
+  color: #88000C;
 }
 
 .navbar-custom .navbar-nav ul {
@@ -810,7 +806,6 @@ footer h3 {
 footer .footer-above {
   padding-top: 50px;
   background-color: #E8E8E8;
-
 }
 
 footer .footer-above, footer .footer-above a{

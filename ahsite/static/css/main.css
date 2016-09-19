@@ -581,6 +581,10 @@ section.success {
   margin-bottom: 30px;
 }
 
+#miscellaneous .responsabilidade-social .information-block .meta {
+  padding: 10px 0;
+}
+
 ul.information-block {
   margin: 0;
   padding: 0;
@@ -617,13 +621,16 @@ ul.information-block {
 .information-block img.icon {
   float: left;
   margin: 5px 20px 0 0;
-  max-width: 35px;
-  max-height: 35px;
+  max-height: 70px;
 }
 
 .information-block .meta strong {
   color: #1A83A3;
   display: block;
+}
+
+.information-block .meta strong.location {
+  color: #666;
 }
 
 #miscellaneous section {

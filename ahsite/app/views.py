@@ -17,9 +17,11 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.conf import settings
-
+from django.views.generic import TemplateView
+from django.utils.decorators import method_decorator
 
 def load_basic_info(method):
     '''general_info
@@ -248,12 +250,16 @@ def new_newsletter(request):
         return HttpResponse(json.dumps(data, ensure_ascii=False))
     return HttpResponseRedirect("/")
 
+class newsletterView(TemplateView):
+    template_name = "admin/newsletter/list_newsletter.html"
+    
+    def get_context_data(self, **kwargs):
+        return {'newsletter':Newsletter.objects.filter()}
 
-def list_newsletter(request):
-    return render(request,
-                  'admin/newsletter/list_newsletter.html',
-                  {'newsletter':Newsletter.objects.filter()})
-
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(newsletterView, self).dispatch(*args, **kwargs)
+    
 def handler404(request):
     response = render(request, '404.html', {})
     response.status_code = 404

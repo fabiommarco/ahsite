@@ -8,6 +8,7 @@ from app import views
 
 from django.conf import settings
 from django.conf.urls.static import static
+from app.views import newsletterView
 
 urlpatterns = [
 
@@ -39,6 +40,7 @@ urlpatterns = [
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^admin/list_newsletter$', views.list_newsletter, name='list_newsletter'),
-    
+    # url(r'^admin/list_newsletter$', views.list_newsletter, name='list_newsletter'),
+    url(r'^admin/list_newsletter/$', newsletterView.as_view()),
+ 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

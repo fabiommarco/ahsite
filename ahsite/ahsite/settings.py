@@ -160,3 +160,5 @@ BANNER_IMG = {
     'pork' : [2,3,4,10],
     'coffee':[]
     }
+
+LOGIN_URL = '/admin/login/'

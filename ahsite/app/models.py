@@ -217,7 +217,7 @@ class Jobs(models.Model):
         verbose_name_plural = u"Vagas de Trabalho"
 
 class Magazine(models.Model):
-    magazine_date = models.DateTimeField(default=datetime.datetime.now)
+    magazine_date = models.DateTimeField()
     magazine_title = models.CharField(u"Titúlo da Edição", max_length=300)
     magazine_description = RichTextField(u"Descrição", max_length=300, blank=True)
     magazine_file = models.FileField("Arquivo", upload_to=get_upload_path)

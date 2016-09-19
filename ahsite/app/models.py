@@ -161,7 +161,7 @@ class Event(models.Model):
         verbose_name_plural = u"Responsabilidade Social"
 
 class News(models.Model):
-    news_date = models.DateTimeField(default=datetime.datetime.now)
+    news_date = models.DateTimeField()
     news_title = models.CharField(u"Titúlo da Notícia", max_length=300)
     news_slug = models.SlugField(unique=True, max_length=100, editable=False)
     news_description = RichTextField(u"Descrição")
@@ -271,7 +271,7 @@ class Sale(models.Model):
 
 class AgriculturalFiles(models.Model):
 
-    ap_date = models.DateTimeField(default=datetime.datetime.now)
+    ap_date = models.DateTimeField()
     ap_file = models.FileField("Arquivo", upload_to=get_upload_path)
     ap_brief_desc = models.CharField(u"Descrição", max_length=150, blank=True)
 

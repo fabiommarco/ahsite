@@ -35,19 +35,21 @@ h6 {
 header {
     text-align: center;
     color: white;
-    min-height: 300px;
+    min-height: 400px;
 }
 header.is-home-page {
   min-height: 500px;
 }
 .navbar-custom {
-  background: rgba(0,0,0,0.4);
+  background: rgba(255,255,255,0.9);
   font-weight: 700;
   font-size: 13px;
   border: none;
 }
-.navbar-collapse-right{float: right!important;}
-.navbar-collapse-left{float: left!important;}
+.navbar-collapse-right {
+  float: right!important;
+  margin-right: 80px!important;
+}
 
 .fotorama__nav {
   margin-top: -30px;
@@ -69,25 +71,36 @@ header.is-home-page {
   outline: none;
 }
 .navbar-custom .navbar-brand {
-  color: white;
+  color: #2D2D2D;
 }
 .navbar-custom .navbar-brand:hover,
 .navbar-custom .navbar-brand:focus,
 .navbar-custom .navbar-brand:active,
 .navbar-custom .navbar-brand.active {
-  color: white;
+  color: #2D2D2D;
 }
 .navbar-custom .navbar-nav {
   letter-spacing: 0.03em;
   font-weight: 100;
   font-size: 16px;
 }
+.navbar-custom .container {
+  position: relative;
+}
+.navbar-custom .container .logo {
+  position: absolute;
+  left: 60px;
+  top: -10px;
+}
+.navbar-custom .container a .fa-caret-down {
+  font-size: 0.7em;
+}
 .navbar-custom .navbar-nav li {
     position:relative;
 }
 .navbar-custom .navbar-nav li a {
-  color: white;
-  text-shadow: 1px 1px 3px rgba(0,0,0, 0.5);
+  font-weight: 500;
+  color: #2D2D2D;
 }
 .navbar-custom .navbar-nav li:hover ul {
   display: block;
@@ -95,13 +108,13 @@ header.is-home-page {
 .navbar-custom .navbar-nav li a.contact-menu-icon {
   text-shadow: 0 0 0;
   font-size: 1.2em;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 6px;
   padding: 10px 12px;
   margin-top: 4px;
 }
 .navbar-custom .navbar-nav li a:hover {
-  color: #FFE684;
+  color: #88000C;
   outline: none;
 }
 .navbar-custom .navbar-nav li a:focus,
@@ -172,7 +185,7 @@ header.is-home-page {
 }
 @media (min-width: 768px) {
   .navbar-custom {
-    padding: 25px 0;
+    padding: 30px 0;
     -webkit-transition: padding 0.3s;
     -moz-transition: padding 0.3s;
     transition: padding 0.3s;
@@ -203,18 +216,8 @@ section.success {
   }
 }
 /********************************************/
-.logo {
-  position: fixed;
-  padding: 20px;
-  width: 200px;
-  padding: 35px;
-  margin: 0 auto;
-  left: 0;
-  right: 0;
-  text-align: center;
-  z-index: 9999;
-  background: white;
-  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+.logo img {
+  height: 70px;
 }
 
 .about-ah {
@@ -476,7 +479,7 @@ section.success {
 }
 
 #parcerias {
-  height: 590px;
+  height: 520px;
   position: relative;
 }
 
@@ -518,6 +521,10 @@ section.success {
   float: left;
   padding-left: 40px;
   width: 450px;
+}
+
+#miscellaneous {
+  padding: 70px 0;
 }
 
 #miscellaneous .noticias h3 {
@@ -1072,4 +1079,11 @@ fieldset[disabled] .btn-success.active {
   float: right;
   margin: 0 0 25px 30px;
   width: 200px;
+}
+
+.page-about .content a:empty {
+  display: block;
+  position: relative;
+  top: -130px;
+  visibility: hidden;
 }

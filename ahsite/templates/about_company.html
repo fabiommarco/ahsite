@@ -1,11 +1,13 @@
   {% extends "base.html" %}
-  {% block class %}dynamic-content ah-background{% endblock class%}
+  {% block class %}page-about dynamic-content ah-background{% endblock class%}
   {% block content %}
     {% load static %}
     <div class="container">
       <div class="col-md-10 col-md-offset-1">
         <h2>Institucional</h2>
-        {{about.ac_content|safe}}
+        <div class="content">
+          {{about.ac_content|safe}}
+        </div>
 
         {% if about.gallery.all %}
           {% if about.gallery_title %}

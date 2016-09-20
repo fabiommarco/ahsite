@@ -158,7 +158,7 @@ GRAPPELLI_ADMIN_TITLE = 'Agropecuária AH'
 BANNER_IMG = {
     'cow': [1,5,7,8,9,11],
     'pork' : [2,3,4,10],
-    'coffee':[]
-    }
+    'coffee': ['main']
+}
 
 LOGIN_URL = '/admin/login/'

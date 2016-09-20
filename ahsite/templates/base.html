@@ -52,7 +52,14 @@
                     <li>
                         <a href="#" class="noop">Negócios <i class="fa fa-caret-down" aria-hidden="true"></i></a>
                         <ul>
-                            <li><a href="{% url 'products_list'%}">Venda</a></li>
+                            <li>
+                                <a href="#" class="noop">Venda <i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                                <ul class="sub-menu">
+                                    {% for link in products_link  %}
+                                        <li><a href="{% url 'product_view' link.product_slug%}">{{link.product_name}}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
                             <li><a href="{% url 'sales'%}">Compra</a></li>
                         </ul>
                     </li>
@@ -125,7 +132,11 @@
                     <div class="footer-col col-md-2">
                         <ul >
                             <li class="link-title">Negócios</li>
-                                <li><a href="{% url 'products_list'%}">Venda</a></li>
+                                <li>
+                                    {% for link in products_link  %}
+                                        <li><a href="{% url 'product_view' link.product_slug%}">Venda <i class="fa fa-angle-right" aria-hidden="true"></i> {{link.product_name}}</a></li>
+                                    {% endfor %}
+                                </li>
                                 <li><a href="{% url 'sales'%}">Compra</a></li>
                         </ul>
                     </div>

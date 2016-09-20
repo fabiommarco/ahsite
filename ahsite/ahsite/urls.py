@@ -20,7 +20,6 @@ urlpatterns = [
     url(r'^responsabilidade-social/(?P<event_slug>.*)$', views.event_view, name='event_view'),
 
     url(r'^compras/$', views.sales, name='sales'),
-    url(r'^vendas/$', views.products_list, name='products_list'),
     url(r'^vendas/(?P<product_slug>.*)$', views.product_view, name='product_view'),
 
     url(r'^noticias/$', views.news, name='news'),
@@ -42,5 +41,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     # url(r'^admin/list_newsletter$', views.list_newsletter, name='list_newsletter'),
     url(r'^admin/list_newsletter/$', newsletterView.as_view()),
- 
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

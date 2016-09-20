@@ -286,6 +286,27 @@ section.success {
   margin-top: 4px;
 }
 
+.container-menu{
+  width: 70%;
+}
+
+ul.footer-phone-block {
+  margin: 0;
+  padding: 0;
+}
+
+.footer-phone-block li {
+  display: block;
+  position: relative;
+}
+
+.footer-phone-block li a {
+  display: block;
+  margin: 0 0 10px 0;
+  color: white;
+}
+
+.telephone{display: block;}
 /*********************************************/
 .ah-background {
   background-image: url('../img/subheader.png');

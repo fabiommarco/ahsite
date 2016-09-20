@@ -54,7 +54,6 @@ def home(request):
 @load_basic_info
 def about_company(request,r=None):
     about = AboutCompany.objects.latest('id')
-    print random.randrange(1, 11)
     return render(request, 'about_company.html',
                   {'about':about,
                    'random_img': random.randrange(1, 11),
@@ -68,6 +67,17 @@ def agricutural_prices(request):
     prices = AgriculturalFiles.objects.order_by('-ap_date')[:5]
     return render(request, 'agricutural_prices.html',
                   {'prices':prices,
+                   'random_img': random.randrange(1, 11),
+                   'general_info':general_info,
+                   'events_link':events_link,
+                   'partners_link':partners_link,
+                   'products_link':products_link,})
+
+@load_basic_info
+def environmental_responsability(request):
+    environmental = EnvironmentalResponsability.objects.latest('id')
+    return render(request, 'environmental.html',
+                  {'environmental':environmental,
                    'random_img': random.randrange(1, 11),
                    'general_info':general_info,
                    'events_link':events_link,

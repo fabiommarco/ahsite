@@ -4,25 +4,22 @@
   {% block content %}
     <div class="container">
       <div class="col-md-10 col-md-offset-1">
-        <h2>{{event.event_title}}</h2>
-        <p><span class="small">{{event.event_local}}</span></p>
-        <div class="thumbnail">
-          <img src="{% get_media_prefix %}{{event.event_thumbnail}}">
-        </div>
-        {{event.event_description|safe}}
+        <h2>{{environmental.environ_title}}</h2>
+        
+        {{environmental.environ_description|safe}}
 
-        {% if event.event_video %}
-          <h3>Confira o Video do evento</h3>
-          <iframe width="420" height="315"src="{{event.event_video}}"></iframe>
+        {% if environmental.environ_video %}
+          <h3>Confira nosso Video</h3>
+          <iframe width="420" height="315"src="https://www.youtube.com/embed/{{environmental.environ_video}}"></iframe>
         {% endif %}
 
-        {% if event.event_galery.all|length %}
-          {% if event.event_galery_title %}
-            <h3>{{event.event_galery_title}}</h3>
+        {% if environmental.environ_galery.all|length %}
+          {% if environmental.environ_galery_title %}
+            <h3>{{environmental.environ_galery_title}}</h3>
           {% else %}
             <h3>Galeria de Imagens</h3>
           {% endif %}
-          {% for imagem in event.event_galery.all %}
+          {% for imagem in environmental.environ_galery.all %}
             <div class="col-xs-6 col-md-3">
                   <a class="fancybox thumbnail" rel="group" href="{% get_media_prefix %}{{ imagem.imagem }}">
                       <img src="{% get_media_prefix %}{{ imagem.imagem }}" alt="" />

@@ -34,7 +34,7 @@
 
 <body id="page-top" class="index">
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
-        <div class="container">
+        <div class="container container-menu">
             <a class="logo" href="/">
                 <img id="logo" src="{% static 'img/logo-header.png'%}" title="Agropecuária AH - Página Inicial">
             </a>
@@ -87,6 +87,7 @@
                         {% endfor %}
                         </ul>
                     </li>
+                    <li class="single-nav"><a href="{% url 'environmental_responsability' %}">Responsabilidade Ambiental</a></li>
                     <li class="single-nav"><a href="{% url 'work_with_us' %}">Trabalhe Conosco</a></li>
                     <li class="single-nav"><a href="{% url 'talk_with_us' %}" class="contact-menu-icon" title="Entre em contato conosco"><i class="fa fa-phone" aria-hidden="true"></i></a></li>
                 </ul>
@@ -173,18 +174,40 @@
                     <div class="col-lg-4">
                           <a title="Voltar à pagina inicial" href="/"><img id="logo_bottom" src="{% static 'img/logo-footer.png'%}"></a>
                     </div>
-                    {% if general_info.config_social_facebook or general_info.config_social_instagram or general_info.config_social_youtube or general_info.config_social_twitter %}
+                    {% if general_info.config_social_facebook or general_info.config_social_instagram or general_info.config_social_youtube or general_info.config_social_twitter or general_info.config_social_linkedin %}
                         <div class="col-lg-4 social">
                             {% if general_info.config_social_facebook %}<a href="{{general_info.config_social_facebook}}"><i class="social-icon fa fa-facebook-square fa-3x" aria-hidden="true"></i></a>{% endif %}
-                            {% if general_info.config_social_instagram %}<a href="general_info.config_social_instagram"><i class="social-icon fa fa-instagram fa-3x" aria-hidden="true"></i></a>{% endif %}
-                            {% if general_info.config_social_youtube %}<a href="general_info.config_social_youtube"><i class="social-icon fa fa-youtube-play fa-3x" aria-hidden="true"></i></a>{% endif %}
-                            {% if general_info.config_social_twitter %}<a href="general_info.config_social_twitter"><i class="social-icon fa fa-twitter-square fa-3x" aria-hidden="true"></i></a>{% endif %}
+                            {% if general_info.config_social_instagram %}<a href="{{general_info.config_social_instagram}}"><i class="social-icon fa fa-instagram fa-3x" aria-hidden="true"></i></a>{% endif %}
+                            {% if general_info.config_social_youtube %}<a href="{{general_info.config_social_youtube}}"><i class="social-icon fa fa-youtube-play fa-3x" aria-hidden="true"></i></a>{% endif %}
+                            {% if general_info.config_social_twitter %}<a href="{{general_info.config_social_twitter}}"><i class="social-icon fa fa-twitter-square fa-3x" aria-hidden="true"></i></a>{% endif %}
+                            {% if general_info.config_social_linkedin %}<a href="{{general_info.config_social_linkedin}}"><i class="social-icon fa fa-twitter-square fa-3x" aria-hidden="true"></i></a>{% endif %}
                         </div>
                     {% else %}
                         <div class="col-lg-4">
-                        <address>
-                            general_info.config_social_facebook
-                        </address>
+                            <ul class="footer-phone-block">
+                                <li>
+                                    <a href="tel:+556735461467">
+                                        <div class="meta">
+                                            <strong>Fazenda Córrego Azul</strong>
+                                            <span class="telephone">
+                                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                                (67) 3546-1467
+                                            </span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="tel:+553140637729">
+                                        <div class="meta">
+                                            <strong>Fazenda Ouro Verde</strong>
+                                            <span class="telephone">
+                                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                                (31) 4063-7729
+                                            </span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
 
                     {% endif %}

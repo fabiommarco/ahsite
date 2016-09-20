@@ -9,7 +9,7 @@
                 {{product.product_description|safe}}
             </div>
 
-            {% if product.product_galery.all %}
+            {% if product.product_galery.all|length %}
                 {% if product.product_galery_title %}
                   <h3>{{product.product_galery_title}}</h3>
                 {% else %}

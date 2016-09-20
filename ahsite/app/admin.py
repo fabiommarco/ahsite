@@ -51,8 +51,12 @@ class SaleAdmin(admin.ModelAdmin):
 class ProdAdmin(admin.ModelAdmin):
     inlines = [ImagemInline]
 
+class EnvAdmin(admin.ModelAdmin):
+    inlines = [ImagemInline]
+    
 admin.site.register(Products, ProdAdmin)
 admin.site.register(Jobs)
+admin.site.register(EnvironmentalResponsability,EnvAdmin)
 admin.site.register(Partners)
 admin.site.register(Sale, SaleAdmin)
 admin.site.register(News, NewsAdmin)

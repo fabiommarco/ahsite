@@ -88,6 +88,10 @@ class GeneralConfig(models.Model):
         u'Instagram',
         help_text='Formato: https://www.instagram.com/SEU_PERFIL',
         blank=True)
+    config_social_linkedin = models.URLField(
+        u'Linkedin',
+        help_text='Formato: https://www.linkedin.com/SEU_PERFIL',
+        blank=True)
 
     class Meta:
         verbose_name = u"Configuração Geral"
@@ -160,12 +164,44 @@ class Event(models.Model):
         verbose_name = u"Responsabilidade Social"
         verbose_name_plural = u"Responsabilidade Social"
 
+class EnvironmentalResponsability(models.Model):
+    environ_date = models.DateTimeField(u"Data", default=datetime.datetime.now)
+    environ_title = models.CharField(u"Título", max_length=300)
+    environ_description = RichTextField(u"Descrição")
+    environ_video = models.CharField(
+        "Vídeo do YouTube",
+        max_length=150,
+        blank=True,
+        help_text="Digite somente a parte em <strong>negrito</strong> da URL do vídeo"
+        "seguindo este exemplo:http://www.youtube.com/watch?v=<strong>aAkurCTifE0</strong>")
+    # environ_thumbnail = models.ImageField(u"Thumbnail", upload_to=get_upload_path)
+    environ_galery_title = models.CharField(
+        "Título da Galeria de Imagens",
+        blank=True,
+        max_length=200,
+        help_text="Digite um nome para a Galeria de Imagens,"
+        " deixe o campo em branco caso queira manter o nome como Galeria de Imagens.")
+    environ_galery = GenericRelation(Imagem)
+
+    def __unicode__(self):
+        return self.environ_title
+
+    class Meta:
+        verbose_name = u"Responsabilidade Ambiental"
+        verbose_name_plural = u"Responsabilidade Ambiental"
+
 class News(models.Model):
     news_date = models.DateTimeField()
     news_title = models.CharField(u"Titúlo da Notícia", max_length=300)
     news_slug = models.SlugField(unique=True, max_length=100, editable=False)
     news_description = RichTextField(u"Descrição")
-
+    news_video = models.CharField(
+        "Vídeo do YouTube",
+        max_length=150,
+        blank=True,
+        help_text="Digite somente a parte em <strong>negrito</strong> da URL do vídeo"
+        "seguindo este exemplo:http://www.youtube.com/watch?v=<strong>aAkurCTifE0</strong>")
+    
     news_galery_title = models.CharField(
         "Título da Galeria de Imagens",
         blank=True,

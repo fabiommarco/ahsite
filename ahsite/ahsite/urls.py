@@ -16,7 +16,8 @@ urlpatterns = [
     url(r'^quem-somos/$', views.about_company, name='about_company'),
     url(r'^cotacoes-agricolas/$', views.agricutural_prices, name='agricutural_prices'),
 
-    # url(r'^responsabilidade-social/$', views.events, name='events'),
+    url(r'^responsabilidade-ambiental/$', views.environmental_responsability, name='environmental_responsability'),
+    
     url(r'^responsabilidade-social/(?P<event_slug>.*)$', views.event_view, name='event_view'),
 
     url(r'^compras/$', views.sales, name='sales'),

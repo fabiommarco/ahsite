@@ -133,7 +133,7 @@
                         <ul >
                             <li class="link-title">Negócios</li>
                                 <li>
-                                    {% for link in products_link  %}
+                                    {% for link in products_link %}
                                         <li><a href="{% url 'product_view' link.product_slug%}">Venda <i class="fa fa-angle-right" aria-hidden="true"></i> {{link.product_name}}</a></li>
                                     {% endfor %}
                                 </li>

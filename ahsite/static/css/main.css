@@ -1089,3 +1089,11 @@ fieldset[disabled] .btn-success.active {
   top: -130px;
   visibility: hidden;
 }
+
+.mapa a {
+  text-decoration: none;
+}
+
+.mapa a:hover .location-container {
+  stroke: #1983A3;
+}

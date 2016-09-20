@@ -92,7 +92,8 @@ header.is-home-page {
   left: 60px;
   top: -10px;
 }
-.navbar-custom .container a .fa-caret-down {
+.navbar-custom .container a .fa-caret-down,
+.navbar-custom .container a .fa-caret-right {
   font-size: 0.7em;
 }
 .navbar-custom .navbar-nav li {
@@ -102,7 +103,7 @@ header.is-home-page {
   font-weight: 500;
   color: #2D2D2D;
 }
-.navbar-custom .navbar-nav li:hover ul {
+.navbar-custom .navbar-nav li:hover > ul {
   display: block;
 }
 .navbar-custom .navbar-nav li a.contact-menu-icon {
@@ -126,15 +127,23 @@ header.is-home-page {
   color: #88000C;
 }
 
+.navbar-custom .navbar-nav > li > ul {
+  top: 100%;
+  left: 0;
+}
+
 .navbar-custom .navbar-nav ul {
   display: none;
   position: absolute;
-  top: 100%;
-  left: 0;
   background: #fff;
   padding: 10px 20px;
   width: 220px;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-custom .navbar-nav > li > ul > li > ul {
+  top: -10px;
+  left: 100%;
 }
 
 .navbar-custom .navbar-nav > li:not(.single-nav):hover:after {

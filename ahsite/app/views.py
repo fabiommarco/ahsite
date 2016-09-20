@@ -33,6 +33,7 @@ def load_basic_info(method):
         g['general_info'] = GeneralConfig.objects.latest('id')
         g['events_link'] = Event.objects.all()
         g['partners_link'] = Partners.objects.all()
+        g['products_link'] = Products.objects.all()
 
         res = method(request,*args, **kwargs)
         return res
@@ -41,34 +42,37 @@ def load_basic_info(method):
 @load_basic_info
 def home(request):
     latest_feeds = News.objects.order_by('-news_date')[:5]
-    return render(request, 'index.html', 
+    return render(request, 'index.html',
                   {'is_index':True,
                    'products':Products.objects.all(),
                    'general_info':general_info,
                    'events_link':events_link,
                    'partners_link':partners_link,
+                   'products_link':products_link,
                    'news':latest_feeds})
 
 @load_basic_info
 def about_company(request,r=None):
     about = AboutCompany.objects.latest('id')
     print random.randrange(1, 11)
-    return render(request, 'about_company.html', 
+    return render(request, 'about_company.html',
                   {'about':about,
                    'random_img': random.randrange(1, 11),
                    'general_info':general_info,
                    'events_link':events_link,
-                   'partners_link':partners_link,})
+                   'partners_link':partners_link,
+                   'products_link':products_link,})
 
 @load_basic_info
 def agricutural_prices(request):
     prices = AgriculturalFiles.objects.order_by('-ap_date')[:5]
-    return render(request, 'agricutural_prices.html', 
+    return render(request, 'agricutural_prices.html',
                   {'prices':prices,
                    'random_img': random.randrange(1, 11),
                    'general_info':general_info,
                    'events_link':events_link,
-                   'partners_link':partners_link,})
+                   'partners_link':partners_link,
+                   'products_link':products_link,})
 
 @load_basic_info
 def event_view(request, event_slug=None):
@@ -78,7 +82,8 @@ def event_view(request, event_slug=None):
                    'random_img': random.randrange(1, 11),
                    'general_info':general_info,
                    'events_link':events_link,
-                   'partners_link':partners_link,})
+                   'partners_link':partners_link,
+                   'products_link':products_link,})
 
 @load_basic_info
 def partners_view(request, partner_slug=None):
@@ -87,7 +92,8 @@ def partners_view(request, partner_slug=None):
                    'random_img': random.randrange(1, 11),
                    'general_info':general_info,
                    'events_link':events_link,
-                   'partners_link':partners_link,})
+                   'partners_link':partners_link,
+                   'products_link':products_link,})
 
 @load_basic_info
 def news(request):
@@ -108,7 +114,8 @@ def news(request):
                                          'random_img': random.randrange(1, 11),
                                          'general_info':general_info,
                                          'events_link':events_link,
-                                         'partners_link':partners_link,})
+                                         'partners_link':partners_link,
+                                         'products_link':products_link,})
 
 @load_basic_info
 def news_view(request, news_slug=None):
@@ -117,7 +124,8 @@ def news_view(request, news_slug=None):
                    'random_img': random.randrange(1, 11),
                    'general_info':general_info,
                    'events_link':events_link,
-                   'partners_link':partners_link,})
+                   'partners_link':partners_link,
+                   'products_link':products_link,})
 
 @load_basic_info
 def sales(request):
@@ -127,6 +135,7 @@ def sales(request):
                    'general_info':general_info,
                    'events_link':events_link,
                    'partners_link':partners_link,
+                   'products_link':products_link,
                    'url_contact':reverse('new_contact', args=['sale'])})
 @load_basic_info
 def magazine(request):
@@ -146,15 +155,6 @@ def magazine(request):
 
 
 @load_basic_info
-def products_list(request):
-    return render(request, 'products_list.html',
-                 {'products':Products.objects.all(),
-                  'random_img': random.randrange(1, 11),
-                  'general_info':general_info,
-                  'events_link':events_link,
-                  'partners_link':partners_link})
-
-@load_basic_info
 def product_view(request, product_slug=None):
     product = get_object_or_404(Products, product_slug=product_slug)
     #switch img products cases
@@ -168,18 +168,19 @@ def product_view(request, product_slug=None):
         rand_img = random.choice(settings.BANNER_IMG['coffee'])
     else:
       rand_img = random.randrange(1, 11),
-    
+
     return render(request, 'product_view.html',
                   {'product':product,
                    'random_img': rand_img,
                    'general_info':general_info,
                    'events_link':events_link,
-                   'partners_link':partners_link,})
+                   'partners_link':partners_link,
+                   'products_link':products_link,})
 
 
 @load_basic_info
 def talk_with_us(request):
-    return render(request, 'talk-with-us.html', 
+    return render(request, 'talk-with-us.html',
                   {'url_contact':reverse('new_contact', args=['contact']),
                   'random_img': random.randrange(1, 11),
                    'general_info':general_info,
@@ -195,7 +196,8 @@ def work_with_us(request):
                    'url_contact':reverse('new_contact', args=['contact']),
                    'general_info':general_info,
                    'events_link':events_link,
-                   'partners_link':partners_link,})
+                   'partners_link':partners_link,
+                   'products_link':products_link,})
 
 @csrf_exempt
 def new_contact(request,contact_type):
@@ -218,7 +220,7 @@ def new_contact(request,contact_type):
 
         if not contact_form.is_valid():
             return_data = {'success': False, 'errors' : [(k, v[0]) for k, v in contact_form.errors.items()]}
-            messages.add_message(request, messages.ERROR, 
+            messages.add_message(request, messages.ERROR,
                                  'Parece que algo de errado aconteceu. Por favor, tente novamente mais tarde!')
         else:
             if contact_type == 'sale':

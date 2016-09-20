@@ -56,7 +56,6 @@ def about_company(request,r=None):
     about = AboutCompany.objects.latest('id')
     return render(request, 'about_company.html',
                   {'about':about,
-                   'random_img': random.randrange(1, 11),
                    'general_info':general_info,
                    'events_link':events_link,
                    'partners_link':partners_link,
@@ -67,7 +66,6 @@ def agricutural_prices(request):
     prices = AgriculturalFiles.objects.order_by('-ap_date')[:5]
     return render(request, 'agricutural_prices.html',
                   {'prices':prices,
-                   'random_img': random.randrange(1, 11),
                    'general_info':general_info,
                    'events_link':events_link,
                    'partners_link':partners_link,
@@ -78,7 +76,6 @@ def environmental_responsability(request):
     environmental = EnvironmentalResponsability.objects.latest('id')
     return render(request, 'environmental.html',
                   {'environmental':environmental,
-                   'random_img': random.randrange(1, 11),
                    'general_info':general_info,
                    'events_link':events_link,
                    'partners_link':partners_link,
@@ -89,7 +86,6 @@ def event_view(request, event_slug=None):
     event = get_object_or_404(Event, event_slug=event_slug)
     return render(request, 'event_view.html',
                   {'event':event,
-                   'random_img': random.randrange(1, 11),
                    'general_info':general_info,
                    'events_link':events_link,
                    'partners_link':partners_link,
@@ -99,7 +95,6 @@ def event_view(request, event_slug=None):
 def partners_view(request, partner_slug=None):
     return render(request, 'partners_view.html',
                   {'partner':get_object_or_404(Partners, partner_slug=partner_slug),
-                   'random_img': random.randrange(1, 11),
                    'general_info':general_info,
                    'events_link':events_link,
                    'partners_link':partners_link,
@@ -121,7 +116,6 @@ def news(request):
         all_news = paginator.page(paginator.num_pages)
 
     return render(request, 'news.html', {'all_news':all_news,
-                                         'random_img': random.randrange(1, 11),
                                          'general_info':general_info,
                                          'events_link':events_link,
                                          'partners_link':partners_link,
@@ -131,7 +125,6 @@ def news(request):
 def news_view(request, news_slug=None):
     return render(request, 'news_view.html',
                   {'news':get_object_or_404(News, news_slug=news_slug),
-                   'random_img': random.randrange(1, 11),
                    'general_info':general_info,
                    'events_link':events_link,
                    'partners_link':partners_link,
@@ -141,7 +134,6 @@ def news_view(request, news_slug=None):
 def sales(request):
     return render(request, 'sales.html',
                   {'sale':Sale.objects.latest("id"),
-                   'random_img': random.randrange(1, 11),
                    'general_info':general_info,
                    'events_link':events_link,
                    'partners_link':partners_link,
@@ -158,7 +150,6 @@ def magazine(request):
     return render(request, 'magazine.html',
                   {'magazine': magazine,
                    'old_versions': magazines[1:],
-                   'random_img': random.randrange(1, 11),
                    'general_info':general_info,
                    'events_link':events_link,
                    'partners_link':partners_link})
@@ -192,7 +183,6 @@ def product_view(request, product_slug=None):
 def talk_with_us(request):
     return render(request, 'talk-with-us.html',
                   {'url_contact':reverse('new_contact', args=['contact']),
-                  'random_img': random.randrange(1, 11),
                    'general_info':general_info,
                    'events_link':events_link,
                    'partners_link':partners_link})
@@ -201,7 +191,6 @@ def talk_with_us(request):
 def work_with_us(request):
     return render(request, 'work-with-us.html',
                   {'jobs':Jobs.objects.filter(),
-                   'random_img': random.randrange(1, 11),
                    'is_apply_job':True,
                    'url_contact':reverse('new_contact', args=['contact']),
                    'general_info':general_info,

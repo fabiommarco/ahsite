@@ -286,8 +286,8 @@ section.success {
   margin-top: 4px;
 }
 
-.container-menu{
-  width: 70%;
+.container-menu {
+  width: 1390px;
 }
 
 ul.footer-phone-block {
@@ -296,8 +296,9 @@ ul.footer-phone-block {
 }
 
 .footer-phone-block li {
-  display: block;
+  display: inline-block;
   position: relative;
+  margin: 5px 10px 0 10px;
 }
 
 .footer-phone-block li a {

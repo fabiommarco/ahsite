@@ -185,7 +185,8 @@ def talk_with_us(request):
                   {'url_contact':reverse('new_contact', args=['contact']),
                    'general_info':general_info,
                    'events_link':events_link,
-                   'partners_link':partners_link})
+                   'partners_link':partners_link,
+                   'products_link':products_link,})
 
 @load_basic_info
 def work_with_us(request):
@@ -253,14 +254,14 @@ def new_newsletter(request):
 
 class newsletterView(TemplateView):
     template_name = "admin/newsletter/list_newsletter.html"
-    
+
     def get_context_data(self, **kwargs):
         return {'newsletter':Newsletter.objects.filter()}
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(newsletterView, self).dispatch(*args, **kwargs)
-    
+
 def handler404(request):
     response = render(request, '404.html', {})
     response.status_code = 404

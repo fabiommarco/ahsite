@@ -171,7 +171,7 @@
         <div class="footer-below">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                           <a title="Voltar à pagina inicial" href="/"><img id="logo_bottom" src="{% static 'img/logo-footer.png'%}"></a>
                     </div>
                     {% if general_info.config_social_facebook or general_info.config_social_instagram or general_info.config_social_youtube or general_info.config_social_twitter or general_info.config_social_linkedin %}
@@ -183,8 +183,19 @@
                             {% if general_info.config_social_linkedin %}<a href="{{general_info.config_social_linkedin}}"><i class="social-icon fa fa-twitter-square fa-3x" aria-hidden="true"></i></a>{% endif %}
                         </div>
                     {% else %}
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <ul class="footer-phone-block">
+                                <li>
+                                    <a href="tel:+556735461467">
+                                        <div class="meta">
+                                            <strong>Escritório - Presidente Prudente</strong>
+                                            <span class="telephone">
+                                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                                (18) 3917-3262
+                                            </span>
+                                        </div>
+                                    </a>
+                                </li>
                                 <li>
                                     <a href="tel:+556735461467">
                                         <div class="meta">
@@ -209,10 +220,9 @@
                                 </li>
                             </ul>
                         </div>
-
                     {% endif %}
 
-                    <div class="col-lg-4 links">
+                    <div class="col-lg-3 links">
                         <a href="/fale-conosco">Fale Conosco</a> | <a href="/trabalhe-conosco">Trabalhe Conosco</a><br/>
                         <span class="copyright">Copyright &copy; AH Agropecuária {% now "Y" %}</span>
                     </div>

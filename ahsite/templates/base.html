@@ -1,11 +1,6 @@
-{% load static %}
-{% load app_extras %}
-
-<!DOCTYPE html>
+{% load static %}{% load app_extras %}<!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,8 +15,6 @@
 
     <link href="{% static 'vendor/proxima-nova/proxima-nova.min.css'%}" rel="stylesheet" type="text/css">
     <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css'%}" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     {% block css %}{% endblock css %}
 
     <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico'%}"/>
@@ -235,6 +228,14 @@
     <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js'%}"></script>
     <script src="{% static 'vendor/fotorama/fotorama.min.js'%}"></script>
     <script src="{% static 'js/main.js'%}"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-83683115-1', 'auto');
+        ga('send', 'pageview');
+    </script>
     {% block javascript %}{% endblock javascript %}
 </body>
 </html>

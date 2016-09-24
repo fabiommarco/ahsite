@@ -28,13 +28,22 @@
 <body id="page-top" class="index">
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
         <div class="container container-menu">
-            <a class="logo" href="/">
-                <img id="logo" src="{% static 'img/logo-header.png'%}" title="Agropecuária AH - Página Inicial">
-            </a>
-            <div class="collapse navbar-collapse navbar-collapse-right">
+            <div class="navbar-header">
+              <a class="logo" href="/">
+                  <img id="logo" src="{% static 'img/logo-header.png'%}" title="Agropecuária AH - Página Inicial">
+              </a>
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#ah-navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="ah-navbar">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="/quem-somos">Institucional <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                        <a href="#" class="noop">Institucional <i class="fa fa-caret-down" aria-hidden="true"></i></a>
                         <ul>
                             <li><a href="{% url 'about_company' %}#sobre-nos">Agropecuária AH</a></li>
                             <li><a href="{% url 'about_company' %}#nossa-missao">Missão e Visão</a></li>

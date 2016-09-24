@@ -1,6 +1,15 @@
 (function($) {
     "use strict";
 
+    $('.navbar').on('click', '.collapse.in .noop', function() {
+        $(this)
+            .parent()
+            .siblings()
+                .removeClass('expand')
+                .end()
+            .toggleClass('expand');
+    });
+
     $(function() {
         $("body").on("input propertychange", ".floating-label-form-group", function(e) {
             $(this).toggleClass("floating-label-form-group-with-value", !!$(e.target).val());

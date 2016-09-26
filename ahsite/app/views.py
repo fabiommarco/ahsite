@@ -41,7 +41,7 @@ def load_basic_info(method):
 
 @load_basic_info
 def home(request):
-    latest_feeds = News.objects.order_by('-news_date')[:5]
+    latest_feeds = News.objects.order_by('-news_date')[:3]
     return render(request, 'index.html',
                   {'is_index':True,
                    'products':Products.objects.all(),
@@ -102,9 +102,9 @@ def partners_view(request, partner_slug=None):
 
 @load_basic_info
 def news(request):
-    all_news = News.objects.filter()
-    paginator = Paginator(all_news, 1)
-    
+    all_news = News.objects.order_by('-news_date')
+    paginator = Paginator(all_news, 6)
+
     try:
         page = int(request.GET.get('page', '1'))
     except ValueError:

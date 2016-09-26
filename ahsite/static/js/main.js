@@ -1,21 +1,15 @@
-// Freelancer Theme JavaScript
-
 (function($) {
-    "use strict"; // Start of use strict
+    "use strict";
 
-    // Closes the Responsive Menu on Menu Item Click
-    $('.navbar-collapse ul li a').click(function(){
-        $('.navbar-toggle:visible').click();
+    $('.navbar').on('click', '.collapse.in .noop', function() {
+        $(this)
+            .parent()
+            .siblings()
+                .removeClass('expand')
+                .end()
+            .toggleClass('expand');
     });
 
-    // Offset for Main Navigation
-    $('#mainNav').affix({
-        offset: {
-            top: 100
-        }
-    })
-
-    // Floating label headings for the contact form
     $(function() {
         $("body").on("input propertychange", ".floating-label-form-group", function(e) {
             $(this).toggleClass("floating-label-form-group-with-value", !!$(e.target).val());
@@ -63,4 +57,4 @@
         return false;
     });
 
-})(jQuery); // End of use strict
+})(jQuery);

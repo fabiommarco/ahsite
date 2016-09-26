@@ -271,10 +271,7 @@ class Research(models.Model):
     reserach_type = models.CharField(
         u"Tipo de Relatorio",
         choices=TIPO_RELATORIO,
-        max_length=200,
-        help_text="O relatório Cotação Agrícola controla a exibição de todos os outro."
-        "Portanto sempre adicione um Cotação agrícola para validar a exibição de todos.")
-    reserach_description = RichTextField(u"Descrição")
+        max_length=200)
     research_file = models.FileField("Arquivo", upload_to=get_upload_path, max_length=100)
 
     class Meta:

@@ -1,5 +1,6 @@
   {% extends "base.html" %}
   {% load static %}
+  {% load humanize %}
   {% block class %}dynamic-content ah-background page-noticias{% endblock class%}
   {% block content %}
     <div class="container">
@@ -16,6 +17,30 @@
         {% empty %}
           <p>Nenhuma Notícia em andamento. Volte em breve para conferir as novidades.</p>
         {% endfor %}
+      </div>
+      
+      <div class="col-md-10 col-md-offset-1">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+              {% if all_news.has_previous %}
+              <li>
+                <a href="?page={{ all_news.previous_page_number }}" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              {% endif %}
+              {% for page in all_news.paginator.page_range %}
+                    <li {% ifequal page|apnumber request.GET.page|apnumber %}class="active"{% endifequal %}><a href="?page={{page}}" >{{page}}</a></li>
+              {% endfor %}
+              {% if all_news.has_next %}
+                    <li>
+                      <a href="?page={{ all_news.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+              {% endif %}
+            </ul>
+          </nav>
       </div>
     </div>
   {% endblock content %}

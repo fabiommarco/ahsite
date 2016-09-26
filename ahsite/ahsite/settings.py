@@ -9,9 +9,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = 'aw6u1tu6yu)r6kyq9jj6h=iz%_e7a!6j#oi=lu0mf7w(%i9x-6'
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
+
+ADMINS = (
+    ('Luiz Felipe', 'luizfelipe.unesp@gmail.com'),
+    ('Victor Cinaglia', 'victorcinaglia@gmail.com'),
+    
+)
+
 
 INSTALLED_APPS = [
     'grappelli',
@@ -21,10 +28,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     #apps
     'app',
     #custom
     'ckeditor',
+
 ]
 
 MIDDLEWARE = [

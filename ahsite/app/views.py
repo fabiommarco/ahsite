@@ -103,15 +103,15 @@ def partners_view(request, partner_slug=None):
 @load_basic_info
 def news(request):
     all_news = News.objects.filter()
-    paginator = Paginator(all_news, 6)
-
+    paginator = Paginator(all_news, 1)
+    
     try:
         page = int(request.GET.get('page', '1'))
     except ValueError:
         page = 1
 
     try:
-        all_news = paginator.page(all_news)
+        all_news = paginator.page(page)
     except (EmptyPage, InvalidPage):
         all_news = paginator.page(paginator.num_pages)
 

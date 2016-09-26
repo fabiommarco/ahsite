@@ -48,8 +48,11 @@ class AboutCompanyAdmin(admin.ModelAdmin):
 class SaleAdmin(admin.ModelAdmin):
     list_display = ('sale_email', )
 
+class ResearchAdmin(admin.ModelAdmin):
+    list_display = ('reserach_date','reserach_title', 'reserach_type', 'research_file' )
+
 class ProdAdmin(admin.ModelAdmin):
-    inlines = [ImagemInline]
+    ineselines = [ImagemInline]
 
 class EnvAdmin(admin.ModelAdmin):
     inlines = [ImagemInline]
@@ -66,5 +69,7 @@ admin.site.register(AboutCompany,AboutCompanyAdmin)
 admin.site.register(GeneralConfig)
 admin.site.register(Event,EventAdmin)
 admin.site.register(AgriculturalFiles)
+admin.site.register(Research,ResearchAdmin)
+
 
 

@@ -578,7 +578,7 @@ ul.footer-phone-block {
     padding: 60px 20px;
   }
 
-  .mapa svg {
+  .mapa embed {
     width: 100%;
   }
 }
@@ -1250,12 +1250,4 @@ fieldset[disabled] .btn-success.active {
   position: relative;
   top: -130px;
   visibility: hidden;
-}
-
-.mapa a {
-  text-decoration: none;
-}
-
-.mapa a:hover .location-container {
-  stroke: #1983A3;
 }

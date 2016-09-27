@@ -41,7 +41,7 @@ def load_basic_info(method):
 
 @load_basic_info
 def home(request):
-    latest_feeds = News.objects.order_by('-news_date')[:3]
+    latest_feeds = News.objects.order_by('-news_date')[:2]
     return render(request, 'index.html',
                   {'is_index':True,
                    'products':Products.objects.all(),

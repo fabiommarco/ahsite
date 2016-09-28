@@ -1,6 +1,7 @@
 body {
-  font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   overflow-x: hidden;
+  font-weight: 300;
 }
 p {
   font-size: 20px;
@@ -101,8 +102,9 @@ header.is-home-page {
     position:relative;
 }
 .navbar-custom .navbar-nav li a {
-  font-weight: 500;
+  font-weight: 300;
   color: #2D2D2D;
+  font-size: 0.96em;
 }
 
 .navbar-custom .navbar-nav li a.contact-menu-icon {
@@ -261,12 +263,6 @@ section.success {
   list-style: none;
   padding: 0 50px;
 }
-.about-item {
-  background: url('../img/check.png') 10px no-repeat;
-  line-height: normal;
-  padding: 15px;
-  padding-left: 60px;
-}
 
 .item-title{
   font-size: 21px;
@@ -332,11 +328,14 @@ ul.footer-phone-block {
   color: white;
 }
 
-.telephone { display: block; }
+.telephone {
+  font-weight: 100;
+  display: block;
+}
 
 /*********************************************/
 .ah-background {
-  background-image: url('../img/subheader.png');
+  background-image: url('../img/subheader.jpg');
   background-size: cover;
 }
 
@@ -436,6 +435,7 @@ ul.footer-phone-block {
   font-size: 1em;
   line-height: 2em;
   margin-top: 30px;
+  font-weight: 300;
 }
 
 #negocios .col-content a.cta {
@@ -472,7 +472,7 @@ ul.footer-phone-block {
 
 #negocios .col-center .col-content {
   text-align: center;
-  background: url('../img/negocios/section-suinos.png') right center no-repeat;
+  background: url('../img/negocios/section-suinos.jpg') right center no-repeat;
   padding: 0 40px;
 }
 
@@ -480,7 +480,7 @@ ul.footer-phone-block {
   width: 50%;
   left: 0;
   margin-left: -180px;
-  background: url('../img/negocios/section-bovinos.png') right center no-repeat;
+  background: url('../img/negocios/section-bovinos.jpg') right center no-repeat;
 }
 
 #negocios .col-left .col-content {
@@ -494,7 +494,7 @@ ul.footer-phone-block {
   width: 50%;
   right: 0;
   margin-right: -180px;
-  background: url('../img/negocios/section-cafe.png') left center no-repeat;
+  background: url('../img/negocios/section-cafe.jpg') left center no-repeat;
 }
 
 #negocios .col-right .col-content {
@@ -555,6 +555,7 @@ ul.footer-phone-block {
 
 #localizacoes .blurb p {
   font-size: 0.95em;
+  font-weight: 300;
 }
 
 #localizacoes .container .mapa {
@@ -607,7 +608,7 @@ ul.footer-phone-block {
 #parcerias .col-left {
   width: 50%;
   left: 0;
-  background: url('../img/parcerias/section-bovinos.png') right center no-repeat;
+  background: url('../img/parcerias/section-bovinos.jpg') right center no-repeat;
 }
 
 #parcerias .col-left .col-content {
@@ -619,7 +620,7 @@ ul.footer-phone-block {
 #parcerias .col-right {
   width: 50%;
   right: 0;
-  background: url('../img/parcerias/section-suinos.png') left center no-repeat;
+  background: url('../img/parcerias/section-suinos.jpg') left center no-repeat;
 }
 
 #parcerias .col-right .col-content {

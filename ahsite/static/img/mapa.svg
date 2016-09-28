@@ -87,15 +87,15 @@
                         <use stroke="#D7D6D6" class="location-container" mask="url(#mask-2)" stroke-width="2" xlink:href="#path-1"></use>
                     </g>
                     <g transform="translate(124.000000, 112.000000)" fill="#9B9B9B">
-                        <text font-family="GillSans-Light, Gill Sans" font-size="14" font-weight="300" line-spacing="30" letter-spacing="0.323076963">
+                        <text font-family="Roboto" font-size="14" font-weight="100" line-spacing="30" letter-spacing="0.323076963">
                             <tspan x="0" y="36">Unaí MG</tspan>
                         </text>
-                        <text font-family="GillSans, Gill Sans" font-size="16" font-weight="normal" letter-spacing="0.369230777">
+                        <text font-family="Roboto" font-size="16" font-weight="normal" letter-spacing="0.369230777">
                             <tspan x="0" y="16">Ouro Verde</tspan>
                         </text>
                     </g>
                     <circle fill="#9B8A46" cx="90" cy="133" r="17"></circle>
-                    <text font-family="ProximaNova-Bold, Proxima Nova" font-size="16" font-weight="bold" letter-spacing="0.369230777" fill="#FFFFFF">
+                    <text font-family="Roboto" font-size="16" font-weight="bold" letter-spacing="0.369230777" fill="#FFFFFF">
                         <tspan x="78.4099759" y="138">OV</tspan>
                     </text>
                     <path d="M55.3828125,132.386719 L4.8515625,4.19921875" stroke="#979797"></path>
@@ -108,14 +108,14 @@
                         <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
                         <use stroke="#D7D6D6" class="location-container" mask="url(#mask-4)" stroke-width="2" xlink:href="#path-3"></use>
                     </g>
-                    <text font-family="GillSans-Light, Gill Sans" font-size="14" font-weight="300" line-spacing="30" letter-spacing="0.323076963" fill="#9B9B9B">
+                    <text font-family="Roboto" font-size="14" font-weight="100" line-spacing="30" letter-spacing="0.323076963" fill="#9B9B9B">
                         <tspan x="187" y="146">Presidente Prudente SP</tspan>
                     </text>
-                    <text font-family="GillSans, Gill Sans" font-size="16" font-weight="normal" letter-spacing="0.369230777" fill="#9B9B9B">
+                    <text font-family="Roboto" font-size="16" font-weight="normal" letter-spacing="0.369230777" fill="#9B9B9B">
                         <tspan x="187" y="125">Escritório</tspan>
                     </text>
                     <circle fill="#707070" cx="153" cy="131" r="17"></circle>
-                    <text font-family="ProximaNova-Bold, Proxima Nova" font-size="16" font-weight="bold" letter-spacing="0.369230777" fill="#FFFFFF">
+                    <text font-family="Roboto" font-size="16" font-weight="bold" letter-spacing="0.369230777" fill="#FFFFFF">
                         <tspan x="141.409976" y="136">OV</tspan>
                     </text>
                     <path d="M118.382812,130.386719 L2.80859375,3.49609375" stroke="#979797"></path>
@@ -128,14 +128,14 @@
                         <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-5"></use>
                         <use stroke="#D7D6D6" class="location-container" mask="url(#mask-6)" stroke-width="2" xlink:href="#path-5"></use>
                     </g>
-                    <text font-family="GillSans-Light, Gill Sans" font-size="14" font-weight="300" line-spacing="30" letter-spacing="0.323076963" fill="#9B9B9B">
+                    <text font-family="Roboto" font-size="14" font-weight="100" line-spacing="30" letter-spacing="0.323076963" fill="#9B9B9B">
                         <tspan x="203" y="46">Rondonópolis MT</tspan>
                     </text>
-                    <text font-family="GillSans, Gill Sans" font-size="16" font-weight="normal" letter-spacing="0.369230777" fill="#9B9B9B">
+                    <text font-family="Roboto" font-size="16" font-weight="normal" letter-spacing="0.369230777" fill="#9B9B9B">
                         <tspan x="203" y="25">Cambará</tspan>
                     </text>
                     <circle fill="#51734F" cx="169" cy="30" r="17"></circle>
-                    <text font-family="ProximaNova-Bold, Proxima Nova" font-size="16" font-weight="bold" letter-spacing="0.369230777" fill="#FFFFFF">
+                    <text font-family="Roboto" font-size="16" font-weight="bold" letter-spacing="0.369230777" fill="#FFFFFF">
                         <tspan x="163.646394" y="35">C</tspan>
                     </text>
                     <path d="M134.851562,27.8710938 L6.6640625,259.230469" stroke="#979797"></path>
@@ -149,14 +149,14 @@
                             <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-7"></use>
                             <use stroke="#D7D6D6" class="location-container" mask="url(#mask-8)" stroke-width="2" xlink:href="#path-7"></use>
                         </g>
-                        <text font-family="GillSans-Light, Gill Sans" font-size="14" font-weight="300" line-spacing="30" letter-spacing="0.323076963" fill="#9B9B9B">
+                        <text font-family="Roboto" font-size="14" font-weight="100" line-spacing="30" letter-spacing="0.323076963" fill="#9B9B9B">
                             <tspan x="68" y="46">Brasilândia MS</tspan>
                         </text>
-                        <text font-family="GillSans, Gill Sans" font-size="16" font-weight="normal" letter-spacing="0.369230777" fill="#9B9B9B">
+                        <text font-family="Roboto" font-size="16" font-weight="normal" letter-spacing="0.369230777" fill="#9B9B9B">
                             <tspan x="68" y="25">Córrego Azul</tspan>
                         </text>
                         <circle fill="#8B2D27" cx="34" cy="30" r="17"></circle>
-                        <text font-family="ProximaNova-Bold, Proxima Nova" font-size="16" font-weight="bold" letter-spacing="0.369230777" fill="#FFFFFF">
+                        <text font-family="Roboto" font-size="16" font-weight="bold" letter-spacing="0.369230777" fill="#FFFFFF">
                             <tspan x="23.4490384" y="35">CA</tspan>
                         </text>
                         <path d="M291.148438,29.9726562 L486.363281,110.207031" stroke="#979797"></path>
@@ -168,14 +168,14 @@
                             <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-9"></use>
                             <use stroke="#D7D6D6" class="location-container" mask="url(#mask-10)" stroke-width="2" xlink:href="#path-9"></use>
                         </g>
-                        <text font-family="GillSans-Light, Gill Sans" font-size="14" font-weight="300" line-spacing="30" letter-spacing="0.323076963" fill="#9B9B9B">
+                        <text font-family="Roboto" font-size="14" font-weight="100" line-spacing="30" letter-spacing="0.323076963" fill="#9B9B9B">
                             <tspan x="68" y="46">Brasilândia MS</tspan>
                         </text>
-                        <text font-family="GillSans, Gill Sans" font-size="16" font-weight="normal" letter-spacing="0.369230777" fill="#9B9B9B">
+                        <text font-family="Roboto" font-size="16" font-weight="normal" letter-spacing="0.369230777" fill="#9B9B9B">
                             <tspan x="68" y="25">Boa Esperança</tspan>
                         </text>
                         <circle fill="#8B2D27" cx="34" cy="32" r="17"></circle>
-                        <text font-family="ProximaNova-Bold, Proxima Nova" font-size="16" font-weight="bold" letter-spacing="0.369230777" fill="#FFFFFF">
+                        <text font-family="Roboto" font-size="16" font-weight="bold" letter-spacing="0.369230777" fill="#FFFFFF">
                             <tspan x="24.3396634" y="37">BE</tspan>
                         </text>
                         <path d="M291.653459,31.8582553 L486.144531,39.5546875" stroke="#979797"></path>
@@ -187,14 +187,14 @@
                             <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-11"></use>
                             <use stroke="#D7D6D6" class="location-container" mask="url(#mask-12)" stroke-width="2" xlink:href="#path-11"></use>
                         </g>
-                        <text font-family="GillSans-Light, Gill Sans" font-size="14" font-weight="300" line-spacing="30" letter-spacing="0.323076963" fill="#9B9B9B">
+                        <text font-family="Roboto" font-size="14" font-weight="100" line-spacing="30" letter-spacing="0.323076963" fill="#9B9B9B">
                             <tspan x="68" y="77">Brasilândia MS</tspan>
                         </text>
-                        <text font-family="GillSans, Gill Sans" font-size="16" font-weight="normal" letter-spacing="0.369230777" fill="#9B9B9B">
+                        <text font-family="Roboto" font-size="16" font-weight="normal" letter-spacing="0.369230777" fill="#9B9B9B">
                             <tspan x="68" y="56">Jatiuca</tspan>
                         </text>
                         <circle fill="#8B2D27" cx="34" cy="62" r="17"></circle>
-                        <text font-family="ProximaNova-Bold, Proxima Nova" font-size="16" font-weight="bold" letter-spacing="0.369230777" fill="#FFFFFF">
+                        <text font-family="Roboto" font-size="16" font-weight="bold" letter-spacing="0.369230777" fill="#FFFFFF">
                             <tspan x="30.8573317" y="67">J</tspan>
                         </text>
                         <path d="M291.234375,62.9335937 L488.277344,0.078125" stroke="#979797"></path>
@@ -206,14 +206,14 @@
                             <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-13"></use>
                             <use stroke="#D7D6D6" class="location-container" mask="url(#mask-14)" stroke-width="2" xlink:href="#path-13"></use>
                         </g>
-                        <text font-family="GillSans-Light, Gill Sans" font-size="14" font-weight="300" line-spacing="30" letter-spacing="0.323076963" fill="#9B9B9B">
+                        <text font-family="Roboto" font-size="14" font-weight="100" line-spacing="30" letter-spacing="0.323076963" fill="#9B9B9B">
                             <tspan x="68" y="147">Brasilândia MS</tspan>
                         </text>
-                        <text font-family="GillSans, Gill Sans" font-size="16" font-weight="normal" letter-spacing="0.369230777" fill="#9B9B9B">
+                        <text font-family="Roboto" font-size="16" font-weight="normal" letter-spacing="0.369230777" fill="#9B9B9B">
                             <tspan x="68" y="126">Aroeira</tspan>
                         </text>
                         <circle fill="#8B2D27" cx="34" cy="132" r="17"></circle>
-                        <text font-family="ProximaNova-Bold, Proxima Nova" font-size="16" font-weight="bold" letter-spacing="0.369230777" fill="#FFFFFF">
+                        <text font-family="Roboto" font-size="16" font-weight="bold" letter-spacing="0.369230777" fill="#FFFFFF">
                             <tspan x="28.6932692" y="137">A</tspan>
                         </text>
                         <path d="M292.285156,132.300781 L487.363281,0.02734375" stroke="#979797"></path>

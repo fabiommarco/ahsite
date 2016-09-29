@@ -20,17 +20,17 @@
     <section id="negocios">
         {% for product in products %}
                  {% if 'bovinos' in product.product_name.lower %}
-                    {% with position="left" image='img/negocios/cta-bovinos.png' %}
+                    {% with position="left" image='img/negocios/cta-bovinos.jpg' %}
                           {% include "_prod.html"%}
                    {%endwith%}
                   {% endif %}
                   {% if 'suíno' in product.product_name.lower %}
-                    {% with position="center" image='img/negocios/cta-suinos.png' %}
+                    {% with position="center" image='img/negocios/cta-suinos.jpg' %}
                           {% include "_prod.html"%}
                    {%endwith%}
                   {% endif %}
                   {% if 'café' in product.product_name.lower %}
-                    {% with position="right" image='img/negocios/cta-cafe.png' %}
+                    {% with position="right" image='img/negocios/cta-cafe.jpg' %}
                           {% include "_prod.html"%}
                    {%endwith%}
                   {% endif %}

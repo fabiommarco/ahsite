@@ -52,7 +52,7 @@ class ResearchAdmin(admin.ModelAdmin):
     list_display = ('reserach_date','reserach_title', 'reserach_type', 'research_file' )
 
 class ProdAdmin(admin.ModelAdmin):
-    ineselines = [ImagemInline]
+    inlines = [ImagemInline]
 
 class EnvAdmin(admin.ModelAdmin):
     inlines = [ImagemInline]

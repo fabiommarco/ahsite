@@ -46,6 +46,9 @@ class ApplyJobForm(ContactForm):
 
     def send(self,request):
         config = GeneralConfig.objects.latest('id')
+        recipients = [config.config_email]
+        if config.config_email_cv:
+            recipients.append(config.config_email_cv)
 
         job = Jobs.objects.get(id=self.cleaned_data['job_id'])
         cv = self.cleaned_data["attach"]
@@ -65,7 +68,7 @@ class ApplyJobForm(ContactForm):
         txt_body = tt.render(c)
         envia_email(txt_body, html_body,
         			subject= 'E-mail de Candidatura Vaga - Site',
-        			to=[config.config_email,], attach=cv,
+        			to=recipients, attach=cv,
         			from_sender="%s <%s>" % (self.cleaned_data["name"], self.cleaned_data["email"]))
 
 

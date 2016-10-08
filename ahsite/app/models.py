@@ -62,6 +62,12 @@ class GeneralConfig(models.Model):
                   'desse email você receberá os contados'
                   'enviados pelo site.',
         blank=False)
+    config_email_cv = models.EmailField(
+        u"Email de Curriculos",
+        help_text='Utilize esse campo caso queira registrar um email personalizado'
+                  'para recebimento de Curriculos',
+        )
+    
     config_phone = models.CharField(
         u"Telefone",
         help_text="Formato: (18) 9900-5544",

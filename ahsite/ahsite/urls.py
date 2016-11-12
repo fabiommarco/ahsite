@@ -12,6 +12,7 @@ from django.conf.urls.static import static
 from app.views import newsletterView
 
 urlpatterns = i18n_patterns(
+    url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^$', views.home, name='home'),
     url(r'^quem-somos/$', views.about_company, name='about_company'),
     url(r'^cotacoes-agricolas/$', views.agricutural_prices, name='agricutural_prices'),

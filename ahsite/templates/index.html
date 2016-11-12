@@ -1,16 +1,17 @@
-  {% extends "base.html" %}
-  {% block content %}
-  {% load static %}
+{% extends "base.html" %}
+{% block content %}
+{% load i18n %}
+{% load static %}
 
     <!-- Portfolio Grid Section -->
     <section id="portfolio" class="ah-background">
         <div class="container">
             <div class="row">
                 <div class="col-md-10 col-sm-offset-1 about-ah">
-                    <h3>AH Agropecuária</h3>
-                    <p>A AH é uma das importantes agropecuárias do Brasil, com áreas produtivas que somam mais de 40.000 hectares e sistemas de produção implantados em três estados brasileiros - Mato Grosso do Sul, Mato Grosso e Minas Gerais.</p>
+                    <h3>{% trans "AH Agropecuária" %}</h3>
+                    <p>{% trans "A AH é uma das importantes agropecuárias do Brasil, com áreas produtivas que somam mais de 40.000 hectares e sistemas de produção implantados em três estados brasileiros - Mato Grosso do Sul, Mato Grosso e Minas Gerais." %}</p>
                     <br/>
-                    <a href="{% url 'about_company' %}" class="btn btn-success btn-lg">Conheca a nossa história</a>
+                    <a href="{% url 'about_company' %}" class="btn btn-success btn-lg">{% trans "Conheca a nossa história" %}</a>
                 </div>
             </div>
         </div>
@@ -41,8 +42,8 @@
     <section id="localizacoes" class="ah-background">
         <div class="container">
             <div class="blurb">
-                <h3>Localizações AH</h3>
-                <p>A Agropecuária AH possui unidades nas seguintes localidades:</p>
+                <h3>{% trans "Localizações AH" %}</h3>
+                <p>{% trans "A Agropecuária AH possui unidades nas seguintes localidades:" %}</p>
             </div>
             {% include "_map.html" %}
         </div>
@@ -52,27 +53,27 @@
     <section id="parcerias">
         <div class="col-left">
             <div class="col-content">
-                <h3><span>Parcerias <i class="fa fa-angle-right" aria-hidden="true"></i></span> Fomento Bezerro AH+</h3>
-                <p>O Programa Fomento AH+ consiste em fomentar a inseminação artificial (Convencional e/ou em Tempo Fixo – IATF), e o cruzamento com as raças Angus e Hereford. A Agropecuária AH garante em contrato e por um valor diferenciado atrelado indicador CEPEA, a compra de toda a progênie...</p>
+                <h3><span>Parcerias <i class="fa fa-angle-right" aria-hidden="true"></i></span> {% trans "Fomento Bezerro AH+" %}</h3>
+                <p>{% trans "O Programa Fomento AH+ consiste em fomentar a inseminação artificial (Convencional e/ou em Tempo Fixo – IATF), e o cruzamento com as raças Angus e Hereford. A Agropecuária AH garante em contrato e por um valor diferenciado atrelado indicador CEPEA, a compra de toda a progênie..." %}</p>
                 <h4>Benefícios</h4>
                 <ul>
-                    <li>Solicitação de adiantamento de sêmen</li>
-                    <li>Retenção de até 50% de fêmeas para reposição</li>
+                  <li>{% trans "Solicitação de adiantamento de sêmen" %}</li>
+                  <li>{% trans "Retenção de até 50% de fêmeas para reposição" %}</li>
                 </ul>
-                <a href="/parcerias/fomento-bezerro-ah" class="btn btn-lg">Saiba Mais</a>
+                <a href="/parcerias/fomento-bezerro-ah" class="btn btn-lg">{% trans "Saiba Mais" %}</a>
             </div>
         </div>
 
         <div class="col-right">
             <div class="col-content">
-                <h3><span>Parcerias <i class="fa fa-angle-right" aria-hidden="true"></i></span> Parceria Suinocultura</h3>
-                <p>A parceria suinocultura consiste no sistema de criação de animais em que a Agropecuária AH transfere a fase de terminação da engorda de suínos ao produtor rural INTEGRADO, além das melhores tecnologias existentes, de animais com a melhor genética...</p>
+              <h3><span>{% trans "Parcerias" %} <i class="fa fa-angle-right" aria-hidden="true"></i></span> {% trans "Parceria Suinocultura" %}</h3>
+                <p>{% trans "A parceria suinocultura consiste no sistema de criação de animais em que a Agropecuária AH transfere a fase de terminação da engorda de suínos ao produtor rural INTEGRADO, além das melhores tecnologias existentes, de animais com a melhor genética..." %}</p>
                 <h4>Benefícios</h4>
                 <ul>
-                    <li>Índices de eficência no topo melhores padrões mundiais</li>
-                    <li>Forte foco especialização pelos parceiros</li>
+                  <li>{% trans "Índices de eficência no topo melhores padrões mundiais" %}</li>
+                  <li>{% trans "Forte foco especialização pelos parceiros" %}</li>
                 </ul>
-                <a href="/parcerias/parceria-suinocultura" class="btn btn-lg">Saiba Mais</a>
+                <a href="/parcerias/parceria-suinocultura" class="btn btn-lg">{% trans "Saiba Mais" %}</a>
             </div>
         </div>
     </section>
@@ -81,23 +82,23 @@
     <section id="miscellaneous" class="ah-background">
         <div class="container">
             <div class="col-md-6 col-lg-offset-1 noticias">
-                <h3><strong>AH</strong> Notícias</h3>
+                <h3>{% trans "<strong>AH</strong> Notícias" %}</h3>
                 <ul>
                     {% for news in news %}
                     <li>
                         <a href="{% url 'news_view' news.news_slug%}" class="title">{{news.news_title}}</a><br/>
                         <small>{{news.news_date|date:"F Y"}}</small>
                         <p>{{news.news_description|safe|truncatewords:30}}</p>
-                        <a href="{% url 'news_view' news.news_slug%}">Leia mais <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                        <a href="{% url 'news_view' news.news_slug%}">{% trans "Leia mais" %} <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                     </li>
                     {% empty %}
-                        <p>Nenhuma notícia encontrada.</p>
+                    <p>{% trans "Nenhuma notícia encontrada." %}</p>
                     {% endfor %}
                 </ul>
             </div>
             <div class="col-md-4">
                 <section class="responsabilidade-social">
-                    <h3>Responsabilidade <strong>Social</strong></h3>
+                    <h3>{% trans "Responsabilidade <strong>Social</strong>" %}</h3>
                     <ul class="information-block">
                         {% for event in events_link %}
                             <li>
@@ -106,32 +107,32 @@
                                     <div class="meta">
                                         <strong>{{event.event_title}}</strong>
                                         <strong class="location">{{event.event_local}}</strong>
-                                        <span>Saiba mais</span>
+                                        <span>{% trans "Saiba mais" %}</span>
                                     </div>
                                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                                 </a>
                             </li>
                         {% empty %}
-                            <li>Nenhum item encontrado.</li>
+                        <li>{% trans "Nenhum item encontrado." %}</li>
                         {% endfor %}
                     </ul>
                 </section>
 
                 <section class="trabalhe-conosco">
-                    <h3>Trabalhe Conosco</h3>
-                    <p>Nossa empresa tem o desejo de transformar o País. Para isso, precisamos de uma equipe forte e coesa, formada por gente de qualidade.</p>
-                    <a href="{% url 'work_with_us'%}" class="btn btn-success btn-lg">Envie seu currículo</a>
+                    <h3>{% trans "Trabalhe Conosco" %}</h3>
+                    <p>{% trans "Nossa empresa tem o desejo de transformar o País. Para isso, precisamos de uma equipe forte e coesa, formada por gente de qualidade." %}</p>
+                    <a href="{% url 'work_with_us'%}" class="btn btn-success btn-lg">{% trans "Envie seu currículo" %}</a>
                 </section>
 
                 <section class="newsletter">
-                    <h3>Newsletter</h3>
-                    <p>Receba nossas novidades diretamente no seu e-mail.</p>
+                    <h3>{% trans "Newsletter" %}</h3>
+                    <p>{% trans "Receba nossas novidades diretamente no seu e-mail." %}</p>
                     <form action="/newsletter/" id="newsletter-form" method="post">
                         <fieldset id="newsletter-fieldset">
                             <div id="form-status"></div>
-                            <input type="text" name="nome" placeholder="Digite o seu nome." id="newsletter-nome" />
-                            <input type="text" name="email" placeholder="Digite o seu e-mail." id="newsletter-email" />
-                            <div class="actions"><input type="submit" value="Enviar" class="btn btn-success btn-lg" /></div>
+                            <input type="text" name="nome" placeholder="{% trans "Digite o seu nome." %} " id="newsletter-nome" />
+                            <input type="text" name="email" placeholder="{% trans "Digite o seu e-mail." %} id="newsletter-email" />
+                            <div class="actions"><input type="submit" value="{% trans "Enviar" %} class="btn btn-success btn-lg" /></div>
                         </fieldset>
                     </form>
                 </section>

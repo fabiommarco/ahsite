@@ -194,7 +194,7 @@ def work_with_us(request):
     return render(request, 'work-with-us.html',
                   {'jobs':Jobs.objects.filter(),
                    'is_apply_job':True,
-                   'url_contact':reverse('new_contact', args=['contact']),
+                   'url_contact':reverse('new_contact', args=['apply_job']),
                    'general_info':general_info,
                    'events_link':events_link,
                    'partners_link':partners_link,
@@ -210,7 +210,6 @@ def new_contact(request,contact_type):
     if request.method == "POST":
         return_data = {'success': True}
         apply_job_context = False
-
         if contact_type == 'contact' or contact_type == 'sale':
             contact_form = ContactForm(request.POST)
         elif contact_type == 'apply_job':

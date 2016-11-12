@@ -2,6 +2,7 @@
 
 """
 from django.conf.urls import url
+from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.conf.urls import url, include
 from app import views
@@ -10,14 +11,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 from app.views import newsletterView
 
-urlpatterns = [
-
+urlpatterns = i18n_patterns(
     url(r'^$', views.home, name='home'),
     url(r'^quem-somos/$', views.about_company, name='about_company'),
     url(r'^cotacoes-agricolas/$', views.agricutural_prices, name='agricutural_prices'),
 
     url(r'^responsabilidade-ambiental/$', views.environmental_responsability, name='environmental_responsability'),
-    
+
     url(r'^responsabilidade-social/(?P<event_slug>.*)$', views.event_view, name='event_view'),
 
     url(r'^compras/$', views.sales, name='sales'),
@@ -40,7 +40,6 @@ urlpatterns = [
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^admin/', admin.site.urls),
-    # url(r'^admin/list_newsletter$', views.list_newsletter, name='list_newsletter'),
     url(r'^admin/list_newsletter/$', newsletterView.as_view()),
-
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    prefix_default_language=False,
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

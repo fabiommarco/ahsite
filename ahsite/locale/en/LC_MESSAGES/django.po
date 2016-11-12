@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-12 17:27+0000\n"
-"PO-Revision-Date: 2016-11-12 12:46-0500\n"
+"POT-Creation-Date: 2016-11-12 17:50+0000\n"
+"PO-Revision-Date: 2016-11-12 12:56-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -204,7 +204,7 @@ msgstr "Business"
 msgid "Venda"
 msgstr "Sales"
 
-# This is weird. How do I translate Compra? Buying?
+# This is weird. How do I translate Compra? Buying? Acquisition?
 #: templates/base.html:68 templates/base.html:160
 msgid "Compra"
 msgstr ""
@@ -250,23 +250,23 @@ msgstr "News"
 msgid "Escritório - Presidente Prudente"
 msgstr "Office - Presidente Prudente"
 
-#: templates/base.html:213
+#: templates/base.html:213 templates/talk-with-us.html:26
 msgid "(18) 3917-3262"
 msgstr "+55 (18) 3917-3262"
 
-#: templates/base.html:221
+#: templates/base.html:221 templates/talk-with-us.html:35
 msgid "Fazenda Córrego Azul"
 msgstr "Córrego Azul Farm"
 
-#: templates/base.html:224
+#: templates/base.html:224 templates/talk-with-us.html:41
 msgid "(67) 3546-1467"
 msgstr "+55 (67) 3546-1467"
 
-#: templates/base.html:232
+#: templates/base.html:232 templates/talk-with-us.html:50
 msgid "Fazenda Ouro Verde"
 msgstr "Ouro Verde Farm"
 
-#: templates/base.html:235
+#: templates/base.html:235 templates/talk-with-us.html:55
 msgid "(31) 4063-7729"
 msgstr "+55 (31) 4063-7729"
 
@@ -423,50 +423,8 @@ msgid "Telefones de Contato"
 msgstr "Phone numbers"
 
 #: templates/talk-with-us.html:21
-msgid ""
-"\n"
-"                                <strong>Escritório</strong>\n"
-"                                <span>Av. Cel. José Soares Marcondes, 1078 - "
-"11º andar</span>\n"
-"                                <span>Presidente Prudente/SP - CEP "
-"19010-080</span>\n"
-"                                <span class=\"telephone\">\n"
-"                                    <i class=\"fa fa-phone\" aria-hidden="
-"\"true\"></i>\n"
-"                                    (18) 3917-3262\n"
-"                                </span>\n"
-"                                "
-msgstr ""
-
-#: templates/talk-with-us.html:37
-msgid ""
-"\n"
-"                                <strong>Fazenda Córrego Azul</strong>\n"
-"                                <span>Rodovia MS 395 Brasilândia/Bataguassu</"
-"span>\n"
-"                                <span>Zona Rural - Caixa Postal Nº23</span>\n"
-"                                <span>Brasilândia/MS - CEP 79670-000</span>\n"
-"                                <span class=\"telephone\">\n"
-"                                    <i class=\"fa fa-phone\" aria-hidden="
-"\"true\"></i>\n"
-"                                    (67) 3546-1467\n"
-"                                </span>\n"
-"                                "
-msgstr ""
-
-#: templates/talk-with-us.html:54
-msgid ""
-"\n"
-"                                <strong>Fazenda Ouro Verde</strong>\n"
-"                                <span>Zona Rural - Caixa Postal Nº45</span>\n"
-"                                <span>Unaí/MG - CEP 38610-000</span>\n"
-"                                <span class=\"telephone\">\n"
-"                                    <i class=\"fa fa-phone\" aria-hidden="
-"\"true\"></i>\n"
-"                                    (31) 4063-7729\n"
-"                                </span>\n"
-"                                "
-msgstr ""
+msgid "Escritório"
+msgstr "Office"
 
 #: templates/work-with-us.html:11
 msgid ""

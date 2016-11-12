@@ -1,7 +1,8 @@
-  {% extends "base.html" %}
-  {% load static %}
-  {% block class %}dynamic-content ah-background{% endblock class%}
-  {% block content %}
+{% extends "base.html" %}
+{% load static %}
+{% block class %}dynamic-content ah-background{% endblock class%}
+{% load i18n %}
+{% block content %}
     <div class="container">
         <div class="col-md-10 col-md-offset-1">
             <h1>{{product.product_name}}</h1>
@@ -13,7 +14,7 @@
                 {% if product.product_galery_title %}
                   <h3>{{product.product_galery_title}}</h3>
                 {% else %}
-                  <h3>Galeria de Imagens</h3>
+                  <h3>{% trans "Galeria de Imagens" %}</h3>
                 {% endif %}
                 {% for imagem in product.product_galery.all %}
                     <div class="col-xs-6 col-md-3">

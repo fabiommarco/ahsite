@@ -1,21 +1,22 @@
-  {% extends "base.html" %}
-  {% load static %}
-  {% load humanize %}
-  {% block class %}dynamic-content ah-background page-noticias{% endblock class%}
-  {% block content %}
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+{% block class %}dynamic-content ah-background page-noticias{% endblock class%}
+{% load i18n %}
+{% block content %}
     <div class="container">
       <div class="col-md-10 col-md-offset-1">
-        <h2><strong>AH</strong> Notícias</h2>
+        <h2>{% trans "<strong>AH</strong> Notícias" %}</h2>
         <p></p>
         {% for news in all_news %}
         <div class="caption">
           <a class="news-title" href="{% url 'news_view' news.news_slug%}"><h3>{{news.news_title}}</h3></a>
           <small>{{news.news_date|date:"d/m/Y"}}</small>
           <p>{{news.news_description|safe|truncatewords:30}}</p>
-          <a href="{% url 'news_view' news.news_slug%}">Leia mais <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+          <a href="{% url 'news_view' news.news_slug%}">{% trans "Leia mais" %} <i class="fa fa-angle-right" aria-hidden="true"></i></a>
         </div>
         {% empty %}
-          <p>Nenhuma Notícia em andamento. Volte em breve para conferir as novidades.</p>
+          <p>{% trans "Nenhuma notícia em andamento. Volte em breve para conferir as novidades." %}</p>
         {% endfor %}
       </div>
 
@@ -45,4 +46,4 @@
       </div>
       {% endif %}
     </div>
-  {% endblock content %}
+{% endblock content %}

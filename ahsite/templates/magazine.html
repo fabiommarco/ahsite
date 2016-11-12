@@ -1,7 +1,8 @@
-  {% extends "base.html" %}
-  {% block class %}dynamic-content ah-background{% endblock class%}
-  {% load static %}
-  {% block content %}
+{% extends "base.html" %}
+{% block class %}dynamic-content ah-background{% endblock class%}
+{% load static %}
+{% load i18n %}
+{% block content %}
     <!-- Portfolio Grid Section -->
     <section id="download-price-file">
     <div class="container">
@@ -14,7 +15,7 @@
           </div>
 
           <div class="row">
-          <h2>Confira as Edições Anteriores</h2>
+          <h2>{% trans "Confira as Edições Anteriores" %}</h2>
           <ul class="information-block download-pdf">
               {% for item in old_versions %}
                   <li>
@@ -22,20 +23,20 @@
                            <i class="fa fa-file-pdf-o fa-3" aria-hidden="true"></i>
                           <div class="meta">
                               <strong>{{item.magazine_title}}</strong>
-                              <span>Download</span>
+                              <span>{% trans "Download" %}</span>
                           </div>
                           <i class="fa fa-angle-right" aria-hidden="true"></i>
                       </a>
                   </li>
               {% empty %}
-                <li>Nenhum item encontrado.</li>
+                <li>{% trans "Nenhum item encontrado." %}</li>
               {% endfor %}
           </ul>
         </div>
         {% else %}
-          Nenhuma revista disponivel.
+          {% trans "Nenhuma revista disponivel." %}
         {% endif %}
       </div>
     </div>
     </section>
-  {% endblock content %}
+{% endblock content %}

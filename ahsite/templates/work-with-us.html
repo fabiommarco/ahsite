@@ -1,17 +1,18 @@
-  {% extends "base.html" %}
+{% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
   {% block content %}
     <!-- Contact Section -->
     <section id="work-for-us" class="ah-background">
         <div class="container">
             <div class="col-lg-10 col-lg-offset-1">
-                <h2>Trabalhe Conosco</h2>
-                <p>Deseja trabalhar em uma empresa séria, em franco crescimento e com ótimas oportunidades de carreira? <br>Selecione uma vaga abaixo e envie seu currículo através do formulário para que possamos contactá-lo.</p>
+                <h2>{% trans "Trabalhe Conosco" %}</h2>
+                <p>{% trans "Deseja trabalhar em uma empresa séria, em franco crescimento e com ótimas oportunidades de carreira? <br>Selecione uma vaga abaixo e envie seu currículo através do formulário para que possamos contactá-lo." %}</p>
             </div>
 
             <div class="col-lg-10 col-lg-offset-1 vagas">
-                <h3>Vagas disponíveis</h3>
+                <h3>{% trans "Vagas disponíveis" %}</h3>
                 {% if is_apply_job and messages %}
                     <ul class="messages">
                         {% for message in messages %}
@@ -25,11 +26,11 @@
                         <span class="date-posted">{{job.job_date}}</span>
                         <p>{{job.job_description|safe}}</p>
                         <a href="#applyModal" data-toggle="modal" data-role="{{job}}" data-desc="{{job.job_description|safe}}" data-jobid="{{job.id}}" class="btn btn-success btn-apply-job">
-                            Enviar currículo
+                            {% trans "Enviar currículo" %}
                         </a>
                     </div>
                 {% empty %}
-                    <p>Nenhuma vaga disponível no momento. <a href="/fale-conosco">Entre em contato conosco para mais esclarecimendos</a>.</p>
+                    <p>{% trans "Nenhuma vaga disponível no momento." %} <a href="{% url 'talk_with_us' %}">{% trans "Entre em contato conosco para mais esclarecimendos" %}</a>.</p>
                 {% endfor %}
             </div>
         </div>
@@ -50,13 +51,13 @@
                             <h2 id="apply-modal-title"></h2>
                             <hr class="star-primary">
                             <p id="apply-modal-desc"></p>
-                            <p><strong>Para se candidatar, por favor preencha o formulário abaixo e analisaremos seu curriculum.</strong></p>
+                            <p><strong>{% trans "Para se candidatar, por favor preencha o formulário abaixo e analisaremos seu curriculum." %}</strong></p>
                             <div class="row">
                                 <div class="col-lg-8 col-lg-offset-2">
                                     {% include '_contact_form.html' %}
                                 </div>
                             </div>
-                            <a href="#" data-dismiss="modal"><i class="fa fa-times"></i> Fechar</a>
+                            <a href="#" data-dismiss="modal"><i class="fa fa-times"></i> {% trans "Fechar" %}</a>
                         </div>
                     </div>
                 </div>

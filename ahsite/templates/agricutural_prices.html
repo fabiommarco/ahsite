@@ -1,16 +1,17 @@
-  {% extends "base.html" %}
-  {% load static %}
-  {% block class %}dynamic-content ah-background page-prices{% endblock class%}
-  {% block content %}
+{% extends "base.html" %}
+{% load static %}
+{% block class %}dynamic-content ah-background page-prices{% endblock class%}
+{% load i18n %}
+{% block content %}
     <div class="container">
       <div class="col-md-10 col-md-offset-1">
-        <h2>Cotações Agrícolas</h2>
-        <p>Nós disponibilizamos cotações agrícolas periodicamente. Faça o download abaixo:</p>
+        <h2>{% trans "Cotações Agrícolas" %}</h2>
+        <p>{% trans "Nós disponibilizamos cotações agrícolas periodicamente. Faça o download abaixo:" %}</p>
 
         <ul class="information-block download-pdf">
           {% for price in prices %}
             <li>
-                <a href="{% get_media_prefix %}{{price.ap_file}}" title="Clique para fazer o download.">
+                <a href="{% get_media_prefix %}{{price.ap_file}}" title="{% trans "Clique para fazer o download." %}">
                      <i class="fa fa-file-pdf-o fa-4" aria-hidden="true"></i>
                     <div class="meta">
                         <strong>{{price.ap_date|date:"d/m/Y"}}</strong>
@@ -20,9 +21,9 @@
                 </a>
             </li>
           {% empty %}
-            <li>Nenhum item encontrado.</li>
+            <li>{% trans "Nenhum item encontrado." %}</li>
           {% endfor %}
       </ul>
     </div>
   </div>
-  {% endblock content %}
+{% endblock content %}

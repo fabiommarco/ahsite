@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>AH Agropecuária</title>
+    <title>{% trans "AH Agropecuária" %}</title>
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
         <div class="container container-menu">
             <div class="navbar-header">
               <a class="logo" href="/">
-                  <img id="logo" src="{% static 'img/logo-header.png'%}" title="Agropecuária AH - Página Inicial">
+                  <img id="logo" src="{% static 'img/logo-header.png'%}" title="{% trans "Agropecuária AH" %} - {% trans "Ir para a Página Inicial" %}">
               </a>
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#ah-navbar" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
@@ -46,30 +46,30 @@
             <div class="collapse navbar-collapse" id="ah-navbar">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#" class="noop">Institucional <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                        <a href="#" class="noop">{% trans "Institucional" %} <i class="fa fa-caret-down" aria-hidden="true"></i></a>
                         <ul>
-                            <li><a href="{% url 'about_company' %}#sobre-nos">Agropecuária AH</a></li>
-                            <li><a href="{% url 'about_company' %}#nossa-missao">Missão e Visão</a></li>
-                            <li><a href="{% url 'about_company' %}#nossos-valores">Valores e Competência</a></li>
-                            <li><a href="{% url 'about_company' %}#localizacoes">Localizações</a></li>
+                            <li><a href="{% url 'about_company' %}#sobre-nos">{% trans "Agropecuária AH" %}</a></li>
+                            <li><a href="{% url 'about_company' %}#nossa-missao">{% trans "Missão e Visão" %}</a></li>
+                            <li><a href="{% url 'about_company' %}#nossos-valores">{% trans "Valores e Competência" %}</a></li>
+                            <li><a href="{% url 'about_company' %}#localizacoes">{% trans "Localizações" %}</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="noop">Negócios <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                        <a href="#" class="noop">{% trans "Negócios" %} <i class="fa fa-caret-down" aria-hidden="true"></i></a>
                         <ul>
                             <li>
-                                <a href="#" class="noop">Venda <i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                                <a href="#" class="noop">{% trans "Venda" %} <i class="fa fa-caret-right" aria-hidden="true"></i></a>
                                 <ul class="sub-menu">
                                     {% for link in products_link  %}
                                         <li><a href="{% url 'product_view' link.product_slug%}">{{link.product_name}}</a></li>
                                     {% endfor %}
                                 </ul>
                             </li>
-                            <li><a href="{% url 'sales'%}">Compra</a></li>
+                            <li><a href="{% url 'sales'%}">{% trans "Compra" %}</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="noop">Parcerias <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                        <a href="#" class="noop">{% trans "Parcerias" %} <i class="fa fa-caret-down" aria-hidden="true"></i></a>
                         <ul>
                             {% for link in partners_link  %}
                                 <li><a href="{% url 'partners_view' link.partner_slug%}">{{link.partner_title}}</a></li>
@@ -77,24 +77,24 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="noop">Mídia <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                        <a href="#" class="noop">{% trans "Mídia" %} <i class="fa fa-caret-down" aria-hidden="true"></i></a>
                         <ul>
-                            <li><a href="{% url 'news' %}">AH Notícias</a></li>
-                            <li><a href="{% url 'magazine' %}">Página Um</a></li>
-                            <li><a href="{% url 'agricutural_prices' %}">Cotações Agrícolas</a></li>
+                            <li><a href="{% url 'news' %}">{% trans "AH Notícias" %}</a></li>
+                            <li><a href="{% url 'magazine' %}">{% trans "Página Um" %}</a></li>
+                            <li><a href="{% url 'agricutural_prices' %}">{% trans "Cotações Agrícolas" %}</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="noop">Responsabilidade Social <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                        <a href="#" class="noop">{% trans "Responsabilidade Social" %} <i class="fa fa-caret-down" aria-hidden="true"></i></a>
                         <ul>
                         {% for link in events_link  %}
                             <li><a href="{% url 'event_view' link.event_slug%}">{{link.event_title}}</a></li>
                         {% endfor %}
                         </ul>
                     </li>
-                    <li class="single-nav"><a href="{% url 'environmental_responsability' %}">Responsabilidade Ambiental</a></li>
-                    <li class="single-nav"><a href="{% url 'work_with_us' %}">Trabalhe Conosco</a></li>
-                    <li class="single-nav"><a href="{% url 'talk_with_us' %}" class="contact-menu-icon" title="Entre em contato conosco"><i class="fa fa-phone" aria-hidden="true"></i></a></li>
+                    <li class="single-nav"><a href="{% url 'environmental_responsability' %}">{% trans "Responsabilidade Ambiental" %}</a></li>
+                    <li class="single-nav"><a href="{% url 'work_with_us' %}">{% trans "Trabalhe Conosco" %}</a></li>
+                    <li class="single-nav"><a href="{% url 'talk_with_us' %}" class="contact-menu-icon" title="{% trans "Entre em contato conosco" %}"><i class="fa fa-phone" aria-hidden="true"></i></a></li>
                 </ul>
                 <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
                     <input name="next" type="hidden" value="{{ redirect_to }}" />
@@ -142,27 +142,27 @@
                 <div class="row">
                     <div class="footer-col col-md-2">
                         <ul>
-                            <li class="link-title"><a href="{% url 'about_company'%}">Institucional</a></li>
-                            <li><a href="{% url 'about_company' %}#sobre-nos">Agropecuária AH</a></li>
-                            <li><a href="{% url 'about_company' %}#nossa-missao">Missão e Visão</a></li>
-                            <li><a href="{% url 'about_company' %}#nossos-valores">Valores e Competência</a></li>
-                            <li><a href="{% url 'about_company' %}#localizacoes">Localizações</a></li>
+                            <li class="link-title"><a href="{% url 'about_company'%}">{% trans "Institucional" %}</a></li>
+                            <li><a href="{% url 'about_company' %}#sobre-nos">{% trans "Agropecuária AH" %}</a></li>
+                            <li><a href="{% url 'about_company' %}#nossa-missao">{% trans "Missão e Visão" %}</a></li>
+                            <li><a href="{% url 'about_company' %}#nossos-valores">{% trans "Valores e Competência" %}</a></li>
+                            <li><a href="{% url 'about_company' %}#localizacoes">{% trans "Localizações" %}</a></li>
                         </ul>
                     </div>
                     <div class="footer-col col-md-2">
                         <ul >
-                            <li class="link-title">Negócios</li>
+                            <li class="link-title">{% trans "Negócios" %}</li>
                                 <li>
                                     {% for link in products_link %}
-                                        <li><a href="{% url 'product_view' link.product_slug%}">Venda <i class="fa fa-angle-right" aria-hidden="true"></i> {{link.product_name}}</a></li>
+                                        <li><a href="{% url 'product_view' link.product_slug%}">{% trans "Venda" %} <i class="fa fa-angle-right" aria-hidden="true"></i> {{link.product_name}}</a></li>
                                     {% endfor %}
                                 </li>
-                                <li><a href="{% url 'sales'%}">Compra</a></li>
+                                <li><a href="{% url 'sales'%}">{% trans "Compra" %}</a></li>
                         </ul>
                     </div>
                     <div class="footer-col col-md-3">
                         <ul >
-                            <li class="link-title">Parcerias</li>
+                            <li class="link-title">{% trans "Parcerias" %}</li>
                             {% for link in partners_link  %}
                                 <li><a href="{% url 'partners_view' link.partner_slug%}">{{link.partner_title}}</a></li>
                             {% endfor %}
@@ -170,7 +170,7 @@
                     </div>
                     <div class="footer-col col-md-3">
                         <ul >
-                            <li class="link-title">Responsabilidade Social</li>
+                            <li class="link-title">{% trans "Responsabilidade Social" %}</li>
                             {% for link in events_link  %}
                                 <li><a href="{% url 'event_view' link.event_slug%}">{{link.event_title}}</a></li>
                             {% endfor %}
@@ -178,10 +178,10 @@
                     </div>
                     <div class="footer-col col-md-2">
                         <ul >
-                            <li class="link-title">Mídia</li>
-                            <li><a href="{% url 'news' %}">Notícias</a></li>
-                            <li><a href="{% url 'magazine' %}">Página Um</a></li>
-                            <li><a href="{% url 'agricutural_prices'%}">Cotações Agrícolas</a></li>
+                            <li class="link-title">{% trans "Mídia" %}</li>
+                            <li><a href="{% url 'news' %}">{% trans "Notícias" %}</a></li>
+                            <li><a href="{% url 'magazine' %}">{% trans "Página Um" %}</a></li>
+                            <li><a href="{% url 'agricutural_prices'%}">{% trans "Cotações Agrícolas" %}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -207,10 +207,10 @@
                                 <li>
                                     <a href="tel:+551839173262">
                                         <div class="meta">
-                                            <strong>Escritório - Presidente Prudente</strong>
+                                            <strong>{% trans "Escritório - Presidente Prudente" %}</strong>
                                             <span class="telephone">
                                                 <i class="fa fa-phone" aria-hidden="true"></i>
-                                                (18) 3917-3262
+                                                {% trans "(18) 3917-3262" %}
                                             </span>
                                         </div>
                                     </a>
@@ -218,10 +218,10 @@
                                 <li>
                                     <a href="tel:+556735461467">
                                         <div class="meta">
-                                            <strong>Fazenda Córrego Azul</strong>
+                                            <strong>{% trans "Fazenda Córrego Azul" %}</strong>
                                             <span class="telephone">
                                                 <i class="fa fa-phone" aria-hidden="true"></i>
-                                                (67) 3546-1467
+                                                {% trans "(67) 3546-1467" %}
                                             </span>
                                         </div>
                                     </a>
@@ -229,10 +229,10 @@
                                 <li>
                                     <a href="tel:+553140637729">
                                         <div class="meta">
-                                            <strong>Fazenda Ouro Verde</strong>
+                                            <strong>{% trans "Fazenda Ouro Verde" %}</strong>
                                             <span class="telephone">
                                                 <i class="fa fa-phone" aria-hidden="true"></i>
-                                                (31) 4063-7729
+                                                {% trans "(31) 4063-7729" %}
                                             </span>
                                         </div>
                                     </a>
@@ -242,8 +242,8 @@
                     {% endif %}
 
                     <div class="col-lg-3 links">
-                        <a href="/fale-conosco">Fale Conosco</a> | <a href="/trabalhe-conosco">Trabalhe Conosco</a><br/>
-                        <span class="copyright">Copyright &copy; AH Agropecuária {% now "Y" %}</span>
+                        <a href="{% url 'talk_with_us' %}">{% trans "Fale Conosco" %}</a> | <a href="{% url 'work_with_us' %}">{% trans "Trabalhe Conosco" %}</a><br/>
+                        <span class="copyright">Copyright &copy; {% trans "AH Agropecuária" %} {% now "Y" %}</span>
                     </div>
                 </div>
             </div>

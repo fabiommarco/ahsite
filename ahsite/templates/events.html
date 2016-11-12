@@ -1,7 +1,8 @@
-  {% extends "base.html" %}
-  {% block class %}dynamic-content ah-background page-responsabilidade-social{% endblock class%}
-  {% load static %}
-  {% block content %}
+{% extends "base.html" %}
+{% block class %}dynamic-content ah-background page-responsabilidade-social{% endblock class%}
+{% load static %}
+{% load i18n %}
+{% block content %}
     <div class="container">
       <div class="col-md-10 col-md-offset-1">
             {% for event in all_events %}
@@ -13,12 +14,12 @@
                   <h3>{{event.event_title}}</h3>
                   <small>{{event.event_local}} - {{event.event_date|date:"d/m/Y"}}</small>
                   <p>{{event.event_description|safe|truncatechars:200 }}</p>
-                  <p><a href="{% url 'event_view' event.event_slug %}" class="btn btn-primary" role="button">Leia Mais</a></p>
+                  <p><a href="{% url 'event_view' event.event_slug %}" class="btn btn-primary" role="button">{% trans "Leia mais" %}</a></p>
                 </div>
             </div>
             {% empty %}
-            <p>Nenhum Evento em andamento. Volte em breve para conferir as novidades.</p>
+            <p>{% trans "Nenhum evento em andamento. Volte em breve para conferir as novidades." %}</p>
             {% endfor %}
       </div>
     </div>
-  {% endblock content %}
+{% endblock content %}

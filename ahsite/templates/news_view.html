@@ -1,7 +1,8 @@
-  {% extends "base.html" %}
-  {% load static %}
-  {% block class %}dynamic-content ah-background{% endblock class%}
-  {% block content %}
+{% extends "base.html" %}
+{% load static %}
+{% block class %}dynamic-content ah-background{% endblock class%}
+{% load i18n %}
+{% block content %}
     <div class="container">
       <div class="col-md-10 col-md-offset-1">
         <h1>{{news.news_title}}</h1>
@@ -9,14 +10,14 @@
         {{news.news_description|safe}}
 
         {% if news.news_video %}
-          <h3>Confira o Video do evento</h3>
+          <h3>{% trans "Confira o Video do evento" %}</h3>
           <iframe width="420" height="315"src="https://www.youtube.com/embed/{{news.news_video}}"></iframe>
         {% endif %}
         {% if news.news_galery.all|length %}
           {% if news.news_galery_title %}
               <h3>{{news.news_galery_title}}</h3>
           {% else %}
-              <h3>Galeria de Imagens</h3>
+              <h3>{% trans "Galeria de Imagens" %}</h3>
           {% endif %}
             {% for imagem in news.news_galery.all %}
                   <div class="col-xs-6 col-md-3">
@@ -28,7 +29,7 @@
         {% endif %}
       </div>
     </div>
-  {% endblock content %}
+{% endblock content %}
 
 {% block css %}
   <link rel="stylesheet" href="{% static 'css/jquery.fancybox.css' %}?v=2.1.5" type="text/css" media="screen" />

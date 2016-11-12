@@ -1,16 +1,17 @@
-  {% extends "base.html" %}
-  {% block class %}page-about dynamic-content ah-background{% endblock class%}
-  {% block content %}
+{% extends "base.html" %}
+{% block class %}page-about dynamic-content ah-background{% endblock class%}
+{% load i18n %}
+{% block content %}
     {% load static %}
     <div class="container">
       <div class="col-md-10 col-md-offset-1">
-        <h2>Institucional</h2>
+        <h2>{% trans "Institucional" %}</h2>
         <div class="content">
           {{about.ac_content|safe}}
 
           <div class="localizacoes">
             <a id="localizacoes" name="localizacoes"></a>
-            <h3>Localizações</h3>
+            <h3>{% trans "Localizações" %}</h3>
             {% include "_map.html" %}
           </div>
         </div>
@@ -19,7 +20,7 @@
           {% if about.gallery_title %}
             <h3>{{about.gallery_title}}</h3>
           {% else %}
-            <h3>Galeria de Imagens</h3>
+            <h3>{% trans "Galeria de Imagens" %}</h3>
           {% endif %}
           {% for imagem in about.gallery.all %}
             <div class="col-xs-6 col-md-3">

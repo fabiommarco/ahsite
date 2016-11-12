@@ -1,22 +1,24 @@
-  {% extends "base.html" %}
+{% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
   {% block content %}
     <!-- Contact Section -->
     <section id="contact" class="ah-background">
         <div class="container">
             <div class="col-lg-7">
-                <h2>Fale Conosco</h2>
-                <p class="small">Preencha o formulário abaixo para entrar em contato com a Agropecuária AH.</p>
+                <h2>{% trans "Fale Conosco" %}</h2>
+                <p class="small">{% trans "Preencha o formulário abaixo para entrar em contato com a Agropecuária AH." %}</p>
                 {% include '_contact_form.html' %}
             </div>
             <div class="col-lg-4 col-lg-offset-1 address-list">
-                <h2>Telefones de Contato</h2>
+                <h2>{% trans "Telefones de Contato" %}</h2>
                 <p class="small"></p>
                 <ul class="information-block">
                     <li>
                         <a href="tel:+551839173262">
                             <div class="meta">
+                                {% blocktrans %}
                                 <strong>Escritório</strong>
                                 <span>Av. Cel. José Soares Marcondes, 1078 - 11º andar</span>
                                 <span>Presidente Prudente/SP - CEP 19010-080</span>
@@ -24,6 +26,7 @@
                                     <i class="fa fa-phone" aria-hidden="true"></i>
                                     (18) 3917-3262
                                 </span>
+                                {% endblocktrans %}
                             </div>
                             <i class="fa fa-angle-right" aria-hidden="true"></i>
                         </a>
@@ -31,6 +34,7 @@
                     <li>
                         <a href="tel:+556735461467">
                             <div class="meta">
+                                {% blocktrans %}
                                 <strong>Fazenda Córrego Azul</strong>
                                 <span>Rodovia MS 395 Brasilândia/Bataguassu</span>
                                 <span>Zona Rural - Caixa Postal Nº23</span>
@@ -39,6 +43,7 @@
                                     <i class="fa fa-phone" aria-hidden="true"></i>
                                     (67) 3546-1467
                                 </span>
+                                {% endblocktrans %}
                             </div>
                             <i class="fa fa-angle-right" aria-hidden="true"></i>
                         </a>
@@ -46,6 +51,7 @@
                     <li>
                         <a href="tel:+553140637729">
                             <div class="meta">
+                                {% blocktrans %}
                                 <strong>Fazenda Ouro Verde</strong>
                                 <span>Zona Rural - Caixa Postal Nº45</span>
                                 <span>Unaí/MG - CEP 38610-000</span>
@@ -53,6 +59,7 @@
                                     <i class="fa fa-phone" aria-hidden="true"></i>
                                     (31) 4063-7729
                                 </span>
+                                {% endblocktrans %}
                             </div>
                             <i class="fa fa-angle-right" aria-hidden="true"></i>
                         </a>

@@ -7,33 +7,115 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-12 16:42+0000\n"
-"PO-Revision-Date: 2016-11-12 11:54-0500\n"
+"POT-Creation-Date: 2016-11-12 17:27+0000\n"
+"PO-Revision-Date: 2016-11-12 12:46-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Last-Translator: \n"
-"Language-Team: \n"
 "X-Generator: Poedit 1.8.11\n"
 
-#: ahsite/settings.py:97
-msgid "Inglês"
-msgstr "English"
+#: app/views.py:224
+msgid ""
+"Parece que algo de errado aconteceu. Por favor, tente novamente mais tarde!"
+msgstr "Oh, no! Something wrong happened. Please try again shortly."
 
-#: ahsite/settings.py:98
-msgid "Português"
-msgstr "Portuguese"
+#: app/views.py:231
+msgid "Obrigado! Sua mensagem foi enviada."
+msgstr "Thank you. Your message has been sent."
+
+#: templates/404.html:10
+msgid "A página que você esta tentando visitar não existe."
+msgstr "The page you are trying to access does not exist."
+
+#: templates/404.html:11 templates/base.html:36
+msgid "Ir para a Página Inicial"
+msgstr "Go to the Home Page."
+
+#: templates/_contact_form.html:6
+msgid "Nome"
+msgstr "Name"
+
+#: templates/_contact_form.html:7
+msgid "Campo Nome é obrigatório."
+msgstr "Name is required."
+
+#: templates/_contact_form.html:13
+msgid "Email"
+msgstr "Email"
+
+#: templates/_contact_form.html:14
+msgid "Campo Email é obrigatório."
+msgstr "Email is required."
+
+#: templates/_contact_form.html:20
+msgid "Telefone"
+msgstr "Phone"
+
+#: templates/_contact_form.html:21
+msgid "Campo Telefone é obrigatório."
+msgstr "Phone is required."
+
+#: templates/_contact_form.html:27
+msgid "Cidade"
+msgstr "City"
+
+#: templates/_contact_form.html:28
+msgid "Campo Cidade é obrigatório."
+msgstr "City is required."
+
+#: templates/_contact_form.html:36 templates/_contact_form.html:38
+msgid "Curriculum"
+msgstr "Resume"
+
+#: templates/_contact_form.html:37
+msgid "Campo Curriculum é obrigatório."
+msgstr "Resume is required."
+
+#: templates/_contact_form.html:46
+msgid "Mensagem"
+msgstr "Message"
+
+#: templates/_contact_form.html:47
+msgid "Campo Mensagem é obrigatório."
+msgstr "Message is required."
+
+#: templates/_contact_form.html:56 templates/index.html:135
+msgid "Enviar"
+msgstr "Send"
+
+#: templates/_prod.html:8 templates/_prod.html:10 templates/index.html:63
+#: templates/index.html:76 templates/index.html:110
+msgid "Saiba mais"
+msgstr "Read more"
+
+#: templates/about_company.html:8 templates/base.html:49
+#: templates/base.html:145
+msgid "Institucional"
+msgstr ""
+
+#: templates/about_company.html:14 templates/base.html:54
+#: templates/base.html:149
+msgid "Localizações"
+msgstr "Locations"
+
+#: templates/about_company.html:23 templates/environmental.html:21
+#: templates/event_view.html:24 templates/news_view.html:20
+#: templates/product_view.html:17
+msgid "Galeria de Imagens"
+msgstr "Image Gallery"
 
 #: templates/admin/index.html:18 templates/admin/newsletter/change_list.html:54
 #: templates/admin/newsletter/list_newsletter.html:19
 msgid "Home"
-msgstr ""
+msgstr "Home"
 
 #: templates/admin/index.html:45
 msgid "Add"
-msgstr ""
+msgstr "Add"
 
 #: templates/admin/index.html:49
 msgid "Export"
@@ -78,34 +160,160 @@ msgid_plural "Please correct the errors below."
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/index.html:26
+#: templates/agricutural_prices.html:8 templates/base.html:84
+#: templates/base.html:184
+msgid "Cotações Agrícolas"
+msgstr ""
+
+#: templates/agricutural_prices.html:9
+msgid ""
+"Nós disponibilizamos cotações agrícolas periodicamente. Faça o download "
+"abaixo:"
+msgstr ""
+
+#: templates/agricutural_prices.html:14
+msgid "Clique para fazer o download."
+msgstr "Click to download."
+
+#: templates/agricutural_prices.html:24 templates/index.html:116
+#: templates/magazine.html:32
+msgid "Nenhum item encontrado."
+msgstr "No items found."
+
+#: templates/base.html:13 templates/base.html:246 templates/index.html:11
 msgid "AH Agropecuária"
 msgstr ""
 
-#: templates/index.html:27
+#: templates/base.html:36 templates/base.html:51 templates/base.html:146
+msgid "Agropecuária AH"
+msgstr ""
+
+#: templates/base.html:52 templates/base.html:147
+msgid "Missão e Visão"
+msgstr "Mission and Vision"
+
+#: templates/base.html:53 templates/base.html:148
+msgid "Valores e Competência"
+msgstr "Values and Competency"
+
+#: templates/base.html:58 templates/base.html:154
+msgid "Negócios"
+msgstr "Business"
+
+#: templates/base.html:61 templates/base.html:157
+msgid "Venda"
+msgstr "Sales"
+
+# This is weird. How do I translate Compra? Buying?
+#: templates/base.html:68 templates/base.html:160
+msgid "Compra"
+msgstr ""
+
+#: templates/base.html:72 templates/base.html:165 templates/index.html:69
+msgid "Parcerias"
+msgstr "Partnerships"
+
+#: templates/base.html:80 templates/base.html:181
+msgid "Mídia"
+msgstr "Press"
+
+#: templates/base.html:82
+msgid "AH Notícias"
+msgstr "AH News"
+
+#: templates/base.html:83 templates/base.html:183
+msgid "Página Um"
+msgstr "Página Um"
+
+#: templates/base.html:88 templates/base.html:173
+msgid "Responsabilidade Social"
+msgstr "Social Responsibility"
+
+#: templates/base.html:95
+msgid "Responsabilidade Ambiental"
+msgstr "Environmental Responsibility"
+
+#: templates/base.html:96 templates/base.html:245 templates/index.html:122
+#: templates/work-with-us.html:10
+msgid "Trabalhe Conosco"
+msgstr "Work with us"
+
+#: templates/base.html:97
+msgid "Entre em contato conosco"
+msgstr "Reach out to us"
+
+#: templates/base.html:182
+msgid "Notícias"
+msgstr "News"
+
+#: templates/base.html:210
+msgid "Escritório - Presidente Prudente"
+msgstr "Office - Presidente Prudente"
+
+#: templates/base.html:213
+msgid "(18) 3917-3262"
+msgstr "+55 (18) 3917-3262"
+
+#: templates/base.html:221
+msgid "Fazenda Córrego Azul"
+msgstr "Córrego Azul Farm"
+
+#: templates/base.html:224
+msgid "(67) 3546-1467"
+msgstr "+55 (67) 3546-1467"
+
+#: templates/base.html:232
+msgid "Fazenda Ouro Verde"
+msgstr "Ouro Verde Farm"
+
+#: templates/base.html:235
+msgid "(31) 4063-7729"
+msgstr "+55 (31) 4063-7729"
+
+#: templates/base.html:245 templates/talk-with-us.html:10
+msgid "Fale Conosco"
+msgstr "Contact Us"
+
+#: templates/environmental.html:13
+msgid "Confira nosso Video"
+msgstr "Check out our video"
+
+#: templates/event_view.html:16 templates/news_view.html:13
+msgid "Confira o Video do evento"
+msgstr "Check out a video"
+
+#: templates/events.html:17 templates/index.html:92 templates/news.html:16
+msgid "Leia mais"
+msgstr "Read more"
+
+#: templates/events.html:21
+msgid "Nenhum evento em andamento. Volte em breve para conferir as novidades."
+msgstr "No events available at the moment. Please try again shortly."
+
+#: templates/index.html:12
 msgid ""
 "A AH é uma das importantes agropecuárias do Brasil, com áreas produtivas que "
 "somam mais de 40.000 hectares e sistemas de produção implantados em três "
 "estados brasileiros - Mato Grosso do Sul, Mato Grosso e Minas Gerais."
 msgstr ""
 
-#: templates/index.html:29
+#: templates/index.html:14
 msgid "Conheca a nossa história"
-msgstr "Know more about us"
+msgstr "Get to know more about us"
 
-#: templates/index.html:60
+#: templates/index.html:45
 msgid "Localizações AH"
 msgstr "Locations"
 
-#: templates/index.html:61
+#: templates/index.html:46
 msgid "A Agropecuária AH possui unidades nas seguintes localidades:"
 msgstr "We are based in the following locations:"
 
-#: templates/index.html:71
+#: templates/index.html:56
 msgid "Fomento Bezerro AH+"
 msgstr ""
 
-#: templates/index.html:72
+#: templates/index.html:57
 msgid ""
 "O Programa Fomento AH+ consiste em fomentar a inseminação artificial "
 "(Convencional e/ou em Tempo Fixo – IATF), e o cruzamento com as raças Angus "
@@ -113,28 +321,20 @@ msgid ""
 "diferenciado atrelado indicador CEPEA, a compra de toda a progênie..."
 msgstr ""
 
-#: templates/index.html:75
+#: templates/index.html:60
 msgid "Solicitação de adiantamento de sêmen"
 msgstr ""
 
-#: templates/index.html:76
+#: templates/index.html:61
 #, python-format
 msgid "Retenção de até 50%% de fêmeas para reposição"
 msgstr ""
 
-#: templates/index.html:78 templates/index.html:91
-msgid "Saiba Mais"
-msgstr "Know more"
-
-#: templates/index.html:84
-msgid "Parcerias"
-msgstr "Partnerships"
-
-#: templates/index.html:84
+#: templates/index.html:69
 msgid "Parceria Suinocultura"
 msgstr ""
 
-#: templates/index.html:85
+#: templates/index.html:70
 msgid ""
 "A parceria suinocultura consiste no sistema de criação de animais em que a "
 "Agropecuária AH transfere a fase de terminação da engorda de suínos ao "
@@ -142,68 +342,170 @@ msgid ""
 "animais com a melhor genética..."
 msgstr ""
 
-#: templates/index.html:88
+#: templates/index.html:73
 msgid "Índices de eficência no topo melhores padrões mundiais"
 msgstr ""
 
-#: templates/index.html:89
+#: templates/index.html:74
 msgid "Forte foco especialização pelos parceiros"
 msgstr ""
 
-#: templates/index.html:100
+#: templates/index.html:85 templates/news.html:9
 msgid "<strong>AH</strong> Notícias"
-msgstr ""
+msgstr "<strong>AH</strong> News"
 
-#: templates/index.html:107
-msgid "Leia mais"
-msgstr "Read more"
-
-#: templates/index.html:110
+#: templates/index.html:95
 msgid "Nenhuma notícia encontrada."
 msgstr "New news found."
 
-#: templates/index.html:116
+#: templates/index.html:101
 msgid "Responsabilidade <strong>Social</strong>"
-msgstr ""
+msgstr "<strong>Social</strong> Responsibility"
 
-#: templates/index.html:125
-msgid "Saiba mais"
-msgstr "Know more"
-
-#: templates/index.html:131
-msgid "Nenhum item encontrado."
-msgstr "No items found."
-
-#: templates/index.html:137
-msgid "Trabalhe Conosco"
-msgstr "Work for us"
-
-#: templates/index.html:138
+#: templates/index.html:123
 msgid ""
 "Nossa empresa tem o desejo de transformar o País. Para isso, precisamos de "
 "uma equipe forte e coesa, formada por gente de qualidade."
 msgstr ""
 
-#: templates/index.html:139
+#: templates/index.html:124
 msgid "Envie seu currículo"
 msgstr "Send your resume"
 
-#: templates/index.html:143
+#: templates/index.html:128
 msgid "Newsletter"
 msgstr "Newsletter"
 
-#: templates/index.html:144
+#: templates/index.html:129
 msgid "Receba nossas novidades diretamente no seu e-mail."
-msgstr ""
+msgstr "Receive notifications about us directly in your email."
 
-#: templates/index.html:148
+#: templates/index.html:133
 msgid "Digite o seu nome."
 msgstr "Name"
 
-#: templates/index.html:149
+#: templates/index.html:134
 msgid "Digite o seu e-mail."
 msgstr "Email address"
 
-#: templates/index.html:150
-msgid "Enviar"
-msgstr "Send"
+#: templates/magazine.html:18
+msgid "Confira as Edições Anteriores"
+msgstr "Past Editions"
+
+#: templates/magazine.html:26
+msgid "Download"
+msgstr "Download"
+
+#: templates/magazine.html:37
+msgid "Nenhuma revista disponivel."
+msgstr "No magazines available."
+
+#: templates/news.html:19
+msgid ""
+"Nenhuma notícia em andamento. Volte em breve para conferir as novidades."
+msgstr "No news found. Please come back in the near future."
+
+#: templates/sales.html:12
+msgid ""
+"Preencha o formulário abaixo para entrar em contato com um de nossos "
+"consultores. Teremos prazer de respondê-lo o mais rápido possível."
+msgstr ""
+"Fill out the form below to get in touch with our sales team. We’ll respond "
+"as soon as possible."
+
+#: templates/talk-with-us.html:11
+msgid ""
+"Preencha o formulário abaixo para entrar em contato com a Agropecuária AH."
+msgstr "Fill out the form below to get in touch with us."
+
+#: templates/talk-with-us.html:15
+msgid "Telefones de Contato"
+msgstr "Phone numbers"
+
+#: templates/talk-with-us.html:21
+msgid ""
+"\n"
+"                                <strong>Escritório</strong>\n"
+"                                <span>Av. Cel. José Soares Marcondes, 1078 - "
+"11º andar</span>\n"
+"                                <span>Presidente Prudente/SP - CEP "
+"19010-080</span>\n"
+"                                <span class=\"telephone\">\n"
+"                                    <i class=\"fa fa-phone\" aria-hidden="
+"\"true\"></i>\n"
+"                                    (18) 3917-3262\n"
+"                                </span>\n"
+"                                "
+msgstr ""
+
+#: templates/talk-with-us.html:37
+msgid ""
+"\n"
+"                                <strong>Fazenda Córrego Azul</strong>\n"
+"                                <span>Rodovia MS 395 Brasilândia/Bataguassu</"
+"span>\n"
+"                                <span>Zona Rural - Caixa Postal Nº23</span>\n"
+"                                <span>Brasilândia/MS - CEP 79670-000</span>\n"
+"                                <span class=\"telephone\">\n"
+"                                    <i class=\"fa fa-phone\" aria-hidden="
+"\"true\"></i>\n"
+"                                    (67) 3546-1467\n"
+"                                </span>\n"
+"                                "
+msgstr ""
+
+#: templates/talk-with-us.html:54
+msgid ""
+"\n"
+"                                <strong>Fazenda Ouro Verde</strong>\n"
+"                                <span>Zona Rural - Caixa Postal Nº45</span>\n"
+"                                <span>Unaí/MG - CEP 38610-000</span>\n"
+"                                <span class=\"telephone\">\n"
+"                                    <i class=\"fa fa-phone\" aria-hidden="
+"\"true\"></i>\n"
+"                                    (31) 4063-7729\n"
+"                                </span>\n"
+"                                "
+msgstr ""
+
+#: templates/work-with-us.html:11
+msgid ""
+"Deseja trabalhar em uma empresa séria, em franco crescimento e com ótimas "
+"oportunidades de carreira? <br>Selecione uma vaga abaixo e envie seu "
+"currículo através do formulário para que possamos contactá-lo."
+msgstr ""
+
+#: templates/work-with-us.html:15
+msgid "Vagas disponíveis"
+msgstr "Open Positions"
+
+#: templates/work-with-us.html:29
+msgid "Enviar currículo"
+msgstr "Send resume"
+
+#: templates/work-with-us.html:33
+msgid "Nenhuma vaga disponível no momento."
+msgstr "No open positions at this moment."
+
+#: templates/work-with-us.html:33
+msgid "Entre em contato conosco para mais esclarecimendos"
+msgstr "Please reach out to us with any further questions"
+
+#: templates/work-with-us.html:54
+msgid ""
+"Para se candidatar, por favor preencha o formulário abaixo e analisaremos "
+"seu curriculum."
+msgstr "To apply, please fill out the form below."
+
+#: templates/work-with-us.html:60
+msgid "Fechar"
+msgstr "Close"
+
+#~ msgid "Inglês"
+#~ msgstr "English"
+
+#~ msgid "Português"
+#~ msgstr "Portuguese"
+
+#~ msgid "Saiba Mais"
+#~ msgstr "Read more"

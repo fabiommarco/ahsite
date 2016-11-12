@@ -221,14 +221,14 @@ def new_contact(request,contact_type):
         if not contact_form.is_valid():
             return_data = {'success': False, 'errors' : [(k, v[0]) for k, v in contact_form.errors.items()]}
             messages.add_message(request, messages.ERROR,
-                                 'Parece que algo de errado aconteceu. Por favor, tente novamente mais tarde!')
+                                 _('Parece que algo de errado aconteceu. Por favor, tente novamente mais tarde!'))
         else:
             if contact_type == 'sale':
                 extra_recipient = Sale.objects.latest('id')
                 contact_form.send(request, extra_recipient.sale_email)
             else:
                 contact_form.send(request)
-            messages.add_message(request, messages.SUCCESS, 'Obrigado! Sua mensagem foi enviada.')
+            messages.add_message(request, messages.SUCCESS, _('Obrigado! Sua mensagem foi enviada.'))
         if apply_job_context:
             # return render(request, 'work-with-us.html', {})
             return HttpResponseRedirect(reverse('work_with_us', args=()))

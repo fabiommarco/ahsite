@@ -44,6 +44,16 @@
             </div>
 
             <div class="collapse navbar-collapse" id="ah-navbar">
+                <form action="{% url 'set_language' %}" method="post" class="language-container">{% csrf_token %}
+                    <input name="next" type="hidden" value="{{ redirect_to }}" />
+                    <input name="language" type="hidden" value="" />
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for language in languages %}
+                      <button type="button" class="language-switcher {% if language.code == LANGUAGE_CODE %} selected {% endif %}" data-lang="{{ language.code }}">{{ language.name_local }}</button>
+                    {% endfor %}
+                </form>
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="#" class="noop">{% trans "Institucional" %} <i class="fa fa-caret-down" aria-hidden="true"></i></a>
@@ -96,20 +106,6 @@
                     <li class="single-nav"><a href="{% url 'work_with_us' %}">{% trans "Trabalhe Conosco" %}</a></li>
                     <li class="single-nav"><a href="{% url 'talk_with_us' %}" class="contact-menu-icon" title="{% trans "Entre em contato conosco" %}"><i class="fa fa-phone" aria-hidden="true"></i></a></li>
                 </ul>
-                <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
-                    <input name="next" type="hidden" value="{{ redirect_to }}" />
-                    <select name="language">
-                        {% get_current_language as LANGUAGE_CODE %}
-                        {% get_available_languages as LANGUAGES %}
-                        {% get_language_info_list for LANGUAGES as languages %}
-                        {% for language in languages %}
-                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                                {{ language.name_local }}
-                            </option>
-                        {% endfor %}
-                    </select>
-                    <input type="submit" value="Go" />
-                </form>
             </div>
             <!-- /.navbar-collapse -->
         </div>

@@ -53,7 +53,8 @@ def home(request):
 
 @load_basic_info
 def about_company(request,r=None):
-    about = AboutCompany.objects.latest('id')
+    lang = request.LANGUAGE_CODE
+    about = AboutCompany.objects.filter(c_language=lang).latest('id')
     return render(request, 'about_company.html',
                   {'about':about,
                    'general_info':general_info,

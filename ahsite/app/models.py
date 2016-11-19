@@ -16,6 +16,11 @@ from django.utils.html import format_html
 from django.template.defaultfilters import truncatechars,slugify
 from ckeditor.fields import RichTextField
 
+LANGUAGES = (
+        ('pt', 'Portugues'),
+        ('en', 'English'),
+    )
+
 def get_upload_path(instance, filename):
     _f, ext = os.path.splitext(filename)
     new_filename = '%s%s' % (uuid.uuid4().hex, ext)
@@ -41,6 +46,18 @@ class Imagem(models.Model):
     class Meta:
         verbose_name = u"Galeria de Imagens"
         verbose_name_plural = u"Galeria de Imagens"
+
+class Attachment(models.Model):
+    attach = models.FileField("Anexo", upload_to=get_upload_path, max_length=100)
+    
+    # Generic ForeignKey
+    content_type = models.ForeignKey(ContentType)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey()
+    
+    # Alterando o nome pluralizado da classe
+    class Meta:
+        verbose_name_plural = "Arquivos Anexos"
 
 
 class GeneralConfig(models.Model):
@@ -108,6 +125,11 @@ class GeneralConfig(models.Model):
 
 
 class AboutCompany(models.Model):
+    ac_language = models.CharField('Indioma',choices=LANGUAGES,
+                                   max_length=5,
+                                   default='pt-br',
+                                   blank=False,null=False,
+                                   help_text='Indioma em que a página será exibida',)
     ac_content = RichTextField(u"Conteúdo da página", blank=False)
     gallery_title = models.CharField(
         "Título da Galeria de Imagens",
@@ -116,7 +138,8 @@ class AboutCompany(models.Model):
         help_text="Digite um nome para a Galeria de Imagens, deixe o campo em"
                   "branco caso queira manter o nome como Galeria de Imagens.")
     gallery = GenericRelation(Imagem)
-
+    attach_galery = GenericRelation(Attachment)
+    
     def scaped_html(self):
         text = format_html(self.ac_content)
         try:
@@ -140,6 +163,14 @@ class Event(models.Model):
         called as resposabilidade social in the system
     '''
     event_date = models.DateTimeField(u"Data", default=datetime.datetime.now)
+    event_language = models.CharField('Indioma', 
+                                     choices=LANGUAGES,
+                                     max_length=5,
+                                        default='pt-br',
+                                        blank=False,
+                                        null=False,
+                                        help_text='Indioma em que a página será exibida',)
+    
     event_title = models.CharField(u"Título", max_length=300)
     event_local = models.CharField(u"Local", max_length=300)
     event_slug = models.SlugField(unique=True, max_length=100, editable=False)
@@ -159,6 +190,15 @@ class Event(models.Model):
         " deixe o campo em branco caso queira manter o nome como Galeria de Imagens.")
     event_galery = GenericRelation(Imagem)
 
+    event_attach_galery_title = models.CharField(
+        "Título da Galeria de Anexos",
+        blank=True,
+        max_length=200,
+        help_text="Digite um nome para a Galeria de Anexos,"
+        " deixe o campo em branco caso queira manter o nome como Galeria de Anexos.")
+    
+    event_attach_galery = GenericRelation(Attachment)
+    
     def __unicode__(self):
         return self.event_title
 
@@ -172,6 +212,14 @@ class Event(models.Model):
 
 class EnvironmentalResponsability(models.Model):
     environ_date = models.DateTimeField(u"Data", default=datetime.datetime.now)
+    environ_language = models.CharField('Indioma', 
+                                        choices=LANGUAGES,
+                                        max_length=5,
+                                        default='pt-br',
+                                        blank=False,
+                                        null=False,
+                                        help_text='Indioma em que a página será exibida',)
+    
     environ_title = models.CharField(u"Título", max_length=300)
     environ_description = RichTextField(u"Descrição")
     environ_video = models.CharField(
@@ -189,6 +237,15 @@ class EnvironmentalResponsability(models.Model):
         " deixe o campo em branco caso queira manter o nome como Galeria de Imagens.")
     environ_galery = GenericRelation(Imagem)
 
+    attach_galery_title = models.CharField(
+        "Título da Galeria de Anexos",
+        blank=True,
+        max_length=200,
+        help_text="Digite um nome para a Galeria de Anexos,"
+        " deixe o campo em branco caso queira manter o nome como Galeria de Anexos.")
+    
+    attach_galery = GenericRelation(Attachment)
+    
     def __unicode__(self):
         return self.environ_title
 
@@ -216,6 +273,16 @@ class News(models.Model):
         "deixe o campo em branco caso queira manter o nome como Galeria de Imagens.")
     news_galery = GenericRelation(Imagem)
 
+    attach_galery_title = models.CharField(
+        "Título da Galeria de Anexos",
+        blank=True,
+        max_length=200,
+        help_text="Digite um nome para a Galeria de Anexos,"
+        " deixe o campo em branco caso queira manter o nome como Galeria de Anexos.")
+    
+    attach_galery = GenericRelation(Attachment)
+    
+
     def __unicode__(self):
         return self.news_title
 
@@ -229,6 +296,12 @@ class News(models.Model):
 
 class Partners(models.Model):
     partner_date = models.DateTimeField(default=datetime.datetime.now)
+    partner_language = models.CharField('Indioma',choices=LANGUAGES,
+                                        max_length=5,
+                                        default='pt-br',
+                                        blank=False,
+                                        null=False,
+                                        help_text='Indioma em que a página será exibida',)
     partner_title = models.CharField(u"Nome da Parceria", max_length=300)
     partner_slug = models.SlugField(unique=True, max_length=100, editable=False)
     partner_description = RichTextField(u"Descrição")

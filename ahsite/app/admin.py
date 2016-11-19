@@ -3,38 +3,31 @@ from app.models import *
 # from django.contrib.contenttypes import GenericTabularInline, generic_inlineformset_factor
 from django.contrib.contenttypes.forms import generic_inlineformset_factory
 from django.contrib.contenttypes.admin import GenericTabularInline
+
 ImagemGenericFormSet = generic_inlineformset_factory(Imagem, extra=1)
+AttachGenericFormSet = generic_inlineformset_factory(Attachment, extra=1)
 
-
-class ImagemInlineFormset(ImagemGenericFormSet):
-    def clean(self):
-        principal_count = 0
-
-        for form in self.forms:
-            try:
-                if form.cleaned_data:
-                    if form.cleaned_data["main_image"] == True:
-                        principal_count += 1
-            except:
-                pass
-
-        if principal_count > 1:
-            raise forms.ValidationError("Selecione apenas uma imagem como Principal.")
 
 class ImagemInline(GenericTabularInline):
-    formset = ImagemInlineFormset
     model = Imagem
     extra = 1
     ct_field_name = 'content_type'
     id_field_name = 'object_id'
 
+class AttachInline(GenericTabularInline):
+    model = Attachment
+    extra = 1
+    ct_field_name = 'content_type'
+    id_field_name = 'object_id'
+
+
 class EventAdmin(admin.ModelAdmin):
     # list_display = ('scaped_html', )
-    inlines = [ImagemInline]
+    inlines = [ImagemInline, AttachInline]
 
 class NewsAdmin(admin.ModelAdmin):
     # list_display = ('scaped_html', )
-    inlines = [ImagemInline]
+    inlines = [ImagemInline, AttachInline]
 
 class NewsletterAdmin(admin.ModelAdmin):
     list_display = ('news_date','news_name','news_email',)
@@ -42,20 +35,20 @@ class NewsletterAdmin(admin.ModelAdmin):
 
 class AboutCompanyAdmin(admin.ModelAdmin):
     list_display = ('scaped_html', )
-    inlines = [ImagemInline]
+    inlines = [ImagemInline, AttachInline]
 
 
 class SaleAdmin(admin.ModelAdmin):
     list_display = ('sale_email', )
-
+    
 class ResearchAdmin(admin.ModelAdmin):
     list_display = ('reserach_date','reserach_title', 'reserach_type', 'research_file' )
 
 class ProdAdmin(admin.ModelAdmin):
-    inlines = [ImagemInline]
+    inlines = [ImagemInline, AttachInline]
 
 class EnvAdmin(admin.ModelAdmin):
-    inlines = [ImagemInline]
+    inlines = [ImagemInline, AttachInline]
     
 admin.site.register(Products, ProdAdmin)
 admin.site.register(Jobs)

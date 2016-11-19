@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-12 18:46+0000\n"
-"PO-Revision-Date: 2016-11-12 13:48-0500\n"
+"POT-Creation-Date: 2016-11-19 13:56+0000\n"
+"PO-Revision-Date: 2016-11-19 08:57-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -36,7 +36,7 @@ msgstr "^social-responsibility/(?P<event_slug>.*)$"
 
 #: ahsite/urls.py:21
 msgid "^compras/$"
-msgstr ""
+msgstr "^purchasing/$"
 
 #: ahsite/urls.py:22
 msgid "^vendas/(?P<product_slug>.*)$"
@@ -79,7 +79,7 @@ msgstr "Thank you. Your message has been sent."
 msgid "A página que você esta tentando visitar não existe."
 msgstr "The page you are trying to access does not exist."
 
-#: templates/404.html:11 templates/base.html:36
+#: templates/404.html:11 templates/base.html:36 templates/base.html:194
 msgid "Ir para a Página Inicial"
 msgstr "Go to the Home Page."
 
@@ -144,7 +144,7 @@ msgstr "Read more"
 #: templates/about_company.html:8 templates/base.html:49
 #: templates/base.html:145
 msgid "Institucional"
-msgstr ""
+msgstr "About Us"
 
 #: templates/about_company.html:14 templates/base.html:54
 #: templates/base.html:149
@@ -212,13 +212,14 @@ msgstr[1] ""
 #: templates/agricutural_prices.html:8 templates/base.html:84
 #: templates/base.html:184
 msgid "Cotações Agrícolas"
-msgstr ""
+msgstr "Agriculture Quotes"
 
 #: templates/agricutural_prices.html:9
 msgid ""
 "Nós disponibilizamos cotações agrícolas periodicamente. Faça o download "
 "abaixo:"
 msgstr ""
+"We post new agriculture quotes periodically. Download the latest below:"
 
 #: templates/agricutural_prices.html:14
 msgid "Clique para fazer o download."
@@ -256,7 +257,7 @@ msgstr "Sales"
 # This is weird. How do I translate Compra? Buying? Acquisition?
 #: templates/base.html:68 templates/base.html:160
 msgid "Compra"
-msgstr ""
+msgstr "Purchasing"
 
 #: templates/base.html:72 templates/base.html:165 templates/index.html:69
 msgid "Parcerias"
@@ -345,6 +346,10 @@ msgid ""
 "somam mais de 40.000 hectares e sistemas de produção implantados em três "
 "estados brasileiros - Mato Grosso do Sul, Mato Grosso e Minas Gerais."
 msgstr ""
+"AH is one of Brazil's important agricultural and livestock farms, with "
+"production areas totaling more than 40,000 hectares and production systems "
+"in three Brazilian states - Mato Grosso do Sul, Mato Grosso, and Minas "
+"Gerais."
 
 #: templates/index.html:14
 msgid "Conheca a nossa história"
@@ -356,32 +361,41 @@ msgstr "Locations"
 
 #: templates/index.html:46
 msgid "A Agropecuária AH possui unidades nas seguintes localidades:"
-msgstr "We are based in the following locations:"
+msgstr "Agropecuária AH has units in the following locations:"
 
 #: templates/index.html:56
 msgid "Fomento Bezerro AH+"
-msgstr ""
+msgstr "Fomento Bezerro AH+"
 
 #: templates/index.html:57
 msgid ""
 "O Programa Fomento AH+ consiste em fomentar a inseminação artificial "
 "(Convencional e/ou em Tempo Fixo – IATF), e o cruzamento com as raças Angus "
-"e Hereford. A Agropecuária AH garante em contrato e por um valor "
-"diferenciado atrelado indicador CEPEA, a compra de toda a progênie..."
+"e Hereford. A Agropecuária AH garante em contrato, e por um valor "
+"diferenciado atrelado indicador CEPEA, a compra de toda a progênie do "
+"cruzamento provenientes do programa."
 msgstr ""
+"The Fomento AH+ program consists in incentivizing artificial insemination "
+"(Conventional and/or Fixed Time - IATF) and Angus-Hereford crossbreeding. "
+"Agropecuária AH guarantees the purchase, for a priced tied to the CEPEA "
+"indicator, of the entire offspring originating from the program."
+
+#: templates/index.html:58 templates/index.html:71
+msgid "Benefícios"
+msgstr "Benefits"
 
 #: templates/index.html:60
 msgid "Solicitação de adiantamento de sêmen"
-msgstr ""
+msgstr "Ability to request a semen advance"
 
 #: templates/index.html:61
 #, python-format
 msgid "Retenção de até 50%% de fêmeas para reposição"
-msgstr ""
+msgstr "Retention of up to 50%% females for replacement"
 
 #: templates/index.html:69
 msgid "Parceria Suinocultura"
-msgstr ""
+msgstr "Pig Farming Partnership"
 
 #: templates/index.html:70
 msgid ""
@@ -390,14 +404,18 @@ msgid ""
 "produtor rural INTEGRADO, além das melhores tecnologias existentes, de "
 "animais com a melhor genética..."
 msgstr ""
+"The pig farming partnership consists in a system of raising animals where "
+"Agropecuária AH transfers the pig fattening and finishing phases to the "
+"partnered producers. It offers the best technologies as well as animals with "
+"better genetics.."
 
 #: templates/index.html:73
-msgid "Índices de eficência no topo melhores padrões mundiais"
-msgstr ""
+msgid "Índices de eficência no topo dos melhores padrões mundiais"
+msgstr "Efficiency indices at the top of the world's best standards"
 
 #: templates/index.html:74
 msgid "Forte foco especialização pelos parceiros"
-msgstr ""
+msgstr "Strong focus on specialization from partners"
 
 #: templates/index.html:85 templates/news.html:9
 msgid "<strong>AH</strong> Notícias"
@@ -416,6 +434,8 @@ msgid ""
 "Nossa empresa tem o desejo de transformar o País. Para isso, precisamos de "
 "uma equipe forte e coesa, formada por gente de qualidade."
 msgstr ""
+"Our company is set out to change the country. For that, we need a strong and "
+"cohesive team that is comprised of quality members."
 
 #: templates/index.html:124
 msgid "Envie seu currículo"
@@ -454,6 +474,11 @@ msgid ""
 "Nenhuma notícia em andamento. Volte em breve para conferir as novidades."
 msgstr "No news found. Please come back in the near future."
 
+# This is weird. How do I translate Compra? Buying? Acquisition?
+#: templates/sales.html:8
+msgid "Compras"
+msgstr "Purchasing"
+
 #: templates/sales.html:12
 msgid ""
 "Preencha o formulário abaixo para entrar em contato com um de nossos "
@@ -481,6 +506,9 @@ msgid ""
 "oportunidades de carreira? <br>Selecione uma vaga abaixo e envie seu "
 "currículo através do formulário para que possamos contactá-lo."
 msgstr ""
+"Would you like to work for a serious company that has been growing and has "
+"great career opportunities? <br> Select one of the openings below and send "
+"us your resume via the form. We will contact you shortly."
 
 #: templates/work-with-us.html:15
 msgid "Vagas disponíveis"

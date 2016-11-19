@@ -191,7 +191,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3">
-                          <a title="Voltar à pagina inicial" href="{% url 'home' %}"><img id="logo_bottom" src="{% static 'img/logo-footer.png'%}"></a>
+                        <a title="{% trans "Ir para a Página Inicial" %}" href="{% url 'home' %}"><img id="logo_bottom" src="{% static 'img/logo-footer.png'%}"></a>
                     </div>
                     {% if general_info.config_social_facebook or general_info.config_social_instagram or general_info.config_social_youtube or general_info.config_social_twitter or general_info.config_social_linkedin %}
                         <div class="col-lg-4 social">

@@ -142,6 +142,21 @@ header.is-home-page {
   left: 100%;
 }
 
+.language-container {
+  margin-top: -20px;
+  margin-bottom: 5px;
+  text-align: right;
+}
+
+.language-switcher {
+  background: none;
+  color: #545454;
+  border: none;
+}
+
+.language-switcher.selected {
+  color: #88000C;
+}
 
 @media (min-width: 768px) {
   .navbar-custom .navbar-nav li:hover > ul {

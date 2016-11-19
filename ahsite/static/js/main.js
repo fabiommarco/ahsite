@@ -57,4 +57,15 @@
         return false;
     });
 
+    $('.language-switcher').click(function(e) {
+        var $el = $(this);
+        var target = $el.data('lang');
+        $el
+            .siblings('[name=language]')
+                .val(target)
+                .end()
+            .parent('form')
+                .submit();
+    });
+
 })(jQuery);

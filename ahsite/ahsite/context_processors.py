@@ -5,6 +5,9 @@ from django.utils.translation import activate, get_language
 from app.models import (GeneralConfig,Event,Partners,Products)
 
 def i18n_url(request):
+    '''reverse to right url language'''
+    if 'admin' in request.current_app:
+        return {}
     current_language = get_language()
     activate('pt')
     resolver_match = request.resolver_match

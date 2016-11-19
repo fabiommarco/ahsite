@@ -72,9 +72,9 @@ WSGI_APPLICATION = 'ahsite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':'ahsite',
-        'USER':'root',
-        'PASSWORD': '123'
+        'NAME': os.environ.get('DB_NAME', 'ahsite'),
+        'USER': os.environ.get('DB_USER', 'root'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', '123')
     }
 }
 

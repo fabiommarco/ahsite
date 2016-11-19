@@ -382,7 +382,7 @@ class Sale(models.Model):
         verbose_name_plural = u"Página de Vendas"
 
 class AgriculturalFiles(models.Model):
-
+    
     ap_date = models.DateTimeField()
     ap_file = models.FileField("Arquivo", upload_to=get_upload_path)
     ap_brief_desc = models.CharField(u"Descrição", max_length=150, blank=True)

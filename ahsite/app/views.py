@@ -1,7 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-    AH Website - LFMarques - 2016
-    luizfelipe.unesp@gmail.com
+    AH Website - 
+    LFMarques - 2016
+      luizfelipe.unesp@gmail.com
+
+    Victor Cinaglia - 2016
+      victorcinaglia@gmail.com
+
 """
 import functools
 import random
@@ -11,7 +16,6 @@ from app.models import *
 from app.forms import ContactForm, ApplyJobForm, NewsletterForm
 from app.utils import reload_sys
 
-from collections import MutableMapping
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
@@ -23,86 +27,47 @@ from django.conf import settings
 from django.views.generic import TemplateView
 from django.utils.decorators import method_decorator
 
-def load_basic_info(method):
-    '''general_info
-        add a global variable in globals() named general_info
-    '''
-    @functools.wraps(method)
-    def wrapper(request, *args, **kwargs):
-        g = method.func_globals
-        g['general_info'] = GeneralConfig.objects.latest('id')
-        g['events_link'] = Event.objects.all()
-        g['partners_link'] = Partners.objects.all()
-        g['products_link'] = Products.objects.all()
 
-        res = method(request,*args, **kwargs)
-        return res
-    return wrapper
-
-@load_basic_info
 def home(request):
+    '''return homepage'''
     latest_feeds = News.objects.order_by('-news_date')[:2]
     return render(request, 'index.html',
                   {'is_index':True,
                    'products':Products.objects.all(),
-                   'general_info':general_info,
-                   'events_link':events_link,
-                   'partners_link':partners_link,
-                   'products_link':products_link,
                    'news':latest_feeds})
 
-@load_basic_info
-def about_company(request,r=None):
-    lang = request.LANGUAGE_CODE
-    about = AboutCompany.objects.filter(c_language=lang).latest('id')
-    return render(request, 'about_company.html',
-                  {'about':about,
-                   'general_info':general_info,
-                   'events_link':events_link,
-                   'partners_link':partners_link,
-                   'products_link':products_link,})
+def about_company(request):
+    '''return about us'''
 
-@load_basic_info
+    about = AboutCompany.objects.latest('id')
+    return render(request, 'about_company.html',
+                  {'about':about})
+
 def agricutural_prices(request):
+    '''return agricultural prices page'''
     prices = AgriculturalFiles.objects.order_by('-ap_date')[:5]
     return render(request, 'agricutural_prices.html',
-                  {'prices':prices,
-                   'general_info':general_info,
-                   'events_link':events_link,
-                   'partners_link':partners_link,
-                   'products_link':products_link,})
+                  {'prices':prices})
 
-@load_basic_info
 def environmental_responsability(request):
+    '''return env resp page'''
     environmental = EnvironmentalResponsability.objects.latest('id')
     return render(request, 'environmental.html',
-                  {'environmental':environmental,
-                   'general_info':general_info,
-                   'events_link':events_link,
-                   'partners_link':partners_link,
-                   'products_link':products_link,})
+                  {'environmental':environmental})
 
-@load_basic_info
 def event_view(request, event_slug=None):
+    '''return event details page'''
     event = get_object_or_404(Event, event_slug=event_slug)
     return render(request, 'event_view.html',
-                  {'event':event,
-                   'general_info':general_info,
-                   'events_link':events_link,
-                   'partners_link':partners_link,
-                   'products_link':products_link,})
+                  {'event':event})
 
-@load_basic_info
 def partners_view(request, partner_slug=None):
+    '''return partners view page'''
     return render(request, 'partners_view.html',
-                  {'partner':get_object_or_404(Partners, partner_slug=partner_slug),
-                   'general_info':general_info,
-                   'events_link':events_link,
-                   'partners_link':partners_link,
-                   'products_link':products_link,})
+                  {'partner':get_object_or_404(Partners, partner_slug=partner_slug)})
 
-@load_basic_info
 def news(request):
+    '''return lastest news'''
     all_news = News.objects.order_by('-news_date')
     paginator = Paginator(all_news, 6)
 
@@ -117,33 +82,20 @@ def news(request):
         all_news = paginator.page(paginator.num_pages)
 
     return render(request, 'news.html', {'all_news':all_news,
-                                         'general_info':general_info,
-                                         'events_link':events_link,
-                                         'partners_link':partners_link,
-                                         'products_link':products_link,
                                          'current_page':page})
 
-@load_basic_info
 def news_view(request, news_slug=None):
+    '''return news details'''
     return render(request, 'news_view.html',
-                  {'news':get_object_or_404(News, news_slug=news_slug),
-                   'general_info':general_info,
-                   'events_link':events_link,
-                   'partners_link':partners_link,
-                   'products_link':products_link,})
+                  {'news':get_object_or_404(News, news_slug=news_slug)})
 
-@load_basic_info
 def sales(request):
+    '''return sales page'''
     return render(request, 'sales.html',
                   {'sale':Sale.objects.latest("id"),
-                   'general_info':general_info,
-                   'events_link':events_link,
-                   'partners_link':partners_link,
-                   'products_link':products_link,
                    'url_contact':reverse('new_contact', args=['sale'])})
-@load_basic_info
 def magazine(request):
-
+    '''return latests magazines'''
     magazines = Magazine.objects.order_by('-magazine_date')[:5]
 
     magazine = {}
@@ -151,14 +103,11 @@ def magazine(request):
         magazine = magazines[0]
     return render(request, 'magazine.html',
                   {'magazine': magazine,
-                   'old_versions': magazines[1:],
-                   'general_info':general_info,
-                   'events_link':events_link,
-                   'partners_link':partners_link})
+                   'old_versions': magazines[1:]})
 
 
-@load_basic_info
 def product_view(request, product_slug=None):
+    '''return products details page'''
     product = get_object_or_404(Products, product_slug=product_slug)
     #switch img products cases
     rand_img = 0
@@ -170,39 +119,27 @@ def product_view(request, product_slug=None):
     elif 'Café' in product.product_name:
         rand_img = random.choice(settings.BANNER_IMG['coffee'])
     else:
-      rand_img = random.randrange(1, 11),
+      rand_img = random.randrange(1, 11)
 
     return render(request, 'product_view.html',
                   {'product':product,
-                   'random_img': rand_img,
-                   'general_info':general_info,
-                   'events_link':events_link,
-                   'partners_link':partners_link,
-                   'products_link':products_link,})
+                   'random_img': rand_img})
 
 
-@load_basic_info
 def talk_with_us(request):
+    '''return contact page'''
     return render(request, 'talk-with-us.html',
-                  {'url_contact':reverse('new_contact', args=['contact']),
-                   'general_info':general_info,
-                   'events_link':events_link,
-                   'partners_link':partners_link,
-                   'products_link':products_link,})
+                  {'url_contact':reverse('new_contact', args=['contact'])})
 
-@load_basic_info
 def work_with_us(request):
+    '''return careers page'''
     return render(request, 'work-with-us.html',
                   {'jobs':Jobs.objects.filter(),
                    'is_apply_job':True,
-                   'url_contact':reverse('new_contact', args=['apply_job']),
-                   'general_info':general_info,
-                   'events_link':events_link,
-                   'partners_link':partners_link,
-                   'products_link':products_link,})
+                   'url_contact':reverse('new_contact', args=['apply_job'])})
 
 @csrf_exempt
-def new_contact(request,contact_type):
+def new_contact(request, contact_type):
     '''
         send contact email
         :params:
@@ -240,6 +177,7 @@ def new_contact(request,contact_type):
 
 @csrf_exempt
 def new_newsletter(request):
+    '''assync method - add email to newsletter'''
     if request.method == "POST":
         newsletter_form = NewsletterForm(request.POST)
         data = {'success': True}
@@ -254,6 +192,8 @@ def new_newsletter(request):
     return HttpResponseRedirect("/")
 
 class newsletterView(TemplateView):
+    '''return newsletter list to admin page'''
+    
     template_name = "admin/newsletter/list_newsletter.html"
 
     def get_context_data(self, **kwargs):
@@ -264,6 +204,7 @@ class newsletterView(TemplateView):
         return super(newsletterView, self).dispatch(*args, **kwargs)
 
 def handler404(request):
+    ''' intercept not found page '''
     response = render(request, '404.html', {})
     response.status_code = 404
     return response

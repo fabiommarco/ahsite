@@ -2,11 +2,8 @@ from django.http import HttpResponse
 from django.template import RequestContext, Template
 from django.urls import reverse
 from django.utils.translation import activate, get_language
-<<<<<<< HEAD
-from app.models import (GeneralConfig,Event,Partners,Products)
-=======
+from app.models import (GeneralConfig, Event, Partners, Products)
 from django.conf import settings
->>>>>>> 82d27abdce0e97ebc5fd6dbb849483edfedd5f9f
 
 def i18n_url(request):
     '''reverse to right url language'''

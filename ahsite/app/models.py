@@ -15,34 +15,31 @@ from django.contrib.contenttypes.models import ContentType
 from django.utils.html import format_html
 from django.template.defaultfilters import truncatechars,slugify
 from ckeditor.fields import RichTextField
-
-LANGUAGES = (
-        ('pt', 'Portugues'),
-        ('en', 'English'),
-    )
-
-def get_upload_path(instance, filename):
-    _f, ext = os.path.splitext(filename)
-    new_filename = '%s%s' % (uuid.uuid4().hex, ext)
-    return os.path.join('uploads', str(uuid.uuid4()), new_filename)
+from django.conf import settings
 
 TIPO_RELATORIO = (
     ('cotacao_agricola', 'Cotação Agrícola'),
     ('relatorio_agricola', 'Relatorio Agricola'),
     ('analise_grafica', 'Analise Gráfica'),
     ('call_macro', 'Call Macro')
-
 )
 
-class extendMe(models.Model):
-    language = models.CharField('Idioma', choices=LANGUAGES,
+
+def get_upload_path(instance, filename):
+    _f, ext = os.path.splitext(filename)
+    new_filename = '%s%s' % (uuid.uuid4().hex, ext)
+    return os.path.join('uploads', str(uuid.uuid4()), new_filename)
+
+
+class TranslatableModelBase(models.Model):
+    language = models.CharField('Idioma', choices=settings.LANGUAGES,
                                 max_length=5,
                                 default='pt',
                                 blank=False, null=False,
                                 help_text='Idioma em que a página será exibida',)
-    
 
-
+    class Meta:
+      abstract = True
 
 # =================================================
 
@@ -60,12 +57,12 @@ class Imagem(models.Model):
 
 class Attachment(models.Model):
     attach = models.FileField("Anexo", upload_to=get_upload_path, max_length=100)
-    
+
     # Generic ForeignKey
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey()
-    
+
     # Alterando o nome pluralizado da classe
     class Meta:
         verbose_name_plural = "Arquivos Anexos"
@@ -95,7 +92,7 @@ class GeneralConfig(models.Model):
         help_text='Utilize esse campo caso queira registrar um email personalizado'
                   'para recebimento de Curriculos',
         )
-    
+
     config_phone = models.CharField(
         u"Telefone",
         help_text="Formato: (18) 9900-5544",
@@ -135,7 +132,7 @@ class GeneralConfig(models.Model):
         return self.config_street
 
 
-class AboutCompany(extendMe):
+class AboutCompany(TranslatableModelBase):
     ac_content = RichTextField(u"Conteúdo da página", blank=False)
     gallery_title = models.CharField(
         "Título da Galeria de Imagens",
@@ -145,7 +142,7 @@ class AboutCompany(extendMe):
                   "branco caso queira manter o nome como Galeria de Imagens.")
     gallery = GenericRelation(Imagem)
     attach_galery = GenericRelation(Attachment)
-    
+
     def scaped_html(self):
         text = format_html(self.ac_content)
         try:
@@ -164,7 +161,7 @@ class AboutCompany(extendMe):
         verbose_name_plural = u"Sobre a Empresa"
 
 
-class Event(extendMe):
+class Event(TranslatableModelBase):
     '''
         called as resposabilidade social in the system
     '''
@@ -194,9 +191,9 @@ class Event(extendMe):
         max_length=200,
         help_text="Digite um nome para a Galeria de Anexos,"
         " deixe o campo em branco caso queira manter o nome como Galeria de Anexos.")
-    
+
     event_attach_galery = GenericRelation(Attachment)
-    
+
     def __unicode__(self):
         return self.event_title
 
@@ -208,7 +205,7 @@ class Event(extendMe):
         verbose_name = u"Responsabilidade Social"
         verbose_name_plural = u"Responsabilidade Social"
 
-class EnvironmentalResponsability(extendMe):
+class EnvironmentalResponsability(TranslatableModelBase):
     environ_date = models.DateTimeField(u"Data", default=datetime.datetime.now)
     environ_title = models.CharField(u"Título", max_length=300)
     environ_description = RichTextField(u"Descrição")
@@ -233,9 +230,9 @@ class EnvironmentalResponsability(extendMe):
         max_length=200,
         help_text="Digite um nome para a Galeria de Anexos,"
         " deixe o campo em branco caso queira manter o nome como Galeria de Anexos.")
-    
+
     attach_galery = GenericRelation(Attachment)
-    
+
     def __unicode__(self):
         return self.environ_title
 
@@ -254,7 +251,7 @@ class News(models.Model):
         blank=True,
         help_text="Digite somente a parte em <strong>negrito</strong> da URL do vídeo"
         "seguindo este exemplo:http://www.youtube.com/watch?v=<strong>aAkurCTifE0</strong>")
-    
+
     news_galery_title = models.CharField(
         "Título da Galeria de Imagens",
         blank=True,
@@ -269,9 +266,9 @@ class News(models.Model):
         max_length=200,
         help_text="Digite um nome para a Galeria de Anexos,"
         " deixe o campo em branco caso queira manter o nome como Galeria de Anexos.")
-    
+
     attach_galery = GenericRelation(Attachment)
-    
+
 
     def __unicode__(self):
         return self.news_title
@@ -284,7 +281,7 @@ class News(models.Model):
         verbose_name = u"Notícia"
         verbose_name_plural = u"Notícias"
 
-class Partners(extendMe):
+class Partners(TranslatableModelBase):
     partner_date = models.DateTimeField(default=datetime.datetime.now)
     partner_title = models.CharField(u"Nome da Parceria", max_length=300)
     partner_slug = models.SlugField(unique=True, max_length=100, editable=False)
@@ -349,7 +346,7 @@ class Newsletter(models.Model):
     def __unicode__(self):
         return self.news_name
 
-class Sale(extendMe):
+class Sale(TranslatableModelBase):
     sale_description = RichTextField(u"Texto da Página", help_text='Conteúdo da página de Vendas')
     sale_email = models.EmailField(
         u'Email',
@@ -377,7 +374,7 @@ class AgriculturalFiles(models.Model):
         verbose_name = u"Cotação Agrícola"
         verbose_name_plural = u"Cotações Agrícolas"
 
-class Products(extendMe):
+class Products(TranslatableModelBase):
     product_date = models.DateTimeField(default=datetime.datetime.now)
     product_name = models.CharField("Nome do Produto", max_length=200)
     product_slug = models.SlugField(unique=True, max_length=100, editable=False)

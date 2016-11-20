@@ -26,7 +26,8 @@ from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.conf import settings
 from django.views.generic import TemplateView
 from django.utils.decorators import method_decorator
-
+from django.utils.translation import get_language
+    
 
 def home(request):
     '''return homepage'''
@@ -38,8 +39,7 @@ def home(request):
 
 def about_company(request):
     '''return about us'''
-
-    about = AboutCompany.objects.latest('id')
+    about = AboutCompany.objects.filter(language = get_language()).latest('id')
     return render(request, 'about_company.html',
                   {'about':about})
 

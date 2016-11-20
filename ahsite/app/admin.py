@@ -34,20 +34,21 @@ class NewsletterAdmin(admin.ModelAdmin):
     ordering = ['news_date']
 
 class AboutCompanyAdmin(admin.ModelAdmin):
-    list_display = ('scaped_html', )
+    list_display = ('scaped_html','language' )
     inlines = [ImagemInline, AttachInline]
 
-
 class SaleAdmin(admin.ModelAdmin):
-    list_display = ('sale_email', )
+    list_display = ('sale_email', 'language')
     
 class ResearchAdmin(admin.ModelAdmin):
     list_display = ('reserach_date','reserach_title', 'reserach_type', 'research_file' )
 
 class ProdAdmin(admin.ModelAdmin):
+    list_display = ('product_name', 'language')
     inlines = [ImagemInline, AttachInline]
 
 class EnvAdmin(admin.ModelAdmin):
+    list_display = ('environ_title', 'language')
     inlines = [ImagemInline, AttachInline]
     
 admin.site.register(Products, ProdAdmin)

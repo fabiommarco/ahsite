@@ -33,6 +33,17 @@ TIPO_RELATORIO = (
     ('call_macro', 'Call Macro')
 
 )
+
+class extendMe(models.Model):
+    language = models.CharField('Idioma', choices=LANGUAGES,
+                                max_length=5,
+                                default='pt',
+                                blank=False, null=False,
+                                help_text='Idioma em que a página será exibida',)
+    
+
+
+
 # =================================================
 
 class Imagem(models.Model):
@@ -124,12 +135,7 @@ class GeneralConfig(models.Model):
         return self.config_street
 
 
-class AboutCompany(models.Model):
-    ac_language = models.CharField('Indioma',choices=LANGUAGES,
-                                   max_length=5,
-                                   default='pt-br',
-                                   blank=False,null=False,
-                                   help_text='Indioma em que a página será exibida',)
+class AboutCompany(extendMe):
     ac_content = RichTextField(u"Conteúdo da página", blank=False)
     gallery_title = models.CharField(
         "Título da Galeria de Imagens",
@@ -158,19 +164,11 @@ class AboutCompany(models.Model):
         verbose_name_plural = u"Sobre a Empresa"
 
 
-class Event(models.Model):
+class Event(extendMe):
     '''
         called as resposabilidade social in the system
     '''
     event_date = models.DateTimeField(u"Data", default=datetime.datetime.now)
-    event_language = models.CharField('Indioma', 
-                                     choices=LANGUAGES,
-                                     max_length=5,
-                                        default='pt-br',
-                                        blank=False,
-                                        null=False,
-                                        help_text='Indioma em que a página será exibida',)
-    
     event_title = models.CharField(u"Título", max_length=300)
     event_local = models.CharField(u"Local", max_length=300)
     event_slug = models.SlugField(unique=True, max_length=100, editable=False)
@@ -210,16 +208,8 @@ class Event(models.Model):
         verbose_name = u"Responsabilidade Social"
         verbose_name_plural = u"Responsabilidade Social"
 
-class EnvironmentalResponsability(models.Model):
+class EnvironmentalResponsability(extendMe):
     environ_date = models.DateTimeField(u"Data", default=datetime.datetime.now)
-    environ_language = models.CharField('Indioma', 
-                                        choices=LANGUAGES,
-                                        max_length=5,
-                                        default='pt-br',
-                                        blank=False,
-                                        null=False,
-                                        help_text='Indioma em que a página será exibida',)
-    
     environ_title = models.CharField(u"Título", max_length=300)
     environ_description = RichTextField(u"Descrição")
     environ_video = models.CharField(
@@ -294,14 +284,8 @@ class News(models.Model):
         verbose_name = u"Notícia"
         verbose_name_plural = u"Notícias"
 
-class Partners(models.Model):
+class Partners(extendMe):
     partner_date = models.DateTimeField(default=datetime.datetime.now)
-    partner_language = models.CharField('Indioma',choices=LANGUAGES,
-                                        max_length=5,
-                                        default='pt-br',
-                                        blank=False,
-                                        null=False,
-                                        help_text='Indioma em que a página será exibida',)
     partner_title = models.CharField(u"Nome da Parceria", max_length=300)
     partner_slug = models.SlugField(unique=True, max_length=100, editable=False)
     partner_description = RichTextField(u"Descrição")
@@ -365,7 +349,7 @@ class Newsletter(models.Model):
     def __unicode__(self):
         return self.news_name
 
-class Sale(models.Model):
+class Sale(extendMe):
     sale_description = RichTextField(u"Texto da Página", help_text='Conteúdo da página de Vendas')
     sale_email = models.EmailField(
         u'Email',
@@ -382,11 +366,9 @@ class Sale(models.Model):
         verbose_name_plural = u"Página de Vendas"
 
 class AgriculturalFiles(models.Model):
-    
     ap_date = models.DateTimeField()
     ap_file = models.FileField("Arquivo", upload_to=get_upload_path)
     ap_brief_desc = models.CharField(u"Descrição", max_length=150, blank=True)
-
 
     def __unicode__(self):
         return self.ap_brief_desc
@@ -395,7 +377,7 @@ class AgriculturalFiles(models.Model):
         verbose_name = u"Cotação Agrícola"
         verbose_name_plural = u"Cotações Agrícolas"
 
-class Products(models.Model):
+class Products(extendMe):
     product_date = models.DateTimeField(default=datetime.datetime.now)
     product_name = models.CharField("Nome do Produto", max_length=200)
     product_slug = models.SlugField(unique=True, max_length=100, editable=False)

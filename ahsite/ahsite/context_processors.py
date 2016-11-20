@@ -6,7 +6,7 @@ from app.models import (GeneralConfig,Event,Partners,Products)
 
 def i18n_url(request):
     '''reverse to right url language'''
-    if 'admin' in request.current_app:
+    if hasattr(request, 'current_app') and 'admin' in request.current_app:
         return {}
     current_language = get_language()
     activate('pt')
@@ -18,6 +18,7 @@ def i18n_url(request):
     return {"redirect_to": redirect_to}
 
 def load_info(request):
+    '''add basic info into context'''
     extra_context = {}
     extra_context['general_info'] = GeneralConfig.objects.latest('id')
     extra_context['events_link'] = Event.objects.all()

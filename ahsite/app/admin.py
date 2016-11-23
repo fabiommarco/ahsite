@@ -44,7 +44,7 @@ class ResearchAdmin(admin.ModelAdmin):
     list_display = ('reserach_date','reserach_title', 'reserach_type', 'research_file' )
 
 class ProdAdmin(admin.ModelAdmin):
-    list_display = ('product_name', 'language')
+    list_display = ('product_name', 'product_category', 'language')
     inlines = [ImagemInline, AttachInline]
 
 class EnvAdmin(admin.ModelAdmin):

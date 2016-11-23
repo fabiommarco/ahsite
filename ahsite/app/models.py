@@ -379,6 +379,16 @@ class Products(TranslatableModelBase):
     product_name = models.CharField("Nome do Produto", max_length=200)
     product_slug = models.SlugField(unique=True, max_length=100, editable=False)
     product_description = RichTextField(u"Descrição")
+    product_category = models.CharField(
+        'Categoria',
+        choices=(
+            ('suinos', 'Suinos'),
+            ('bovinos', 'Bovinos'),
+            ('cafe', u'Café')
+        ),
+        max_length=20,
+        blank=False, null=False,
+        help_text='Categoria do produto')
     product_short_description = models.TextField(
         u"Descrição Curta",
         help_text='Essa descrição irá aparecer na homepage.',

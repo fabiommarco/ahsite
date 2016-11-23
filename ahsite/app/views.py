@@ -105,26 +105,13 @@ def magazine(request):
                   {'magazine': magazine,
                    'old_versions': magazines[1:]})
 
-
 def product_view(request, product_slug=None):
     '''return products details page'''
     product = get_object_or_404(Products, product_slug=product_slug)
-    #switch img products cases
-    rand_img = 0
-    reload_sys()
-    if 'Bovinos' in product.product_name:
-        rand_img = random.choice(settings.BANNER_IMG['cow'])
-    elif 'Suíno'.decode().encode('utf-8') in product.product_name:
-        rand_img = random.choice(settings.BANNER_IMG['pork'])
-    elif 'Café' in product.product_name:
-        rand_img = random.choice(settings.BANNER_IMG['coffee'])
-    else:
-      rand_img = random.randrange(1, 11)
-
+    choices = settings.BANNER_IMG.get(product.product_category)
+    rand_img = random.choice(choices or random.randrange(1, 11))
     return render(request, 'product_view.html',
-                  {'product':product,
-                   'random_img': rand_img})
-
+                  {'product': product, 'random_img': rand_img})
 
 def talk_with_us(request):
     '''return contact page'''

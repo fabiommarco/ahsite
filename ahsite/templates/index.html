@@ -19,23 +19,23 @@
 
     <!-- Portfolio Grid Section -->
     <section id="negocios">
-        {% for product in products %}
-                 {% if 'bovinos' in product.product_name.lower %}
-                    {% with position="left" image='img/negocios/cta-bovinos.jpg' %}
-                          {% include "_prod.html"%}
-                   {%endwith%}
-                  {% endif %}
-                  {% if 'suíno' in product.product_name.lower %}
-                    {% with position="center" image='img/negocios/cta-suinos.jpg' %}
-                          {% include "_prod.html"%}
-                   {%endwith%}
-                  {% endif %}
-                  {% if 'café' in product.product_name.lower %}
-                    {% with position="right" image='img/negocios/cta-cafe.jpg' %}
-                          {% include "_prod.html"%}
-                   {%endwith%}
-                  {% endif %}
-            {% endfor %}
+      {% for product in products %}
+        {% if product.product_category == 'bovinos' %}
+          {% with position="left" image='img/negocios/cta-bovinos.jpg' %}
+            {% include "_prod.html"%}
+          {%endwith%}
+        {% endif %}
+        {% if product.product_category == 'suinos' %}
+          {% with position="center" image='img/negocios/cta-suinos.jpg' %}
+            {% include "_prod.html"%}
+          {%endwith%}
+        {% endif %}
+        {% if product.product_category == 'cafe' %}
+          {% with position="right" image='img/negocios/cta-cafe.jpg' %}
+            {% include "_prod.html"%}
+          {%endwith%}
+        {% endif %}
+      {% endfor %}
     </section>
 
     <!-- Locations Section -->

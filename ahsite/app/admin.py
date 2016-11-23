@@ -26,7 +26,7 @@ class EventAdmin(admin.ModelAdmin):
     inlines = [ImagemInline, AttachInline]
 
 class NewsAdmin(admin.ModelAdmin):
-    # list_display = ('scaped_html', )
+    list_display = ('news_title', 'language')
     inlines = [ImagemInline, AttachInline]
 
 class NewsletterAdmin(admin.ModelAdmin):

@@ -240,7 +240,7 @@ class EnvironmentalResponsability(TranslatableModelBase):
         verbose_name = u"Responsabilidade Ambiental"
         verbose_name_plural = u"Responsabilidade Ambiental"
 
-class News(models.Model):
+class News(TranslatableModelBase):
     news_date = models.DateTimeField()
     news_title = models.CharField(u"Titúlo da Notícia", max_length=300)
     news_slug = models.SlugField(unique=True, max_length=100, editable=False)

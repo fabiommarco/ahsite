@@ -22,11 +22,11 @@ class AttachInline(GenericTabularInline):
 
 
 class EventAdmin(admin.ModelAdmin):
-    # list_display = ('scaped_html', )
+    list_display = ('event_title', 'language')
     inlines = [ImagemInline, AttachInline]
 
 class NewsAdmin(admin.ModelAdmin):
-    # list_display = ('scaped_html', )
+    list_display = ('news_title', 'language')
     inlines = [ImagemInline, AttachInline]
 
 class NewsletterAdmin(admin.ModelAdmin):
@@ -39,22 +39,25 @@ class AboutCompanyAdmin(admin.ModelAdmin):
 
 class SaleAdmin(admin.ModelAdmin):
     list_display = ('sale_email', 'language')
-    
+
 class ResearchAdmin(admin.ModelAdmin):
     list_display = ('reserach_date','reserach_title', 'reserach_type', 'research_file' )
 
 class ProdAdmin(admin.ModelAdmin):
-    list_display = ('product_name', 'language')
+    list_display = ('product_name', 'product_category', 'language')
     inlines = [ImagemInline, AttachInline]
 
 class EnvAdmin(admin.ModelAdmin):
     list_display = ('environ_title', 'language')
     inlines = [ImagemInline, AttachInline]
-    
+
+class PartnersAdmin(admin.ModelAdmin):
+    list_display = ('partner_title', 'language')
+
 admin.site.register(Products, ProdAdmin)
 admin.site.register(Jobs)
 admin.site.register(EnvironmentalResponsability,EnvAdmin)
-admin.site.register(Partners)
+admin.site.register(Partners, PartnersAdmin)
 admin.site.register(Sale, SaleAdmin)
 admin.site.register(News, NewsAdmin)
 admin.site.register(Newsletter,NewsletterAdmin)

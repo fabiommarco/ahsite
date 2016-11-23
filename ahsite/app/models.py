@@ -13,6 +13,7 @@ from django.db import models
 from django.contrib.contenttypes.fields import GenericForeignKey,GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.utils.html import format_html
+from django.utils import translation
 from django.template.defaultfilters import truncatechars,slugify
 from ckeditor.fields import RichTextField
 from django.conf import settings
@@ -31,6 +32,13 @@ def get_upload_path(instance, filename):
     return os.path.join('uploads', str(uuid.uuid4()), new_filename)
 
 
+class TranslatableManager(models.Manager):
+
+    def get_queryset(self):
+        return super(TranslatableManager, self).get_queryset().filter(
+            language=translation.get_language())
+
+
 class TranslatableModelBase(models.Model):
     language = models.CharField('Idioma', choices=settings.LANGUAGES,
                                 max_length=5,
@@ -38,8 +46,11 @@ class TranslatableModelBase(models.Model):
                                 blank=False, null=False,
                                 help_text='Idioma em que a página será exibida',)
 
+    objects = models.Manager()
+    translated_objects = TranslatableManager()
+
     class Meta:
-      abstract = True
+        abstract = True
 
 # =================================================
 
@@ -240,7 +251,7 @@ class EnvironmentalResponsability(TranslatableModelBase):
         verbose_name = u"Responsabilidade Ambiental"
         verbose_name_plural = u"Responsabilidade Ambiental"
 
-class News(models.Model):
+class News(TranslatableModelBase):
     news_date = models.DateTimeField()
     news_title = models.CharField(u"Titúlo da Notícia", max_length=300)
     news_slug = models.SlugField(unique=True, max_length=100, editable=False)
@@ -379,6 +390,16 @@ class Products(TranslatableModelBase):
     product_name = models.CharField("Nome do Produto", max_length=200)
     product_slug = models.SlugField(unique=True, max_length=100, editable=False)
     product_description = RichTextField(u"Descrição")
+    product_category = models.CharField(
+        'Categoria',
+        choices=(
+            ('suinos', 'Suinos'),
+            ('bovinos', 'Bovinos'),
+            ('cafe', u'Café')
+        ),
+        max_length=20,
+        blank=False, null=False,
+        help_text='Categoria do produto')
     product_short_description = models.TextField(
         u"Descrição Curta",
         help_text='Essa descrição irá aparecer na homepage.',

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    AH Website - 
+    AH Website -
     LFMarques - 2016
       luizfelipe.unesp@gmail.com
 
@@ -26,20 +26,19 @@ from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.conf import settings
 from django.views.generic import TemplateView
 from django.utils.decorators import method_decorator
-from django.utils.translation import get_language
-    
+
 
 def home(request):
     '''return homepage'''
-    latest_feeds = News.objects.order_by('-news_date')[:2]
+    latest_feeds = News.translated_objects.order_by('-news_date')[:2]
     return render(request, 'index.html',
                   {'is_index':True,
-                   'products':Products.objects.all(),
+                   'products':Products.translated_objects.all(),
                    'news':latest_feeds})
 
 def about_company(request):
     '''return about us'''
-    about = AboutCompany.objects.filter(language = get_language()).latest('id')
+    about = AboutCompany.translated_objects.latest('id')
     return render(request, 'about_company.html',
                   {'about':about})
 
@@ -51,7 +50,7 @@ def agricutural_prices(request):
 
 def environmental_responsability(request):
     '''return env resp page'''
-    environmental = EnvironmentalResponsability.objects.latest('id')
+    environmental = EnvironmentalResponsability.translated_objects.latest('id')
     return render(request, 'environmental.html',
                   {'environmental':environmental})
 
@@ -68,7 +67,7 @@ def partners_view(request, partner_slug=None):
 
 def news(request):
     '''return lastest news'''
-    all_news = News.objects.order_by('-news_date')
+    all_news = News.translated_objects.order_by('-news_date')
     paginator = Paginator(all_news, 6)
 
     try:
@@ -92,8 +91,9 @@ def news_view(request, news_slug=None):
 def sales(request):
     '''return sales page'''
     return render(request, 'sales.html',
-                  {'sale':Sale.objects.latest("id"),
+                  {'sale':Sale.translated_objects.latest("id"),
                    'url_contact':reverse('new_contact', args=['sale'])})
+
 def magazine(request):
     '''return latests magazines'''
     magazines = Magazine.objects.order_by('-magazine_date')[:5]
@@ -105,26 +105,13 @@ def magazine(request):
                   {'magazine': magazine,
                    'old_versions': magazines[1:]})
 
-
 def product_view(request, product_slug=None):
     '''return products details page'''
     product = get_object_or_404(Products, product_slug=product_slug)
-    #switch img products cases
-    rand_img = 0
-    reload_sys()
-    if 'Bovinos' in product.product_name:
-        rand_img = random.choice(settings.BANNER_IMG['cow'])
-    elif 'Suíno'.decode().encode('utf-8') in product.product_name:
-        rand_img = random.choice(settings.BANNER_IMG['pork'])
-    elif 'Café' in product.product_name:
-        rand_img = random.choice(settings.BANNER_IMG['coffee'])
-    else:
-      rand_img = random.randrange(1, 11)
-
+    choices = settings.BANNER_IMG.get(product.product_category)
+    rand_img = random.choice(choices or random.randrange(1, 11))
     return render(request, 'product_view.html',
-                  {'product':product,
-                   'random_img': rand_img})
-
+                  {'product': product, 'random_img': rand_img})
 
 def talk_with_us(request):
     '''return contact page'''
@@ -162,7 +149,7 @@ def new_contact(request, contact_type):
                                  _('Parece que algo de errado aconteceu. Por favor, tente novamente mais tarde!'))
         else:
             if contact_type == 'sale':
-                extra_recipient = Sale.objects.latest('id')
+                extra_recipient = Sale.translated_objects.latest('id')
                 contact_form.send(request, extra_recipient.sale_email)
             else:
                 contact_form.send(request)
@@ -193,7 +180,7 @@ def new_newsletter(request):
 
 class newsletterView(TemplateView):
     '''return newsletter list to admin page'''
-    
+
     template_name = "admin/newsletter/list_newsletter.html"
 
     def get_context_data(self, **kwargs):

@@ -13,6 +13,7 @@ from django.db import models
 from django.contrib.contenttypes.fields import GenericForeignKey,GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.utils.html import format_html
+from django.utils import translation
 from django.template.defaultfilters import truncatechars,slugify
 from ckeditor.fields import RichTextField
 from django.conf import settings
@@ -31,6 +32,13 @@ def get_upload_path(instance, filename):
     return os.path.join('uploads', str(uuid.uuid4()), new_filename)
 
 
+class TranslatableManager(models.Manager):
+
+    def get_queryset(self):
+        return super(TranslatableManager, self).get_queryset().filter(
+            language=translation.get_language())
+
+
 class TranslatableModelBase(models.Model):
     language = models.CharField('Idioma', choices=settings.LANGUAGES,
                                 max_length=5,
@@ -38,8 +46,11 @@ class TranslatableModelBase(models.Model):
                                 blank=False, null=False,
                                 help_text='Idioma em que a página será exibida',)
 
+    objects = models.Manager()
+    translated_objects = TranslatableManager()
+
     class Meta:
-      abstract = True
+        abstract = True
 
 # =================================================
 

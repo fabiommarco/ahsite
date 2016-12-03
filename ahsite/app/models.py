@@ -46,6 +46,13 @@ class TranslatableModelBase(models.Model):
                                 blank=False, null=False,
                                 help_text='Idioma em que a página será exibida',)
 
+    parent = models.ForeignKey('self',
+                               verbose_name=u'Página Original',
+                               blank=True, null=True,
+                               limit_choices_to={'language': 'pt'},
+                               help_text=u'Página da qual esta é uma tradução. '
+                                          'Não é necessário para páginas em Português')
+
     objects = models.Manager()
     translated_objects = TranslatableManager()
 

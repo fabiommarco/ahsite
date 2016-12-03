@@ -17,8 +17,8 @@ from app.forms import ContactForm, ApplyJobForm, NewsletterForm
 from app.utils import reload_sys
 
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse,HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -27,6 +27,29 @@ from django.conf import settings
 from django.views.generic import TemplateView
 from django.utils.decorators import method_decorator
 
+def get_or_redirect(model, language, view_name, **kwargs):
+    object = get_object_or_404(model, **kwargs)
+    # Custom handling if object's language does not match current langugage.
+    if object.language != language:
+        # Object has a parent, therefore it is a translation.
+        if object.parent:
+            if object.parent.language == language:
+                # Parent's object language is the current language. Simply
+                # retun the parent object itself.
+                translated = object.parent
+            else:
+                # Parent's object is not the current language. Find an object
+                # whose parent is the same as its own parent.
+                translated = get_object_or_404(model.translated_objects,
+                                               parent=object.parent)
+        else:
+            # Object does not have a parent, therefore it *is* a parent.
+            # Find a translation whose parent is this object.
+            translated = get_object_or_404(model.translated_objects,
+                                           parent=object)
+        kwargs = {k: getattr(translated, k) for k in kwargs.keys()}
+        return redirect(reverse(view_name, kwargs=kwargs))
+    return object
 
 def home(request):
     '''return homepage'''
@@ -56,14 +79,23 @@ def environmental_responsability(request):
 
 def event_view(request, event_slug=None):
     '''return event details page'''
-    event = get_object_or_404(Event, event_slug=event_slug)
+    event = get_or_redirect(Event, language=request.LANGUAGE_CODE,
+                              view_name='event_view',
+                              event_slug=event_slug)
+    if not isinstance(event, Event):
+        return event
     return render(request, 'event_view.html',
                   {'event':event})
 
 def partners_view(request, partner_slug=None):
     '''return partners view page'''
+    partner = get_or_redirect(Partners, language=request.LANGUAGE_CODE,
+                              view_name='partners_view',
+                              partner_slug=partner_slug)
+    if not isinstance(partner, Partners):
+        return partner
     return render(request, 'partners_view.html',
-                  {'partner':get_object_or_404(Partners, partner_slug=partner_slug)})
+                  {'partner':partner})
 
 def news(request):
     '''return lastest news'''
@@ -107,7 +139,11 @@ def magazine(request):
 
 def product_view(request, product_slug=None):
     '''return products details page'''
-    product = get_object_or_404(Products, product_slug=product_slug)
+    product = get_or_redirect(Products, language=request.LANGUAGE_CODE,
+                              view_name='product_view',
+                              product_slug=product_slug)
+    if not isinstance(product, Products):
+        return product
     choices = settings.BANNER_IMG.get(product.product_category)
     rand_img = random.choice(choices or random.randrange(1, 11))
     return render(request, 'product_view.html',

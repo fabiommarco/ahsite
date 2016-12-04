@@ -34,7 +34,7 @@ class NewsletterAdmin(admin.ModelAdmin):
     ordering = ['news_date']
 
 class AboutCompanyAdmin(admin.ModelAdmin):
-    list_display = ('scaped_html','language' )
+    list_display = ('language',)
     inlines = [ImagemInline, AttachInline]
 
 class SaleAdmin(admin.ModelAdmin):

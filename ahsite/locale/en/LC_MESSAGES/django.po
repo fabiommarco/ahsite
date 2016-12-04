@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-19 19:04+0000\n"
-"PO-Revision-Date: 2016-11-19 10:11-0500\n"
+"PO-Revision-Date: 2016-12-04 13:17-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -298,7 +298,7 @@ msgstr "News"
 
 #: templates/base.html:206
 msgid "Escritório - Presidente Prudente"
-msgstr "Office - Presidente Prudente"
+msgstr "Presidente Prudente Office"
 
 #: templates/base.html:209 templates/talk-with-us.html:26
 msgid "(18) 3917-3262"
@@ -365,7 +365,7 @@ msgstr "Agropecuária AH has units in the following locations:"
 
 #: templates/index.html:56
 msgid "Fomento Bezerro AH+"
-msgstr "Fomento Bezerro AH+"
+msgstr "Bezerro AH+ Program"
 
 #: templates/index.html:57
 msgid ""
@@ -375,8 +375,8 @@ msgid ""
 "diferenciado atrelado indicador CEPEA, a compra de toda a progênie do "
 "cruzamento provenientes do programa."
 msgstr ""
-"The Fomento AH+ program consists in incentivizing artificial insemination "
-"(Conventional and/or Fixed Time - IATF) and Angus-Hereford crossbreeding. "
+"The Bezerro AH+ Program consists of promoting artificial insemination "
+"(Conventional and/or Fixed Time - IATF), and Angus-Hereford crossbreeding. "
 "Agropecuária AH guarantees the purchase, for a priced tied to the CEPEA "
 "indicator, of the entire offspring originating from the program."
 

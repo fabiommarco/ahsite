@@ -53,7 +53,7 @@ def get_or_redirect(model, language, view_name, **kwargs):
 
 def home(request):
     '''return homepage'''
-    latest_feeds = News.translated_objects.order_by('-news_date')[:2]
+    latest_feeds = News.translated_objects.order_by('-news_date')[:4]
     return render(request, 'index.html',
                   {'is_index':True,
                    'products':Products.translated_objects.all(),

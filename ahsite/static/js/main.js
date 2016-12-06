@@ -57,14 +57,19 @@
         return false;
     });
 
+    $('.selected-langugage').click(function(e) {
+        e.preventDefault();
+    });
+
     $('.language-switcher').click(function(e) {
+        e.preventDefault();
         var $el = $(this);
         var target = $el.data('lang');
         $el
-            .siblings('[name=language]')
-                .val(target)
-                .end()
-            .parent('form')
+            .parents('form')
+                .children('[name=language]')
+                    .val(target)
+                    .end()
                 .submit();
     });
 

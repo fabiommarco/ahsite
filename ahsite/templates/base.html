@@ -49,7 +49,7 @@
                     <input name="language" type="hidden" value="" />
                     {% get_current_language as LANGUAGE_CODE %}
                     {% get_available_languages as LANGUAGES %}
-                    {% trans "Language: " %}
+                    {% trans "Idioma: " %}
                     <a href="#" class="selected-language">
                         <img src="{% static 'img/flags/'|add:LANGUAGE_CODE|add:'.png' %}" />
                         <ul class="language-menu">

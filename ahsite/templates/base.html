@@ -49,10 +49,23 @@
                     <input name="language" type="hidden" value="" />
                     {% get_current_language as LANGUAGE_CODE %}
                     {% get_available_languages as LANGUAGES %}
-                    {% get_language_info_list for LANGUAGES as languages %}
-                    {% for language in languages %}
-                      <button type="button" class="language-switcher {% if language.code == LANGUAGE_CODE %} selected {% endif %}" data-lang="{{ language.code }}">{{ language.name_local }}</button>
-                    {% endfor %}
+                    {% trans "Language: " %}
+                    <a href="#" class="selected-language">
+                        <img src="{% static 'img/flags/'|add:LANGUAGE_CODE|add:'.png' %}" />
+                        <ul class="language-menu">
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                                {% if language.code != LANGUAGE_CODE %}
+                                <li>
+                                    <button type="button" class="language-switcher" data-lang="{{ language.code }}">
+                                        <img src="{% static 'img/flags/'|add:language.code|add:'.png' %}" />
+                                        <span>{{ language.name_local }}</span>
+                                    </button>
+                                </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </a>
                 </form>
                 <ul class="nav navbar-nav">
                     <li>

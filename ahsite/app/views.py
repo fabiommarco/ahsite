@@ -26,6 +26,7 @@ from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.conf import settings
 from django.views.generic import TemplateView
 from django.utils.decorators import method_decorator
+from django.utils.translation import ugettext as _
 
 def get_or_redirect(model, language, view_name, **kwargs):
     object = get_object_or_404(model, **kwargs)
@@ -191,7 +192,6 @@ def new_contact(request, contact_type):
                 contact_form.send(request)
             messages.add_message(request, messages.SUCCESS, _('Obrigado! Sua mensagem foi enviada.'))
         if apply_job_context:
-            # return render(request, 'work-with-us.html', {})
             return HttpResponseRedirect(reverse('work_with_us', args=()))
         return HttpResponse(json.dumps(return_data, ensure_ascii=False))
 

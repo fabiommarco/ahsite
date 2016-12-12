@@ -260,8 +260,8 @@ class EnvironmentalResponsability(TranslatableModelBase):
 
 class News(TranslatableModelBase):
     news_date = models.DateTimeField()
-    news_title = models.CharField(u"Titúlo da Notícia", max_length=300)
-    news_slug = models.SlugField(unique=True, max_length=100, editable=False)
+    news_title = models.CharField(u"Titúlo da Notícia", max_length=255)
+    news_slug = models.SlugField(unique=True, max_length=255, editable=False)
     news_description = RichTextField(u"Descrição")
     news_video = models.CharField(
         "Vídeo do YouTube",

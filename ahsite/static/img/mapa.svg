@@ -200,25 +200,6 @@
                         <path d="M291.234375,62.9335937 L488.277344,0.078125" stroke="#979797"></path>
                     </g>
                 </a>
-                <a xlink:href="http://maps.google.com/maps?&amp;z=15&amp;mrt=yp&amp;t=k&amp;q=-21.150653,-52.541650" target="_blank">
-                    <g transform="translate(0.000000, 115.000000)">
-                        <g>
-                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-13"></use>
-                            <use stroke="#D7D6D6" class="location-container" mask="url(#mask-14)" stroke-width="2" xlink:href="#path-13"></use>
-                        </g>
-                        <text font-family="Roboto" font-size="14" font-weight="100" line-spacing="30" letter-spacing="0.323076963" fill="#9B9B9B">
-                            <tspan x="68" y="147">Brasilândia MS</tspan>
-                        </text>
-                        <text font-family="Roboto" font-size="16" font-weight="normal" letter-spacing="0.369230777" fill="#9B9B9B">
-                            <tspan x="68" y="126">Aroeira</tspan>
-                        </text>
-                        <circle fill="#8B2D27" cx="34" cy="132" r="17"></circle>
-                        <text font-family="Roboto" font-size="16" font-weight="bold" letter-spacing="0.369230777" fill="#FFFFFF">
-                            <tspan x="28.6932692" y="137">A</tspan>
-                        </text>
-                        <path d="M292.285156,132.300781 L487.363281,0.02734375" stroke="#979797"></path>
-                    </g>
-                </a>
                 <circle stroke="#FFFFFF" stroke-width="2" fill="#8B2D27" cx="491" cy="112" r="4"></circle>
             </g>
         </g>

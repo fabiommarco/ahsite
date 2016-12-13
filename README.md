@@ -14,13 +14,13 @@ Crie um ambiente virtual usando `virtualenv,` or `virtualenvwrapper.`
 
 ```bash
 $ virtualenv -p /usr/bin/python2.7 env
-$ env/bin/activate
+$ . env/bin/activate
 ```
 
 Instale as dependências:
 
 ```bash
-$ pip install -r requirements/dev.txt
+(env) $ pip install -r requirements/dev.txt
 ```
 
 ## Desenvolvimento Local
@@ -30,8 +30,8 @@ configurado. As credenciais padrão podem ser sobrescritas através de
 variávies de ambiente.
 
 ```bash
-$ DB_NAME=ahsite DB_USER=root DB_PASSWORD=senha
-$ python manage runserver
+(env) $ DB_NAME=ahsite DB_USER=root DB_PASSWORD=senha
+(env) $ python manage runserver
 ```
 
 ### Internacionalização
@@ -40,10 +40,10 @@ Siga os passos abaixo para atualizar ou gerar novos arquivos de tradução:
 
 ```bash
 # 1. Criar ou atualizar o arquivo django.po com traduções pendentes
-$ python manage maketranslations
+(env) $ python manage maketranslations
 # 2. Atualizar django.po com as novas traduções (diretamente no arquivo)
 # 3. Compilar django.po em django.mo
-$ python manage compilemessages
+(env) $ python manage compilemessages
 ```
 
 ### Minificando SVGs

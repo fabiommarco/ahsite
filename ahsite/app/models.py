@@ -75,7 +75,8 @@ class Imagem(models.Model):
 
 class Attachment(models.Model):
     attach = models.FileField("Anexo", upload_to=get_upload_path, max_length=100)
-
+    description = models.CharField(u"Nome do Arquivo para exibição", max_length=200, blank=True)
+    
     # Generic ForeignKey
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
@@ -202,15 +203,7 @@ class Event(TranslatableModelBase):
         help_text="Digite um nome para a Galeria de Imagens,"
         " deixe o campo em branco caso queira manter o nome como Galeria de Imagens.")
     event_galery = GenericRelation(Imagem)
-
-    event_attach_galery_title = models.CharField(
-        "Título da Galeria de Anexos",
-        blank=True,
-        max_length=200,
-        help_text="Digite um nome para a Galeria de Anexos,"
-        " deixe o campo em branco caso queira manter o nome como Galeria de Anexos.")
-
-    event_attach_galery = GenericRelation(Attachment)
+    attach_galery = GenericRelation(Attachment)
 
     def __unicode__(self):
         return self.event_title
@@ -241,14 +234,6 @@ class EnvironmentalResponsability(TranslatableModelBase):
         help_text="Digite um nome para a Galeria de Imagens,"
         " deixe o campo em branco caso queira manter o nome como Galeria de Imagens.")
     environ_galery = GenericRelation(Imagem)
-
-    attach_galery_title = models.CharField(
-        "Título da Galeria de Anexos",
-        blank=True,
-        max_length=200,
-        help_text="Digite um nome para a Galeria de Anexos,"
-        " deixe o campo em branco caso queira manter o nome como Galeria de Anexos.")
-
     attach_galery = GenericRelation(Attachment)
 
     def __unicode__(self):
@@ -277,16 +262,7 @@ class News(TranslatableModelBase):
         help_text="Digite um nome para a Galeria de Imagens, "
         "deixe o campo em branco caso queira manter o nome como Galeria de Imagens.")
     news_galery = GenericRelation(Imagem)
-
-    attach_galery_title = models.CharField(
-        "Título da Galeria de Anexos",
-        blank=True,
-        max_length=200,
-        help_text="Digite um nome para a Galeria de Anexos,"
-        " deixe o campo em branco caso queira manter o nome como Galeria de Anexos.")
-
     attach_galery = GenericRelation(Attachment)
-
 
     def __unicode__(self):
         return self.news_title
@@ -418,6 +394,8 @@ class Products(TranslatableModelBase):
         help_text="Digite um nome para a Galeria de Imagens, deixe o campo em branco caso queira"
                   "manter o nome como Galeria de Imagens.")
     product_galery = GenericRelation(Imagem)
+    attach_galery = GenericRelation(Attachment)
+
 
     def save(self):
         self.product_slug = slugify(self.product_name)

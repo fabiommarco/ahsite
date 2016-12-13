@@ -14,19 +14,38 @@
           <iframe width="420" height="315"src="https://www.youtube.com/embed/{{news.news_video}}"></iframe>
         {% endif %}
         {% if news.news_galery.all|length %}
-          {% if news.news_galery_title %}
-              <h3>{{news.news_galery_title}}</h3>
-          {% else %}
-              <h3>{% trans "Galeria de Imagens" %}</h3>
-          {% endif %}
-            {% for imagem in news.news_galery.all %}
-                  <div class="col-xs-6 col-md-3">
-                      <a class="fancybox thumbnail" rel="group" href="{% get_media_prefix %}{{ imagem.imagem }}">
-                        <img src="{% get_media_prefix %}{{ imagem.imagem }}" alt="" />
-                      </a>
-                  </div>
-            {% endfor %}
+          <div class="row">
+            {% if news.news_galery_title %}
+                <h3>{{news.news_galery_title}}</h3>
+            {% else %}
+                <h3>{% trans "Galeria de Imagens" %}</h3>
+            {% endif %}
+              {% for imagem in news.news_galery.all %}
+                    <div class="col-xs-6 col-md-3">
+                        <a class="fancybox thumbnail" rel="group" href="{% get_media_prefix %}{{ imagem.imagem }}">
+                          <img src="{% get_media_prefix %}{{ imagem.imagem }}" alt="" />
+                        </a>
+                    </div>
+              {% endfor %}
+          </div>
         {% endif %}
+
+        {% if news.attach_galery.all %}
+          <div class="row">
+            <h3>{% trans "Anexos" %}</h3>
+            {% for attach in news.attach_galery.all %}
+              <div class="col-sm-6 col-md-3">
+                <div class="thumbnail download_thumb">
+                  <i class="fa fa-file-o download-icon" aria-hidden="true"></i><div class="caption">
+                    <p>{{attach.description|truncatechars:16}}</p>
+                    <p><a href="{{attach.attach}}" class="btn btn-primary" role="button">Download</a></p>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
       </div>
     </div>
 {% endblock content %}

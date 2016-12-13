@@ -1276,15 +1276,24 @@ fieldset[disabled] .btn-success.active {
   color: #eee;
 }
 
-.page-responsabilidade-social .thumbnail {
+/*.page-responsabilidade-social .thumbnail {
   float: right;
   margin: 0 0 25px 30px;
   width: 200px;
-}
+*/
 
 .page-about .content a:empty {
   display: block;
   position: relative;
   top: -130px;
   visibility: hidden;
+}
+
+.download-icon{
+  font-size: 80px!important;
+}
+.download_thumb{
+  text-align: center;
+  min-height: 197px;
+  padding: 15px;
 }

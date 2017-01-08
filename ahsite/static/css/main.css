@@ -1282,6 +1282,10 @@ fieldset[disabled] .btn-success.active {
   width: 200px;
 }
 
+.page-responsabilidade-social .main-thumbnail img {
+  width: 100%;
+}
+
 .page-about .content a:empty {
   display: block;
   position: relative;

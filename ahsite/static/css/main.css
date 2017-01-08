@@ -1276,11 +1276,11 @@ fieldset[disabled] .btn-success.active {
   color: #eee;
 }
 
-/*.page-responsabilidade-social .thumbnail {
+.page-responsabilidade-social .main-thumbnail {
   float: right;
   margin: 0 0 25px 30px;
   width: 200px;
-*/
+}
 
 .page-about .content a:empty {
   display: block;

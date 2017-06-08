@@ -25,7 +25,7 @@
                         <h4>{{job}}</h4>
                         <span class="date-posted">{{job.job_date}}</span>
                         <p>{{job.job_description|safe}}</p>
-                        <a href="#applyModal" data-toggle="modal" data-role="{{job}}" data-desc="{{job.job_description|safe}}" data-jobid="{{job.id}}" class="btn btn-success btn-apply-job">
+                        <a href="#applyModal" data-toggle="modal" data-role="{{job}}" data-desc='{{job.job_description|safe}}' data-jobid="{{job.id}}" class="btn btn-success btn-apply-job">
                             {% trans "Enviar currículo" %}
                         </a>
                     </div>

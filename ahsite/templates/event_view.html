@@ -34,7 +34,7 @@
           </div>
         {% endif %}
         
-        {% if eventenvi.attach_galery.all %}
+        {% if event.attach_galery.all %}
           <div class="row">
             <h3>{% trans "Anexos" %}</h3>
             {% for attach in event.attach_galery.all %}
@@ -42,7 +42,7 @@
                 <div class="thumbnail download_thumb">
                   <i class="fa fa-file-o download-icon" aria-hidden="true"></i><div class="caption">
                     <p>{{attach.description|truncatechars:16}}</p>
-                    <p><a href="{{attach.attach}}" class="btn btn-primary" role="button">Download</a></p>
+                    <p><a href="/media/{{attach.attach}}" class="btn btn-primary" role="button">Download</a></p>
                   </div>
                 </div>
               </div>

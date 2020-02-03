@@ -55,7 +55,7 @@ class PartnersAdmin(admin.ModelAdmin):
     list_display = ('partner_title', 'language')
 
 class FarmAdmin(admin.ModelAdmin):
-    list_display = ('farm_name',)
+    list_display = ('farm_name','farm_latitude', 'farm_longitude', 'farm_city', 'farm_state' )
 
 admin.site.register(Products, ProdAdmin)
 admin.site.register(Jobs)

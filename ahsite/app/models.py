@@ -392,8 +392,8 @@ class Sale(TranslatableModelBase):
         return self.sale_description
 
     class Meta:
-        verbose_name = u"Página de Venda"
-        verbose_name_plural = u"Página de Vendas"
+        verbose_name = u"Página de Compra"
+        verbose_name_plural = u"Página de Compras"
 
 class AgriculturalFiles(models.Model):
     ap_date = models.DateTimeField()
@@ -444,5 +444,5 @@ class Products(TranslatableModelBase):
         return self.product_name
 
     class Meta:
-        verbose_name = "Produto"
-        verbose_name_plural = "Produtos"
+        verbose_name = u"Página de Venda"
+        verbose_name_plural = u"Página de Vendas"

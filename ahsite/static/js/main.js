@@ -72,5 +72,11 @@
                     .end()
                 .submit();
     });
-
+    $( ".mapboxgl-marker" ).mouseover(function() {
+        var id = $( this ).data("id");
+        $(".list-item-"+id).css("border-color","rgb(41, 162, 199)")
+    }).mouseout(function(){
+        var id = $( this ).data("id");
+        $(".list-item-"+id).css({"border-color":"#D7D6D6",});
+    });
 })(jQuery);

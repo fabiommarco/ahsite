@@ -28,6 +28,29 @@ from django.views.generic import TemplateView
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
 
+
+colors = [
+    "c8d6b9",
+    "faf3dd",
+    "9dbad5",
+    "769ecb",
+    "f6cacb",
+    "d99294",
+    "d4cfbd",
+    "e1cec9",
+    "b4bad4",
+    "d2c1ce",
+    "dfd8dc",
+    "ebe6e5",
+    "70A1D7",
+    "A1DE93",
+    "F7F48B",
+    "F47C7C",
+    "FFF9AA",
+    "FFD5B8",
+    "FFB9B3",
+    "ACECD5",
+]
 def get_or_redirect(model, language, view_name, **kwargs):
     object = get_object_or_404(model, **kwargs)
     # Custom handling if object's language does not match current langugage.
@@ -55,10 +78,17 @@ def get_or_redirect(model, language, view_name, **kwargs):
 def home(request):
     '''return homepage'''
     latest_feeds = News.translated_objects.order_by('-news_date')[:4]
+    farms = Farm.objects.all()
+
+    for farm in farms:
+        farm.initials = "".join([item[0] for item in farm.farm_name.split(" ")[0:2]])
+        farm.color = random.choice(colors)
+
     return render(request, 'index.html',
                   {'is_index':True,
                    'products':Products.translated_objects.all(),
-                   'news':latest_feeds})
+                   'news':latest_feeds,
+                   "farms": farms})
 
 def about_company(request):
     '''return about us'''

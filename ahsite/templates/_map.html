@@ -1,4 +1,59 @@
 {% load static %}
-<div class="mapa">
-    <embed src="{% static 'img/mapa.min.svg' %}" type="image/svg+xml">
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
+
+<div class="row">
+    <div class="col-sm-8">
+        <div id="map"></div>
+    </div>
+    <div class="col-sm-4 listy">
+        <ul class="farm-list">
+            {% for farm in farms %}
+                <a href="{{ farm.farm_google_maps_link|default:'#'}}" target="blank">
+                    <li class="list-item-{{ farm.id }}">
+                        <div class="conteiner farm-box">
+                            <div class="row">
+                                <div class="col-md-3" style="text-align: center;">
+                                    <p data-letters="{{farm.initials}}"
+                                        style="--my-color-var: #{{farm.color}};"></p>
+                                </div>
+                                <div class="col-md-8">
+                                    <span>{{farm.farm_name|truncatechars:20}}</span><br>
+                                    <span class="farm-location">{{farm.farm_city|truncatechars:20}} - {{farm.farm_state}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </a>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
+
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoibHVpemFuYW8iLCJhIjoiY2s0b2cxZ212MDV0NzNkcDE5azJyYms1byJ9.GDrnRTZWPXpO7IspLmWo-w';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/luizanao/ck4ono0qj0qi41ct2z6orxa16',
+        zoom: 3,
+        interactive: false,
+        center: [-48.0772831, -15.7744228],
+    });
+
+    map.scrollZoom.disable()
+
+    {% for item in farms %}
+
+        // create DOM element for the marker
+        var el = document.createElement('div');
+        el.id = 'marker';
+        el.setAttribute('style', '--my-color-var-marker: #{{ item.color }};');
+        el.setAttribute('data-id', "{{ item.id }}")
+
+        // create the marker
+        a = new mapboxgl.Marker(el)
+        .setLngLat([ parseFloat({{item.farm_latitude}}), parseFloat({{item.farm_longitude}}) ])
+        .addTo(map);
+
+    {% endfor %}
+</script>

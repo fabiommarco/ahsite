@@ -76,7 +76,7 @@ class Imagem(models.Model):
 class Attachment(models.Model):
     attach = models.FileField("Anexo", upload_to=get_upload_path, max_length=100)
     description = models.CharField(u"Nome do Arquivo para exibição", max_length=200, blank=True)
-    
+
     # Generic ForeignKey
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
@@ -305,6 +305,45 @@ class Jobs(models.Model):
     class Meta:
         verbose_name = u"Vaga de Trabalho"
         verbose_name_plural = u"Vagas de Trabalho"
+
+class Farm(models.Model):
+    farm_latitude = models.DecimalField(
+        max_digits=22,
+        decimal_places=7,
+        blank=True,
+        null=True
+    )
+    farm_longitude = models.DecimalField(
+        max_digits=22,
+        decimal_places=7,
+        blank=True,
+        null=True
+    )
+    farm_name = models.CharField(u"Nome da Fazenda", max_length=300, blank=False)
+    farm_city = models.CharField(
+        u"Cidade",
+        help_text="Brasilândia",
+        max_length=300,
+        blank=False
+    )
+    farm_state = models.CharField(
+        u"Estado",
+        help_text="MS",
+        max_length=2,
+        blank=False
+    )
+    farm_google_maps_link = models.URLField(
+        "Link Google Maps",
+        help_text='https://www.google.com/maps?&z=15&mrt=yp&t=k&q=-17.091389,-55.739722',
+        blank=True,
+        default=""
+        )
+    def __unicode__(self):
+        return self.farm_name
+
+    class Meta:
+        verbose_name = u"Fazenda"
+        verbose_name_plural = u"Fazendas"
 
 class Magazine(models.Model):
     magazine_date = models.DateTimeField()

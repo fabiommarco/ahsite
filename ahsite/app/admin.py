@@ -54,6 +54,9 @@ class EnvAdmin(admin.ModelAdmin):
 class PartnersAdmin(admin.ModelAdmin):
     list_display = ('partner_title', 'language')
 
+class FarmAdmin(admin.ModelAdmin):
+    list_display = ('farm_name',)
+
 admin.site.register(Products, ProdAdmin)
 admin.site.register(Jobs)
 admin.site.register(EnvironmentalResponsability,EnvAdmin)
@@ -67,6 +70,4 @@ admin.site.register(GeneralConfig)
 admin.site.register(Event,EventAdmin)
 admin.site.register(AgriculturalFiles)
 admin.site.register(Research,ResearchAdmin)
-
-
-
+admin.site.register(Farm,FarmAdmin)

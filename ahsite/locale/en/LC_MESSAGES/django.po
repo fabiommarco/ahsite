@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-13 01:54+0000\n"
+"POT-Creation-Date: 2020-02-09 13:01+0000\n"
 "PO-Revision-Date: 2016-12-06 17:58-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -66,12 +66,12 @@ msgstr "^contact-us/$"
 msgid "^trabalhe-conosco/$"
 msgstr "^work-with-us/$"
 
-#: app/views.py:185
+#: app/views.py:216
 msgid ""
 "Parece que algo de errado aconteceu. Por favor, tente novamente mais tarde!"
 msgstr "Oh, no! Something wrong happened. Please try again shortly."
 
-#: app/views.py:192
+#: app/views.py:223
 msgid "Obrigado! Sua mensagem foi enviada."
 msgstr "Thank you. Your message has been sent."
 
@@ -146,18 +146,20 @@ msgstr "Read more"
 msgid "Institucional"
 msgstr "About Us"
 
-#: templates/about_company.html:14 templates/base.html:77
+#: templates/about_company.html:15 templates/base.html:77
 #: templates/base.html:158
 msgid "Localizações"
 msgstr "Locations"
 
-#: templates/about_company.html:23 templates/environmental.html:21
-#: templates/event_view.html:24 templates/news_view.html:20
-#: templates/product_view.html:17
+#: templates/about_company.html:25 templates/environmental.html:22
+#: templates/event_view.html:25 templates/news_view.html:21
+#: templates/product_view.html:18
 msgid "Galeria de Imagens"
 msgstr "Image Gallery"
 
-#: templates/about_company.html:35
+#: templates/about_company.html:39 templates/environmental.html:35
+#: templates/event_view.html:39 templates/news_view.html:35
+#: templates/product_view.html:32
 msgid "Anexos"
 msgstr "Attachments"
 
@@ -349,13 +351,14 @@ msgstr "No events available at the moment. Please try again shortly."
 #: templates/index.html:12
 msgid ""
 "A AH é uma das importantes agropecuárias do Brasil, com áreas produtivas que "
-"somam mais de 40.000 hectares e sistemas de produção implantados em três "
-"estados brasileiros - Mato Grosso do Sul, Mato Grosso e Minas Gerais."
+"somam mais de 50.000 hectares e sistemas de produção implantados em quatro "
+"estados brasileiros - Mato Grosso do Sul, Mato Grosso, Minas Gerais e "
+"Distrito Federal."
 msgstr ""
 "AH is one of Brazil's important agricultural and livestock farms, with "
-"production areas totaling more than 40,000 hectares and production systems "
-"in three Brazilian states - Mato Grosso do Sul, Mato Grosso, and Minas "
-"Gerais."
+"production areas totaling more than 50,000 hectares and production systems "
+"in four Brazilian states - Mato Grosso do Sul, Mato Grosso, Minas Gerais and "
+"Federal District."
 
 #: templates/index.html:14
 msgid "Conheca a nossa história"

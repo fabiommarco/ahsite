@@ -8,13 +8,11 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0037_farm'),
+        ("app", "0037_farm"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='farm',
-            old_name='farm_localizacao',
-            new_name='farm_location',
+            model_name="farm", old_name="farm_localizacao", new_name="farm_location",
         ),
     ]

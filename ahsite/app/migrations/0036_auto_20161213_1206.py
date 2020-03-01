@@ -8,25 +8,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0035_auto_20161212_0034'),
+        ("app", "0035_auto_20161212_0034"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='environmentalresponsability',
-            name='attach_galery_title',
+            model_name="environmentalresponsability", name="attach_galery_title",
         ),
-        migrations.RemoveField(
-            model_name='event',
-            name='event_attach_galery_title',
-        ),
-        migrations.RemoveField(
-            model_name='news',
-            name='attach_galery_title',
-        ),
+        migrations.RemoveField(model_name="event", name="event_attach_galery_title",),
+        migrations.RemoveField(model_name="news", name="attach_galery_title",),
         migrations.AlterField(
-            model_name='attachment',
-            name='description',
-            field=models.CharField(blank=True, max_length=200, verbose_name='Nome do Arquivo para exibi\xe7\xe3o'),
+            model_name="attachment",
+            name="description",
+            field=models.CharField(
+                blank=True,
+                max_length=200,
+                verbose_name="Nome do Arquivo para exibi\xe7\xe3o",
+            ),
         ),
     ]

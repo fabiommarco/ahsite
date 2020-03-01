@@ -8,17 +8,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0026_generalconfig_config_social_linkedin'),
+        ("app", "0026_generalconfig_config_social_linkedin"),
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='research',
-            name='reserach_description',
-        ),
+        migrations.RemoveField(model_name="research", name="reserach_description",),
         migrations.AlterField(
-            model_name='research',
-            name='reserach_type',
-            field=models.CharField(choices=[('cotacao_agricola', 'Cota\xe7\xe3o Agr\xedcola'), ('relatorio_agricola', 'Relatorio Agricola'), ('analise_grafica', 'Analise Gr\xe1fica'), ('call_macro', 'Call Macro')], max_length=200, verbose_name='Tipo de Relatorio'),
+            model_name="research",
+            name="reserach_type",
+            field=models.CharField(
+                choices=[
+                    ("cotacao_agricola", "Cota\xe7\xe3o Agr\xedcola"),
+                    ("relatorio_agricola", "Relatorio Agricola"),
+                    ("analise_grafica", "Analise Gr\xe1fica"),
+                    ("call_macro", "Call Macro"),
+                ],
+                max_length=200,
+                verbose_name="Tipo de Relatorio",
+            ),
         ),
     ]

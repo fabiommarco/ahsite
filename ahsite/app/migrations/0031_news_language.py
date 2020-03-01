@@ -8,13 +8,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0030_auto_20161120_1828'),
+        ("app", "0030_auto_20161120_1828"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='news',
-            name='language',
-            field=models.CharField(choices=[(b'pt', b'Portuguese'), (b'en', b'English')], default='pt', help_text='Idioma em que a p\xe1gina ser\xe1 exibida', max_length=5, verbose_name='Idioma'),
+            model_name="news",
+            name="language",
+            field=models.CharField(
+                choices=[(b"pt", b"Portuguese"), (b"en", b"English")],
+                default="pt",
+                help_text="Idioma em que a p\xe1gina ser\xe1 exibida",
+                max_length=5,
+                verbose_name="Idioma",
+            ),
         ),
     ]

@@ -9,70 +9,81 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0015_auto_20160911_2335'),
+        ("app", "0015_auto_20160911_2335"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='aboutcompany',
-            options={'verbose_name': 'Sobre a Empresa', 'verbose_name_plural': 'Sobre a Empresa'},
+            name="aboutcompany",
+            options={
+                "verbose_name": "Sobre a Empresa",
+                "verbose_name_plural": "Sobre a Empresa",
+            },
         ),
         migrations.AlterModelOptions(
-            name='agriculturalfiles',
-            options={'verbose_name': 'Cota\xe7\xe3o Agr\xedcola', 'verbose_name_plural': 'Cota\xe7\xf5es Agr\xedcolas'},
+            name="agriculturalfiles",
+            options={
+                "verbose_name": "Cota\xe7\xe3o Agr\xedcola",
+                "verbose_name_plural": "Cota\xe7\xf5es Agr\xedcolas",
+            },
         ),
         migrations.AlterModelOptions(
-            name='event',
-            options={'verbose_name': 'Evento', 'verbose_name_plural': 'Eventos'},
+            name="event",
+            options={"verbose_name": "Evento", "verbose_name_plural": "Eventos"},
         ),
         migrations.AlterModelOptions(
-            name='generalconfig',
-            options={'verbose_name': 'Configura\xe7\xe3o Geral', 'verbose_name_plural': 'Configura\xe7\xf5es Gerais'},
+            name="generalconfig",
+            options={
+                "verbose_name": "Configura\xe7\xe3o Geral",
+                "verbose_name_plural": "Configura\xe7\xf5es Gerais",
+            },
         ),
         migrations.AlterModelOptions(
-            name='imagem',
-            options={'verbose_name': 'Galeria de Imagens', 'verbose_name_plural': 'Galeria de Imagens'},
+            name="imagem",
+            options={
+                "verbose_name": "Galeria de Imagens",
+                "verbose_name_plural": "Galeria de Imagens",
+            },
         ),
         migrations.AlterModelOptions(
-            name='jobs',
-            options={'verbose_name': 'Vaga de Trabalho', 'verbose_name_plural': 'Vagas de Trabalho'},
+            name="jobs",
+            options={
+                "verbose_name": "Vaga de Trabalho",
+                "verbose_name_plural": "Vagas de Trabalho",
+            },
         ),
         migrations.AlterModelOptions(
-            name='magazine',
-            options={'verbose_name': 'Revista', 'verbose_name_plural': 'Revistas'},
+            name="magazine",
+            options={"verbose_name": "Revista", "verbose_name_plural": "Revistas"},
         ),
         migrations.AlterModelOptions(
-            name='news',
-            options={'verbose_name': 'Not\xedcia', 'verbose_name_plural': 'Not\xedcias'},
+            name="news",
+            options={
+                "verbose_name": "Not\xedcia",
+                "verbose_name_plural": "Not\xedcias",
+            },
         ),
         migrations.AlterModelOptions(
-            name='partners',
-            options={'verbose_name': 'Parceria', 'verbose_name_plural': 'Parcerias'},
+            name="partners",
+            options={"verbose_name": "Parceria", "verbose_name_plural": "Parcerias"},
         ),
         migrations.AlterModelOptions(
-            name='sale',
-            options={'verbose_name': 'P\xe1gina de Venda', 'verbose_name_plural': 'P\xe1gina de Vendas'},
+            name="sale",
+            options={
+                "verbose_name": "P\xe1gina de Venda",
+                "verbose_name_plural": "P\xe1gina de Vendas",
+            },
         ),
-        migrations.RemoveField(
-            model_name='aboutcompany',
-            name='ac_about',
-        ),
-        migrations.RemoveField(
-            model_name='aboutcompany',
-            name='ac_mission',
-        ),
-        migrations.RemoveField(
-            model_name='aboutcompany',
-            name='ac_values',
-        ),
-        migrations.RemoveField(
-            model_name='aboutcompany',
-            name='ac_vision',
-        ),
+        migrations.RemoveField(model_name="aboutcompany", name="ac_about",),
+        migrations.RemoveField(model_name="aboutcompany", name="ac_mission",),
+        migrations.RemoveField(model_name="aboutcompany", name="ac_values",),
+        migrations.RemoveField(model_name="aboutcompany", name="ac_vision",),
         migrations.AddField(
-            model_name='aboutcompany',
-            name='ac_content',
-            field=ckeditor.fields.RichTextField(default='', verbose_name='Conte\xfado da p\xe1gina'),
+            model_name="aboutcompany",
+            name="ac_content",
+            field=ckeditor.fields.RichTextField(
+                default="", verbose_name="Conte\xfado da p\xe1gina"
+            ),
             preserve_default=False,
         ),
     ]

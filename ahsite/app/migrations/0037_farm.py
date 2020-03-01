@@ -8,22 +8,47 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0036_auto_20161213_1206'),
+        ("app", "0036_auto_20161213_1206"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Farm',
+            name="Farm",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('farm_latitude', models.DecimalField(blank=True, decimal_places=16, max_digits=22, null=True)),
-                ('farm_longitude', models.DecimalField(blank=True, decimal_places=16, max_digits=22, null=True)),
-                ('farm_name', models.CharField(max_length=300, verbose_name='Nome da Fazenda')),
-                ('farm_localizacao', models.CharField(help_text='Brasil\xe2ndia MS', max_length=300, verbose_name='Localiza\xe7\xe3o')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "farm_latitude",
+                    models.DecimalField(
+                        blank=True, decimal_places=16, max_digits=22, null=True
+                    ),
+                ),
+                (
+                    "farm_longitude",
+                    models.DecimalField(
+                        blank=True, decimal_places=16, max_digits=22, null=True
+                    ),
+                ),
+                (
+                    "farm_name",
+                    models.CharField(max_length=300, verbose_name="Nome da Fazenda"),
+                ),
+                (
+                    "farm_localizacao",
+                    models.CharField(
+                        help_text="Brasil\xe2ndia MS",
+                        max_length=300,
+                        verbose_name="Localiza\xe7\xe3o",
+                    ),
+                ),
             ],
-            options={
-                'verbose_name': 'Fazenda',
-                'verbose_name_plural': 'Fazendas',
-            },
+            options={"verbose_name": "Fazenda", "verbose_name_plural": "Fazendas",},
         ),
     ]

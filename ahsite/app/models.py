@@ -6,52 +6,62 @@
 from __future__ import unicode_literals
 
 import datetime
-import uuid
 import os
+import uuid
 
-from django.db import models
-from django.contrib.contenttypes.fields import GenericForeignKey,GenericRelation
-from django.contrib.contenttypes.models import ContentType
-from django.utils.html import format_html
-from django.utils import translation
-from django.template.defaultfilters import truncatechars,slugify
 from ckeditor.fields import RichTextField
 from django.conf import settings
+from django.contrib.contenttypes.fields import (GenericForeignKey,
+                                                GenericRelation)
+from django.contrib.contenttypes.models import ContentType
+from django.db import models
+from django.template.defaultfilters import slugify, truncatechars
+from django.utils import translation
+from django.utils.html import format_html
 
 TIPO_RELATORIO = (
-    ('cotacao_agricola', 'Cotação Agrícola'),
-    ('relatorio_agricola', 'Relatorio Agricola'),
-    ('analise_grafica', 'Analise Gráfica'),
-    ('call_macro', 'Call Macro')
+    ("cotacao_agricola", "Cotação Agrícola"),
+    ("relatorio_agricola", "Relatorio Agricola"),
+    ("analise_grafica", "Analise Gráfica"),
+    ("call_macro", "Call Macro"),
 )
 
 
 def get_upload_path(instance, filename):
     _f, ext = os.path.splitext(filename)
-    new_filename = '%s%s' % (uuid.uuid4().hex, ext)
-    return os.path.join('uploads', str(uuid.uuid4()), new_filename)
+    new_filename = "%s%s" % (uuid.uuid4().hex, ext)
+    return os.path.join("uploads", str(uuid.uuid4()), new_filename)
 
 
 class TranslatableManager(models.Manager):
-
     def get_queryset(self):
-        return super(TranslatableManager, self).get_queryset().filter(
-            language=translation.get_language())
+        return (
+            super(TranslatableManager, self)
+            .get_queryset()
+            .filter(language=translation.get_language())
+        )
 
 
 class TranslatableModelBase(models.Model):
-    language = models.CharField('Idioma', choices=settings.LANGUAGES,
-                                max_length=5,
-                                default='pt',
-                                blank=False, null=False,
-                                help_text='Idioma em que a página será exibida',)
+    language = models.CharField(
+        "Idioma",
+        choices=settings.LANGUAGES,
+        max_length=5,
+        default="pt",
+        blank=False,
+        null=False,
+        help_text="Idioma em que a página será exibida",
+    )
 
-    parent = models.ForeignKey('self',
-                               verbose_name=u'Página Original',
-                               blank=True, null=True,
-                               limit_choices_to={'language': 'pt'},
-                               help_text=u'Página da qual esta é uma tradução. '
-                                          'Não é necessário para páginas em Português')
+    parent = models.ForeignKey(
+        "self",
+        verbose_name="Página Original",
+        blank=True,
+        null=True,
+        limit_choices_to={"language": "pt"},
+        help_text="Página da qual esta é uma tradução. "
+        "Não é necessário para páginas em Português",
+    )
 
     objects = models.Manager()
     translated_objects = TranslatableManager()
@@ -59,23 +69,28 @@ class TranslatableModelBase(models.Model):
     class Meta:
         abstract = True
 
+
 # =================================================
+
 
 class Imagem(models.Model):
     imagem = models.ImageField("Imagem", upload_to=get_upload_path)
-    descricao = models.CharField(u"Descrição breve", max_length=200, blank=True)
-    main_image = models.BooleanField(u"Imagem Principal")
+    descricao = models.CharField("Descrição breve", max_length=200, blank=True)
+    main_image = models.BooleanField("Imagem Principal")
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey()
 
     class Meta:
-        verbose_name = u"Galeria de Imagens"
-        verbose_name_plural = u"Galeria de Imagens"
+        verbose_name = "Galeria de Imagens"
+        verbose_name_plural = "Galeria de Imagens"
+
 
 class Attachment(models.Model):
     attach = models.FileField("Anexo", upload_to=get_upload_path, max_length=100)
-    description = models.CharField(u"Nome do Arquivo para exibição", max_length=200, blank=True)
+    description = models.CharField(
+        "Nome do Arquivo para exibição", max_length=200, blank=True
+    )
 
     # Generic ForeignKey
     content_type = models.ForeignKey(ContentType)
@@ -89,62 +104,57 @@ class Attachment(models.Model):
 
 class GeneralConfig(models.Model):
     config_street = models.CharField(
-        u"Logradouro",
-        help_text="Exemplo: Rua Rio Branco",
-        max_length=200,
-        blank=False)
-    config_number = models.IntegerField(u"Número", blank=False)
+        "Logradouro", help_text="Exemplo: Rua Rio Branco", max_length=200, blank=False
+    )
+    config_number = models.IntegerField("Número", blank=False)
     config_neighbourhood = models.CharField(
-        u"Bairro",
-        help_text="Exemplo: Vila Falcão",
-        max_length=200,
-        blank=False)
+        "Bairro", help_text="Exemplo: Vila Falcão", max_length=200, blank=False
+    )
 
     config_email = models.EmailField(
-        u"Email",
-        help_text='<strong>Atenção! </strong>Através'
-                  'desse email você receberá os contados'
-                  'enviados pelo site.',
-        blank=False)
+        "Email",
+        help_text="<strong>Atenção! </strong>Através"
+        "desse email você receberá os contados"
+        "enviados pelo site.",
+        blank=False,
+    )
     config_email_cv = models.EmailField(
-        u"Email de Curriculos",
-        help_text='Utilize esse campo caso queira registrar um email personalizado'
-                  'para recebimento de Curriculos',
-        )
+        "Email de Curriculos",
+        help_text="Utilize esse campo caso queira registrar um email personalizado"
+        "para recebimento de Curriculos",
+    )
 
     config_phone = models.CharField(
-        u"Telefone",
-        help_text="Formato: (18) 9900-5544",
-        max_length=15,
-        blank=False)
+        "Telefone", help_text="Formato: (18) 9900-5544", max_length=15, blank=False
+    )
     config_phone_alternative = models.CharField(
-        u"Telefone Alternativo",
+        "Telefone Alternativo",
         help_text="Formato: (18) 9900-5544",
         max_length=15,
-        blank=True)
+        blank=True,
+    )
     config_social_facebook = models.URLField(
-        u'Facebook',
-        help_text='Formato: https://www.facebook.com/SUA_PAGINA',
-        blank=True)
+        "Facebook", help_text="Formato: https://www.facebook.com/SUA_PAGINA", blank=True
+    )
     config_social_twitter = models.URLField(
-        u'Twitter',
-        help_text='Formato: https://www.twitter.com/SUA_PAGINA',
-        blank=True)
+        "Twitter", help_text="Formato: https://www.twitter.com/SUA_PAGINA", blank=True
+    )
     config_social_youtube = models.URLField(
-        u'Youtube',
-        help_text='Formato: https://www.youtube.com/user/SEU_CANAL',
-        blank=True)
+        "Youtube",
+        help_text="Formato: https://www.youtube.com/user/SEU_CANAL",
+        blank=True,
+    )
     config_social_instagram = models.URLField(
-        u'Instagram',
-        help_text='Formato: https://www.instagram.com/SEU_PERFIL',
-        blank=True)
+        "Instagram",
+        help_text="Formato: https://www.instagram.com/SEU_PERFIL",
+        blank=True,
+    )
     config_social_linkedin = models.URLField(
-        u'Linkedin',
-        help_text='Formato: https://www.linkedin.com/SEU_PERFIL',
-        blank=True)
+        "Linkedin", help_text="Formato: https://www.linkedin.com/SEU_PERFIL", blank=True
+    )
 
     class Meta:
-        verbose_name = u"Configuração Geral"
+        verbose_name = "Configuração Geral"
         verbose_name_plural = "Configurações Gerais"
 
     def __unicode__(self):
@@ -152,13 +162,14 @@ class GeneralConfig(models.Model):
 
 
 class AboutCompany(TranslatableModelBase):
-    ac_content = RichTextField(u"Conteúdo da página", blank=False)
+    ac_content = RichTextField("Conteúdo da página", blank=False)
     gallery_title = models.CharField(
         "Título da Galeria de Imagens",
         blank=True,
         max_length=200,
         help_text="Digite um nome para a Galeria de Imagens, deixe o campo em"
-                  "branco caso queira manter o nome como Galeria de Imagens.")
+        "branco caso queira manter o nome como Galeria de Imagens.",
+    )
     gallery = GenericRelation(Imagem)
     attach_galery = GenericRelation(Attachment)
 
@@ -166,42 +177,47 @@ class AboutCompany(TranslatableModelBase):
         text = format_html(self.ac_content)
         try:
             text = truncatechars(
-                self.ac_content.split('<p>', 1)[1].split('</p>')[0], 100)
+                self.ac_content.split("<p>", 1)[1].split("</p>")[0], 100
+            )
         except Exception, e:
             pass
         return text
+
     scaped_html.allow_tags = True
 
     def __unicode__(self):
         return self.ac_content
 
     class Meta:
-        verbose_name = u"Sobre a Empresa"
-        verbose_name_plural = u"Sobre a Empresa"
+        verbose_name = "Sobre a Empresa"
+        verbose_name_plural = "Sobre a Empresa"
 
 
 class Event(TranslatableModelBase):
-    '''
+    """
         called as resposabilidade social in the system
-    '''
-    event_date = models.DateTimeField(u"Data", default=datetime.datetime.now)
-    event_title = models.CharField(u"Título", max_length=300)
-    event_local = models.CharField(u"Local", max_length=300)
+    """
+
+    event_date = models.DateTimeField("Data", default=datetime.datetime.now)
+    event_title = models.CharField("Título", max_length=300)
+    event_local = models.CharField("Local", max_length=300)
     event_slug = models.SlugField(unique=True, max_length=100, editable=False)
-    event_description = RichTextField(u"Descrição")
+    event_description = RichTextField("Descrição")
     event_video = models.CharField(
         "Vídeo do YouTube",
         max_length=150,
         blank=True,
         help_text="Digite somente a parte em <strong>negrito</strong> da URL do vídeo"
-        "seguindo este exemplo:http://www.youtube.com/watch?v=<strong>aAkurCTifE0</strong>")
-    event_thumbnail = models.ImageField(u"Thumbnail", upload_to=get_upload_path)
+        "seguindo este exemplo:http://www.youtube.com/watch?v=<strong>aAkurCTifE0</strong>",
+    )
+    event_thumbnail = models.ImageField("Thumbnail", upload_to=get_upload_path)
     event_galery_title = models.CharField(
         "Título da Galeria de Imagens",
         blank=True,
         max_length=200,
         help_text="Digite um nome para a Galeria de Imagens,"
-        " deixe o campo em branco caso queira manter o nome como Galeria de Imagens.")
+        " deixe o campo em branco caso queira manter o nome como Galeria de Imagens.",
+    )
     event_galery = GenericRelation(Imagem)
     attach_galery = GenericRelation(Attachment)
 
@@ -213,26 +229,29 @@ class Event(TranslatableModelBase):
         super(Event, self).save()
 
     class Meta:
-        verbose_name = u"Responsabilidade Social"
-        verbose_name_plural = u"Responsabilidade Social"
+        verbose_name = "Responsabilidade Social"
+        verbose_name_plural = "Responsabilidade Social"
+
 
 class EnvironmentalResponsability(TranslatableModelBase):
-    environ_date = models.DateTimeField(u"Data", default=datetime.datetime.now)
-    environ_title = models.CharField(u"Título", max_length=300)
-    environ_description = RichTextField(u"Descrição")
+    environ_date = models.DateTimeField("Data", default=datetime.datetime.now)
+    environ_title = models.CharField("Título", max_length=300)
+    environ_description = RichTextField("Descrição")
     environ_video = models.CharField(
         "Vídeo do YouTube",
         max_length=150,
         blank=True,
         help_text="Digite somente a parte em <strong>negrito</strong> da URL do vídeo"
-        "seguindo este exemplo:http://www.youtube.com/watch?v=<strong>aAkurCTifE0</strong>")
+        "seguindo este exemplo:http://www.youtube.com/watch?v=<strong>aAkurCTifE0</strong>",
+    )
     # environ_thumbnail = models.ImageField(u"Thumbnail", upload_to=get_upload_path)
     environ_galery_title = models.CharField(
         "Título da Galeria de Imagens",
         blank=True,
         max_length=200,
         help_text="Digite um nome para a Galeria de Imagens,"
-        " deixe o campo em branco caso queira manter o nome como Galeria de Imagens.")
+        " deixe o campo em branco caso queira manter o nome como Galeria de Imagens.",
+    )
     environ_galery = GenericRelation(Imagem)
     attach_galery = GenericRelation(Attachment)
 
@@ -240,27 +259,30 @@ class EnvironmentalResponsability(TranslatableModelBase):
         return self.environ_title
 
     class Meta:
-        verbose_name = u"Responsabilidade Ambiental"
-        verbose_name_plural = u"Responsabilidade Ambiental"
+        verbose_name = "Responsabilidade Ambiental"
+        verbose_name_plural = "Responsabilidade Ambiental"
+
 
 class News(TranslatableModelBase):
     news_date = models.DateTimeField()
-    news_title = models.CharField(u"Titúlo da Notícia", max_length=255)
+    news_title = models.CharField("Titúlo da Notícia", max_length=255)
     news_slug = models.SlugField(unique=True, max_length=255, editable=False)
-    news_description = RichTextField(u"Descrição")
+    news_description = RichTextField("Descrição")
     news_video = models.CharField(
         "Vídeo do YouTube",
         max_length=150,
         blank=True,
         help_text="Digite somente a parte em <strong>negrito</strong> da URL do vídeo"
-        "seguindo este exemplo:http://www.youtube.com/watch?v=<strong>aAkurCTifE0</strong>")
+        "seguindo este exemplo:http://www.youtube.com/watch?v=<strong>aAkurCTifE0</strong>",
+    )
 
     news_galery_title = models.CharField(
         "Título da Galeria de Imagens",
         blank=True,
         max_length=200,
         help_text="Digite um nome para a Galeria de Imagens, "
-        "deixe o campo em branco caso queira manter o nome como Galeria de Imagens.")
+        "deixe o campo em branco caso queira manter o nome como Galeria de Imagens.",
+    )
     news_galery = GenericRelation(Imagem)
     attach_galery = GenericRelation(Attachment)
 
@@ -272,14 +294,15 @@ class News(TranslatableModelBase):
         super(News, self).save()
 
     class Meta:
-        verbose_name = u"Notícia"
-        verbose_name_plural = u"Notícias"
+        verbose_name = "Notícia"
+        verbose_name_plural = "Notícias"
+
 
 class Partners(TranslatableModelBase):
     partner_date = models.DateTimeField(default=datetime.datetime.now)
-    partner_title = models.CharField(u"Nome da Parceria", max_length=300)
+    partner_title = models.CharField("Nome da Parceria", max_length=300)
     partner_slug = models.SlugField(unique=True, max_length=100, editable=False)
-    partner_description = RichTextField(u"Descrição")
+    partner_description = RichTextField("Descrição")
 
     def __unicode__(self):
         return self.partner_title
@@ -289,152 +312,150 @@ class Partners(TranslatableModelBase):
         super(Partners, self).save()
 
     class Meta:
-        verbose_name = u"Parceria"
-        verbose_name_plural = u"Parcerias"
+        verbose_name = "Parceria"
+        verbose_name_plural = "Parcerias"
+
 
 class Jobs(models.Model):
     job_date = models.DateTimeField(default=datetime.datetime.now)
-    job_title = models.CharField(u"Titúlo da Vaga", max_length=300)
+    job_title = models.CharField("Titúlo da Vaga", max_length=300)
     job_description = RichTextField(
-        u"Descrição",
-        help_text='Desreva aqui as especificações da vaga e seus pré-requisitos')
+        "Descrição",
+        help_text="Desreva aqui as especificações da vaga e seus pré-requisitos",
+    )
 
     def __unicode__(self):
         return self.job_title
 
     class Meta:
-        verbose_name = u"Vaga de Trabalho"
-        verbose_name_plural = u"Vagas de Trabalho"
+        verbose_name = "Vaga de Trabalho"
+        verbose_name_plural = "Vagas de Trabalho"
+
 
 class Farm(models.Model):
     farm_latitude = models.DecimalField(
-        max_digits=22,
-        decimal_places=7,
-        blank=True,
-        null=True
+        max_digits=22, decimal_places=7, blank=True, null=True
     )
     farm_longitude = models.DecimalField(
-        max_digits=22,
-        decimal_places=7,
-        blank=True,
-        null=True
+        max_digits=22, decimal_places=7, blank=True, null=True
     )
-    farm_name = models.CharField(u"Nome da Fazenda", max_length=300, blank=False)
+    farm_name = models.CharField("Nome da Fazenda", max_length=300, blank=False)
     farm_city = models.CharField(
-        u"Cidade",
-        help_text="Brasilândia",
-        max_length=300,
-        blank=False
+        "Cidade", help_text="Brasilândia", max_length=300, blank=False
     )
-    farm_state = models.CharField(
-        u"Estado",
-        help_text="MS",
-        max_length=2,
-        blank=False
-    )
+    farm_state = models.CharField("Estado", help_text="MS", max_length=2, blank=False)
     farm_google_maps_link = models.URLField(
         "Link Google Maps",
-        help_text='https://www.google.com/maps?&z=15&mrt=yp&t=k&q=-17.091389,-55.739722',
+        help_text="https://www.google.com/maps?&z=15&mrt=yp&t=k&q=-17.091389,-55.739722",
         blank=True,
-        default=""
-        )
+        default="",
+    )
+
     def __unicode__(self):
         return self.farm_name
 
     class Meta:
-        verbose_name = u"Fazenda"
-        verbose_name_plural = u"Fazendas"
+        verbose_name = "Fazenda"
+        verbose_name_plural = "Fazendas"
+
 
 class Magazine(models.Model):
     magazine_date = models.DateTimeField()
-    magazine_title = models.CharField(u"Titúlo da Edição", max_length=300)
-    magazine_description = RichTextField(u"Descrição", max_length=300, blank=True)
+    magazine_title = models.CharField("Titúlo da Edição", max_length=300)
+    magazine_description = RichTextField("Descrição", max_length=300, blank=True)
     magazine_file = models.FileField("Arquivo", upload_to=get_upload_path)
 
     def __unicode__(self):
         return self.magazine_title
 
     class Meta:
-        verbose_name = u"Revista"
-        verbose_name_plural = u"Revistas"
+        verbose_name = "Revista"
+        verbose_name_plural = "Revistas"
+
 
 class Research(models.Model):
     reserach_date = models.DateField(default=datetime.datetime.now)
-    reserach_title = models.CharField(u"Título", max_length=300)
+    reserach_title = models.CharField("Título", max_length=300)
     reserach_type = models.CharField(
-        u"Tipo de Relatorio",
-        choices=TIPO_RELATORIO,
-        max_length=200)
-    research_file = models.FileField("Arquivo", upload_to=get_upload_path, max_length=100)
+        "Tipo de Relatorio", choices=TIPO_RELATORIO, max_length=200
+    )
+    research_file = models.FileField(
+        "Arquivo", upload_to=get_upload_path, max_length=100
+    )
 
     class Meta:
-        verbose_name_plural = u"Researchs"
+        verbose_name_plural = "Researchs"
 
 
 class Newsletter(models.Model):
     news_date = models.DateTimeField(default=datetime.datetime.now)
     news_name = models.CharField("Nome", max_length=200)
-    news_email = models.EmailField('Email')
+    news_email = models.EmailField("Email")
 
     def __unicode__(self):
         return self.news_name
 
+
 class Sale(TranslatableModelBase):
-    sale_description = RichTextField(u"Texto da Página", help_text='Conteúdo da página de Vendas')
+    sale_description = RichTextField(
+        "Texto da Página", help_text="Conteúdo da página de Vendas"
+    )
     sale_email = models.EmailField(
-        u'Email',
+        "Email",
         blank=True,
-        help_text='O email do formulário da Página de Vendas será enviado para'
-                  'o email registrado no menu <a href="/admin/app/generalconfig/">Configurações Gerais</a>.'
-                  'Use este campo para registrar um email adicional utilizado na Página de Vendas.')
+        help_text="O email do formulário da Página de Vendas será enviado para"
+        'o email registrado no menu <a href="/admin/app/generalconfig/">Configurações Gerais</a>.'
+        "Use este campo para registrar um email adicional utilizado na Página de Vendas.",
+    )
 
     def __unicode__(self):
         return self.sale_description
 
     class Meta:
-        verbose_name = u"Página de Compra"
-        verbose_name_plural = u"Página de Compras"
+        verbose_name = "Página de Compra"
+        verbose_name_plural = "Página de Compras"
+
 
 class AgriculturalFiles(models.Model):
     ap_date = models.DateTimeField()
     ap_file = models.FileField("Arquivo", upload_to=get_upload_path)
-    ap_brief_desc = models.CharField(u"Descrição", max_length=150, blank=True)
+    ap_brief_desc = models.CharField("Descrição", max_length=150, blank=True)
 
     def __unicode__(self):
         return self.ap_brief_desc
 
     class Meta:
-        verbose_name = u"Cotação Agrícola"
-        verbose_name_plural = u"Cotações Agrícolas"
+        verbose_name = "Cotação Agrícola"
+        verbose_name_plural = "Cotações Agrícolas"
+
 
 class Products(TranslatableModelBase):
     product_date = models.DateTimeField(default=datetime.datetime.now)
     product_name = models.CharField("Nome do Produto", max_length=200)
     product_slug = models.SlugField(unique=True, max_length=100, editable=False)
-    product_description = RichTextField(u"Descrição")
+    product_description = RichTextField("Descrição")
     product_category = models.CharField(
-        'Categoria',
-        choices=(
-            ('suinos', 'Suinos'),
-            ('bovinos', 'Bovinos'),
-            ('cafe', u'Café')
-        ),
+        "Categoria",
+        choices=(("suinos", "Suinos"), ("bovinos", "Bovinos"), ("cafe", "Café")),
         max_length=20,
-        blank=False, null=False,
-        help_text='Categoria do produto')
+        blank=False,
+        null=False,
+        help_text="Categoria do produto",
+    )
     product_short_description = models.TextField(
-        u"Descrição Curta",
-        help_text='Essa descrição irá aparecer na homepage.',
-        max_length=200)
+        "Descrição Curta",
+        help_text="Essa descrição irá aparecer na homepage.",
+        max_length=200,
+    )
     product_galery_title = models.CharField(
         "Título da Galeria de Imagens",
         blank=True,
         max_length=200,
         help_text="Digite um nome para a Galeria de Imagens, deixe o campo em branco caso queira"
-                  "manter o nome como Galeria de Imagens.")
+        "manter o nome como Galeria de Imagens.",
+    )
     product_galery = GenericRelation(Imagem)
     attach_galery = GenericRelation(Attachment)
-
 
     def save(self):
         self.product_slug = slugify(self.product_name)
@@ -444,16 +465,13 @@ class Products(TranslatableModelBase):
         return self.product_name
 
     class Meta:
-        verbose_name = u"Página de Venda"
-        verbose_name_plural = u"Página de Vendas"
+        verbose_name = "Página de Venda"
+        verbose_name_plural = "Página de Vendas"
+
 
 class TimeLine(TranslatableModelBase):
     year = models.DateField(blank=False)
-    description = models.CharField(
-        "Descrição",
-        blank=False,
-        max_length=300
-    )
+    description = models.CharField("Descrição", blank=False, max_length=300)
 
     def __unicode__(self):
         return str(self.year.year)
@@ -463,5 +481,5 @@ class TimeLine(TranslatableModelBase):
         return truncatechars(self.description, 50)
 
     class Meta:
-        verbose_name = u"Linha do Tempo"
-        verbose_name_plural = u"Linha do Tempo"
+        verbose_name = "Linha do Tempo"
+        verbose_name_plural = "Linha do Tempo"

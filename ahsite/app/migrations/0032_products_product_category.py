@@ -8,14 +8,24 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0031_news_language'),
+        ("app", "0031_news_language"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='products',
-            name='product_category',
-            field=models.CharField(choices=[('suinos', 'Suinos'), ('bovinos', 'Bovinos'), ('cafe', 'Caf\xe9')], default='suinos', help_text='Categoria do produto', max_length=20, verbose_name='Categoria'),
+            model_name="products",
+            name="product_category",
+            field=models.CharField(
+                choices=[
+                    ("suinos", "Suinos"),
+                    ("bovinos", "Bovinos"),
+                    ("cafe", "Caf\xe9"),
+                ],
+                default="suinos",
+                help_text="Categoria do produto",
+                max_length=20,
+                verbose_name="Categoria",
+            ),
             preserve_default=False,
         ),
     ]

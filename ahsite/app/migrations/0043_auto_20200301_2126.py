@@ -8,13 +8,11 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0042_auto_20200301_2112'),
+        ("app", "0042_auto_20200301_2112"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='timeline',
-            name='year',
-            field=models.DateField(),
+            model_name="timeline", name="year", field=models.DateField(),
         ),
     ]

@@ -8,13 +8,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0025_remove_environmentalresponsability_environ_thumbnail'),
+        ("app", "0025_remove_environmentalresponsability_environ_thumbnail"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='generalconfig',
-            name='config_social_linkedin',
-            field=models.URLField(blank=True, help_text='Formato: https://www.linkedin.com/SEU_PERFIL', verbose_name='Linkedin'),
+            model_name="generalconfig",
+            name="config_social_linkedin",
+            field=models.URLField(
+                blank=True,
+                help_text="Formato: https://www.linkedin.com/SEU_PERFIL",
+                verbose_name="Linkedin",
+            ),
         ),
     ]

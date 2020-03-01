@@ -8,28 +8,45 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0040_farm_farm_google_maps_link'),
+        ("app", "0040_farm_farm_google_maps_link"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='TimeLine',
+            name="TimeLine",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('year', models.DateField(unique=True)),
-                ('description', models.CharField(max_length=300, verbose_name='Descri\xe7\xe3o')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("year", models.DateField(unique=True)),
+                (
+                    "description",
+                    models.CharField(max_length=300, verbose_name="Descri\xe7\xe3o"),
+                ),
             ],
             options={
-                'verbose_name': 'Linha do Tempo',
-                'verbose_name_plural': 'Linha do Tempo',
+                "verbose_name": "Linha do Tempo",
+                "verbose_name_plural": "Linha do Tempo",
             },
         ),
         migrations.AlterModelOptions(
-            name='products',
-            options={'verbose_name': 'P\xe1gina de Venda', 'verbose_name_plural': 'P\xe1gina de Vendas'},
+            name="products",
+            options={
+                "verbose_name": "P\xe1gina de Venda",
+                "verbose_name_plural": "P\xe1gina de Vendas",
+            },
         ),
         migrations.AlterModelOptions(
-            name='sale',
-            options={'verbose_name': 'P\xe1gina de Compra', 'verbose_name_plural': 'P\xe1gina de Compras'},
+            name="sale",
+            options={
+                "verbose_name": "P\xe1gina de Compra",
+                "verbose_name_plural": "P\xe1gina de Compras",
+            },
         ),
     ]

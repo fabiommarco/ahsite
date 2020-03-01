@@ -5,5 +5,5 @@ from django.apps import AppConfig
 
 
 class AppConfig(AppConfig):
-    name = 'app'
+    name = "app"
     verbose_name = "Gerenciamento de Conteúdo"

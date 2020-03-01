@@ -3,43 +3,75 @@
 from __future__ import unicode_literals
 
 import app.models
-from django.db import migrations, models
 import django.db.models.deletion
+from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('contenttypes', '0002_remove_content_type_name'),
-        ('app', '0028_generalconfig_config_email_cv'),
+        ("contenttypes", "0002_remove_content_type_name"),
+        ("app", "0028_generalconfig_config_email_cv"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Attachment',
+            name="Attachment",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('attach', models.FileField(upload_to=app.models.get_upload_path, verbose_name='Anexo')),
-                ('object_id', models.PositiveIntegerField()),
-                ('content_type', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='contenttypes.ContentType')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "attach",
+                    models.FileField(
+                        upload_to=app.models.get_upload_path, verbose_name="Anexo"
+                    ),
+                ),
+                ("object_id", models.PositiveIntegerField()),
+                (
+                    "content_type",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="contenttypes.ContentType",
+                    ),
+                ),
             ],
-            options={
-                'verbose_name_plural': 'Arquivos Anexos',
-            },
+            options={"verbose_name_plural": "Arquivos Anexos",},
         ),
         migrations.AddField(
-            model_name='environmentalresponsability',
-            name='attach_galery_title',
-            field=models.CharField(blank=True, help_text='Digite um nome para a Galeria de Anexos, deixe o campo em branco caso queira manter o nome como Galeria de Anexos.', max_length=200, verbose_name='T\xedtulo da Galeria de Anexos'),
+            model_name="environmentalresponsability",
+            name="attach_galery_title",
+            field=models.CharField(
+                blank=True,
+                help_text="Digite um nome para a Galeria de Anexos, deixe o campo em branco caso queira manter o nome como Galeria de Anexos.",
+                max_length=200,
+                verbose_name="T\xedtulo da Galeria de Anexos",
+            ),
         ),
         migrations.AddField(
-            model_name='event',
-            name='event_attach_galery_title',
-            field=models.CharField(blank=True, help_text='Digite um nome para a Galeria de Anexos, deixe o campo em branco caso queira manter o nome como Galeria de Anexos.', max_length=200, verbose_name='T\xedtulo da Galeria de Anexos'),
+            model_name="event",
+            name="event_attach_galery_title",
+            field=models.CharField(
+                blank=True,
+                help_text="Digite um nome para a Galeria de Anexos, deixe o campo em branco caso queira manter o nome como Galeria de Anexos.",
+                max_length=200,
+                verbose_name="T\xedtulo da Galeria de Anexos",
+            ),
         ),
         migrations.AddField(
-            model_name='news',
-            name='attach_galery_title',
-            field=models.CharField(blank=True, help_text='Digite um nome para a Galeria de Anexos, deixe o campo em branco caso queira manter o nome como Galeria de Anexos.', max_length=200, verbose_name='T\xedtulo da Galeria de Anexos'),
+            model_name="news",
+            name="attach_galery_title",
+            field=models.CharField(
+                blank=True,
+                help_text="Digite um nome para a Galeria de Anexos, deixe o campo em branco caso queira manter o nome como Galeria de Anexos.",
+                max_length=200,
+                verbose_name="T\xedtulo da Galeria de Anexos",
+            ),
         ),
     ]

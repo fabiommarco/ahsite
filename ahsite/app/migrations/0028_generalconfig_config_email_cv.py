@@ -8,14 +8,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0027_auto_20160926_1007'),
+        ("app", "0027_auto_20160926_1007"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='generalconfig',
-            name='config_email_cv',
-            field=models.EmailField(default='', help_text='Utilize esse campo caso queira registrar um email personalizadopara recebimento de Curriculos', max_length=254, verbose_name='Email de Curriculos'),
+            model_name="generalconfig",
+            name="config_email_cv",
+            field=models.EmailField(
+                default="",
+                help_text="Utilize esse campo caso queira registrar um email personalizadopara recebimento de Curriculos",
+                max_length=254,
+                verbose_name="Email de Curriculos",
+            ),
             preserve_default=False,
         ),
     ]

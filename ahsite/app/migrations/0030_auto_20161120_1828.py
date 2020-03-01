@@ -8,38 +8,74 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0029_auto_20161112_1530'),
+        ("app", "0029_auto_20161112_1530"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='aboutcompany',
-            name='language',
-            field=models.CharField(choices=[(b'pt', b'Portuguese'), (b'en', b'English')], default='pt', help_text='Idioma em que a p\xe1gina ser\xe1 exibida', max_length=5, verbose_name='Idioma'),
+            model_name="aboutcompany",
+            name="language",
+            field=models.CharField(
+                choices=[(b"pt", b"Portuguese"), (b"en", b"English")],
+                default="pt",
+                help_text="Idioma em que a p\xe1gina ser\xe1 exibida",
+                max_length=5,
+                verbose_name="Idioma",
+            ),
         ),
         migrations.AddField(
-            model_name='environmentalresponsability',
-            name='language',
-            field=models.CharField(choices=[(b'pt', b'Portuguese'), (b'en', b'English')], default='pt', help_text='Idioma em que a p\xe1gina ser\xe1 exibida', max_length=5, verbose_name='Idioma'),
+            model_name="environmentalresponsability",
+            name="language",
+            field=models.CharField(
+                choices=[(b"pt", b"Portuguese"), (b"en", b"English")],
+                default="pt",
+                help_text="Idioma em que a p\xe1gina ser\xe1 exibida",
+                max_length=5,
+                verbose_name="Idioma",
+            ),
         ),
         migrations.AddField(
-            model_name='event',
-            name='language',
-            field=models.CharField(choices=[(b'pt', b'Portuguese'), (b'en', b'English')], default='pt', help_text='Idioma em que a p\xe1gina ser\xe1 exibida', max_length=5, verbose_name='Idioma'),
+            model_name="event",
+            name="language",
+            field=models.CharField(
+                choices=[(b"pt", b"Portuguese"), (b"en", b"English")],
+                default="pt",
+                help_text="Idioma em que a p\xe1gina ser\xe1 exibida",
+                max_length=5,
+                verbose_name="Idioma",
+            ),
         ),
         migrations.AddField(
-            model_name='partners',
-            name='language',
-            field=models.CharField(choices=[(b'pt', b'Portuguese'), (b'en', b'English')], default='pt', help_text='Idioma em que a p\xe1gina ser\xe1 exibida', max_length=5, verbose_name='Idioma'),
+            model_name="partners",
+            name="language",
+            field=models.CharField(
+                choices=[(b"pt", b"Portuguese"), (b"en", b"English")],
+                default="pt",
+                help_text="Idioma em que a p\xe1gina ser\xe1 exibida",
+                max_length=5,
+                verbose_name="Idioma",
+            ),
         ),
         migrations.AddField(
-            model_name='products',
-            name='language',
-            field=models.CharField(choices=[(b'pt', b'Portuguese'), (b'en', b'English')], default='pt', help_text='Idioma em que a p\xe1gina ser\xe1 exibida', max_length=5, verbose_name='Idioma'),
+            model_name="products",
+            name="language",
+            field=models.CharField(
+                choices=[(b"pt", b"Portuguese"), (b"en", b"English")],
+                default="pt",
+                help_text="Idioma em que a p\xe1gina ser\xe1 exibida",
+                max_length=5,
+                verbose_name="Idioma",
+            ),
         ),
         migrations.AddField(
-            model_name='sale',
-            name='language',
-            field=models.CharField(choices=[(b'pt', b'Portuguese'), (b'en', b'English')], default='pt', help_text='Idioma em que a p\xe1gina ser\xe1 exibida', max_length=5, verbose_name='Idioma'),
+            model_name="sale",
+            name="language",
+            field=models.CharField(
+                choices=[(b"pt", b"Portuguese"), (b"en", b"English")],
+                default="pt",
+                help_text="Idioma em que a p\xe1gina ser\xe1 exibida",
+                max_length=5,
+                verbose_name="Idioma",
+            ),
         ),
     ]

@@ -8,12 +8,11 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0024_remove_environmentalresponsability_environ_local'),
+        ("app", "0024_remove_environmentalresponsability_environ_local"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='environmentalresponsability',
-            name='environ_thumbnail',
+            model_name="environmentalresponsability", name="environ_thumbnail",
         ),
     ]

@@ -9,13 +9,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0019_remove_aboutcompany_news_galery_title'),
+        ("app", "0019_remove_aboutcompany_news_galery_title"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='products',
-            name='product_description',
-            field=ckeditor.fields.RichTextField(verbose_name='Descri\xe7\xe3o'),
+            model_name="products",
+            name="product_description",
+            field=ckeditor.fields.RichTextField(verbose_name="Descri\xe7\xe3o"),
         ),
     ]

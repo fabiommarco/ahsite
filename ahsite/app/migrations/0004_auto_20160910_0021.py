@@ -8,24 +8,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0003_event'),
+        ("app", "0003_event"),
     ]
 
     operations = [
-        migrations.AlterModelOptions(
-            name='agriculturalfiles',
-            options={},
-        ),
-        migrations.RemoveField(
-            model_name='agriculturalfiles',
-            name='ap_brief_desc',
-        ),
-        migrations.RemoveField(
-            model_name='agriculturalfiles',
-            name='ap_date',
-        ),
-        migrations.RemoveField(
-            model_name='agriculturalfiles',
-            name='ap_file',
-        ),
+        migrations.AlterModelOptions(name="agriculturalfiles", options={},),
+        migrations.RemoveField(model_name="agriculturalfiles", name="ap_brief_desc",),
+        migrations.RemoveField(model_name="agriculturalfiles", name="ap_date",),
+        migrations.RemoveField(model_name="agriculturalfiles", name="ap_file",),
     ]

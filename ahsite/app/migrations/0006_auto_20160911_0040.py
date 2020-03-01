@@ -8,13 +8,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0005_auto_20160910_0028'),
+        ("app", "0005_auto_20160910_0028"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='event',
-            name='event_video',
-            field=models.CharField(blank=True, help_text='Digite somente a parte em <strong>negrito</strong> da URL do v\xeddeo seguindo este exemplo:http://www.youtube.com/watch?v=<strong>aAkurCTifE0</strong>', max_length=150, verbose_name='V\xeddeo do YouTube'),
+            model_name="event",
+            name="event_video",
+            field=models.CharField(
+                blank=True,
+                help_text="Digite somente a parte em <strong>negrito</strong> da URL do v\xeddeo seguindo este exemplo:http://www.youtube.com/watch?v=<strong>aAkurCTifE0</strong>",
+                max_length=150,
+                verbose_name="V\xeddeo do YouTube",
+            ),
         ),
     ]

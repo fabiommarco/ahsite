@@ -9,19 +9,24 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0020_auto_20160912_2018'),
+        ("app", "0020_auto_20160912_2018"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='products',
-            name='product_short_description',
-            field=models.TextField(default='', max_length=200, verbose_name='Descri\xe7\xe3o'),
+            model_name="products",
+            name="product_short_description",
+            field=models.TextField(
+                default="", max_length=200, verbose_name="Descri\xe7\xe3o"
+            ),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='jobs',
-            name='job_description',
-            field=ckeditor.fields.RichTextField(help_text='Desreva aqui as especifica\xe7\xf5es da vaga e seus pr\xe9-requisitos', verbose_name='Descri\xe7\xe3o'),
+            model_name="jobs",
+            name="job_description",
+            field=ckeditor.fields.RichTextField(
+                help_text="Desreva aqui as especifica\xe7\xf5es da vaga e seus pr\xe9-requisitos",
+                verbose_name="Descri\xe7\xe3o",
+            ),
         ),
     ]

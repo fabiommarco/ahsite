@@ -93,8 +93,13 @@ def home(request):
 def about_company(request):
     '''return about us'''
     about = AboutCompany.translated_objects.latest('id')
-    return render(request, 'about_company.html',
-                  {'about':about})
+    timeline = TimeLine.translated_objects.all().order_by('-year')
+
+    return render(
+        request,
+        'about_company.html',
+        {'about':about, 'timeline':timeline}
+    )
 
 def agricutural_prices(request):
     '''return agricultural prices page'''

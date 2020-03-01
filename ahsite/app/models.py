@@ -446,3 +446,22 @@ class Products(TranslatableModelBase):
     class Meta:
         verbose_name = u"Página de Venda"
         verbose_name_plural = u"Página de Vendas"
+
+class TimeLine(TranslatableModelBase):
+    year = models.DateField(blank=False)
+    description = models.CharField(
+        "Descrição",
+        blank=False,
+        max_length=300
+    )
+
+    def __unicode__(self):
+        return str(self.year.year)
+
+    @property
+    def short_description(self):
+        return truncatechars(self.description, 50)
+
+    class Meta:
+        verbose_name = u"Linha do Tempo"
+        verbose_name_plural = u"Linha do Tempo"

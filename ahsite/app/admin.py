@@ -57,6 +57,9 @@ class PartnersAdmin(admin.ModelAdmin):
 class FarmAdmin(admin.ModelAdmin):
     list_display = ('farm_name','farm_latitude', 'farm_longitude', 'farm_city', 'farm_state' )
 
+class TimeLineAdmin(admin.ModelAdmin):
+    list_display = ('year', 'short_description')
+
 admin.site.register(Products, ProdAdmin)
 admin.site.register(Jobs)
 admin.site.register(EnvironmentalResponsability,EnvAdmin)
@@ -71,3 +74,4 @@ admin.site.register(Event,EventAdmin)
 admin.site.register(AgriculturalFiles)
 admin.site.register(Research,ResearchAdmin)
 admin.site.register(Farm,FarmAdmin)
+admin.site.register(TimeLine,TimeLineAdmin)

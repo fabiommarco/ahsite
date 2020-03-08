@@ -7,24 +7,25 @@
       <div class="col-md-10 col-md-offset-1">
         <h2>{% trans "Institucional" %}</h2>
         <div class="content">
-          {{about.ac_content|safe}}
-
-          <div class="timeline" data-mode="horizontal">
-            <div class="timeline__wrap">
-
-              {% for item in timeline %}
-                <div class="timeline__items">
-                  <div class="timeline__item">
-                      <div class="timeline__content">
-                          <h1>{{ item.year }}</h1>
-                          {{ item.description }}
+          {{ about.ac_content|safe }}
+          <br><br>
+          <div class="row">
+            <div class="timeline">
+              <div class="timeline__wrap">
+                  <div class="timeline__items">
+                    {% for item in timeline %}
+                      <div class="timeline__item">
+                          <div class="timeline__content">
+                              <h4>{{ item.year }}</h4>
+                              {{ item.description }}
+                          </div>
                       </div>
+                    {% endfor %}
                   </div>
               </div>
-              {% endfor %}
             </div>
         </div>
-
+        <br><br>
         {% if about.gallery.all %}
           <div class="row">
             {% if about.gallery_title %}
@@ -69,13 +70,17 @@
 {% block javascript %}
   <!-- Add fancyBox -->
   <script type="text/javascript" src="{% static 'js/jquery.fancybox.pack.js' %}?v=2.1.5"></script>
-  <script type="text/javascript" src="{% static 'js/timeline.min.js' %}?v=2.1.5"></script>
+  <script type="text/javascript" src="{% static 'js/timeline.min.js' %}"></script>
 
   <script type="text/javascript">
     $(document).ready(function() {
       $(".fancybox").fancybox();
-      $('.timeline').timeline();
+      $('.timeline').timeline({
+        forceVerticalMode: 800,
+        mode: 'horizontal',
+        visibleItems: 4
     });
+  });
   </script>
 
 {% endblock javascript %}

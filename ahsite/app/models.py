@@ -18,6 +18,7 @@ from django.db import models
 from django.template.defaultfilters import slugify, truncatechars
 from django.utils import translation
 from django.utils.html import format_html
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 TIPO_RELATORIO = (
     ("cotacao_agricola", "Cotação Agrícola"),
@@ -470,11 +471,15 @@ class Products(TranslatableModelBase):
 
 
 class TimeLine(TranslatableModelBase):
-    year = models.DateField(blank=False)
+    year = models.IntegerField(
+        "Ano",
+        default=2020,
+        validators=[MaxValueValidator(2050), MinValueValidator(1910)]
+     )
     description = models.CharField("Descrição", blank=False, max_length=300)
 
     def __unicode__(self):
-        return str(self.year.year)
+        return str(self.year)
 
     @property
     def short_description(self):

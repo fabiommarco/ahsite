@@ -100,7 +100,7 @@ def home(request):
 def about_company(request):
     """return about us"""
     about = AboutCompany.translated_objects.latest("id")
-    timeline = TimeLine.translated_objects.all().order_by("-year")
+    timeline = TimeLine.translated_objects.all().order_by("year")
 
     return render(request, "about_company.html", {"about": about, "timeline": timeline})
 

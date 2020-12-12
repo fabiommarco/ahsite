@@ -28,7 +28,7 @@ def i18n_url(request):
 def load_info(request):
     """add basic info into context"""
     extra_context = {}
-    extra_context['general_info'] = GeneralConfig.objects.latest('id')
+    extra_context["general_info"] = GeneralConfig.objects.latest("id")
     extra_context["events_link"] = Event.translated_objects.all()
     extra_context["partners_link"] = Partners.translated_objects.all()
     extra_context["products_link"] = Products.translated_objects.all()

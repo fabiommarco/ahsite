@@ -220,6 +220,12 @@ msgstr[1] ""
 msgid "Cotações Agrícolas"
 msgstr "Agriculture Quotes"
 
+#: templates/agricutural_prices.html:8 templates/base.html:120
+#: templates/base.html:193
+msgid "A História e memória de Brasilândia/MS"
+msgstr "The History and memory of Brasilândia/MS"
+
+
 #: templates/agricutural_prices.html:9
 msgid ""
 "Nós disponibilizamos cotações agrícolas periodicamente. Faça o download "
@@ -318,6 +324,10 @@ msgstr "Córrego Azul Farm"
 
 #: templates/base.html:233 templates/talk-with-us.html:41
 msgid "(67) 3546-1467"
+msgstr "+55 (67) 3546-1467"
+
+#: templates/base.html:233 templates/talk-with-us.html:41
+msgid "(67) 2020-0894"
 msgstr "+55 (67) 3546-1467"
 
 #: templates/base.html:241 templates/talk-with-us.html:50

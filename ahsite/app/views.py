@@ -23,7 +23,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils.decorators import method_decorator
-from django.utils.translation import ugettext as _
+from django.utils.translation import get_language, ugettext as _
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 
@@ -109,6 +109,14 @@ def agricutural_prices(request):
     """return agricultural prices page"""
     prices = AgriculturalFiles.objects.order_by("-ap_date")[:5]
     return render(request, "agricutural_prices.html", {"prices": prices})
+
+
+def brasilandia_ms_history(request):
+    """return A História e memória de Brasilândia/MS page - static html"""
+    return render(
+        request,
+        "brasilandia_history_{language}.html".format(language=get_language())
+    )
 
 
 def environmental_responsability(request):

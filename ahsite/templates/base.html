@@ -92,32 +92,41 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="noop">{% trans "Parcerias" %} <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                        <a href="#" class="noop">{% trans "Parcerias" %} <i class="fa fa-caret-down"
+                                aria-hidden="true"></i></a>
                         <ul>
                             {% for link in partners_link  %}
-                                <li><a href="{% url 'partners_view' link.partner_slug%}">{{link.partner_title}}</a></li>
+                            <li><a href="{% url 'partners_view' link.partner_slug%}">{{link.partner_title}}</a></li>
                             {% endfor %}
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="noop">{% trans "Mídia" %} <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                        <a href="#" class="noop">{% trans "Mídia" %} <i class="fa fa-caret-down"
+                                aria-hidden="true"></i></a>
                         <ul>
                             <li><a href="{% url 'news' %}">{% trans "AH Notícias" %}</a></li>
                             <li><a href="{% url 'magazine' %}">{% trans "Página Um" %}</a></li>
                             <li><a href="{% url 'agricutural_prices' %}">{% trans "Cotações Agrícolas" %}</a></li>
+                            <li><a href="{% url 'brasilandia_ms_history' %}">A História e memória de Brasilândia/MS</a>
+                            </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="noop">{% trans "Responsabilidade Social" %} <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                        <a href="#" class="noop">{% trans "Responsabilidade Social" %} <i class="fa fa-caret-down"
+                                aria-hidden="true"></i></a>
                         <ul>
-                        {% for link in events_link  %}
+                            {% for link in events_link  %}
                             <li><a href="{% url 'event_view' link.event_slug%}">{{link.event_title}}</a></li>
-                        {% endfor %}
+                            {% endfor %}
                         </ul>
                     </li>
-                    <li class="single-nav"><a href="{% url 'environmental_responsability' %}">{% trans "Responsabilidade Ambiental" %}</a></li>
+                    <li class="single-nav"><a
+                            href="{% url 'environmental_responsability' %}">{% trans "Responsabilidade Ambiental" %}</a>
+                    </li>
                     <li class="single-nav"><a href="{% url 'work_with_us' %}">{% trans "Trabalhe Conosco" %}</a></li>
-                    <li class="single-nav"><a href="{% url 'talk_with_us' %}" class="contact-menu-icon" title="{% trans "Entre em contato conosco" %}"><i class="fa fa-phone" aria-hidden="true"></i></a></li>
+                    <li class="single-nav"><a href="{% url 'talk_with_us' %}" class="contact-menu-icon"
+                            title="{% trans "Entre em contato conosco" %}"><i class="fa fa-phone"
+                                aria-hidden="true"></i></a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -200,58 +209,71 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3">
-                        <a title="{% trans "Ir para a Página Inicial" %}" href="{% url 'home' %}"><img id="logo_bottom" src="{% static 'img/logo-footer.png'%}"></a>
+                        <a title="{% trans "Ir para a Página Inicial" %}" href="{% url 'home' %}"><img id="logo_bottom"
+                                src="{% static 'img/logo-footer.png'%}"></a>
                     </div>
                     {% if general_info.config_social_facebook or general_info.config_social_instagram or general_info.config_social_youtube or general_info.config_social_twitter or general_info.config_social_linkedin %}
-                        <div class="col-lg-4 social">
-                            {% if general_info.config_social_facebook %}<a href="{{general_info.config_social_facebook}}"><i class="social-icon fa fa-facebook-square fa-3x" aria-hidden="true"></i></a>{% endif %}
-                            {% if general_info.config_social_instagram %}<a href="{{general_info.config_social_instagram}}"><i class="social-icon fa fa-instagram fa-3x" aria-hidden="true"></i></a>{% endif %}
-                            {% if general_info.config_social_youtube %}<a href="{{general_info.config_social_youtube}}"><i class="social-icon fa fa-youtube-play fa-3x" aria-hidden="true"></i></a>{% endif %}
-                            {% if general_info.config_social_twitter %}<a href="{{general_info.config_social_twitter}}"><i class="social-icon fa fa-twitter-square fa-3x" aria-hidden="true"></i></a>{% endif %}
-                            {% if general_info.config_social_linkedin %}<a href="{{general_info.config_social_linkedin}}"><i class="social-icon fa fa-twitter-square fa-3x" aria-hidden="true"></i></a>{% endif %}
-                        </div>
+                    <div class="col-lg-4 social">
+                        {% if general_info.config_social_facebook %}<a href="{{general_info.config_social_facebook}}"><i
+                                class="social-icon fa fa-facebook-square fa-3x" aria-hidden="true"></i></a>{% endif %}
+                        {% if general_info.config_social_instagram %}<a
+                            href="{{general_info.config_social_instagram}}"><i class="social-icon fa fa-instagram fa-3x"
+                                aria-hidden="true"></i></a>{% endif %}
+                        {% if general_info.config_social_youtube %}<a href="{{general_info.config_social_youtube}}"><i
+                                class="social-icon fa fa-youtube-play fa-3x" aria-hidden="true"></i></a>{% endif %}
+                        {% if general_info.config_social_twitter %}<a href="{{general_info.config_social_twitter}}"><i
+                                class="social-icon fa fa-twitter-square fa-3x" aria-hidden="true"></i></a>{% endif %}
+                        {% if general_info.config_social_linkedin %}<a href="{{general_info.config_social_linkedin}}"><i
+                                class="social-icon fa fa-twitter-square fa-3x" aria-hidden="true"></i></a>{% endif %}
+                    </div>
                     {% else %}
-                        <div class="col-lg-6">
-                            <ul class="footer-phone-block">
-                                <li>
-                                    <a href="tel:+551839173262">
-                                        <div class="meta">
-                                            <strong>{% trans "Escritório - Presidente Prudente" %}</strong>
-                                            <span class="telephone">
-                                                <i class="fa fa-phone" aria-hidden="true"></i>
-                                                {% trans "(18) 3917-3262" %}
-                                            </span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="tel:+556735461467">
-                                        <div class="meta">
-                                            <strong>{% trans "Fazenda Córrego Azul" %}</strong>
-                                            <span class="telephone">
-                                                <i class="fa fa-phone" aria-hidden="true"></i>
-                                                {% trans "(67) 3546-1467" %}
-                                            </span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="tel:+553140637729">
-                                        <div class="meta">
-                                            <strong>{% trans "Fazenda Ouro Verde" %}</strong>
-                                            <span class="telephone">
-                                                <i class="fa fa-phone" aria-hidden="true"></i>
-                                                {% trans "(31) 4063-7729" %}
-                                            </span>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="col-lg-6">
+                        <ul class="footer-phone-block">
+                            <li>
+                                <a href="tel:+551839173262">
+                                    <div class="meta">
+                                        <strong>{% trans "Escritório - Presidente Prudente" %}</strong>
+                                        <span class="telephone">
+                                            <i class="fa fa-phone" aria-hidden="true"></i>
+                                            {% trans "(18) 3917-3262" %}
+                                        </span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tel:+556735461467">
+                                    <div class="meta">
+                                        <strong>{% trans "Fazenda Córrego Azul" %}</strong>
+                                        <span class="telephone">
+                                            <i class="fa fa-phone" aria-hidden="true"></i>
+                                            {% trans "(67) 3546-1467" %}br
+                                        </span>
+                                        <span class="telephone">
+                                            <i class="fa fa-phone" aria-hidden="true"></i>
+                                            {% trans "(67) 2020-0894" %}br
+                                        </span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tel:+553140637729">
+                                    <div class="meta">
+                                        <strong>{% trans "Fazenda Ouro Verde" %}</strong>
+                                        <span class="telephone">
+                                            <i class="fa fa-phone" aria-hidden="true"></i>
+                                            {% trans "(31) 4063-7729" %}
+                                        </span>
+                                    </div>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
                     {% endif %}
 
                     <div class="col-lg-3 links">
-                        <a href="{% url 'talk_with_us' %}">{% trans "Fale Conosco" %}</a> | <a href="{% url 'work_with_us' %}">{% trans "Trabalhe Conosco" %}</a><br/>
+                        <a href="{% url 'talk_with_us' %}">{% trans "Fale Conosco" %}</a> | <a
+                            href="{% url 'work_with_us' %}">{% trans "Trabalhe Conosco" %}</a><br />
                         <span class="copyright">Copyright &copy; {% trans "Agropecuária AH" %} {% now "Y" %}</span>
                     </div>
                 </div>

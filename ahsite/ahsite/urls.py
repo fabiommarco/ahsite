@@ -18,6 +18,11 @@ urlpatterns = (
         url(r"^$", views.home, name="home"),
         url(_(r"^quem-somos/$"), views.about_company, name="about_company"),
         url(
+            _(r"^brasilandia-ms-history/$"),
+            views.brasilandia_ms_history,
+             name="brasilandia_ms_history"
+        ),
+        url(
             _(r"^cotacoes-agricolas/$"),
             views.agricutural_prices,
             name="agricutural_prices",

@@ -328,7 +328,7 @@ msgstr "+55 (67) 3546-1467"
 
 #: templates/base.html:233 templates/talk-with-us.html:41
 msgid "(67) 2020-0894"
-msgstr "+55 (67) 3546-1467"
+msgstr "+55 (67) 2020-0894"
 
 #: templates/base.html:241 templates/talk-with-us.html:50
 msgid "Fazenda Ouro Verde"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-09 13:01+0000\n"
+"POT-Creation-Date: 2020-12-26 13:45+0000\n"
 "PO-Revision-Date: 2016-12-06 17:58-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,60 +18,64 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.11\n"
 
-#: ahsite/urls.py:17
+#: ahsite/urls.py:19
 msgid "^quem-somos/$"
 msgstr "^about-us/$"
 
-#: ahsite/urls.py:18
+#: ahsite/urls.py:21
+msgid "^brasilandia-ms-history/$"
+msgstr ""
+
+#: ahsite/urls.py:26
 msgid "^cotacoes-agricolas/$"
 msgstr "^agriculture-quotes/$"
 
-#: ahsite/urls.py:19
+#: ahsite/urls.py:31
 msgid "^responsabilidade-ambiental/$"
 msgstr "^environmental-responsibility/$"
 
-#: ahsite/urls.py:20
+#: ahsite/urls.py:36
 msgid "^responsabilidade-social/(?P<event_slug>.*)$"
 msgstr "^social-responsibility/(?P<event_slug>.*)$"
 
-#: ahsite/urls.py:21
+#: ahsite/urls.py:40
 msgid "^compras/$"
 msgstr "^purchasing/$"
 
-#: ahsite/urls.py:22
+#: ahsite/urls.py:42
 msgid "^vendas/(?P<product_slug>.*)$"
 msgstr "^sales/(?P<product_slug>.*)$"
 
-#: ahsite/urls.py:23
+#: ahsite/urls.py:44
 msgid "^noticias/$"
 msgstr "^news/$"
 
-#: ahsite/urls.py:24
+#: ahsite/urls.py:45
 msgid "^noticias/(?P<news_slug>.*)$"
 msgstr "^news/(?P<news_slug>.*)$"
 
-#: ahsite/urls.py:25
+#: ahsite/urls.py:47
 msgid "^parcerias/(?P<partner_slug>.*)$"
 msgstr "^partnerships/(?P<partner_slug>.*)$"
 
-#: ahsite/urls.py:26
+#: ahsite/urls.py:51
 msgid "^revista-pagina-um/$"
 msgstr "^pagina-um-magazine/$"
 
-#: ahsite/urls.py:27
+#: ahsite/urls.py:52
 msgid "^fale-conosco/$"
 msgstr "^contact-us/$"
 
-#: ahsite/urls.py:28
+#: ahsite/urls.py:53
 msgid "^trabalhe-conosco/$"
 msgstr "^work-with-us/$"
 
-#: app/views.py:216
+#: app/views.py:271
 msgid ""
 "Parece que algo de errado aconteceu. Por favor, tente novamente mais tarde!"
 msgstr "Oh, no! Something wrong happened. Please try again shortly."
 
-#: app/views.py:223
+#: app/views.py:281
 msgid "Obrigado! Sua mensagem foi enviada."
 msgstr "Thank you. Your message has been sent."
 
@@ -79,7 +83,7 @@ msgstr "Thank you. Your message has been sent."
 msgid "A página que você esta tentando visitar não existe."
 msgstr "The page you are trying to access does not exist."
 
-#: templates/404.html:11 templates/base.html:36 templates/base.html:203
+#: templates/404.html:11 templates/base.html:39 templates/base.html:223
 msgid "Ir para a Página Inicial"
 msgstr "Go to the Home Page."
 
@@ -141,23 +145,18 @@ msgstr "Send"
 msgid "Saiba mais"
 msgstr "Read more"
 
-#: templates/about_company.html:8 templates/base.html:72
-#: templates/base.html:154
+#: templates/about_company.html:8 templates/base.html:76
+#: templates/base.html:170
 msgid "Institucional"
 msgstr "About Us"
 
-#: templates/about_company.html:15 templates/base.html:77
-#: templates/base.html:158
-msgid "Localizações"
-msgstr "Locations"
-
-#: templates/about_company.html:25 templates/environmental.html:22
+#: templates/about_company.html:34 templates/environmental.html:22
 #: templates/event_view.html:25 templates/news_view.html:21
 #: templates/product_view.html:18
 msgid "Galeria de Imagens"
 msgstr "Image Gallery"
 
-#: templates/about_company.html:39 templates/environmental.html:35
+#: templates/about_company.html:48 templates/environmental.html:35
 #: templates/event_view.html:39 templates/news_view.html:35
 #: templates/product_view.html:32
 msgid "Anexos"
@@ -215,16 +214,10 @@ msgid_plural "Please correct the errors below."
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/agricutural_prices.html:8 templates/base.html:107
-#: templates/base.html:193
+#: templates/agricutural_prices.html:8 templates/base.html:119
+#: templates/base.html:213
 msgid "Cotações Agrícolas"
 msgstr "Agriculture Quotes"
-
-#: templates/agricutural_prices.html:8 templates/base.html:120
-#: templates/base.html:193
-msgid "A História e memória de Brasilândia/MS"
-msgstr "The History and memory of Brasilândia/MS"
-
 
 #: templates/agricutural_prices.html:9
 msgid ""
@@ -242,103 +235,107 @@ msgstr "Click to download."
 msgid "Nenhum item encontrado."
 msgstr "No items found."
 
-#: templates/base.html:13 templates/base.html:36 templates/base.html:74
-#: templates/base.html:155 templates/base.html:255 templates/index.html:11
+#: templates/base.html:14 templates/base.html:39 templates/base.html:79
+#: templates/base.html:172 templates/base.html:288 templates/index.html:11
 msgid "Agropecuária AH"
 msgstr ""
 
-#: templates/base.html:52
+#: templates/base.html:56
 msgid "Idioma: "
 msgstr "Language: "
 
-#: templates/base.html:75 templates/base.html:156
+#: templates/base.html:80 templates/base.html:173
 msgid "Missão e Visão"
 msgstr "Mission and Vision"
 
-#: templates/base.html:76 templates/base.html:157
+#: templates/base.html:82 templates/base.html:175
 msgid "Valores e Competência"
 msgstr "Values and Competency"
 
-#: templates/base.html:81 templates/base.html:163
+#: templates/base.html:84 templates/base.html:177
+msgid "Localizações"
+msgstr "Locations"
+
+#: templates/base.html:88 templates/base.html:182
 msgid "Negócios"
 msgstr "Business"
 
-#: templates/base.html:84 templates/base.html:166
+#: templates/base.html:92 templates/base.html:185
 msgid "Venda"
 msgstr "Sales"
 
 # This is weird. How do I translate Compra? Buying? Acquisition?
-#: templates/base.html:91 templates/base.html:169
+#: templates/base.html:101 templates/base.html:189
 msgid "Compra"
 msgstr "Purchasing"
 
-#: templates/base.html:95 templates/base.html:174 templates/index.html:56
+#: templates/base.html:105 templates/base.html:194 templates/index.html:56
 #: templates/index.html:69
 msgid "Parcerias"
 msgstr "Partnerships"
 
-#: templates/base.html:103 templates/base.html:190
+#: templates/base.html:114 templates/base.html:210
 msgid "Mídia"
 msgstr "Press"
 
-#: templates/base.html:105
+#: templates/base.html:117
 msgid "AH Notícias"
 msgstr "AH News"
 
-#: templates/base.html:106 templates/base.html:192
+#: templates/base.html:118 templates/base.html:212
 msgid "Página Um"
 msgstr "Página Um"
 
-#: templates/base.html:111 templates/base.html:182
+#: templates/base.html:125 templates/base.html:202
 msgid "Responsabilidade Social"
 msgstr "Social Responsibility"
 
-#: templates/base.html:118
+#: templates/base.html:134
 msgid "Responsabilidade Ambiental"
 msgstr "Environmental Responsibility"
 
-#: templates/base.html:119 templates/base.html:254 templates/index.html:122
+#: templates/base.html:136 templates/base.html:287 templates/index.html:122
 #: templates/work-with-us.html:10
 msgid "Trabalhe Conosco"
 msgstr "Work with us"
 
-#: templates/base.html:120
+#: templates/base.html:138
 msgid "Entre em contato conosco"
 msgstr "Reach out to us"
 
-#: templates/base.html:191
+#: templates/base.html:211
 msgid "Notícias"
 msgstr "News"
 
-#: templates/base.html:219
+#: templates/base.html:246
 msgid "Escritório - Presidente Prudente"
 msgstr "Presidente Prudente Office"
 
-#: templates/base.html:222 templates/talk-with-us.html:26
+#: templates/base.html:249 templates/talk-with-us.html:27
 msgid "(18) 3917-3262"
 msgstr "+55 (18) 3917-3262"
 
-#: templates/base.html:230 templates/talk-with-us.html:35
+#: templates/base.html:257 templates/talk-with-us.html:36
 msgid "Fazenda Córrego Azul"
 msgstr "Córrego Azul Farm"
 
-#: templates/base.html:233 templates/talk-with-us.html:41
+#: templates/base.html:260 templates/talk-with-us.html:42
 msgid "(67) 3546-1467"
 msgstr "+55 (67) 3546-1467"
 
-#: templates/base.html:233 templates/talk-with-us.html:41
+#: templates/base.html:264 templates/talk-with-us.html:44
 msgid "(67) 2020-0894"
 msgstr "+55 (67) 2020-0894"
 
-#: templates/base.html:241 templates/talk-with-us.html:50
+#: templates/base.html:272 templates/talk-with-us.html:53
 msgid "Fazenda Ouro Verde"
 msgstr "Ouro Verde Farm"
 
-#: templates/base.html:244 templates/talk-with-us.html:55
+#: templates/base.html:275 templates/talk-with-us.html:58
 msgid "(31) 4063-7729"
 msgstr "+55 (31) 4063-7729"
 
-#: templates/base.html:254 templates/talk-with-us.html:10
+#: templates/base.html:286 templates/talk-with-us.html:10
 msgid "Fale Conosco"
 msgstr "Contact Us"
 
@@ -511,11 +508,11 @@ msgid ""
 "Preencha o formulário abaixo para entrar em contato com a Agropecuária AH."
 msgstr "Fill out the form below to get in touch with us."
 
-#: templates/talk-with-us.html:15
+#: templates/talk-with-us.html:16
 msgid "Telefones de Contato"
 msgstr "Phone numbers"
 
-#: templates/talk-with-us.html:21
+#: templates/talk-with-us.html:22
 msgid "Escritório"
 msgstr "Office"
 
@@ -554,6 +551,9 @@ msgstr "To apply, please fill out the form below."
 #: templates/work-with-us.html:60
 msgid "Fechar"
 msgstr "Close"
+
+#~ msgid "A História e memória de Brasilândia/MS"
+#~ msgstr "The History and memory of Brasilândia/MS"
 
 #~ msgid "Language: "
 #~ msgstr "Idioma: "

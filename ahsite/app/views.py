@@ -1,16 +1,14 @@
 # -*- coding: utf-8 -*-
 """
     AH Website -
-    LFMarques - 2016
-      luizfelipe.unesp@gmail.com
-
-    Victor Cinaglia - 2016
-      victorcinaglia@gmail.com
+    Fabio Marco - 2025
+      fabio.marco@ah.agr.br
 
 """
 import functools
 import json
 import random
+import os
 
 from app.forms import ApplyJobForm, ContactForm, NewsletterForm
 from app.models import *
@@ -23,7 +21,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils.decorators import method_decorator
-from django.utils.translation import get_language, ugettext as _
+from django.utils.translation import get_language, gettext as _
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 
@@ -79,7 +77,9 @@ def get_or_redirect(model, language, view_name, **kwargs):
 def home(request):
     """return homepage"""
     latest_feeds = News.translated_objects.order_by("-news_date")[:4]
-    farms = Farm.objects.all()
+    # Excluir a Suinocultura DF - Planaltina DF da lista de fazendas
+    farms = Farm.objects.exclude(farm_name__icontains="Suinocultura DF")
+    banners = Banner.objects.filter(ativo=True).order_by('ordem', 'data_criacao')
 
     for farm in farms:
         farm.initials = "".join([item[0] for item in farm.farm_name.split(" ")[0:2]])
@@ -93,6 +93,7 @@ def home(request):
             "products": Products.translated_objects.all(),
             "news": latest_feeds,
             "farms": farms,
+            "banners": banners,
         },
     )
 
@@ -120,9 +121,20 @@ def brasilandia_ms_history(request):
 
 
 def environmental_responsability(request):
-    """return env resp page"""
-    environmental = EnvironmentalResponsability.translated_objects.latest("id")
-    return render(request, "environmental.html", {"environmental": environmental})
+    """return environmental responsability page"""
+    language = request.LANGUAGE_CODE
+    context = {}
+    try:
+        environ = EnvironmentalResponsability.objects.get(language=language)
+        context["environ"] = environ
+    except EnvironmentalResponsability.DoesNotExist:
+        try:
+            environ = EnvironmentalResponsability.objects.get(language="pt")
+            context["environ"] = environ
+        except EnvironmentalResponsability.DoesNotExist:
+            pass
+            
+    return render(request, "environmental.html", context)
 
 
 def event_view(request, event_slug=None):
@@ -135,7 +147,36 @@ def event_view(request, event_slug=None):
     )
     if not isinstance(event, Event):
         return event
-    return render(request, "event_view.html", {"event": event})
+    # Listar imagens da pasta static/img/social/
+    fotos = [
+        'WhatsApp Image 2025-07-02 at 08.50.23.jpeg',
+        'WhatsApp Image 2025-07-02 at 08.50.24.jpeg',
+        'WhatsApp Image 2025-07-02 at 08.50.24 (1).jpeg',
+        'WhatsApp Image 2025-07-02 at 08.50.24 (2).jpeg',
+        'WhatsApp Image 2025-07-02 at 08.50.24 (3).jpeg',
+        'WhatsApp Image 2025-07-02 at 08.50.24 (4).jpeg',
+        'WhatsApp Image 2025-07-02 at 08.50.25.jpeg',
+        'WhatsApp Image 2025-07-02 at 08.50.25 (1).jpeg',
+        'WhatsApp Image 2025-07-02 at 08.50.25 (2).jpeg',
+        'WhatsApp Image 2025-07-02 at 08.50.26.jpeg',
+        'WhatsApp Image 2025-07-02 at 08.50.26 (1).jpeg',
+        'WhatsApp Image 2025-07-02 at 08.50.26 (2).jpeg',
+        'WhatsApp Image 2025-07-02 at 08.50.26 (3).jpeg',
+        'WhatsApp Image 2025-07-02 at 08.50.27.jpeg',
+        'WhatsApp Image 2025-07-02 at 08.50.27 (1).jpeg',
+        'WhatsApp Image 2025-07-02 at 08.50.27 (2).jpeg',
+        'WhatsApp Image 2025-07-02 at 08.50.27 (3).jpeg',
+        'WhatsApp Image 2025-07-02 at 08.50.28.jpeg',
+        'WhatsApp Image 2025-07-02 at 08.50.28 (1).jpeg',
+        'WhatsApp Image 2025-07-02 at 08.50.28 (2).jpeg',
+        'WhatsApp Image 2025-07-02 at 08.50.29.jpeg',
+        'WhatsApp Image 2025-07-02 at 08.50.29 (1).jpeg',
+        'WhatsApp Image 2025-07-02 at 08.50.29 (2).jpeg',
+        'WhatsApp Image 2025-07-02 at 08.50.29 (3).jpeg',
+        'WhatsApp Image 2025-07-02 at 08.50.30.jpeg',
+        'WhatsApp Image 2025-07-02 at 08.50.30 (1).jpeg',
+    ]
+    return render(request, "event_view.html", {"event": event, "fotos": fotos})
 
 
 def partners_view(request, partner_slug=None):
@@ -153,8 +194,20 @@ def partners_view(request, partner_slug=None):
 
 def news(request):
     """return lastest news"""
-    all_news = News.translated_objects.order_by("-news_date")
-    paginator = Paginator(all_news, 6)
+    # Busca todas as notícias e ordena por data
+    all_news = News.objects.order_by("-news_date")
+    
+    # Filtra por idioma
+    language = request.LANGUAGE_CODE
+    filtered_news = []
+    for news in all_news:
+        if news.language == language:
+            filtered_news.append(news)
+        elif news.parent and news.parent.language == language:
+            filtered_news.append(news.parent)
+    
+    # Configura a paginação
+    paginator = Paginator(filtered_news, 6)
 
     try:
         page = int(request.GET.get("page", 1))
@@ -162,43 +215,59 @@ def news(request):
         page = 1
 
     try:
-        all_news = paginator.page(page)
+        news_page = paginator.page(page)
     except (EmptyPage, InvalidPage):
-        all_news = paginator.page(paginator.num_pages)
+        news_page = paginator.page(paginator.num_pages)
 
-    return render(request, "news.html", {"all_news": all_news, "current_page": page})
+    return render(request, "news.html", {
+        "all_news": news_page,
+        "page_obj": news_page,
+        "is_paginated": paginator.num_pages > 1
+    })
 
 
 def news_view(request, news_slug=None):
     """return news details"""
-    return render(
-        request,
-        "news_view.html",
-        {"news": get_object_or_404(News, news_slug=news_slug)},
-    )
+    # Busca a notícia pelo slug
+    news = get_object_or_404(News, news_slug=news_slug)
+    
+    # Verifica se precisa redirecionar para a versão no idioma correto
+    language = request.LANGUAGE_CODE
+    if news.language != language:
+        if news.parent and news.parent.language == language:
+            news = news.parent
+        else:
+            # Busca uma tradução no idioma correto
+            translated = News.objects.filter(parent=news, language=language).first()
+            if translated:
+                news = translated
+    
+    return render(request, "news_view.html", {"news": news})
 
 
 def sales(request):
     """return sales page"""
+    equipe_compras = EquipeCompras.objects.filter(ativo=True).order_by('ordem', 'nome')
     return render(
         request,
         "sales.html",
         {
             "sale": Sale.translated_objects.latest("id"),
             "url_contact": reverse("new_contact", args=["sale"]),
+            "equipe_compras": equipe_compras,
         },
     )
 
 
 def magazine(request):
-    """return latests magazines"""
-    magazines = Magazine.objects.order_by("-magazine_date")[:5]
-
-    magazine = {}
-    if magazines:
-        magazine = magazines[0]
+    """return all magazines"""
+    magazines = Magazine.objects.order_by("-magazine_date")
+    magazine = magazines[0] if magazines else None
     return render(
-        request, "magazine.html", {"magazine": magazine, "old_versions": magazines[1:]}
+        request, "magazine.html", {
+            "magazine": magazine,
+            "all_magazines": magazines
+        }
     )
 
 
@@ -274,12 +343,18 @@ def new_contact(request, contact_type):
         else:
             if contact_type == "sale":
                 extra_recipient = Sale.translated_objects.latest("id")
-                contact_form.send(request, extra_recipient.sale_email)
+                success, error_msg = contact_form.send(request, extra_recipient.sale_email)
             else:
-                contact_form.send(request)
-            messages.add_message(
-                request, messages.SUCCESS, _("Obrigado! Sua mensagem foi enviada.")
-            )
+                success, error_msg = contact_form.send(request)
+            if success:
+                messages.add_message(
+                    request, messages.SUCCESS, _( "Obrigado! Sua mensagem foi enviada.")
+                )
+            else:
+                messages.add_message(
+                    request, messages.ERROR, _("Erro ao enviar e-mail: ") + error_msg
+                )
+                return_data = {"success": False, "error": error_msg}
         if apply_job_context:
             return HttpResponseRedirect(reverse("work_with_us", args=()))
         return HttpResponse(json.dumps(return_data, ensure_ascii=False))
@@ -322,3 +397,31 @@ def handler404(request):
     response = render(request, "404.html", {})
     response.status_code = 404
     return response
+
+
+def denuncia_view(request):
+    return render(request, 'denuncia.html')
+
+
+def convert_year_to_integer(apps, schema_editor):
+    Timeline = apps.get_model('app', 'Timeline')
+    for timeline in Timeline.objects.all():
+        try:
+            # Se for objeto de data
+            if hasattr(timeline.year, 'year'):
+                year = timeline.year.year
+            # Se for string numérica
+            elif isinstance(timeline.year, str) and timeline.year.isdigit():
+                year = int(timeline.year)
+            # Se for string tipo '2020-01-01'
+            elif isinstance(timeline.year, str):
+                year = int(timeline.year[:4])
+            # Se for inteiro
+            elif isinstance(timeline.year, int):
+                year = timeline.year
+            else:
+                year = 2020  # valor padrão
+            # Atualiza diretamente no banco, sem chamar save()
+            Timeline.objects.filter(pk=timeline.pk).update(year_temp=year)
+        except Exception as e:
+            Timeline.objects.filter(pk=timeline.pk).update(year_temp=2020)

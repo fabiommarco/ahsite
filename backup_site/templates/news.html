@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% block class %}page-news dynamic-content ah-background{% endblock class%}
+{% load i18n %}
+{% block content %}
+    {% load static %}
+    <!-- HEADER -->
+    <section class="py-5 text-white d-flex align-items-center justify-content-center" style="margin-top: 100px; min-height: 260px; background: linear-gradient(120deg, #1b3d2f 60%, #388e3c 100%);">
+        <div class="d-flex flex-column align-items-center w-100">
+            <h1 class="display-3 fw-bold mb-2 text-center" style="letter-spacing:-1px;">
+                <i class="fas fa-calendar-alt fa-bounce me-2"></i>
+                Nossos Eventos
+            </h1>
+            <div style="width:80px; height:4px; background:#fff; border-radius:2px;"></div>
+        </div>
+    </section>
+
+    <!-- CONTEÚDO -->
+    <section class="py-5" style="background: #f8f9fa;">
+        <div class="container">
+            <div class="row g-4">
+                {% for news in all_news %}
+                <div class="col-md-6 col-lg-4 d-flex">
+                    <article class="card evento-card flex-fill border-0 shadow-sm">
+                        <div class="evento-img-wrapper position-relative">
+                            {% if news.news_galery.all.0 %}
+                            <img src="{% get_media_prefix %}{{ news.news_galery.all.0.imagem }}" alt="{{ news.news_title }}" class="card-img-top rounded-top evento-img" />
+                            {% else %}
+                            <div class="evento-img-placeholder bg-light d-flex align-items-center justify-content-center rounded-top" style="height:220px;">
+                                <i class="fas fa-calendar fa-3x text-success"></i>
+                            </div>
+                            {% endif %}
+                            <span class="evento-data position-absolute top-0 start-0 m-2 px-3 py-1 rounded text-white small">
+                                {{ news.news_date|date:"d/m/Y" }}
+                            </span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold mb-2 text-success" style="font-size:1.25rem;">{{ news.news_title }}</h5>
+                            <div class="card-text text-muted mb-4 evento-description">
+                                {{ news.news_description|safe|truncatewords_html:40 }}
+                            </div>
+                            <a href="{% url 'news_view' news.news_slug %}" class="btn btn-success btn-modern mt-auto">
+                                Leia mais <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- Paginação -->
+            {% if is_paginated %}
+            <div class="mt-5">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% for num in page_obj.paginator.page_range %}
+                        <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                        </li>
+                        {% endfor %}
+                        {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock content %}
+
+{% block css %}
+<style>
+.evento-card {
+  border-radius: 22px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+  border-bottom: 4px solid #1b3d2f;
+  transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.evento-card:hover {
+  box-shadow: 0 16px 40px rgba(0,0,0,0.18);
+  transform: translateY(-6px) scale(1.03);
+  border-color: #388e3c;
+}
+.evento-img-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+.evento-img {
+  border-top-left-radius: 22px;
+  border-top-right-radius: 22px;
+  object-fit: cover;
+  height: 220px;
+  width: 100%;
+  transition: transform 0.3s;
+}
+.evento-card:hover .evento-img {
+  transform: scale(1.07);
+}
+.evento-data {
+  font-size: 1rem;
+  background: #388e3c !important;
+  color: #fff !important;
+  border-radius: 50px;
+  top: 16px !important;
+  left: 16px !important;
+  box-shadow: 0 2px 8px rgba(56,142,60,0.15);
+  padding: 6px 18px !important;
+  font-weight: 600;
+}
+.btn-modern {
+  border-radius: 10px;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(33,136,56,0.10);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  font-size: 1.1rem;
+  padding: 0.7rem 1.5rem;
+}
+.btn-modern:hover {
+  background: #388e3c;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(56,142,60,0.18);
+}
+.evento-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.5;
+  min-height: 4.5em;
+  position: relative;
+}
+.evento-description:after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1.5em;
+  background: linear-gradient(to bottom, transparent, #fff 90%);
+}
+@media (max-width: 991px) {
+  .evento-img, .evento-img-placeholder { height: 160px; }
+}
+@media (max-width: 767px) {
+  .evento-img, .evento-img-placeholder { height: 120px; }
+  .display-3 { font-size: 2rem; }
+}
+</style>
+{% endblock css %}

@@ -1,0 +1,150 @@
+{% extends "admin/change_list.html" %}
+{% load static %}
+
+{% block extrahead %}
+{{ block.super }}
+<style>
+.progress-container {
+    display: none;
+    margin: 20px 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+}
+
+.progress-bar {
+    background: #e9ecef;
+    border-radius: 8px;
+    height: 30px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.progress-fill {
+    background: linear-gradient(90deg, #28a745, #20c997);
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.progress-status {
+    font-size: 14px;
+    color: #6c757d;
+    margin-top: 8px;
+}
+
+.backup-button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+.backup-button:hover {
+    background: #0056b3;
+}
+
+.backup-button:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="progress-container" id="progress-container">
+    <h3>Progresso do Backup</h3>
+    <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill">0%</div>
+    </div>
+    <div class="progress-status" id="progress-status">Aguardando início...</div>
+</div>
+
+<button class="backup-button" id="start-backup-btn">Iniciar Backup</button>
+
+{{ block.super }}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const startBtn = document.getElementById('start-backup-btn');
+    const progressContainer = document.getElementById('progress-container');
+    const progressFill = document.getElementById('progress-fill');
+    const progressStatus = document.getElementById('progress-status');
+    
+    startBtn.addEventListener('click', function() {
+        startBtn.disabled = true;
+        startBtn.textContent = 'Iniciando...';
+        progressContainer.style.display = 'block';
+        progressStatus.textContent = 'Iniciando backup...';
+        
+        // Fazer requisição para iniciar backup
+        fetch('/gestao/start-backup-ajax/', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.task_id) {
+                progressStatus.textContent = 'Backup iniciado, aguarde...';
+                monitorProgress(data.task_id);
+            } else {
+                throw new Error('Erro ao iniciar backup');
+            }
+        })
+        .catch(error => {
+            progressStatus.textContent = 'Erro: ' + error.message;
+            startBtn.disabled = false;
+            startBtn.textContent = 'Iniciar Backup';
+        });
+    });
+    
+    function monitorProgress(taskId) {
+        const interval = setInterval(function() {
+            fetch('/gestao/backup-progress/' + taskId + '/')
+            .then(response => response.json())
+            .then(data => {
+                const progress = data.progress || 0;
+                progressFill.style.width = progress + '%';
+                progressFill.textContent = progress + '%';
+                
+                if (data.state === 'SUCCESS') {
+                    progressStatus.textContent = 'Backup concluído com sucesso!';
+                    clearInterval(interval);
+                    startBtn.disabled = false;
+                    startBtn.textContent = 'Iniciar Backup';
+                    // Recarregar a página após 2 segundos
+                    setTimeout(() => location.reload(), 2000);
+                } else if (data.state === 'FAILURE') {
+                    progressStatus.textContent = 'Erro no backup: ' + (data.message || 'Erro desconhecido');
+                    clearInterval(interval);
+                    startBtn.disabled = false;
+                    startBtn.textContent = 'Iniciar Backup';
+                } else if (data.state === 'PROGRESS') {
+                    progressStatus.textContent = 'Processando... ' + progress + '%';
+                }
+            })
+            .catch(error => {
+                progressStatus.textContent = 'Erro ao verificar progresso: ' + error.message;
+                clearInterval(interval);
+                startBtn.disabled = false;
+                startBtn.textContent = 'Iniciar Backup';
+            });
+        }, 1000);
+    }
+});
+</script>
+{% endblock %} 

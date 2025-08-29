@@ -1,0 +1,493 @@
+{% extends "base.html" %}
+{% block class %}page-about dynamic-content ah-background{% endblock class%}
+{% load i18n %}
+{% block content %}
+    {% load static %}
+
+    <!-- HERO MODERNO -->
+    <section class="about-hero position-relative mb-5">
+      <img src="{% static 'img/banner/quem-somos.jpg' %}" class="w-100 hero-img" alt="Quem Somos">
+      <div class="about-hero-overlay"></div>
+      <div class="about-hero-content text-center">
+        <h1 class="display-3 fw-bold text-white mb-3">Quem Somos</h1>
+        <p class="lead text-white-50">Excelência, tradição e inovação no agronegócio brasileiro</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <h2 class="mb-4" id="sobre-nos">Sobre a Agropecuária AH</h2>
+      <div class="row g-4 mb-5">
+        <div class="col-lg-8">
+          <div class="card border-0 h-100 shadow-lg rounded-4">
+            <div class="card-body p-4">
+              <h3 class="fw-bold mb-3" id="nossa-missao"><i class="fas fa-history me-2 text-success"></i>Nossa História</h3>
+              <p>Nossa história teve início em 1950, através do Sr. ARTHUR HÖFFIG, quando realizou aquisição de uma gleba de terras localizadas no município de Brasilândia, que na época fazia parte do Estado de Mato Grosso, que hoje é Mato Grosso do Sul.</p>
+              <p>A primeira fazenda aberta foi denominada de Boa Esperança. Já no ano de 1973 realiza-se abertura da Fazenda Córrego Azul, berço das atividades da Agropecuária AH.</p>
+              <p>Pensando no desenvolvimento da região, o Sr Arthur contratou a empresa Coterp e destinou 30 alqueires para edificar a cidade, que é Brasilândia.</p>
+              <p>E, no decorrer das três últimas décadas, entre desafios, ímpeto inovador e empreendedorismo, moldamos nosso crescimento e evoluímos nosso desempenho.</p>
+              <p>Desde então, a Agropecuária AH, vem ampliando suas unidades de produção e área de produção, expandindo sua atuação aos Estados do Mato Grosso, Minas Gerais e Goiás.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card border-0 shadow-lg h-100 rounded-4 bg-success bg-opacity-10 text-center p-4">
+            <div class="d-flex flex-column align-items-center justify-content-center h-100">
+              <h4 class="fw-bold text-success mb-2" style="font-size: 2rem;">Negócio</h4>
+              <span class="fs-4 fw-bold text-success mb-3" style="letter-spacing: 1px;">Agropecuária</span>
+              <div id="negocioCarousel" class="carousel slide mb-3" data-bs-ride="carousel" style="width: 100%; max-width: 260px;">
+                <div class="carousel-inner rounded-3">
+                  <div class="carousel-item active">
+                    <img src="{% static 'img/empresa/foto1.jpg' %}" class="d-block w-100" alt="Foto 1" style="height: 200px; object-fit: cover;">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{% static 'img/empresa/foto2.jpg' %}" class="d-block w-100" alt="Foto 2" style="height: 200px; object-fit: cover;">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{% static 'img/empresa/foto3.jpg' %}" class="d-block w-100" alt="Foto 3" style="height: 200px; object-fit: cover;">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{% static 'img/empresa/foto4.jpg' %}" class="d-block w-100" alt="Foto 4" style="height: 200px; object-fit: cover;">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{% static 'img/empresa/foto5.jpg' %}" class="d-block w-100" alt="Foto 5" style="height: 200px; object-fit: cover;">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{% static 'img/empresa/foto6.jpg' %}" class="d-block w-100" alt="Foto 6" style="height: 200px; object-fit: cover;">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{% static 'img/empresa/foto7.jpg' %}" class="d-block w-100" alt="Foto 7" style="height: 200px; object-fit: cover;">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{% static 'img/empresa/foto8.jpg' %}" class="d-block w-100" alt="Foto 8" style="height: 200px; object-fit: cover;">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#negocioCarousel" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#negocioCarousel" data-bs-slide="next">
+                  <span class="carousel-control-next-icon"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4 mb-5" id="missao-visao">
+        <div class="col-md-4">
+          <div class="card border-0 shadow-lg h-100 text-start p-4 rounded-4">
+            <div class="d-flex align-items-center justify-content-center mb-3">
+              <i class="fas fa-bullseye fa-2x text-success me-2"></i>
+              <h3 class="fw-bold text-success mb-0">Missão</h3>
+            </div>
+            <p class="fst-italic fs-5">"Cultivar o solo, produzir e comercializar bons alimentos, desenvolvendo as pessoas e a terra"</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card border-0 shadow-lg h-100 text-start p-4 rounded-4">
+            <div class="d-flex align-items-center justify-content-center mb-3">
+              <i class="fas fa-eye fa-2x text-primary me-2"></i>
+              <h3 class="fw-bold text-primary mb-0">Visão 2027</h3>
+            </div>
+            <p class="fst-italic fs-5">"Seremos referência na produção de alimentos de qualidade, com equilíbrio econômico, social e ambiental."</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card border-0 shadow-lg h-100 text-start p-4 rounded-4">
+            <div class="d-flex align-items-center justify-content-center mb-3">
+              <i class="fas fa-handshake fa-2x text-warning me-2"></i>
+              <h3 class="fw-bold text-warning mb-0">Valores</h3>
+            </div>
+            <ul class="list-unstyled fs-5 mb-0">
+              <li>Responsabilidade</li>
+              <li>Transparência</li>
+              <li>Humildade</li>
+              <li>Respeito</li>
+              <li>Empatia</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4 mb-5">
+        <div class="col-md-6">
+          <div class="card border-0 shadow h-100 p-4 rounded-4">
+            <h3 class="fw-bold text-success mb-4">
+              <i class="fas fa-boxes fa-lg me-2"></i>Produtos
+            </h3>
+            <div class="row">
+              <div class="col-6 mb-3">
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-cow fa-lg text-success me-2"></i>
+                  <span class="fs-5 fw-bold">Bovinos</span>
+                </div>
+              </div>
+              <div class="col-6 mb-3">
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-mug-hot fa-lg text-success me-2"></i>
+                  <span class="fs-5 fw-bold">Café</span>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-piggy-bank fa-lg text-success me-2"></i>
+                  <span class="fs-5 fw-bold">Suínos</span>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-seedling fa-lg text-success me-2"></i>
+                  <span class="fs-5 fw-bold">Grãos</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card border-0 shadow h-100 p-4 rounded-4">
+            <h3 class="fw-bold text-info mb-3"><i class="fas fa-users fa-lg me-2"></i>Clientes</h3>
+            <ul class="list-unstyled mb-0 fs-5">
+              <li><i class="fas fa-check-circle text-success me-2"></i>Frigoríficos de Bovinos e Suínos</li>
+              <li><i class="fas fa-check-circle text-success me-2"></i>Torrefadoras e Exportadores de Café</li>
+              <li><i class="fas fa-check-circle text-success me-2"></i>Comerciantes e Exportadores de Grãos</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="mb-4" id="manifesto">Manifesto da Agropecuária AH</h2>
+      <div class="card border-0 mb-5 shadow-lg rounded-4">
+        <div class="card-body p-4">
+          <div class="row">
+            <div class="col-lg-10">
+              <p>Na Agropecuária AH, acreditamos que produzir alimentos é mais do que uma atividade econômica — é um compromisso com a terra, as pessoas e as futuras gerações. Nossa Missão é "Cultivar o solo, produzir e comercializar bons alimentos, desenvolvendo as pessoas e a terra". Nossos valores – responsabilidade, transparência, humildade, respeito e empatia – orientam tudo o que fazemos, guiando nossa conduta em todas as situações.</p>
+              <p>Minha história se confunde com a da Agropecuária AH, e é com alegria que hoje vejo meus filhos e netos participando desse mesmo sonho ao lado de uma equipe que cresceu conosco ao longo de décadas. Temos orgulho dessa história, construída com trabalho, resiliência e inovação. Em todas as fases, buscamos aumentar a produtividade com responsabilidade e manter nossas fazendas organizadas, sustentáveis e produtivas.</p>
+              <p>Valorizamos profundamente nossas raízes. Pecuária, suinocultura, cafeicultura e agricultura fazem parte do nosso caminho, sempre guiado pela paixão pela terra e pelo respeito aos ciclos da natureza. Tomamos decisões com visão de longo prazo, mesmo quando isso significa abrir mão de ganhos imediatos em nome de princípios que consideramos inegociáveis.</p>
+              <p>Tenho também muito orgulho da Fundação AH — gerida por minha família com o apoio de voluntários e profissionais dedicados. Quando observo as crianças da fundação, tenho a certeza de que estamos contribuindo para um futuro melhor.</p>
+            </div>
+            <div class="col-lg-2 text-center">
+              <div class="border-start border-success ps-3">
+                <p class="fw-bold mb-0">Helder Höfig</p>
+                <p class="mb-0">Presidente</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="mb-4">Nossos Valores</h2>
+      <div class="row g-4 mb-5">
+        <div class="col-lg-4 col-md-6">
+          <div class="card border-0 h-100 hover-card shadow-lg text-center rounded-4">
+            <div class="card-body p-4">
+              <i class="fas fa-balance-scale fa-2x text-success mb-3"></i>
+              <h4 class="fw-bold">RESPONSABILIDADE</h4>
+              <p>Respondemos por nossas ações, assumindo as consequências das nossas decisões.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card border-0 h-100 hover-card shadow-lg text-center rounded-4">
+            <div class="card-body p-4">
+              <i class="fas fa-glass-cheers fa-2x text-primary mb-3"></i>
+              <h4 class="fw-bold">TRANSPARÊNCIA</h4>
+              <p>Falamos sempre a verdade para nossos clientes, fornecedores, trabalhadores, parceiros, comunidade e demais partes interessadas. Priorizamos a clareza em todos os processos e comunicações.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card border-0 h-100 hover-card shadow-lg text-center rounded-4">
+            <div class="card-body p-4">
+              <i class="fas fa-seedling fa-2x text-warning mb-3"></i>
+              <h4 class="fw-bold">HUMILDADE</h4>
+              <p>Temos consciência das nossas limitações e não nos consideramos superiores aos outros. Reconhecemos que sempre há espaço para aprender, melhorar e crescer.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card border-0 h-100 hover-card shadow-lg text-center rounded-4">
+            <div class="card-body p-4">
+              <i class="fas fa-hand-holding-heart fa-2x text-danger mb-3"></i>
+              <h4 class="fw-bold">RESPEITO</h4>
+              <p>Trabalhamos de forma colaborativa, tratando as pessoas, os animais e o meio ambiente com dignidade e calor humano. Valorizamos a diversidade de ideias e culturas em todas as relações.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card border-0 h-100 hover-card shadow-lg text-center rounded-4">
+            <div class="card-body p-4">
+              <i class="fas fa-heart fa-2x text-pink mb-3"></i>
+              <h4 class="fw-bold">EMPATIA</h4>
+              <p>Nos colocamos no lugar do outro para compreender suas necessidades e emoções, fortalecendo laços de confiança e colaboração.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="mb-4">Nossa História</h2>
+<div class="timeline mb-5">
+  <div class="timeline-item">
+    <div class="timeline-icon"><i class="fas fa-flag"></i></div>
+    <div class="timeline-content">
+      <h4 class="fw-bold text-success mb-1">1950</h4>
+      <p>Começa o sonho de Arthur Höfig, com as primeiras terras no MS. Fundação da empresa em 10 de fevereiro.</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-icon"><i class="fas fa-tractor"></i></div>
+    <div class="timeline-content">
+      <h4 class="fw-bold text-success mb-1">1962</h4>
+      <p>Aquisição da Fazenda Santa Esméria no Estado do Mato Grosso do Sul.</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-icon"><i class="fas fa-leaf"></i></div>
+    <div class="timeline-content">
+      <h4 class="fw-bold text-success mb-1">1970</h4>
+      <p>Fundação da Tropi-Pastos. A AH lidera e multiplica o conceito de pastagem melhorada no MS.</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-icon"><i class="fas fa-seedling"></i></div>
+    <div class="timeline-content">
+      <h4 class="fw-bold text-success mb-1">1973</h4>
+      <p>Fazenda Córrego Azul, berço da Agropecuária AH</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-icon"><i class="fas fa-expand"></i></div>
+    <div class="timeline-content">
+      <h4 class="fw-bold text-success mb-1">1976</h4>
+      <p>Nova expansão: Fazenda Canivete do Mato Grosso do Sul.</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-icon"><i class="fas fa-tree"></i></div>
+    <div class="timeline-content">
+      <h4 class="fw-bold text-success mb-1">1984</h4>
+      <p>Formação da Fazenda Vista Alegre continuando a expansão no Estado do Mato Grosso do Sul.</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-icon"><i class="fas fa-tree"></i></div>
+    <div class="timeline-content">
+      <h4 class="fw-bold text-success mb-1">1986</h4>
+      <p>Mais fazendas: Antares e Boa Esperança no Estado do Mato Grosso do Sul.</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-icon"><i class="fas fa-piggy-bank"></i></div>
+    <div class="timeline-content">
+      <h4 class="fw-bold text-success mb-1">1995</h4>
+      <p>Implantação de modernas granjas suinícolas e Fábrica de ração.</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-icon"><i class="fas fa-tractor"></i></div>
+    <div class="timeline-content">
+      <h4 class="fw-bold text-success mb-1">1997</h4>
+      <p>Aquisição da Fazenda Ouro Verde (Unaí/MG).</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-icon"><i class="fas fa-handshake"></i></div>
+    <div class="timeline-content">
+      <h4 class="fw-bold text-success mb-1">2000</h4>
+      <p>Programa de parceria integrada com suinocultores do MS. I Simpósio Olho Vivo.</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-icon"><i class="fas fa-cow"></i></div>
+    <div class="timeline-content">
+      <h4 class="fw-bold text-success mb-1">2001</h4>
+      <p>Implantação do sistema de confinamento bovino. Comitê gestão ambiental.</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-icon"><i class="fas fa-tractor"></i></div>
+    <div class="timeline-content">
+      <h4 class="fw-bold text-success mb-1">2007</h4>
+      <p>Aquisição da fazenda Cambará/MT / Prêmio MS competitivo - 250 pontos.</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-icon"><i class="fas fa-piggy-bank"></i></div>
+    <div class="timeline-content">
+      <h4 class="fw-bold text-success mb-1">2008</h4>
+      <p>Ampliação de mais três granjas suinícolas no Mato Grosso do Sul / Prêmio MS competitivo - 500 pontos.</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-icon"><i class="fas fa-tractor"></i></div>
+    <div class="timeline-content">
+      <h4 class="fw-bold text-success mb-1">2011</h4>
+      <p>Aquisição da Fazenda Cambará II no Estado do Mato Grosso.</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-icon"><i class="fas fa-tractor"></i></div>
+    <div class="timeline-content">
+      <h4 class="fw-bold text-success mb-1">2013</h4>
+      <p>Compra da fazenda São Cristóvão.</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-icon"><i class="fas fa-coffee"></i></div>
+    <div class="timeline-content">
+      <h4 class="fw-bold text-success mb-1">2014</h4>
+      <p>Café premiado no 4º concurso de qualidade cup of excellence - Cafés Naturais</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-icon"><i class="fas fa-university"></i></div>
+    <div class="timeline-content">
+      <h4 class="fw-bold text-success mb-1">2015</h4>
+      <p>Criação da fundação AH e aquisição da Fazenda Soberbo.</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-icon"><i class="fas fa-tractor"></i></div>
+    <div class="timeline-content">
+      <h4 class="fw-bold text-success mb-1">2017</h4>
+      <p>Aquisição da Fazenda Landi e São Francisco.</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-icon"><i class="fas fa-tractor"></i></div>
+    <div class="timeline-content">
+      <h4 class="fw-bold text-success mb-1">2018</h4>
+      <p>Aquisição da Fazenda Brasília no Estado do Mato Grosso.</p>
+    </div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-icon"><i class="fas fa-piggy-bank"></i></div>
+    <div class="timeline-content">
+      <h4 class="fw-bold text-success mb-1">2019</h4>
+      <p>Implantação de Unidade de Suinocultura no Distrito Federal, Goiás e Minas Gerais.</p>
+    </div>
+  </div>
+</div>
+
+<h2 class="mb-4">Anexos</h2>
+<div class="row g-4 mb-5">
+  <div class="col-md-4">
+    <div class="card border-0 shadow-sm text-center p-4">
+      <i class="fas fa-file-alt fa-3x text-success mb-3"></i>
+      <h5 class="mb-2">Conduta AH</h5>
+      <a href="/media/conduta_ah.pdf" class="btn btn-outline-success">
+        <i class="fas fa-download me-2"></i>Download
+      </a>
+    </div>
+  </div>
+  <!-- Adicione mais anexos aqui se necessário -->
+</div>
+    </div>
+{% endblock content %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/jquery.fancybox.css' %}">
+<style>
+.about-hero {
+  position: relative;
+  min-height: 380px;
+  overflow: hidden;
+}
+.about-hero .hero-img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  filter: brightness(0.5);
+}
+.about-hero-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(120deg, #1b3d2f 60%, #388e3c 100%);
+  opacity: 0.6;
+}
+.about-hero-content {
+  position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.card, .hover-card {
+  border-radius: 18px;
+  transition: box-shadow 0.2s;
+}
+.card:hover, .hover-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+.badge {
+  font-size: 1.1rem;
+  border-radius: 12px;
+}
+.fs-5 { font-size: 1.15rem !important; }
+.fs-4 { font-size: 1.35rem !important; }
+.text-pink { color: #e83e8c !important; }
+
+/* Timeline moderna */
+.timeline {
+  position: relative;
+  margin-left: 2rem;
+  padding-left: 2rem;
+  border-left: 4px solid #1b3d2f;
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+.timeline-icon {
+  position: absolute;
+  left: -2.5rem;
+  top: 0;
+  background: #fff;
+  border: 3px solid #1b3d2f;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1b3d2f;
+  font-size: 1.3rem;
+  z-index: 2;
+}
+.timeline-content {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  padding: 1.2rem 1.5rem;
+  margin-left: 1.5rem;
+  min-width: 220px;
+}
+@media (max-width: 600px) {
+  .timeline { margin-left: 1rem; padding-left: 1rem; }
+  .timeline-content { padding: 1rem; }
+  .timeline-icon { left: -1.5rem; width: 2rem; height: 2rem; font-size: 1rem; }
+}
+</style>
+{% endblock css %}
+
+{% block javascript %}
+<!-- jQuery (necessário para o Fancybox) -->
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<!-- Add fancyBox -->
+<script type="text/javascript" src="{% static 'js/jquery.fancybox.pack.js' %}?v=2.1.5"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('[data-fancybox="galeria"], .fancybox').fancybox({
+        buttons: [
+            "zoom",
+            "slideShow",
+            "thumbs",
+            "close"
+        ],
+        loop: true,
+        arrows: true
+    });
+});
+</script>
+{% endblock javascript %}
+
+{% block banner %}
+  <!-- Banner com imagem aqui -->
+{% endblock banner %}

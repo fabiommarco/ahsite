@@ -1,0 +1,248 @@
+{% load static %}
+{% load i18n %}
+
+<div class="map-section">
+  <div class="map-legend-wrapper">
+    <div class="map-area">
+      <div id="map" class="modern-map"></div>
+    </div>
+    <div class="legend-area">
+      <div class="farm-list-container">
+        {% for farm in farms %}
+        <div class="farm-link list-item-{{ farm.id }}" data-farm-id="{{ farm.id }}" 
+             data-lat="{{ farm.farm_latitude|floatformat:6 }}" data-lng="{{ farm.farm_longitude|floatformat:6 }}"
+             data-name="{{ farm.farm_name }}" data-city="{{ farm.farm_city }}" 
+             data-state="{{ farm.farm_state }}" data-color="{{ farm.color }}"
+             {% if farm.farm_google_maps_link %}data-maps-link="{{ farm.farm_google_maps_link }}"{% endif %}>
+          <div class="farm-card">
+            <div class="d-flex align-items-center">
+              <div class="farm-initials me-3" style="--farm-color: #{{farm.color}}">
+                {{farm.initials}}
+              </div>
+              <div class="farm-info">
+                <div class="farm-name">{{farm.farm_name|truncatechars:20}}</div>
+                <div class="farm-location">{{farm.farm_city|truncatechars:20}} - {{farm.farm_state}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.map-section {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1400px;
+}
+.map-legend-wrapper {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  min-height: 520px;
+  position: relative;
+}
+.map-area {
+  flex: 2 1 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 520px;
+  z-index: 2;
+}
+.legend-area {
+  flex: 1 1 0;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  min-height: 520px;
+  z-index: 3;
+  background: transparent;
+}
+.modern-map, #map {
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  display: block;
+  z-index: 2;
+  position: relative;
+}
+.modern-map {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  transition: box-shadow 0.2s;
+}
+.farm-list-container {
+  z-index: 3;
+  position: relative;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  padding: 1rem 1rem;
+  overflow-y: auto;
+}
+.farm-link {
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: background 0.2s;
+  border-radius: 8px;
+}
+.farm-link:last-child {
+  margin-bottom: 0;
+}
+.farm-card {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  transition: box-shadow 0.2s, background 0.2s;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.farm-card:hover, .farm-link.active .farm-card {
+  background: #f8f9fa;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  border-color: #1B5E20;
+}
+.farm-initials {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--farm-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.farm-name {
+  font-weight: 600;
+  color: #1B5E20;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+.farm-location {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.2;
+}
+.mapboxgl-popup {
+  max-width: 320px !important;
+}
+.mapboxgl-popup-content {
+  padding: 1.5rem !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.10) !important;
+}
+.popup-content {
+  text-align: center;
+}
+.popup-content h3 {
+  color: #1B5E20;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+.popup-content p {
+  color: #666;
+  margin-bottom: 1rem;
+}
+.popup-content .btn {
+  width: 100%;
+}
+@media (max-width: 991px) {
+  .map-legend-wrapper {
+    flex-direction: column;
+    gap: 0;
+    min-height: 320px;
+  }
+  .map-area, .legend-area, .modern-map, .farm-list-container {
+    min-height: 320px;
+    max-width: 100%;
+    height: auto;
+  }
+}
+</style>
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet' />
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    mapboxgl.accessToken = 'pk.eyJ1IjoibHVpemFuYW8iLCJhIjoiY2s0b2cxZ212MDV0NzNkcDE5azJyYms1byJ9.GDrnRTZWPXpO7IspLmWo-w';
+    const initialView = {
+        center: [-48.0772831, -13.0],
+        zoom: 3
+    };
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        ...initialView
+    });
+    map.addControl(new mapboxgl.NavigationControl());
+    const markers = {};
+    const popups = {};
+    {% for farm in farms %}
+    const marker{{ farm.id }} = new mapboxgl.Marker({
+        color: '#{{ farm.color }}',
+        scale: 0.9
+    })
+    .setLngLat([parseFloat('{{ farm.farm_latitude|floatformat:6 }}'), parseFloat('{{ farm.farm_longitude|floatformat:6 }}')])
+    .addTo(map);
+    const popup{{ farm.id }} = new mapboxgl.Popup({
+        closeButton: true,
+        closeOnClick: false,
+        maxWidth: '320px',
+        focusAfterOpen: false
+    })
+    .setHTML(`
+        <div class="popup-content">
+            <h3>{{ farm.farm_name }}</h3>
+            <p>{{ farm.farm_city }} - {{ farm.farm_state }}</p>
+            {% if farm.farm_google_maps_link %}
+            <a href="{{ farm.farm_google_maps_link }}" target="_blank" class="btn btn-outline-success btn-sm" tabindex="-1">
+                <i class="fas fa-map-marker-alt me-2"></i>{% trans "Ver no Google Maps" %}
+            </a>
+            {% endif %}
+        </div>
+    `);
+    markers[{{ farm.id }}] = marker{{ farm.id }};
+    popups[{{ farm.id }}] = popup{{ farm.id }};
+    const listItem{{ farm.id }} = document.querySelector('.list-item-{{ farm.id }}');
+    if (listItem{{ farm.id }}) {
+        listItem{{ farm.id }}.addEventListener('click', (event) => {
+            event.preventDefault();
+            // Fecha todos os popups
+            Object.values(popups).forEach(p => p.remove());
+            // Associa e abre o popup no marcador correspondente
+            marker{{ farm.id }}.setPopup(popup{{ farm.id }}).togglePopup();
+            // Centraliza o mapa no marcador
+            map.flyTo({
+                center: [parseFloat('{{ farm.farm_longitude|floatformat:6 }}'), parseFloat('{{ farm.farm_latitude|floatformat:6 }}')],
+                zoom: 8,
+                essential: true
+            });
+            // Destaca a legenda
+            document.querySelectorAll('.farm-link').forEach(el => el.classList.remove('active'));
+            document.querySelector('.list-item-{{ farm.id }}').classList.add('active');
+        });
+        listItem{{ farm.id }}.addEventListener('mouseenter', () => {
+            marker{{ farm.id }}.getElement().style.transform = 'scale(1.2)';
+        });
+        listItem{{ farm.id }}.addEventListener('mouseleave', () => {
+            marker{{ farm.id }}.getElement().style.transform = 'scale(0.9)';
+        });
+    }
+    {% endfor %}
+    map.on('zoom', () => {
+        Object.values(markers).forEach(marker => {
+            marker.getElement().style.transform = 'scale(0.9)';
+        });
+    });
+});
+</script>

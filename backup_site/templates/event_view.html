@@ -1,0 +1,951 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block class %}dynamic-content ah-background page-responsabilidade-social{% endblock class%}
+{% block content %}
+<div class="container py-5">
+  <div class="col-lg-10 mx-auto">
+    <!-- HERO SECTION -->
+    <div class="hero-section mb-5">
+      <div class="rounded-4 shadow-lg p-5 text-center" style="background: #FFA726;">
+        <div class="text-center">
+          <div class="fundacao-header">
+            <h1>
+              Fundação <span class="ah-vermelho">AH</span>
+            </h1>
+          </div>
+          <div class="fundacao-locais">
+            <p>
+              <i class="fa fa-map-marker"></i>
+              <a href="https://maps.google.com/?q=Fazenda Córrego Azul - MS" target="_blank">Fazenda Córrego Azul - MS</a>
+            </p>
+            <p>
+              <i class="fa fa-map-marker"></i>
+              <a href="https://maps.google.com/?q=Brasilândia - MS" target="_blank">Brasilândia - MS</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- THUMBNAIL SECTION -->
+    <div class="text-center mb-5">
+      <div class="position-relative d-inline-block">
+        <img src="{% get_media_prefix %}{{ event.event_thumbnail }}" alt="{{ event.event_title }}" class="img-fluid rounded-4 shadow-lg" style="max-height: 400px; object-fit: cover;">
+        <div class="position-absolute top-0 start-0 w-100 h-100 bg-gradient-dark rounded-4 opacity-0 hover-opacity-25 transition-all"></div>
+      </div>
+    </div>
+    
+    <!-- ODS SECTION -->
+    <div class="ods-section mb-5">
+      <div class="bg-white rounded-4 shadow-lg p-4">
+        <h3 class="fw-bold titulo-marrom text-center titulo-sombra-branca mb-4">
+          <i class="fas fa-globe-americas me-2"></i>Objetivos de Desenvolvimento Sustentável
+        </h3>
+        <div class="ods-container">
+          <div class="ods-item">
+            <img src="{% static 'img/ods/ods1.png' %}" alt="ODS 1 - Erradicação da Pobreza" class="img-fluid">
+            <small class="d-block text-center mt-2 text-muted">Erradicação da Pobreza</small>
+          </div>
+          <div class="ods-item">
+            <img src="{% static 'img/ods/ods2.png' %}" alt="ODS 2 - Fome Zero" class="img-fluid">
+            <small class="d-block text-center mt-2 text-muted">Fome Zero</small>
+          </div>
+          <div class="ods-item">
+            <img src="{% static 'img/ods/ods3.png' %}" alt="ODS 3 - Saúde e Bem-estar" class="img-fluid">
+            <small class="d-block text-center mt-2 text-muted">Saúde e Bem-estar</small>
+          </div>
+          <div class="ods-item">
+            <img src="{% static 'img/ods/ods4.png' %}" alt="ODS 4 - Educação de Qualidade" class="img-fluid">
+            <small class="d-block text-center mt-2 text-muted">Educação de Qualidade</small>
+          </div>
+          <div class="ods-item">
+            <img src="{% static 'img/ods/ods8.png' %}" alt="ODS 8 - Trabalho Decente" class="img-fluid">
+            <small class="d-block text-center mt-2 text-muted">Trabalho Decente</small>
+          </div>
+          <div class="ods-item">
+            <img src="{% static 'img/ods/ods10.png' %}" alt="ODS 10 - Redução das Desigualdades" class="img-fluid">
+            <small class="d-block text-center mt-2 text-muted">Redução das Desigualdades</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TÍTULO E TEXTO DE APRESENTAÇÃO -->
+    <div class="mission-section mb-5">
+      <div class="bg-gradient-success rounded-4 shadow-lg p-5 text-center">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h2 class="fw-bold titulo-marrom text-center titulo-sombra-branca mb-4">
+              <i class="fas fa-star me-3"></i>SONHAR, PLANEJAR E REALIZAR
+            </h2>
+            <div class="mission-content" style="color: #333;">
+              <p class="lead mb-4">A Fundação AH é uma organização sem fins lucrativos, fundada em 2015, a partir da iniciativa dos proprietários da Agropecuária AH, que prosperaram o sonho de que toda criança, independente de onde esteja, merece crescer com dignidade, proteção e oportunidades reais de futuro. </p>
+              <p class="mb-0">Há 10 anos, a Fundação AH desenvolve um trabalho para a redução das desigualdades na infância e melhoria da qualidade de vida das crianças e adolescentes. Já realizou diversas parcerias para a execução de projetos, colaborando com a construção de um mundo mais justo e sustentável. </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MISSÃO E VALORES EM CARDS -->
+    <div class="row mb-5 g-4">
+      <div class="col-md-6">
+        <div class="modern-card h-100">
+          <div class="card-header-modern bg-gradient-success text-white">
+            <h4 class="fw-bold titulo-marrom text-center">
+              <i class="fas fa-bullseye me-2"></i>Missão
+            </h4>
+          </div>
+          <div class="card-body-modern">
+            <p>Ampliar oportunidades de acesso, cultivar vínculos e nutrir ambiente propício para o desenvolvimento de crianças e adolescentes, fortalecendo suas histórias e projetos de vida.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="modern-card h-100">
+          <div class="card-header-modern bg-gradient-info text-white">
+            <h4 class="fw-bold titulo-marrom text-center">
+              <i class="fas fa-gem me-2"></i>Valores
+            </h4>
+          </div>
+          <div class="card-body-modern">
+            <ul class="list-modern">
+              <li>Transparência</li>
+              <li>Respeito</li>
+              <li>União</li>
+              <li>Acolhimento</li>
+              <li>Inovação</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ATIVIDADES E PÚBLICO -->
+    <div class="row mb-5 g-4">
+      <div class="col-md-6">
+        <div class="modern-card h-100">
+          <div class="card-header-modern bg-gradient-primary text-white">
+            <h4 class="fw-bold titulo-marrom text-center">
+              <i class="fas fa-tasks me-2"></i>Atividades Ofertadas
+            </h4>
+          </div>
+          <div class="card-body-modern">
+            <ul class="list-modern">
+              <li class="mb-3">
+                <div class="list-icon bg-success">
+                  <i class="fas fa-check text-white"></i>
+                </div>
+                <span>Atividades e alimentação diárias e gratuitas para 120 crianças e adolescentes, de 4 à 16 anos, em duas unidades, localizadas na área rural e urbana de Brasilândia-MS. Essas ações envolvem oficinas de música, arte, literatura, esporte, educação e convivência, ampliando a diversidade de saberes dos participantes e contribuindo com a Segurança Alimentar e Segurança de Convivência.</span>
+              </li>
+              <li class="mb-3">
+                <div class="list-icon bg-success">
+                  <i class="fas fa-check text-white"></i>
+                </div>
+                <span>Assessoramento para Escola Rural no Mato Grosso, contribuindo para que crianças rurais acessem a escola e o direito à educação.</span>
+              </li>
+              <li class="mb-3">
+                <div class="list-icon bg-success">
+                  <i class="fas fa-check text-white"></i>
+                </div>
+                <span>Cursos gratuitos de aprendizagem profissional e pré aprendizagem profissional para adolescentes e jovens aprendizes.</span>
+              </li>
+        </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="modern-card h-100">
+          <div class="card-header-modern bg-gradient-info text-white">
+            <h4 class="fw-bold titulo-marrom text-center">
+              <i class="fas fa-users me-2"></i>Público Atendido
+            </h4>
+          </div>
+          <div class="card-body-modern">
+            <ul class="list-modern">
+              <li class="mb-3">
+                <div class="list-icon bg-info">
+                  <i class="fas fa-child text-white"></i>
+                </div>
+                <span>Crianças e adolescentes de 4 a 14 anos e 11 meses;</span>
+              </li>
+              <li class="mb-3">
+                <div class="list-icon bg-info">
+                  <i class="fas fa-user-graduate text-white"></i>
+                </div>
+                <span>Adolescentes e jovens de 15 a 17 anos e 11 meses.</span>
+              </li>
+              <li class="mb-3">
+                <div class="list-icon bg-info">
+                  <i class="fas fa-home text-white"></i>
+                </div>
+                <span>Em todas as modalidades, o atendimento se estende à família.</span>
+              </li>
+        </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULTADOS E EQUIPE -->
+    <div class="row mb-5 g-4">
+      <div class="col-md-6">
+        <div class="modern-card h-100">
+          <div class="card-header-modern bg-gradient-warning text-dark">
+            <h4 class="fw-bold titulo-marrom text-center">
+              <i class="fas fa-chart-line me-2"></i>Resultados e Impacto Positivo
+            </h4>
+          </div>
+          <div class="card-body-modern">
+            <ul class="list-modern">
+              <li class="mb-3">
+                <div class="list-icon bg-warning">
+                  <i class="fas fa-users text-white"></i>
+                </div>
+                <span><span class="numero-destaque">1596</span> crianças atendidas desde <span class="ano-destaque">2015 à 2024</span></span>
+              </li>
+              <li class="mb-3">
+                <div class="list-icon bg-warning">
+                  <i class="fas fa-handshake text-white"></i>
+                </div>
+                <span><span class="numero-destaque">15</span> projetos realizados em parceria desde <span class="ano-destaque">2016 à 2024</span></span>
+              </li>
+              <li class="mb-3">
+                <div class="list-icon bg-warning">
+                  <i class="fas fa-heart text-white"></i>
+                </div>
+                <span><span class="numero-destaque">100%</span> de satisfação das famílias com as atividades da Fundação AH</span>
+              </li>
+              <li class="mb-3">
+                <div class="list-icon bg-warning">
+                  <i class="fas fa-clock text-white"></i>
+                </div>
+                <span><span class="numero-destaque">4.050</span> horas de atividades ofertadas anualmente</span>
+              </li>
+              <li class="mb-3">
+                <div class="list-icon bg-warning">
+                  <i class="fas fa-utensils text-white"></i>
+                </div>
+                <span><span class="numero-destaque">16.200</span> refeições servidas anualmente</span>
+              </li>
+        </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="modern-card h-100">
+          <div class="card-header-modern bg-gradient-secondary text-white">
+            <h4 class="fw-bold titulo-marrom text-center">
+              <i class="fas fa-user-friends me-2"></i>Equipe
+            </h4>
+          </div>
+          <div class="card-body-modern">
+            <div class="team-content">
+              <p class="mb-4">Escutar, acolher e cuidar são verbos colocados em prática todos os dias, com uma equipe multidisciplinar, composta por 15 colaboradores e 15 voluntários, dedicados e com compromisso com a transformação social. Ao cuidar de uma criança, cuidamos do amanhã e, juntos, estamos ajudando a escrever novas histórias de vida.</p>
+              <div class="team-stats">
+                <div class="stat-item text-center">
+                  <div class="stat-number">15</div>
+                  <div class="stat-label">Colaboradores</div>
+                </div>
+                <div class="stat-item text-center">
+                  <div class="stat-number">15</div>
+                  <div class="stat-label">Voluntários</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GESTÃO -->
+    <div class="management-section mb-5">
+      <div class="modern-card">
+        <div class="card-header-modern bg-gradient-success text-white">
+          <h4 class="fw-bold titulo-marrom text-center">
+            <i class="fas fa-building me-2"></i>Gestão
+          </h4>
+        </div>
+        <div class="card-body-modern">
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="management-group">
+                <h5 class="fw-bold text-success mb-3 titulo-marrom text-center">
+                  <i class="fas fa-user-tie me-2"></i>Diretoria (2023 – 2028)
+                </h5>
+                <div class="management-list">
+                  <div class="management-item">
+                    <div class="management-icon bg-success">
+                      <i class="fas fa-crown text-white"></i>
+                    </div>
+                    <div class="management-info">
+                      <strong>Ana Cristina Garcia Bez Hofig</strong>
+                      <small class="text-muted d-block">Diretora Presidente</small>
+                    </div>
+                  </div>
+                  <div class="management-item">
+                    <div class="management-icon bg-success">
+                      <i class="fas fa-user-tie text-white"></i>
+                    </div>
+                    <div class="management-info">
+                      <strong>Verena Pulido Molina</strong>
+                      <small class="text-muted d-block">Diretora Técnico Assistencial</small>
+                    </div>
+                  </div>
+                  <div class="management-item">
+                    <div class="management-icon bg-success">
+                      <i class="fas fa-user-tie text-white"></i>
+                    </div>
+                    <div class="management-info">
+                      <strong>Germano Joaquim Arquimedes Vieira</strong>
+                      <small class="text-muted d-block">Diretor Financeiro</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col-md-6">
+              <div class="management-group">
+                <h5 class="fw-bold text-success mb-3 titulo-marrom text-center">
+                  <i class="fas fa-shield-alt me-2"></i>Conselho Fiscal (2023-2028)
+                </h5>
+                <div class="management-list">
+                  <div class="management-item">
+                    <div class="management-icon bg-info">
+                      <i class="fas fa-user-check text-white"></i>
+                    </div>
+                    <div class="management-info">
+                      <strong>Evander de Sá Silva</strong>
+                    </div>
+                  </div>
+                  <div class="management-item">
+                    <div class="management-icon bg-info">
+                      <i class="fas fa-user-check text-white"></i>
+                    </div>
+                    <div class="management-info">
+                      <strong>Sergio Joaquim Azevedo</strong>
+                    </div>
+                  </div>
+                  <div class="management-item">
+                    <div class="management-icon bg-info">
+                      <i class="fas fa-user-check text-white"></i>
+                    </div>
+                    <div class="management-info">
+                      <strong>Welintton Rubens Gonçalves</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INSCRIÇÕES -->
+    <div class="registrations-section mb-5">
+      <div class="modern-card">
+        <div class="card-header-modern bg-gradient-primary text-white">
+          <h4 class="fw-bold titulo-marrom text-center">
+            <i class="fas fa-certificate me-2"></i>Inscrições e Títulos de Utilidade Pública
+          </h4>
+        </div>
+        <div class="card-body-modern">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="registration-item">
+                <div class="registration-icon bg-success">
+                  <i class="fas fa-check text-white"></i>
+                </div>
+                <div class="registration-info">
+                  <strong>Inscrição no CMDCA:</strong> Sim
+                </div>
+              </div>
+              <div class="registration-item">
+                <div class="registration-icon bg-success">
+                  <i class="fas fa-check text-white"></i>
+                </div>
+                <div class="registration-info">
+                  <strong>Inscrição no CMAS:</strong> Sim
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="registration-item">
+                <div class="registration-icon bg-danger">
+                  <i class="fas fa-times text-white"></i>
+                </div>
+                <div class="registration-info">
+                  <strong>Título de Utilidade Pública Federal:</strong> Não
+                </div>
+              </div>
+              <div class="registration-item">
+                <div class="registration-icon bg-success">
+                  <i class="fas fa-check text-white"></i>
+                </div>
+                <div class="registration-info">
+                  <strong>Título de Utilidade Pública Estadual:</strong> Sim
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACOMPANHE NOSSO TRABALHO -->
+    <div class="follow-section mb-5">
+      <div class="bg-gradient-dark rounded-4 shadow-lg p-5 text-center text-white">
+        <h4 class="fw-bold titulo-marrom text-center mb-4">
+          <i class="fas fa-heart me-2"></i>Acompanhe nosso trabalho
+        </h4>
+        <p class="mb-4" style="color: #222;">Acompanhe nosso trabalho e o resultado de sua doação através de nossas redes sociais:</p>
+        <div class="social-links mb-4">
+          <a href="https://instagram.com/fundacao_ah" target="_blank" class="btn btn-outline-dark btn-lg me-3" style="color: #222; border-color: #222;">
+            <i class="fab fa-instagram me-2"></i>@fundacao_ah
+          </a>
+          <a href="https://fundacaoah.org" target="_blank" class="btn btn-outline-dark btn-lg" style="color: #222; border-color: #222;">
+            <i class="fas fa-globe me-2"></i>fundacaoah.org
+          </a>
+        </div>
+        <div class="call-to-action">
+          <div class="alert alert-warning d-inline-block">
+            <i class="fas fa-heart text-danger me-2"></i>
+            <strong>Faça parte dessa mudança! Sua doação faz a diferença.</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GALERIA DE IMAGENS SOCIAL -->
+    <div class="gallery-section mb-5">
+      <div class="bg-white rounded-4 shadow-lg p-4">
+        <h4 class="fw-bold text-success mb-4 text-center">
+          <i class="fas fa-images me-2"></i>Galeria Fundação AH
+        </h4>
+        <div class="galeria-fundacao-ah d-flex flex-wrap justify-content-center gap-4">
+          {% for foto in fotos %}
+            <a href="{% static 'img/social/' %}{{ foto }}" data-fancybox="galeria" class="galeria-item">
+              <div class="thumb-4x3">
+                <img src="{% static 'img/social/' %}{{ foto }}" alt="Fundação AH">
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/jquery.fancybox.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/>
+  <style>
+    /* Gradientes personalizados */
+    .bg-gradient-primary {
+      background: linear-gradient(135deg, #81C784 0%, #FFD180 60%, #FF8A65 100%);
+    }
+    .bg-gradient-success {
+      background: linear-gradient(135deg, #A5D6A7 0%, #FFF9C4 100%);
+    }
+    .bg-gradient-info {
+      background: linear-gradient(135deg, #FFE082 0%, #AED581 100%);
+    }
+    .bg-gradient-warning {
+      background: linear-gradient(135deg, #FFD180 0%, #FF8A65 100%);
+    }
+    .bg-gradient-secondary {
+      background: linear-gradient(135deg, #B2DFDB 0%, #FFAB91 100%);
+    }
+    .bg-gradient-dark {
+      background: linear-gradient(135deg, #E0E0E0 0%, #B2DFDB 100%);
+    }
+
+    /* Título Fundação AH */
+    .titulo-fundacao {
+      color: #7B3F00;
+      font-size: 2.5rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px rgba(123,63,0,0.08);
+    }
+    .text-marrom {
+      color: #7B3F00 !important;
+    }
+    .bg-marrom {
+      background: #7B3F00 !important;
+      color: #fff !important;
+    }
+    .border-marrom {
+      border-color: #7B3F00 !important;
+    }
+    .btn-marrom {
+      background: linear-gradient(90deg, #7B3F00 0%, #A0522D 100%);
+      color: #fff;
+      border: none;
+      border-radius: 0.7rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 0.7rem 2.5rem;
+      box-shadow: 0 2px 8px rgba(123,63,0,0.08);
+      transition: background 0.2s;
+    }
+    .btn-marrom:hover {
+      background: linear-gradient(90deg, #A0522D 0%, #7B3F00 100%);
+    }
+
+    /* Cards modernos */
+    .modern-card {
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .modern-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    }
+
+    .card-header-modern {
+      padding: 1.5rem;
+      border: none;
+    }
+
+    .card-body-modern {
+      padding: 1.5rem;
+    }
+
+    /* Lista moderna */
+    .list-modern {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .list-modern li {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .list-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+      flex-shrink: 0;
+    }
+
+    /* ODS Container - Todos na mesma linha */
+    .ods-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .ods-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.75rem;
+      border-radius: 1rem;
+      background: white;
+      box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      min-width: 100px;
+      max-width: 120px;
+    }
+
+    .ods-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+
+    .ods-item img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+    }
+
+    .ods-item small {
+      font-size: 0.7rem;
+      line-height: 1.2;
+      margin-top: 0.5rem;
+    }
+
+    /* Responsividade para ODS */
+    @media (max-width: 768px) {
+      .ods-container {
+        gap: 0.5rem;
+      }
+      
+      .ods-item {
+        min-width: 80px;
+        max-width: 100px;
+        padding: 0.5rem;
+      }
+      
+      .ods-item img {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .ods-item small {
+        font-size: 0.6rem;
+      }
+    }
+
+    /* Gestão */
+    .management-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .management-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      background: #f8f9fa;
+    }
+
+    .management-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+    }
+
+    .management-info {
+      flex: 1;
+    }
+
+    /* Inscrições */
+    .registration-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      background: #f8f9fa;
+    }
+
+    .registration-icon {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+    }
+
+    .registration-info {
+      flex: 1;
+    }
+
+    /* Estatísticas da equipe */
+    .team-stats {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 1.5rem;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #007bff;
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      color: #6c757d;
+    }
+
+    /* Galeria */
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.75rem;
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-overlay i {
+      font-size: 2rem;
+    }
+
+    /* Animações */
+    .animate-fade-in {
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .transition-all {
+      transition: all 0.3s ease;
+    }
+
+    .hover-opacity-25:hover {
+      opacity: 0.25;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .hero-section h1 {
+        font-size: 2rem;
+      }
+      
+      .social-links .btn {
+        display: block;
+        margin-bottom: 1rem;
+      }
+      
+      .team-stats {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+
+    .titulo-marrom, h2.titulo-marrom, h3.titulo-marrom, h4.titulo-marrom, h5.titulo-marrom {
+      color: #7B3F00 !important;
+      font-weight: 900;
+      text-shadow: 0 2px 8px rgba(123,63,0,0.08);
+      position: relative;
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .titulo-marrom::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, #FFA726 0%, #B71C1C 100%);
+      border-radius: 2px;
+      margin: 12px auto 0 auto;
+    }
+
+    .numero-destaque {
+      color: #B71C1C;
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+    .ano-destaque {
+      color: #FFA726;
+      font-weight: bold;
+    }
+
+    .titulo-destaque-bg {
+      display: inline-block;
+      background: transparent;
+      padding: 0.3em 1.2em;
+      border-radius: 1.2em;
+      box-shadow: 0 2px 8px rgba(123,63,0,0.08);
+      text-shadow: 0 2px 8px #fff, 0 0 2px #fff, 0 0 6px #fff;
+      margin-bottom: 0.5em;
+    }
+
+    .titulo-sombra-branca {
+      text-shadow:
+        0 2px 8px #fff,
+        0 0 2px #fff,
+        0 0 6px #fff,
+        0 0 1px #fff,
+        0 2px 4px rgba(0,0,0,0.15);
+    }
+
+    .fundo-titulo-claro {
+      background: rgba(255,255,255,0.85);
+      display: inline-block;
+      padding: 0.25em 1.2em;
+      border-radius: 1.2em;
+      margin-bottom: 0.5em;
+      box-shadow: 0 2px 8px rgba(123,63,0,0.04);
+    }
+
+    .logo-fundacao-ah {
+      height: 48px;
+      max-width: 120px;
+      object-fit: contain;
+      margin-left: 16px;
+    }
+    @media (max-width: 600px) {
+      .logo-fundacao-ah {
+        display: block;
+        margin: 16px auto 0 auto;
+      }
+    }
+
+    .fundacao-header, .fundacao-locais {
+      text-align: center;
+    }
+    .ah-vermelho {
+      color: #b22222;
+    }
+    .fundacao-locais p {
+      margin: 10px 0 0 0;
+    }
+
+    .fundacao-header h1 {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 800;
+      font-size: 2.5rem;
+      color: #7B3F00;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+    }
+
+    .fundacao-locais a {
+      color: #fff !important;
+      text-decoration: underline;
+    }
+    .fundacao-locais a:hover {
+      color: #ffd180 !important;
+    }
+    .fundacao-locais .fa-map-marker, .fundacao-locais .fa-location-dot {
+      color: #fff !important;
+    }
+
+    .galeria-fundacao-ah {
+      gap: 32px 24px;
+    }
+    .galeria-item {
+      display: block;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fafafa;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      width: 260px;
+    }
+    .thumb-4x3 {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .thumb-4x3 img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 12px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .thumb-4x3 img:hover {
+      transform: scale(1.04);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+    .fancybox__container {
+      z-index: 20000 !important;
+      top: 80px !important; /* Ajuste para a altura do seu menu/header */
+      height: calc(100% - 80px) !important;
+    }
+  </style>
+{% endblock css %}
+{% block javascript %}
+  <script type="text/javascript" src="{% static 'js/jquery.fancybox.pack.js' %}?v=2.1.5"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".fancybox").fancybox();
+      
+      // Animação de entrada para os cards
+      $('.modern-card').each(function(index) {
+        $(this).css({
+          'opacity': '0',
+          'transform': 'translateY(30px)'
+        });
+        
+        setTimeout(() => {
+          $(this).animate({
+            'opacity': '1',
+            'transform': 'translateY(0)'
+          }, 600);
+        }, index * 200);
+      });
+      
+      // Efeito hover para os cards ODS
+      $('.ods-item').hover(
+        function() {
+          $(this).addClass('shadow-lg');
+        },
+        function() {
+          $(this).removeClass('shadow-lg');
+        }
+      );
+
+      $('[data-fancybox="galeria"]').fancybox({
+        buttons: [
+          "close"
+        ],
+        loop: true,
+        protect: true,
+        animationEffect: "zoom-in-out"
+      });
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      Fancybox.bind("[data-fancybox='galeria']", {
+        Thumbs: false,
+        Toolbar: {
+          display: [
+            { id: "counter", position: "center" },
+            "close"
+          ]
+        },
+        loop: true,
+        dragToClose: false,
+        placeFocusBack: false,
+        compact: false,
+        Image: {
+          zoom: false,
+          panMode: "contain"
+        },
+        padding: { top: 0, bottom: 20 }
+      });
+    });
+  </script>
+{% endblock javascript %}

@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% block class %}page-contact dynamic-content ah-background{% endblock class%}
+{% load i18n %}
+{% block content %}
+    {% load static %}
+    <!-- HEADER -->
+    <section class="py-5 bg-success text-white">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h1 class="display-4 fw-bold mb-4">{% trans "Fale Conosco" %}</h1>
+                    <div class="border-top border-white w-25 mx-auto"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTEÚDO -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <!-- Informações de Contato -->
+                    <div class="row g-4 mb-5">
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 shadow-sm hover-card text-center">
+                                <div class="card-body p-4">
+                                    <i class="fas fa-phone fa-2x text-success mb-3"></i>
+                                    <h5 class="fw-bold mb-3">{% trans "Telefone" %}</h5>
+                                    <p class="text-muted mb-0">+55 (34) 3515-7600</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 shadow-sm hover-card text-center">
+                                <div class="card-body p-4">
+                                    <i class="fas fa-envelope fa-2x text-success mb-3"></i>
+                                    <h5 class="fw-bold mb-3">{% trans "E-mail" %}</h5>
+                                    <p class="text-muted mb-0">contato@agropecuariaah.com.br</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 shadow-sm hover-card text-center">
+                                <div class="card-body p-4">
+                                    <i class="fas fa-map-marker-alt fa-2x text-success mb-3"></i>
+                                    <h5 class="fw-bold mb-3">{% trans "Endereço" %}</h5>
+                                    <p class="text-muted mb-0">Av. Getúlio Vargas, 275<br>Centro - Araguari/MG</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formulário de Contato -->
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <h2 class="display-6 fw-bold text-success mb-4">{% trans "Envie sua Mensagem" %}</h2>
+                            <form method="post" class="contact-form">
+                                {% csrf_token %}
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="name" name="name" placeholder="{% trans 'Nome' %}" required>
+                                            <label for="name">{% trans "Nome" %}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="email" class="form-control" id="email" name="email" placeholder="{% trans 'E-mail' %}" required>
+                                            <label for="email">{% trans "E-mail" %}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="subject" name="subject" placeholder="{% trans 'Assunto' %}" required>
+                                            <label for="subject">{% trans "Assunto" %}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" id="message" name="message" placeholder="{% trans 'Mensagem' %}" style="height: 150px" required></textarea>
+                                            <label for="message">{% trans "Mensagem" %}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-success btn-lg">
+                                            <i class="fas fa-paper-plane me-2"></i>
+                                            {% trans "Enviar Mensagem" %}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mapa -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="display-6 fw-bold text-success mb-4">{% trans "Nossa Localização" %}</h2>
+                    <div class="map-container rounded shadow-sm overflow-hidden">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3773.5089823525375!2d-48.19123548509439!3d-18.64681868733459!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94a445e2c1b91ec3%3A0x1c1d3f4e1b961789!2sAv.%20Get%C3%BAlio%20Vargas%2C%20275%20-%20Centro%2C%20Araguari%20-%20MG%2C%2038440-251!5e0!3m2!1spt-BR!2sbr!4v1647881234567!5m2!1spt-BR!2sbr" 
+                                width="100%" 
+                                height="450" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
+{% block css %}
+<style>
+.hover-card {
+    transition: all 0.3s ease;
+}
+.hover-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+}
+.form-floating > .form-control,
+.form-floating > .form-control-plaintext {
+    height: calc(3.5rem + 2px);
+    line-height: 1.25;
+}
+.form-floating > textarea.form-control {
+    height: 150px;
+}
+.form-control:focus {
+    border-color: var(--bs-success);
+    box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
+}
+.map-container {
+    position: relative;
+    overflow: hidden;
+    padding-top: 56.25%;
+}
+.map-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+</style>
+{% endblock css %}

@@ -1,0 +1,1125 @@
+/* Cores principais */
+:root {
+  --primary-color: #1b3d2f;
+  --secondary-color: #388e3c;
+  --text-color: #333;
+  --background-color: #ffffff;
+  --link-color: #1b3d2f;
+  --link-hover-color: #388e3c;
+}
+
+/* Reset geral */
+body {
+  background: #f5f5f5;
+  color: var(--text-color);
+}
+
+/* Cabeçalho */
+#header {
+  background: var(--primary-color);
+  color: white;
+  padding: 15px 40px;
+}
+
+#branding h1 {
+  color: white;
+}
+
+#branding h1 a {
+  color: white;
+}
+
+/* Container principal */
+#container {
+  background: var(--background-color);
+}
+
+/* Módulos */
+.module {
+  background: var(--background-color) !important;
+  border: 1px solid #ddd !important;
+  margin-bottom: 20px;
+}
+
+.module h2 {
+  background: var(--primary-color) !important;
+  color: white !important;
+  padding: 15px;
+  margin: 0;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+/* Tabelas */
+.module table {
+  width: 100%;
+  color: var(--text-color) !important;
+}
+
+.module table th {
+  background: #f8f8f8 !important;
+  color: var(--text-color) !important;
+  font-weight: bold;
+  padding: 12px;
+}
+
+.module table td {
+  background: var(--background-color) !important;
+  color: var(--text-color) !important;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.module table tr:hover td {
+  background: #f5f5f5 !important;
+}
+
+/* Links nas tabelas */
+.module table a {
+  color: var(--link-color) !important;
+  text-decoration: none;
+}
+
+.module table a:hover {
+  color: var(--link-hover-color) !important;
+  text-decoration: underline;
+}
+
+/* Botões de ação */
+.addlink,
+.changelink {
+  display: inline-block !important;
+  padding: 8px 15px !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  border-radius: 4px !important;
+  margin: 0 5px !important;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+  font-size: 12px !important;
+}
+
+.addlink {
+  background: var(--secondary-color) !important;
+  color: #ffffff !important;
+}
+
+.changelink {
+  background: var(--primary-color) !important;
+  color: #ffffff !important;
+}
+
+.addlink:hover,
+.changelink:hover {
+  opacity: 0.9 !important;
+  text-decoration: none !important;
+  color: #ffffff !important;
+}
+
+/* Links nas tabelas */
+.module table .addlink,
+.module table .changelink {
+  color: #ffffff !important;
+  display: inline-block !important;
+  padding: 8px 15px !important;
+  text-decoration: none !important;
+}
+
+.module table .addlink:hover,
+.module table .changelink:hover {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+/* Força a cor branca nos links dentro dos botões */
+a.addlink,
+a.changelink,
+.module a.addlink,
+.module a.changelink {
+  color: #ffffff !important;
+}
+
+/* Seções específicas */
+.app-auth h2,
+.app-content h2 {
+  color: white !important;
+  background: var(--primary-color) !important;
+}
+
+.app-auth table th,
+.app-content table th {
+  color: var(--text-color) !important;
+}
+
+.app-auth table td,
+.app-content table td {
+  color: var(--text-color) !important;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+  background: #f8f8f8;
+  color: var(--text-color);
+  padding: 10px 40px;
+  border-bottom: 1px solid #eee;
+}
+
+.breadcrumbs a {
+  color: var(--link-color);
+}
+
+/* Mensagens */
+.messagelist li {
+  color: var(--text-color);
+  background: #fff;
+  padding: 10px 15px;
+  margin: 0 0 10px 0;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+/* Formulários */
+.form-row {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.form-row label {
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  #header {
+    padding: 15px 20px;
+  }
+
+  .module {
+    margin: 10px;
+  }
+
+  .module td,
+  .module th {
+    padding: 8px;
+  }
+}
+
+/* Títulos das seções */
+.dashboard .module caption,
+.dashboard .module h2 {
+  background: var(--primary-color) !important;
+  color: white !important;
+  font-weight: bold;
+  padding: 8px 12px;
+}
+
+/* Links no cabeçalho do usuário */
+#user-tools {
+  color: white;
+}
+
+#user-tools a {
+  color: white !important;
+  text-decoration: underline;
+}
+
+#user-tools a:hover {
+  color: white !important;
+  text-decoration: none;
+}
+
+/* Conteúdo principal */
+#content {
+  background: white;
+  padding: 20px 40px;
+}
+
+#content-main {
+  background: white;
+}
+
+/* Barra lateral */
+#nav-sidebar {
+  background: var(--background-light);
+}
+
+#nav-sidebar .module caption {
+  background: var(--primary-color);
+  color: white;
+}
+
+#nav-sidebar .current-app .section {
+  color: white;
+}
+
+#nav-sidebar a {
+  color: var(--text-color);
+}
+
+#nav-sidebar a:hover {
+  color: var(--link-hover-color);
+}
+
+/* Links e ações */
+.addlink,
+.changelink,
+.deletelink {
+  color: var(--link-color) !important;
+}
+
+.addlink:hover,
+.changelink:hover,
+.deletelink:hover {
+  color: var(--link-hover-color) !important;
+}
+
+/* Tabelas e listas */
+#changelist table thead th {
+  background: var(--primary-color);
+  color: white;
+}
+
+.module h2,
+.module caption {
+  background: var(--primary-color);
+  color: white;
+}
+
+/* Botões */
+.button,
+input[type="submit"],
+input[type="button"],
+.submit-row input {
+  background: var(--primary-color);
+  color: white;
+}
+
+.button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+.submit-row input:hover {
+  background: var(--secondary-color);
+}
+
+/* Breadcrumbs */
+div.breadcrumbs {
+  background: #f8f8f8;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  color: var(--text-color);
+}
+
+div.breadcrumbs a {
+  color: var(--link-color);
+}
+
+div.breadcrumbs a:hover {
+  color: var(--link-hover-color);
+}
+
+/* Conteúdo principal */
+#content {
+  background: white;
+}
+
+.module {
+  background: white !important;
+  border: 1px solid #ddd !important;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.module h2 {
+  background: var(--primary-color) !important;
+  color: white !important;
+  padding: 12px 15px;
+  font-size: 16px;
+  margin: 0;
+  border-radius: 4px 4px 0 0;
+}
+
+.module table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.module th {
+  font-weight: 600;
+  color: var(--text-color) !important;
+  padding: 12px 15px;
+  text-align: left;
+  background: #f8f8f8;
+}
+
+.module td {
+  padding: 12px 15px;
+  border-top: 1px solid #eee;
+}
+
+/* Links na tabela */
+tbody tr a {
+  color: var(--link-color);
+}
+
+tbody tr a:hover {
+  color: var(--link-hover-color);
+}
+
+/* Dashboard */
+.dashboard .module table th {
+  color: var(--text-color);
+}
+
+.dashboard .module table td a {
+  color: var(--link-color);
+}
+
+/* App list */
+.app-auth.module {
+  margin-bottom: 30px;
+}
+
+.app-auth.module tr:hover {
+  background: #f5f5f5;
+}
+
+/* Gerenciamento de Conteúdo */
+.app-content.module tr:hover {
+  background: #f5f5f5;
+}
+
+/* Mensagens e alertas */
+.messagelist {
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+
+.messagelist li {
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  color: var(--text-color);
+}
+
+/* Formulários */
+.form-row {
+  border-bottom: 1px solid #eee;
+  padding: 12px;
+}
+
+.form-row label {
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+/* Melhorias de visibilidade */
+.module tr {
+  background: white;
+}
+
+.module tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.module th,
+.module td {
+  color: var(--text-color) !important;
+}
+
+/* Cabeçalho da página */
+.dashboard #content h1 {
+  color: var(--text-color);
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* Botões de ação */
+.object-tools {
+  margin-top: -50px;
+}
+
+.object-tools a {
+  background: var(--primary-color);
+  color: white !important;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+.object-tools a:hover {
+  background: var(--secondary-color);
+}
+
+/* Melhorias adicionais para o Admin */
+
+/* Loading spinner */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Tooltips personalizados */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: var(--dark-color);
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Melhorias para formulários */
+.form-row .help {
+    color: var(--secondary-color);
+    font-size: 0.85rem;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.form-row .errors {
+    color: var(--danger-color);
+    font-size: 0.85rem;
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+/* Melhorias para tabelas */
+.results tbody tr td {
+    vertical-align: middle;
+    padding: 12px 8px;
+}
+
+.results tbody tr td a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.results tbody tr td a:hover {
+    color: #218838;
+    text-decoration: underline;
+}
+
+/* Melhorias para botões de ação */
+.object-tools {
+    margin-bottom: 20px;
+}
+
+.object-tools a {
+    background: var(--primary-color);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-right: 10px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.object-tools a:hover {
+    background: #218838;
+    transform: translateY(-1px);
+}
+
+.object-tools .deletelink {
+    background: var(--danger-color);
+}
+
+.object-tools .deletelink:hover {
+    background: #c82333;
+}
+
+/* Melhorias para filtros */
+#changelist-filter ul {
+    padding: 0;
+    margin: 0;
+}
+
+#changelist-filter li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#changelist-filter li a {
+    display: block;
+    padding: 8px 15px;
+    color: var(--dark-color);
+    text-decoration: none;
+    border-radius: 3px;
+    margin: 2px 0;
+    transition: all 0.3s ease;
+}
+
+#changelist-filter li a:hover {
+    background: rgba(40, 167, 69, 0.1);
+    color: var(--primary-color);
+}
+
+#changelist-filter li.selected a {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Melhorias para mensagens */
+.messagelist li {
+    position: relative;
+    padding-left: 40px;
+}
+
+.messagelist li::before {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+}
+
+.messagelist li.success::before {
+    content: "✅";
+}
+
+.messagelist li.error::before {
+    content: "❌";
+}
+
+.messagelist li.warning::before {
+    content: "⚠️";
+}
+
+.messagelist li.info::before {
+    content: "ℹ️";
+}
+
+/* Melhorias para breadcrumbs */
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.breadcrumbs a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.breadcrumbs a::after {
+    content: "›";
+    margin-left: 10px;
+    color: var(--secondary-color);
+}
+
+.breadcrumbs a:last-child::after {
+    display: none;
+}
+
+/* Melhorias para campos de busca */
+.search-form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.search-form input[type="text"] {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.search-form input[type="text"]:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+}
+
+/* Melhorias para paginação */
+.paginator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.paginator a, .paginator .this-page {
+    min-width: 40px;
+    text-align: center;
+}
+
+/* Melhorias para campos de formulário específicos */
+.field-ativo .vCheckboxLabel {
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.field-ordem input {
+    width: 80px;
+    text-align: center;
+}
+
+.field-email input {
+    font-family: monospace;
+}
+
+/* Melhorias para campos de data */
+.field-data_criacao input,
+.field-data_atualizacao input {
+    font-family: monospace;
+    background: #f8f9fa;
+}
+
+/* Melhorias para campos de texto longo */
+.field-sale_description .cke_chrome {
+    border-radius: 5px;
+    border: 2px solid #e9ecef;
+}
+
+.field-sale_description .cke_chrome:focus-within {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+}
+
+/* Melhorias para listas de seleção */
+.field-destinatario select {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Melhorias para campos de arquivo */
+.field-attach input[type="file"] {
+    padding: 10px;
+    border: 2px dashed #e9ecef;
+    border-radius: 5px;
+    background: #f8f9fa;
+    width: 100%;
+    max-width: 400px;
+}
+
+.field-attach input[type="file"]:hover {
+    border-color: var(--primary-color);
+    background: rgba(40, 167, 69, 0.05);
+}
+
+/* Melhorias para campos de checkbox */
+.field-ativo input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-right: 8px;
+}
+
+/* Melhorias para campos de radio */
+.field-language input[type="radio"] {
+    transform: scale(1.1);
+    margin-right: 8px;
+}
+
+/* Melhorias para campos de textarea */
+.field-message textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Melhorias para campos de telefone */
+.field-telefone input,
+.field-ramal input {
+    font-family: monospace;
+    letter-spacing: 1px;
+}
+
+/* Melhorias para campos de email */
+.field-email input {
+    font-family: monospace;
+}
+
+/* Melhorias para campos de nome */
+.field-nome input {
+    text-transform: capitalize;
+}
+
+/* Melhorias para campos de cargo */
+.field-cargo input {
+    text-transform: capitalize;
+}
+
+/* Melhorias para campos de local */
+.field-local input {
+    text-transform: capitalize;
+}
+
+/* Responsividade adicional */
+@media (max-width: 480px) {
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .action-buttons {
+        grid-template-columns: 1fr;
+    }
+    
+    .object-tools {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .object-tools a {
+        margin-right: 0;
+        text-align: center;
+    }
+    
+    .search-form input[type="text"] {
+        max-width: 100%;
+    }
+    
+    .paginator {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Animações de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.module, .results, #content-related, #changelist-filter {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* Melhorias para campos obrigatórios */
+.form-row.required label::after {
+    content: " *";
+    color: var(--danger-color);
+    font-weight: bold;
+}
+
+/* Melhorias para campos opcionais */
+.form-row:not(.required) label::after {
+    content: " (opcional)";
+    color: var(--secondary-color);
+    font-size: 0.8rem;
+    font-weight: normal;
+}
+
+/* Melhorias para campos de ajuda */
+.help-text {
+    background: #e3f2fd;
+    border-left: 4px solid #2196f3;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: 0 5px 5px 0;
+    font-size: 0.9rem;
+    color: #1565c0;
+}
+
+/* Melhorias para campos de erro */
+.field-error {
+    border-color: var(--danger-color) !important;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1) !important;
+}
+
+.field-error:focus {
+    border-color: var(--danger-color) !important;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2) !important;
+}
+
+/* Melhorias para campos de sucesso */
+.field-success {
+    border-color: var(--success-color) !important;
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1) !important;
+}
+
+/* Melhorias para campos de aviso */
+.field-warning {
+    border-color: var(--warning-color) !important;
+    box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.1) !important;
+}
+
+/* Cor de fundo do topo */
+#header, .grp-header {
+    background: #17633a !important;
+}
+
+/* Título grande */
+#site-name, #site-name a {
+    display: block !important;
+    font-size: 1.6em !important;
+    font-weight: bold !important;
+    color: #fff !important;
+    margin: 0.2em 0 0.2em 0 !important;
+    padding: 0 !important;
+}
+
+.grp-header {
+    min-height: 48px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    background: #17633a !important;
+}
+
+/* Breadcrumbs */
+.grp-breadcrumbs {
+    background: #e8f5e9 !important;
+    color: #17633a !important;
+    border-radius: 0 0 8px 8px;
+}
+
+/* Botões */
+button, .grp-button, input[type="submit"] {
+    background: #17633a !important;
+    color: #fff !important;
+    border-radius: 6px !important;
+    border: none !important;
+    padding: 8px 18px !important;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+button:hover, .grp-button:hover, input[type="submit"]:hover {
+    background: #218c4c !important;
+}
+
+/* Cards e caixas */
+.grp-module, .grp-group {
+    border-radius: 8px !important;
+    border: 1px solid #d0e6d5 !important;
+    box-shadow: 0 2px 8px rgba(23,99,58,0.04);
+}
+
+/* Links */
+a {
+    color: #17633a !important;
+}
+a:hover {
+    color: #218c4c !important;
+}
+
+/* Rodapé */
+#footer, .grp-footer {
+    background: #17633a !important;
+    color: #fff !important;
+    border-radius: 8px 8px 0 0;
+}
+
+/* Melhorar visibilidade dos botões de Ações Rápidas */
+.grp-module .grp-row .grp-button,
+.grp-module .grp-row button,
+.grp-module .grp-row input[type="submit"] {
+    background: #218c4c !important;
+    color: #fff !important;
+    font-weight: bold !important;
+    font-size: 1.15em !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.18);
+    border-radius: 8px !important;
+    border: none !important;
+    letter-spacing: 0.5px;
+    transition: background 0.2s;
+    opacity: 1 !important;
+}
+
+/* Forçar cor branca mesmo em botões desabilitados */
+.grp-module .grp-row .grp-button:disabled,
+.grp-module .grp-row button:disabled,
+.grp-module .grp-row input[type="submit"]:disabled {
+    color: #fff !important;
+    opacity: 0.7 !important;
+    background: #17633a !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.18);
+}
+
+.action-btn {
+    color: #fff !important;
+    font-weight: bold !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.18);
+    font-size: 1.1em;
+}
+
+.action-btn:hover {
+    color: #e8f5e9 !important;
+    text-decoration: underline;
+}
+
+/* Ajustar espaçamento do topo para liberar mais espaço */
+body.grp-admin #container {
+    margin-top: 15px !important;
+    padding-top: 0 !important;
+}
+
+#grp-content {
+    padding-top: 60px !important;
+}
+
+#grp-content,
+#grp-content-container,
+#content-main,
+#content,
+#grp-content-title,
+.dashboard-stats,
+.quick-actions,
+.recent-activity {
+    margin-top: 80px !important;
+    padding-top: 0 !important;
+}
+
+#progress-bar-container {
+    max-width: 600px;
+    margin: 24px auto 16px auto;
+    padding: 12px 18px 18px 18px;
+    background: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(23,99,58,0.07);
+    border: 1px solid #d0e6d5;
+}
+#progress-bar-label {
+    color: #17633a;
+}
+#progress-bar-status {
+    color: #17633a;
+}
+
+/* Melhora a visibilidade do botão de filtro */
+#changelist-search input[type="submit"],
+.search-form input[type="submit"],
+#changelist-filter button {
+    background: var(--primary-color) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 4px !important;
+    font-weight: bold !important;
+    padding: 8px 18px !important;
+    font-size: 14px !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    transition: background 0.2s;
+}
+#changelist-search input[type="submit"]:hover,
+.search-form input[type="submit"]:hover,
+#changelist-filter button:hover {
+    background: var(--secondary-color) !important;
+}
+
+/* Esconde qualquer botão verde de filtro sem texto ou sem label na listagem de backups */
+#changelist .grp-filter .grp-filter-toggle,
+#changelist .grp-filter .grp-filter-toggle:empty,
+#changelist .grp-filter .grp-switch input[type="checkbox"] + label:empty,
+#changelist .grp-switch input[type="checkbox"] + label:not([for]) {
+    display: none !important;
+}
+
+/* Muda a cor do texto apenas do botão 'Adicionar backup' na seção de Backups */
+.app-gestao.model-backup .object-tools .addlink {
+    color: #17633a !important;
+}
+
+a.grp-add-link.grp-state-focus,
+a.grp-add-link.grp-state-focus:visited,
+a.grp-add-link.grp-state-focus:hover,
+a.grp-add-link.grp-state-focus:active {
+    color: #fff !important;
+}
+
+/* Esconde o botão Filtro */
+input[type="submit"][value="Filtro"],
+button.grp-filter-button,
+#changelist-filter button,
+input.grp-filter-button {
+    display: none !important;
+}
+
+/* Alinha campo de busca e botão Buscar na mesma linha */
+#changelist-search,
+.search-form {
+    display: none !important;
+}
+#changelist-search input[type="text"],
+.search-form input[type="text"],
+#changelist-search input[type="search"],
+.search-form input[type="search"] {
+    display: none !important;
+    width: 0 !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    background: none !important;
+}
+
+/* Estiliza o botão Buscar */
+.grp-search-button {
+    display: inline-block !important;
+    background: #17633a !important;
+    color: #fff !important;
+    border-radius: 6px !important;
+    border: none !important;
+    padding: 8px 18px !important;
+    font-weight: 600;
+    font-size: 1em;
+    transition: background 0.2s;
+    min-width: 80px;
+}
+
+/* Ajusta o campo de texto */
+.search-form input[type="text"],
+#changelist-search input[type="text"] {
+    margin: 0 !important;
+    border-radius: 6px !important;
+    font-size: 1em !important;
+    padding: 8px 12px !important;
+    border: 1px solid #ccc !important;
+}
+
+/* Esconde o campo de digitação da busca */
+input[type="search"],
+input[type="text"].search-field,
+input[type="text"][name="q"],
+input[type="text"][autocomplete="off"],
+input[type="text"]:not([name]):not([value]):not([placeholder]),
+#changelist-search input[type="text"],
+.search-form input[type="text"] {
+    display: none !important;
+}
+
+/* Esconde o botão Buscar */
+.grp-search-button {
+    display: none !important;
+}

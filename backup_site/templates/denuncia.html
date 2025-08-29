@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<style>
+.bg-corporativo {
+    background: #23402b;
+    color: #fff;
+    border-radius: 18px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+.menu-topo {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+.btn-menu-green {
+    background: #4caf50;
+    color: #fff;
+    border-radius: 20px;
+    padding: 6px 22px;
+    font-weight: bold;
+    border: none;
+    transition: 0.3s;
+    font-size: 1.1rem;
+}
+.btn-menu-green:hover {
+    background: #388e3c;
+}
+.btn-menu-green-destacado {
+    background: linear-gradient(to bottom, #4CAF50, #388E3C);
+    color: #fff;
+    border-radius: 6px;
+    padding: 8px 20px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+.btn-menu-green-destacado:hover {
+    background: linear-gradient(to bottom, #388E3C, #2E7D32);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    color: #fff;
+    text-decoration: none;
+}
+.titulo-principal {
+    font-size: 2.7rem;
+    font-weight: 700;
+    line-height: 2.9rem;
+    margin-bottom: 0.2rem;
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+.titulo-empresa {
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 1.2rem;
+}
+.texto-secundario {
+    font-size: 1.08rem;
+    font-weight: 400;
+    margin-bottom: 0.2rem;
+}
+.btn-formal {
+    border: 2px solid #fff;
+    color: #fff;
+    background: transparent;
+    border-radius: 20px;
+    padding: 10px 28px;
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-top: 1.2rem;
+    transition: 0.3s;
+    min-width: 120px;
+    width: auto;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.btn-formal:hover {
+    background: #4caf50;
+    color: #fff;
+    border: 2px solid #4caf50;
+}
+.logo-canal {
+    height: 56px;
+    margin-bottom: 28px;
+    border-radius: 0;
+    background: transparent;
+    padding: 0;
+    display: block;
+    max-width: 180px;
+}
+.canal-box {
+    padding: 48px 36px 48px 48px;
+    min-height: 340px;
+    display: flex;
+    align-items: stretch;
+    border-radius: 18px;
+    background: #23402b;
+}
+.canal-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.canal-ilustra {
+    flex: 1;
+    background: #e8f5e9;
+    border-radius: 0 18px 18px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 340px;
+    text-align: center;
+}
+.canal-ilustra-texto {
+    color: #23402b;
+    font-size: 1.15rem;
+    font-weight: 500;
+    padding: 0 18px;
+}
+@media (max-width: 900px) {
+    .canal-box { flex-direction: column; padding: 24px 10px; }
+    .canal-ilustra { border-radius: 0 0 18px 18px; min-height: 120px; }
+}
+</style>
+<div class="container" style="margin-top: 64px; margin-bottom: 64px;">
+    <div class="canal-box bg-corporativo" style="position: relative;">
+        <div class="canal-info" style="text-align: center; align-items: center; justify-content: center; display: flex; flex-direction: column;">
+            <div style="display: flex; justify-content: center; align-items: center; gap: 18px; margin-bottom: 0.3rem; flex-wrap: wrap;">
+                <span style="color: #fff; font-size: 3.3rem; font-weight: 700; text-shadow: 0 6px 20px rgba(0,0,0,0.32), 0 1px 0 #388e3c; letter-spacing: 1.5px;">Seja bem-vindo ao</span>
+            </div>
+            <div class="titulo-principal">Canal de Denúncia</div>
+            <div class="titulo-empresa" style="font-size: 1.8rem; font-weight: 800; margin-bottom: 1.2rem; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.18); letter-spacing: 1px; text-transform: uppercase;">Da AGROPECUARIA AH</div>
+            <span style="color: #b2dfdb; font-size: 1.25rem; font-weight: 800; text-shadow: 0 2px 8px rgba(0,0,0,0.18); margin-left: 18px;">Você está em um ambiente seguro!</span>
+            <div class="texto-secundario">Suas informações estão protegidas com garantia de anonimato.</div>
+            <div style="text-align:center; width:100%; margin-top: 18px;">
+                <a href="https://inicio.bcompliance.com.br/empresas/67c8876136d3ecb44239b02f/denuncia/termos" class="btn btn-formal">Fazer denúncia</a>
+            </div>
+        </div>
+        <div class="canal-ilustra" style="flex-direction: column; align-items: center; min-height: 220px;">
+            <div style="width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                <img src="{% static 'img/logo-header.png' %}" alt="Logo" class="logo-canal" style="background:transparent; margin-bottom: 18px; height: 110px; max-width: 260px;">
+            </div>
+        </div>
+    </div>
+    
+</div>
+{% endblock %} 

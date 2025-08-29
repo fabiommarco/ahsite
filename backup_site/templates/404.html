@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+    <!-- Portfolio Grid Section -->
+    <section id="download-price-file">
+      <div class="container">
+          <div class="row">
+            <div class="col-md-6 col-lg-offset-3 page404">
+                <h1>404</h1>
+                <p>{% trans "A página que você esta tentando visitar não existe." %}</p>
+                <a href="{% url 'home' %}" class="btn btn-success btn-lg">{% trans "Ir para a Página Inicial" %}</a>
+            </div>
+          </div>
+      </div>
+    </section>
+{% endblock content %}

@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% block class %}page-news-view dynamic-content ah-background{% endblock class%}
+{% load i18n %}
+{% block content %}
+    {% load static %}
+    <!-- HEADER -->
+    <section class="py-5 bg-success text-white">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="mb-3">
+                        <small class="text-white-50">{{ news.news_date|date:"d/m/Y" }}</small>
+                    </div>
+                    <h1 class="display-4 fw-bold mb-4">{{ news.news_title }}</h1>
+                    <div class="border-top border-white w-25 mx-auto"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTEÚDO -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <!-- Imagem Principal -->
+                    {% if news.news_galery.all.0 %}
+                    <div class="mb-5 text-center">
+                        <a href="{% get_media_prefix %}{{ news.news_galery.all.0.imagem }}" data-fancybox="galeria" class="galeria-item">
+                            <div class="thumb-4x3 d-inline-block">
+                                <img src="{% get_media_prefix %}{{ news.news_galery.all.0.imagem }}" 
+                                     alt="{{ news.news_title }}" 
+                                     class="news-main-img shadow-sm" />
+                            </div>
+                        </a>
+                    </div>
+                    {% endif %}
+
+                    <!-- Conteúdo -->
+                    <div class="card border-0 shadow-sm mb-5">
+                        <div class="card-body p-4">
+                            <div class="content">
+                                {{ news.news_description|safe }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vídeo -->
+                    {% if news.news_video %}
+                    <div class="mb-5">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/{{ news.news_video }}" 
+                                    title="{{ news.news_title }}"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Galeria -->
+                    {% if news.news_galery.all|length > 1 %}
+                    <div class="mb-5">
+                        <h2 class="display-6 fw-bold text-success mb-4">
+                            {% if news.news_galery_title %}
+                                {{ news.news_galery_title }}
+                            {% else %}
+                                {% trans "Galeria de Imagens" %}
+                            {% endif %}
+                        </h2>
+                        <div class="galeria-fundacao-ah d-flex flex-wrap justify-content-center gap-4">
+                            {% for imagem in news.news_galery.all %}
+                            <a href="{% get_media_prefix %}{{ imagem.imagem }}" data-fancybox="galeria" class="galeria-item">
+                                <div class="thumb-4x3">
+                                    <img src="{% get_media_prefix %}{{ imagem.imagem }}" alt="{{ imagem.descricao }}">
+                                </div>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Anexos -->
+                    {% if news.attach_galery.all %}
+                    <div class="mb-5">
+                        <h2 class="display-6 fw-bold text-success mb-4">{% trans "Anexos" %}</h2>
+                        <div class="list-group">
+                            {% for anexo in news.attach_galery.all %}
+                            <a href="{% get_media_prefix %}{{ anexo.arquivo }}" 
+                               class="list-group-item list-group-item-action d-flex align-items-center" 
+                               target="_blank">
+                                <i class="fas fa-file-download me-3"></i>
+                                {{ anexo.titulo }}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Voltar -->
+                    <div class="text-center">
+                        <a href="{% url 'news' %}" class="btn btn-outline-success">
+                            <i class="fas fa-arrow-left me-2"></i>
+                            {% trans "Voltar para Notícias" %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
+{% block css %}
+<!-- Fancybox 3 CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+{% endblock css %}
+
+{% block javascript %}
+<!-- Fancybox 3 JS -->
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+$(document).ready(function() {
+  $('[data-fancybox="galeria"]').fancybox({
+    loop: true,
+    buttons: [
+      "zoom",
+      "slideShow",
+      "thumbs",
+      "close"
+    ],
+    // O contador já aparece por padrão no Fancybox 3
+  });
+});
+</script>
+{% endblock javascript %}

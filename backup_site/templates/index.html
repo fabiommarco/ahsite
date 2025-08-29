@@ -1,0 +1,814 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block class %}page-home{% endblock class%}
+
+{% block content %}
+<!-- HERO SECTION -->
+<section class="hero-section position-relative overflow-hidden">
+    {% if banners %}
+    <div class="hero-slider">
+        {% for banner in banners %}
+        <div class="hero-slide position-relative">
+            <div class="hero-background" style="background-image: url('{{ banner.imagem.url }}');"></div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <div class="container">
+                    <div class="hero-content-col">
+                        {% if banner.titulo %}
+                        <span class="hero-title animate__animated animate__fadeInUp">{{ banner.titulo }}</span>
+                        {% endif %}
+                        {% if banner.descricao %}
+                        <span class="hero-subtitle animate__animated animate__fadeInUp animate__delay-1s">{{ banner.descricao }}</span>
+                        {% endif %}
+                        {% if banner.link %}
+                        <a href="{{ banner.link }}" class="btn btn-hero animate__animated animate__fadeInUp animate__delay-2s">
+                            {% trans "CONHEÇA NOSSOS NEGÓCIOS" %}
+                            <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <!-- Banner padrão quando não há banners cadastrados -->
+    <div class="hero-slide position-relative">
+        <div class="hero-background" style="background-image: url('{% static 'img/banner/main.jpg' %}');"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="container">
+                <div class="hero-content-row">
+                    <h1 class="hero-title animate__animated animate__fadeInUp">
+                        {% trans "Excelência em Agronegócio" %}
+                    </h1>
+                    <p class="hero-subtitle animate__animated animate__fadeInUp animate__delay-1s">
+                        {% trans "Inovação, sustentabilidade e tradição no campo" %}
+                    </p>
+                    <a href="#negocios" class="btn btn-hero animate__animated animate__fadeInUp animate__delay-2s">
+                        {% trans "Conheça nossos negócios" %}
+                        <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</section>
+
+<!-- NEGÓCIOS -->
+<section id="negocios" class="business-section py-5">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-8 text-center">
+                <h2 class="section-title">{% trans "Nossos Negócios" %}</h2>
+                <p class="section-subtitle">{% trans "Excelência em diferentes segmentos do agronegócio" %}</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="business-card">
+                    <div class="business-card-image">
+                        <img src="{% static 'img/negocios/cta-cafe.jpg' %}" alt="Café" class="w-100">
+                        <div class="business-card-overlay">
+                            <i class="fas fa-coffee"></i>
+                        </div>
+                    </div>
+                    <div class="business-card-body">
+                        <h3 class="business-card-title">{% trans "Café" %}</h3>
+                        <p class="business-card-text">{% trans "Produção de café de alta qualidade com tecnologia avançada" %}</p>
+                        <a href="{% url 'product_view' 'cafe' %}" class="btn btn-outline-primary">
+                            {% trans "Saiba mais" %}
+                            <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="business-card">
+                    <div class="business-card-image">
+                        <img src="{% static 'img/negocios/cta-suinos.jpg' %}" alt="Suínos" class="w-100">
+                        <div class="business-card-overlay">
+                            <i class="fas fa-piggy-bank"></i>
+                        </div>
+                    </div>
+                    <div class="business-card-body">
+                        <h3 class="business-card-title">{% trans "Suínos" %}</h3>
+                        <p class="business-card-text">{% trans "Produção de suínos com tecnologia avançada e genética superior" %}</p>
+                        <a href="{% url 'product_view' 'suinos' %}" class="btn btn-outline-primary">
+                            {% trans "Saiba mais" %}
+                            <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="business-card">
+                    <div class="business-card-image">
+                        <img src="{% static 'img/negocios/cta-bovinos.jpg' %}" alt="Bovinos" class="w-100">
+                        <div class="business-card-overlay">
+                            <i class="fas fa-cow"></i>
+                        </div>
+                    </div>
+                    <div class="business-card-body">
+                        <h3 class="business-card-title">{% trans "Bovinos" %}</h3>
+                        <p class="business-card-text">{% trans "Criação de bovinos com excelência e bem-estar animal" %}</p>
+                        <a href="{% url 'product_view' 'bovinos' %}" class="btn btn-outline-primary">
+                            {% trans "Saiba mais" %}
+                            <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PARCERIAS -->
+<section class="partnerships-section py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-8 text-center">
+                <h2 class="section-title">{% trans "Nossas Parcerias" %}</h2>
+                <p class="section-subtitle">{% trans "Construindo o futuro do agronegócio juntos" %}</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="partnership-card">
+                    <div class="partnership-card-body">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h3 class="partnership-card-title">{% trans "Parceria Suinocultura AH+" %}</h3>
+                                <p class="partnership-card-text">
+                                    {% trans "A parceria suinocultura consiste no sistema de criação de animais em que a Agropecuária AH transfere a fase de terminação da engorda de suínos ao produtor rural INTEGRADO, além das melhores tecnologias existentes, de animais com a melhor genética..." %}
+                                </p>
+                                <a href="{% url 'partners_view' partner_slug='parceria-suinocultura-ah' %}" class="btn btn-primary">
+                                    {% trans "Saiba mais" %}
+                                    <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <div class="partnership-icon">
+                                    <i class="fas fa-handshake"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- LOCALIZAÇÕES -->
+<section id="localizacoes" class="locations-section py-5">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-8 text-center">
+                <h2 class="section-title">{% trans "Nossas Localizações" %}</h2>
+                <p class="section-subtitle">{% trans "Presentes em diferentes regiões do Brasil" %}</p>
+            </div>
+        </div>
+        {% include "_map.html" %}
+    </div>
+</section>
+
+<!-- NOTÍCIAS E SOCIAL -->
+<section class="news-social-section py-5 bg-light">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-8">
+                <div class="section-header mb-4">
+                    <h2 class="section-title">{% trans "Últimas Notícias" %}</h2>
+                    <a href="{% url 'news' %}" class="btn btn-link text-primary">
+                        {% trans "Ver todas" %}
+                        <i class="fas fa-arrow-right ms-1"></i>
+                    </a>
+                </div>
+                <div class="row g-4">
+                    {% for news in news %}
+                    <div class="col-md-6">
+                        <div class="news-card">
+                            {% if news.news_galery.all.0 %}
+                            <div class="news-card-image">
+                                <img src="{% get_media_prefix %}{{ news.news_galery.all.0.imagem }}" 
+                                     alt="{{ news.news_title }}" class="w-100">
+                            </div>
+                            {% endif %}
+                            <div class="news-card-body">
+                                <div class="news-meta">
+                                    <span class="news-date">
+                                        <i class="far fa-calendar-alt me-1"></i>
+                                        {{ news.news_date|date:"d/m/Y" }}
+                                    </span>
+                                </div>
+                                <h5 class="news-card-title">{{ news.news_title }}</h5>
+                                <p class="news-card-text">{{ news.news_description|safe|truncatewords:20 }}</p>
+                                <a href="{% url 'news_view' news.news_slug %}" class="btn btn-link text-primary p-0">
+                                    {% trans "Leia mais" %}
+                                    <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="col-12">
+                        <div class="text-center py-5">
+                            <i class="far fa-newspaper fa-3x text-muted mb-3"></i>
+                            <p class="text-muted">{% trans "Nenhuma notícia encontrada." %}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="section-header mb-4">
+                    <h2 class="section-title">{% trans "Responsabilidade Social" %}</h2>
+                </div>
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="social-card">
+                            <div class="social-card-body text-center">
+                                <div class="social-icon mb-3">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <h3 class="social-card-title">{% trans "Escola AH" %}</h3>
+                                <p class="social-card-text">{% trans "Conheça nossos projetos educacionais e de formação" %}</p>
+                                <a href="{% url 'event_view' 'escola-ah' %}" class="btn btn-outline-primary">
+                                    {% trans "Saiba mais" %}
+                                    <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="social-card">
+                            <div class="social-card-body text-center">
+                                <div class="social-icon mb-3">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <h3 class="social-card-title">{% trans "Fundação AH" %}</h3>
+                                <p class="social-card-text">{% trans "Conheça nossa fundação e projetos sociais" %}</p>
+                                <a href="{% url 'event_view' 'fundacao-ah' %}" class="btn btn-outline-primary">
+                                    {% trans "Saiba mais" %}
+                                    <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+
+{% block css %}
+<!-- Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<!-- Slick Carousel -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+<style>
+/* Hero Section */
+.hero-section {
+    min-height: 340px;
+    background: #000;
+    position: relative;
+    margin-top: 76px; /* altura do menu fixo */
+}
+
+.hero-slide {
+    height: 340px;
+    min-height: 340px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(0.7);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(27, 61, 47, 0.8) 0%, rgba(56, 142, 60, 0.6) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-align: center;
+}
+
+.hero-content .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.hero-content-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.hero-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 0.7rem;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    line-height: 1.2;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    text-align: center;
+}
+.hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+    color: #ffd600;
+    font-weight: 500;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+    white-space: normal;
+    text-align: center;
+}
+.btn-hero {
+    background: linear-gradient(135deg, #ffd600 0%, #ffed4e 100%);
+    color: #1b3d2f;
+    font-weight: 700;
+    padding: 0.7rem 2rem;
+    border-radius: 50px;
+    border: none;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(255, 214, 0, 0.3);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    margin-bottom: 0;
+}
+
+.btn-hero:hover {
+    background: linear-gradient(135deg, #ffed4e 0%, #ffd600 100%);
+    color: #1b3d2f;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 214, 0, 0.4);
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1b3d2f;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: #6c757d;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.section-header .section-title {
+    margin-bottom: 0;
+    text-align: left;
+}
+
+/* Business Cards */
+.business-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.business-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.business-card-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.business-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.business-card:hover .business-card-image img {
+    transform: scale(1.1);
+}
+
+.business-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(27, 61, 47, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.business-card-overlay i {
+    font-size: 3rem;
+    color: #ffd600;
+}
+
+.business-card:hover .business-card-overlay {
+    opacity: 1;
+}
+
+.business-card-body {
+    padding: 2rem;
+    text-align: center;
+}
+
+.business-card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1b3d2f;
+    margin-bottom: 1rem;
+}
+
+.business-card-text {
+    color: #6c757d;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+/* Partnership Card */
+.partnership-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.partnership-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.partnership-card-body {
+    padding: 3rem;
+}
+
+.partnership-card-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1b3d2f;
+    margin-bottom: 1rem;
+}
+
+.partnership-card-text {
+    color: #6c757d;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.partnership-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.partnership-icon i {
+    font-size: 2rem;
+    color: white;
+}
+
+/* News Cards */
+.news-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.news-card-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.news-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.news-card:hover .news-card-image img {
+    transform: scale(1.1);
+}
+
+.news-card-body {
+    padding: 1.5rem;
+}
+
+.news-meta {
+    margin-bottom: 1rem;
+}
+
+.news-date {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.news-card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1b3d2f;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.news-card-text {
+    color: #6c757d;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Social Cards */
+.social-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.social-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.social-card-body {
+    padding: 2rem;
+}
+
+.social-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.social-icon i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+.social-card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1b3d2f;
+    margin-bottom: 1rem;
+}
+
+.social-card-text {
+    color: #6c757d;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .hero-title {
+        font-size: 1.2rem;
+    }
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+    .btn-hero {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+@media (max-width: 600px) {
+    .hero-title, .hero-subtitle, .btn-hero {
+        font-size: 0.95rem;
+        margin: 0;
+    }
+    .hero-title {
+        margin-bottom: 0.5rem;
+    }
+    .hero-subtitle {
+        margin-bottom: 0.7rem;
+    }
+}
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 180px;
+        margin-top: 60px;
+    }
+    .hero-slide {
+        height: 180px;
+        min-height: 180px;
+    }
+    .hero-title {
+        font-size: 1.1rem;
+        white-space: nowrap;
+    }
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+    .btn-hero {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .business-card-body,
+    .partnership-card-body {
+        padding: 1.5rem;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .section-header .section-title {
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .btn-hero {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+}
+.partnerships-section {
+    margin-top: 0;
+}
+.partnerships-section .section-title {
+    margin-top: 8rem;
+}
+@media (max-width: 768px) {
+    .partnerships-section .section-title {
+        margin-top: 3rem;
+    }
+}
+.partnerships-section .row.mb-5 {
+    margin-top: 8rem !important;
+}
+@media (max-width: 768px) {
+    .partnerships-section .row.mb-5 {
+        margin-top: 3rem !important;
+    }
+}
+.locations-section #map, .locations-section .mapa, .locations-section iframe {
+    width: 100%;
+    max-width: 900px;
+    height: 420px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    background: rgba(255,255,255,0.85);
+    padding: 0;
+    border: none;
+}
+@media (max-width: 900px) {
+    .locations-section #map, .locations-section .mapa, .locations-section iframe {
+        height: 300px;
+        max-width: 100%;
+    }
+}
+@media (max-width: 600px) {
+    .locations-section #map, .locations-section .mapa, .locations-section iframe {
+        height: 180px;
+        border-radius: 10px;
+    }
+}
+</style>
+{% endblock css %}
+
+{% block javascript %}
+<!-- jQuery -->
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<!-- Slick Carousel -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    // Hero Slider
+    $('.hero-slider').slick({
+        autoplay: true,
+        autoplaySpeed: 5000,
+        dots: true,
+        arrows: true,
+        fade: true,
+        cssEase: 'linear',
+        prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
+        nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>',
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    arrows: false
+                }
+            }
+        ]
+    });
+    
+    // Smooth scroll para links internos
+    $('a[href^="#"]').on('click', function(event) {
+        var target = $(this.getAttribute('href'));
+        if( target.length ) {
+            event.preventDefault();
+            $('html, body').stop().animate({
+                scrollTop: target.offset().top - 80
+            }, 1000);
+        }
+    });
+    
+    // Animação de entrada dos elementos
+    function animateOnScroll() {
+        $('.business-card, .partnership-card, .news-card, .social-card').each(function() {
+            var elementTop = $(this).offset().top;
+            var elementBottom = elementTop + $(this).outerHeight();
+            var viewportTop = $(window).scrollTop();
+            var viewportBottom = viewportTop + $(window).height();
+            
+            if (elementBottom > viewportTop && elementTop < viewportBottom) {
+                $(this).addClass('animate__animated animate__fadeInUp');
+            }
+        });
+    }
+    
+    $(window).on('scroll', animateOnScroll);
+    animateOnScroll();
+});
+</script>
+{% endblock javascript %}

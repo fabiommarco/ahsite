@@ -1,0 +1,246 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: linear-gradient(120deg, #1b3d2f 60%, #388e3c 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.login-box {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    width: 100%;
+    overflow: hidden;
+}
+
+.login-header {
+    background: #1b3d2f;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.login-header a {
+    text-decoration: none;
+}
+
+.login-header img {
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+.login-header span {
+    color: white;
+    font-size: 18px;
+    display: block;
+    margin-top: 10px;
+}
+
+.login-content {
+    padding: 30px;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.form-row {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-row label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form-row input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.form-row input:focus {
+    outline: none;
+    border-color: #1b3d2f;
+    box-shadow: 0 0 0 2px rgba(27, 61, 47, 0.1);
+}
+
+.submit-row {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.submit-row input {
+    width: 100%;
+    padding: 12px;
+    background: #1b3d2f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.submit-row input:hover {
+    background: #388e3c;
+}
+
+.password-reset-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.password-reset-link a {
+    color: #1b3d2f;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.password-reset-link a:hover {
+    text-decoration: underline;
+}
+
+.errornote {
+    background: #ffd600;
+    border-radius: 4px;
+    color: #1b3d2f;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.errorlist {
+    color: #dc3545;
+    font-size: 13px;
+    margin: 5px 0 0;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        margin: 10px;
+    }
+    
+    .login-content {
+        padding: 20px;
+    }
+}
+</style>
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+    <a href="/">
+        <img src="{% static 'img/logo-header.png' %}" alt="Agropecuária AH">
+        <span>{% trans "Área Administrativa" %}</span>
+    </a>
+</h1>
+{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-box">
+        <div class="login-header">
+            <a href="/">
+                <img src="{% static 'img/logo-header.png' %}" alt="Agropecuária AH">
+                <span>{% trans "Área Administrativa" %}</span>
+            </a>
+        </div>
+        
+        <div class="login-content">
+            {% if form.errors and not form.non_field_errors %}
+            <p class="errornote">
+                {% if form.errors.items|length == 1 %}{% trans "Por favor, corrija o erro abaixo." %}{% else %}{% trans "Por favor, corrija os erros abaixo." %}{% endif %}
+            </p>
+            {% endif %}
+
+            {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+            <p class="errornote">
+                {{ error }}
+            </p>
+            {% endfor %}
+            {% endif %}
+
+            {% if user.is_authenticated %}
+            <p class="errornote">
+                {% blocktrans trimmed %}
+                Você está autenticado como {{ username }}, mas não tem permissão para acessar esta página.
+                Deseja usar uma conta diferente?
+                {% endblocktrans %}
+            </p>
+            {% endif %}
+
+            <form action="{{ app_path }}" method="post" id="login-form">
+                {% csrf_token %}
+                <div class="form-row">
+                    <label for="id_username" class="required">{% trans 'Usuário' %}</label>
+                    <input type="text" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username">
+                    {% if form.username.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.username.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                
+                <div class="form-row">
+                    <label for="id_password" class="required">{% trans 'Senha' %}</label>
+                    <input type="password" name="password" autocomplete="current-password" required id="id_password">
+                    {% if form.password.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.password.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <input type="hidden" name="next" value="{{ next }}">
+                </div>
+
+                <div class="submit-row">
+                    <input type="submit" value="{% trans 'Entrar' %}">
+                </div>
+
+                {% url 'admin_password_reset' as password_reset_url %}
+                {% if password_reset_url %}
+                <div class="password-reset-link">
+                    <a href="{{ password_reset_url }}">{% trans 'Esqueceu sua senha?' %}</a>
+                </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %} 

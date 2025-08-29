@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% block class %}page-product dynamic-content ah-background{% endblock class%}
+{% load i18n %}
+{% block content %}
+    {% load static %}
+    <!-- HERO MODERNO DO PRODUTO -->
+    <section class="py-5 position-relative" style="background: linear-gradient(120deg, #e8f5e9 60%, #fff 100%); margin-top: 90px !important; padding-top: 60px !important;">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-5 text-center mb-4 mb-lg-0">
+                    {% if product.product_image %}
+                        <img src="{% get_media_prefix %}{{ product.product_image }}" alt="{{ product.product_name }}" class="img-fluid rounded-4 shadow-lg" style="max-height: 320px; object-fit: cover;">
+                    {% else %}
+                        <i class="fas fa-seedling fa-5x text-success mb-3"></i>
+                    {% endif %}
+                </div>
+                <div class="col-lg-7">
+                    <h1 class="display-4 fw-bold mb-2 text-success d-flex align-items-center">
+                        {% if product.product_category == 'cafe' %}<i class="fas fa-mug-hot me-3"></i>{% endif %}
+                        {% if product.product_category == 'suinos' %}<i class="fas fa-piggy-bank me-3"></i>{% endif %}
+                        {% if product.product_category == 'bovinos' %}<i class="fas fa-cow me-3"></i>{% endif %}
+                        {{ product.product_name }}
+                    </h1>
+                    <div class="lead mb-3 text-dark">{{ product.product_short_description|safe }}</div>
+                    <a href="#contato-produto" class="btn btn-success btn-lg mt-2 px-4 py-2 shadow-sm">Quero saber mais</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <div class="card shadow-sm border-0 mb-5">
+                        <div class="card-body p-4">
+                            {{ product.product_description|safe }}
+                        </div>
+                    </div>
+
+                    <!-- Galeria de Imagens -->
+                    {% if product.product_galery.all %}
+                    <div class="mb-5">
+                        <h2 class="display-6 fw-bold text-success mb-4">{{ product.product_galery_title|default:_('Galeria de Imagens') }}</h2>
+                        <div class="row g-4">
+                            {% for imagem in product.product_galery.all %}
+                            <div class="col-6 col-md-4">
+                                <a data-fancybox="galeria" class="d-block rounded shadow-sm overflow-hidden hover-scale" rel="group" href="{% get_media_prefix %}{{ imagem.imagem }}">
+                                    <img src="{% get_media_prefix %}{{ imagem.imagem }}" alt="{{ imagem.descricao }}" class="img-fluid w-100" />
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Anexos -->
+                    {% if product.attach_galery.all %}
+                    <div class="mb-5">
+                        <h2 class="display-6 fw-bold text-success mb-4">{% trans "Anexos" %}</h2>
+                        <div class="row g-4">
+                            {% for attach in product.attach_galery.all %}
+                            <div class="col-sm-6 col-md-4">
+                                <div class="card h-100 border-0 shadow-sm hover-card">
+                                    <div class="card-body d-flex flex-column align-items-center justify-content-center p-4">
+                                        <i class="fas fa-file-alt fa-2x text-success mb-3"></i>
+                                        <p class="mb-3 text-center small">{{attach.description|truncatechars:16}}</p>
+                                        <a href="/media/{{attach.attach}}" class="btn btn-outline-success btn-sm mt-auto">
+                                            <i class="fas fa-download me-2"></i>Download
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Removido: Missão, Visão, Produtos e Clientes -->
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/jquery.fancybox.css' %}">
+<style>
+.fancybox-image, .fancybox-inner img {
+    max-width: 70vw !important;
+    max-height: 70vh !important;
+    width: auto !important;
+    height: auto !important;
+    display: block;
+    margin: 40px auto 0 auto !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+.fancybox-skin, .fancybox-inner, .fancybox-outer {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+.fancybox-close, .fancybox-close-small {
+    top: 120px !important;
+    right: 30px !important;
+    z-index: 2147483647 !important;
+    position: fixed !important;
+}
+.fancybox-nav {
+    display: block !important;
+    opacity: 1 !important;
+    z-index: 2147483647 !important;
+    width: 80px !important;
+    height: 100vh !important;
+    top: 0 !important;
+}
+.fancybox-nav span {
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #fff !important;
+    font-size: 3rem !important;
+    top: 50% !important;
+    margin-top: -24px !important;
+}
+.card {
+  border-radius: 18px;
+  transition: box-shadow 0.2s;
+}
+.card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+.badge {
+  font-size: 1rem
+}
+</style>
+{% endblock css %}
+
+{% block javascript %}
+<!-- jQuery (necessário para o Fancybox) -->
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<!-- Add fancyBox -->
+<script type="text/javascript" src="{% static 'js/jquery.fancybox.pack.js' %}?v=2.1.5"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('[data-fancybox="galeria"]').fancybox({
+        buttons: [
+            "zoom",
+            "slideShow",
+            "thumbs",
+            "close"
+        ],
+        loop: true,
+        arrows: true
+    });
+});
+</script>
+{% endblock javascript %}

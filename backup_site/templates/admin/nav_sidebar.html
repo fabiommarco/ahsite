@@ -1,0 +1,23 @@
+{% load i18n %}
+
+<div id="nav-sidebar">
+  <div class="app-auth module current-app">
+    <table>
+      <caption>
+        <a href="{% url 'admin:index' %}" class="section" title="{% translate 'Models in the authentication application' %}">{% translate 'Authentication and Authorization' %}</a>
+      </caption>
+      <tbody>
+        <tr class="model-user">
+          <th scope="row"><a href="{% url 'admin:auth_user_changelist' %}">{% translate 'Users' %}</a></th>
+          <td><a href="{% url 'admin:auth_user_add' %}" class="addlink">{% translate 'Add' %}</a></td>
+          <td><a href="{% url 'admin:auth_user_changelist' %}" class="changelink">{% translate 'Change' %}</a></td>
+        </tr>
+        <tr class="model-group">
+          <th scope="row"><a href="{% url 'admin:auth_group_changelist' %}">{% translate 'Groups' %}</a></th>
+          <td><a href="{% url 'admin:auth_group_add' %}" class="addlink">{% translate 'Add' %}</a></td>
+          <td><a href="{% url 'admin:auth_group_changelist' %}" class="changelink">{% translate 'Change' %}</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div> 

@@ -28,11 +28,14 @@ jobs:
       run: |
         python manage.py test
         
-    - name: Deploy to server
+    - name: Deploy to Locaweb
       if: github.ref == 'refs/heads/main'
       run: |
-        echo "Deploying to production server..."
-        # Aqui você pode adicionar comandos para deploy no seu servidor
+        echo "Deploying to Locaweb server..."
+        # Configurar credenciais da Locaweb
+        # Usar FTP ou SSH para fazer upload
+        # Exemplo com FTP:
+        # curl -T dist/* ftp://seudominio.com/ --user usuario:senha
         # Por exemplo, usando SSH para conectar ao servidor e executar o deploy.sh
         
     - name: Notify deployment

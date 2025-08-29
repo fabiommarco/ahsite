@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+{% block class %}page-work dynamic-content ah-background{% endblock class%}
+{% load i18n %}
+{% block content %}
+    {% load static %}
+    <!-- HEADER -->
+    <section class="py-5 bg-success text-white">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h1 class="display-4 fw-bold mb-4">{% trans "Trabalhe Conosco" %}</h1>
+                    <div class="border-top border-white w-25 mx-auto"></div>
+                    <p class="lead mt-4">{% trans "Faça parte do nosso time e contribua para o crescimento do agronegócio brasileiro" %}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTEÚDO -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <!-- Mensagens -->
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert {% if message.tags == 'success' %}alert-success{% elif message.tags == 'error' %}alert-danger{% endif %} alert-dismissible fade show mb-4" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    
+                    <!-- Formulário de Currículo -->
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <h2 class="display-6 fw-bold text-success mb-4">{% trans "Envie seu Currículo" %}</h2>
+                            <form method="post" enctype="multipart/form-data" class="career-form">
+                                {% csrf_token %}
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="name" name="name" placeholder="{% trans 'Nome' %}" required>
+                                            <label for="name">{% trans "Nome Completo" %}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="email" class="form-control" id="email" name="email" placeholder="{% trans 'E-mail' %}" required>
+                                            <label for="email">{% trans "E-mail" %}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="{% trans 'Telefone' %}" required>
+                                            <label for="phone">{% trans "Telefone" %}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="city" name="city" placeholder="{% trans 'Cidade' %}" required>
+                                            <label for="city">{% trans "Cidade" %}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="position" name="position" placeholder="{% trans 'Cargo Desejado' %}" required>
+                                            <label for="position">{% trans "Cargo Desejado" %}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" id="message" name="message" placeholder="{% trans 'Mensagem' %}" style="height: 150px" required></textarea>
+                                            <label for="message">{% trans "Mensagem" %}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label for="resume" class="form-label text-muted">{% trans "Anexe seu Currículo (PDF, DOC ou DOCX)" %}</label>
+                                            <input type="file" class="form-control" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-success btn-lg">
+                                            <i class="fas fa-paper-plane me-2"></i>
+                                            {% trans "Enviar Currículo" %}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Benefícios -->
+                    <div class="mt-5">
+                        <h2 class="display-6 fw-bold text-success mb-4 text-center">{% trans "Por que trabalhar conosco?" %}</h2>
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <div class="card h-100 border-0 shadow-sm hover-card text-center">
+                                    <div class="card-body p-4">
+                                        <i class="fas fa-chart-line fa-2x text-success mb-3"></i>
+                                        <h5 class="fw-bold mb-3">{% trans "Crescimento" %}</h5>
+                                        <p class="text-muted mb-0">{% trans "Oportunidades de desenvolvimento profissional e pessoal" %}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card h-100 border-0 shadow-sm hover-card text-center">
+                                    <div class="card-body p-4">
+                                        <i class="fas fa-users fa-2x text-success mb-3"></i>
+                                        <h5 class="fw-bold mb-3">{% trans "Ambiente" %}</h5>
+                                        <p class="text-muted mb-0">{% trans "Cultura colaborativa e ambiente de trabalho agradável" %}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card h-100 border-0 shadow-sm hover-card text-center">
+                                    <div class="card-body p-4">
+                                        <i class="fas fa-medal fa-2x text-success mb-3"></i>
+                                        <h5 class="fw-bold mb-3">{% trans "Benefícios" %}</h5>
+                                        <p class="text-muted mb-0">{% trans "Pacote de benefícios competitivo e valorização profissional" %}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
+{% block css %}
+<style>
+.hover-card {
+    transition: all 0.3s ease;
+}
+.hover-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+}
+.form-floating > .form-control,
+.form-floating > .form-control-plaintext {
+    height: calc(3.5rem + 2px);
+    line-height: 1.25;
+}
+.form-floating > textarea.form-control {
+    height: 150px;
+}
+.form-control:focus {
+    border-color: var(--bs-success);
+    box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
+}
+</style>
+{% endblock css %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Scroll para o topo se houver mensagem
+        const alerts = document.querySelectorAll('.alert');
+        if (alerts.length > 0) {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Fechar alertas
+        const closeButtons = document.querySelectorAll('.alert .btn-close');
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const alert = this.closest('.alert');
+                alert.classList.remove('show');
+                setTimeout(() => {
+                    alert.remove();
+                }, 150);
+            });
+        });
+    });
+</script>
+{% endblock extra_js %}

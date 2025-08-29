@@ -1,0 +1,808 @@
+{% load static %}
+{% load app_extras %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta name="facebook-domain-verification" content="dz1nqld23x924najbb5vbvezcawnr9" />
+    <meta name="facebook-domain-verification" content="evbojq9jwa4mlqgtylinmqslh53m58" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Agropecuária AH - Excelência em agronegócio">
+    <meta name="author" content="Agropecuária AH">
+    <meta name="theme-color" content="#1b3d2f">
+
+    <title>{% trans "Agropecuária AH" %}</title>
+
+    <!-- Bootstrap 5.3.2 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 6.4.2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts: Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Fotorama -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.min.css" rel="stylesheet">
+    <!-- Mapbox GL JS -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="{% static 'css/main.css'%}" rel="stylesheet">
+    {% block css %}{% endblock css %}
+
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico'%}"/>
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+    body {
+        font-family: 'Montserrat', Arial, sans-serif;
+        background: #f7f7f7;
+    }
+    .navbar {
+        background: rgba(27, 61, 47, 0.85) !important; /* verde escuro semi-transparente */
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        min-height: 70px;
+        border-bottom: none;
+    }
+    .navbar .navbar-brand img {
+        max-height: 56px;
+        width: auto;
+    }
+    .navbar-nav .nav-link {
+        color: #fff !important;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        padding: 0.5rem 1rem;
+        transition: color 0.2s;
+        white-space: nowrap;
+        font-size: 0.83rem;
+    }
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+        color: #ffd600 !important;
+    }
+    .navbar-nav .dropdown-menu {
+        background: rgba(27, 61, 47, 0.85);
+        color: #fff;
+        border-radius: 0 0 8px 8px;
+        border: none;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+    .navbar-nav .dropdown-item {
+        color: #fff;
+    }
+    .navbar-nav .dropdown-item:hover {
+        background: rgba(255,255,255,0.08);
+        color: #ffd600;
+    }
+    .navbar-icons {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-left: auto;
+    }
+    .navbar-icons .language-container {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #fff;
+    }
+    .navbar-icons .language-container form {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .navbar-icons .selected-language {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .navbar-icons .selected-language img {
+        width: 24px;
+        height: auto;
+        border-radius: 2px;
+    }
+    .navbar-icons .nav-link {
+        color: #fff !important;
+        padding: 0.5rem 0.8rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        border-radius: 4px;
+        transition: background-color 0.2s;
+    }
+    .navbar-icons .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    .navbar-icons .nav-link i {
+        font-size: 1.1rem;
+    }
+    .main-header {
+        min-height: 340px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+    .main-header .banner-content {
+        position: absolute;
+        left: 0; right: 0; top: 0; bottom: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 0 5vw;
+        z-index: 2;
+    }
+    .main-header h1 {
+        color: #fff;
+        font-size: 2.6rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+    .main-header p {
+        color: #ffd600;
+        font-size: 1.3rem;
+        font-weight: 500;
+        margin-bottom: 2rem;
+    }
+    .main-header .btn {
+        background: #ffd600;
+        color: #1b3d2f;
+        font-weight: 700;
+        border-radius: 6px;
+        padding: 0.7rem 2.2rem;
+        font-size: 1.1rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        border: none;
+        transition: background 0.2s, color 0.2s;
+    }
+    .main-header .btn:hover {
+        background: #fff;
+        color: #388e3c;
+    }
+    .main-header .fotorama {
+        z-index: 1;
+        filter: brightness(0.90);
+    }
+    .navbar-nav {
+        flex-wrap: nowrap !important;
+        overflow-x: visible !important;
+        white-space: nowrap !important;
+        width: 100%;
+    }
+    @media (max-width: 991.98px) {
+        .navbar-toggler {
+            display: block !important;
+            z-index: 1051;
+        }
+        .navbar-collapse {
+            display: none !important;
+            width: 100vw;
+            left: 0;
+            right: 0;
+            max-width: 100vw;
+            overflow-x: hidden !important;
+        }
+        .navbar-collapse.show {
+            display: block !important;
+            background: rgba(27, 61, 47, 0.97);
+            position: absolute;
+            top: 70px;
+            left: 0;
+            right: 0;
+            z-index: 1050;
+            padding: 1rem 0;
+            width: 100vw;
+            max-width: 100vw;
+            overflow-x: hidden !important;
+        }
+        .navbar-nav {
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100vw;
+            max-width: 100vw;
+            flex-wrap: nowrap !important;
+            white-space: normal !important;
+        }
+        .navbar-nav .nav-item {
+            width: 100%;
+        }
+        .navbar-nav .nav-link {
+            padding-left: 1.5rem;
+        }
+        .navbar-nav .nav-link {
+            font-size: 0.95rem;
+        }
+        .navbar-icons {
+            margin: 1rem 0 0 0;
+            width: 100vw;
+            max-width: 100vw;
+            justify-content: flex-start;
+        }
+    }
+    /* Submenu (dropdown de segundo nível) com fundo e texto igual ao menu principal */
+    .dropdown-menu .dropdown-menu {
+        background: rgba(27, 61, 47, 0.85);
+        color: #fff;
+        border-radius: 0 8px 8px 8px;
+        border: none;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+    .dropdown-menu .dropdown-item {
+        color: #fff;
+    }
+    .dropdown-menu .dropdown-item:hover {
+        background: rgba(255,255,255,0.08);
+        color: #ffd600;
+    }
+    /* Exibir submenu ao passar o mouse no desktop */
+    @media (min-width: 992px) {
+        .navbar-nav .dropdown:hover > .dropdown-menu {
+            display: block;
+            animation: fadeIn 0.2s ease-in-out;
+        }
+        .dropdown-menu .dropdown-menu {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            margin-top: 0;
+        }
+        .dropdown-menu > .dropend:hover > .dropdown-menu {
+            display: block;
+            animation: fadeIn 0.2s ease-in-out;
+        }
+        .dropdown-menu {
+            margin-top: 0;
+        }
+        .dropdown:hover > .nav-link {
+            color: #ffd600 !important;
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    #flipbook .hard {
+      background: #ccc !important;
+      color: #333;
+      font-weight: bold;
+      text-align: center;
+      line-height: 800px;
+      font-size: 2em;
+    }
+    /* Garante que o X do modal do flipbook fique sempre visível e grande */
+    #flipbookModal .btn-close {
+      filter: invert(1) brightness(2) drop-shadow(0 0 2px #000);
+      opacity: 1 !important;
+      width: 1.5rem;
+      height: 1.5rem;
+      font-size: 1.2rem;
+      z-index: 1060;
+      position: absolute;
+      right: 1.2rem;
+      top: 1.2rem;
+    }
+    #flipbookModal .modal-header {
+      position: relative;
+    }
+    /* Centraliza o flipbook no modal e remove espaço extra */
+    #flipbookModal .modal-dialog {
+      display: flex;
+      align-items: center;
+      min-height: 100vh;
+    }
+    #flipbookModal .modal-content {
+      margin: auto;
+      box-shadow: none;
+      background: transparent;
+    }
+    #flipbookModal .modal-body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: auto !important;
+      min-height: 0;
+      background: transparent;
+      padding: 0;
+    }
+    /* Garante que o X fique dentro do header, visível e clicável */
+    #flipbookModal .modal-header {
+      position: relative;
+      background: #1b3d2f;
+      color: #fff;
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+    }
+    #flipbookModal .modal-header {
+      background: transparent !important;
+      border: none;
+      color: #fff;
+      position: relative;
+      box-shadow: none;
+    }
+    #flipbookModal .btn-close {
+      filter: invert(1) brightness(2) drop-shadow(0 0 2px #000);
+      opacity: 1 !important;
+      width: 1.5rem;
+      height: 1.5rem;
+      font-size: 1.2rem;
+      z-index: 1060;
+      position: absolute;
+      right: 1.2rem;
+      top: 1.2rem;
+    }
+    </style>
+
+</head>
+
+<body id="page-top" class="index">
+    <audio id="audio-hino" autoplay loop playsinline>
+      <source src="{% static 'music/Hino da Agropecuária AH.mp3' %}" type="audio/mpeg">
+      Seu navegador não suporta áudio HTML5.
+    </audio>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand me-4 d-flex align-items-center justify-content-center" href="{% url 'home' %}">
+                <img id="logo" src="{% static 'img/logo-header.png' %}" alt="{% trans 'Agropecuária AH' %}" title="{% trans 'Agropecuária AH' %} - {% trans 'Ir para a Página Inicial' %}" style="max-height: 70px; width: auto; display: block; margin: auto; filter: drop-shadow(0 0 8px #fff);">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#ah-navbar" aria-controls="ah-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="ah-navbar">
+                <div class="d-flex w-100 align-items-center">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {% trans "Institucional" %}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'about_company' %}#sobre-nos">{% trans "Agropecuária AH" %}</a></li>
+                                <li><a class="dropdown-item" href="{% url 'about_company' %}#missao-visao">{% trans "Missão e Visão" %}</a></li>
+                                <li><a class="dropdown-item" href="{% url 'about_company' %}#manifesto">{% trans "Manifesto" %}</a></li>
+                                <li><a class="dropdown-item" href="{% url 'home' %}#localizacoes">{% trans "Localizações" %}</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="openFlipbookModal(); return false;">{% trans "Código de Conduta" %}</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {% trans "Negócios" %}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="dropend">
+                                    <a class="dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        {% trans "Venda" %}
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        {% for link in products_link %}
+                                            {% if link.product_category == "cafe" %}
+                                                <li><a class="dropdown-item" href="{% url 'product_view' link.product_slug %}">{{ link.product_name }}</a></li>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% for link in products_link %}
+                                            {% if link.product_category == "suinos" %}
+                                                <li><a class="dropdown-item" href="{% url 'product_view' link.product_slug %}">{{ link.product_name }}</a></li>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% for link in products_link %}
+                                            {% if link.product_category == "bovinos" %}
+                                                <li><a class="dropdown-item" href="{% url 'product_view' link.product_slug %}">{{ link.product_name }}</a></li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                                <li><a class="dropdown-item" href="{% url 'sales'%}">{% trans "Compra" %}</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {% trans "Parcerias" %}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'partners_view' 'parceria-suinocultura-ah' %}">{% trans "Parceria Suinocultura AH+" %}</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {% trans "Nossos Eventos" %}
+                        </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'news' %}">{% trans "Notícias" %}</a></li>
+                                <li><a class="dropdown-item" href="{% url 'magazine' %}">{% trans "Página Um" %}</a></li>
+                                <li><a class="dropdown-item" href="{% url 'agricutural_prices'%}">{% trans "Cotações Agrícolas" %}</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {% trans "Responsabilidade Social" %}
+                            </a>
+                            <ul class="dropdown-menu">
+                                {% for link in events_link %}
+                                    <li><a class="dropdown-item" href="{% url 'event_view' link.event_slug %}">{{ link.event_title }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'environmental_responsability' %}">{% trans "Responsabilidade Ambiental" %}</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {% trans "Fale Conosco" %}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'denuncia' %}">{% trans "Denúncia" %}</a></li>
+                                <li><a class="dropdown-item" href="https://inicio.bcompliance.com.br/empresas/67c8876136d3ecb44239b02f/sugestao/termos" target="_blank">{% trans "Sugestão" %}</a></li>
+                                <li><a class="dropdown-item" href="{% url 'work_with_us' %}">{% trans "Trabalhe Conosco" %}</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="navbar-icons ms-auto d-flex flex-column align-items-end">
+                        <div>
+                            <form action="{% url 'set_language' %}" method="post" class="language-container d-flex align-items-center position-relative mb-0" id="lang-form">
+                                {% csrf_token %}
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% get_available_languages as LANGUAGES %}
+                                {% if LANGUAGE_CODE == 'en' %}
+                                    <input name="next" type="hidden" value="{{ request.get_full_path|cut:'/en' }}" />
+                                {% else %}
+                                    <input name="next" type="hidden" value="{{ request.get_full_path }}" />
+                                {% endif %}
+                                <input name="language" type="hidden" value="" id="language-input" />
+                                <span class="me-2" style="color: #fff; white-space: nowrap;">{% trans "Idioma:" %}</span>
+                                <div class="dropdown">
+                                    <a href="#" class="selected-language dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="{% static 'img/flags/'|add:LANGUAGE_CODE|add:'.png' %}" alt="{{ LANGUAGE_CODE }}" style="width: 24px; height: auto;" />
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end" style="background-color: #1B5E20;">
+                                    {% get_language_info_list for LANGUAGES as languages %}
+                                    {% for language in languages %}
+                                        <li>
+                                            <a href="#" class="dropdown-item text-white" onclick="event.preventDefault(); document.getElementById('language-input').value='{{ language.code }}'; document.getElementById('lang-form').submit();" style="background-color: #1B5E20;">
+                                                <img src="{% static 'img/flags/'|add:language.code|add:'.png' %}" alt="{{ language.code }}" style="width: 24px; height: auto;" />
+                                                <span class="ms-2">{{ language.name_local }}</span>
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                    </ul>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="d-flex" style="gap: 1.5rem; margin-top: -8px;">
+                            <a class="nav-link" href="{% url 'talk_with_us' %}" title="{% trans 'Entre em contato conosco' %}"><i class="fa fa-phone fa-lg" aria-hidden="true"></i></a>
+                            <a href="{% url 'admin:login' %}" class="nav-link" title="{% trans 'Área Administrativa' %}">
+                                <i class="fas fa-user fa-lg"></i>
+                            </a>
+                            <button id="mute-btn" style="
+                                background: rgba(27,61,47,0.85);
+                                color: #fff;
+                                border: none;
+                                border-radius: 50%;
+                                width: 32px;
+                                height: 32px;
+                                font-size: 1.1rem;
+                                cursor: pointer;
+                                margin-left: 10px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            ">🔊</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+<script>
+const audio = document.getElementById('audio-hino');
+const btn = document.getElementById('mute-btn');
+function updateIcon() {
+  btn.textContent = audio.muted ? '🔇' : '🔊';
+}
+btn.onclick = function() {
+  audio.muted = !audio.muted;
+  updateIcon();
+};
+audio.onplay = updateIcon;
+audio.onvolumechange = updateIcon;
+</script>
+
+    <div class="{% block class %}{% endblock class %}">
+        {% block content %}{% endblock content %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light py-5">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Institucional -->
+                <div class="col">
+                    <h5 class="fw-bold mb-3">{% trans "Institucional" %}</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'about_company' %}" class="text-muted text-decoration-none">{% trans "Agropecuária AH" %}</a></li>
+                        <li><a href="{% url 'about_company' %}#missao-visao" class="text-muted text-decoration-none">{% trans "Missão e Visão" %}</a></li>
+                        <li><a href="{% url 'about_company' %}#manifesto" class="text-muted text-decoration-none">{% trans "Manifesto" %}</a></li>
+                        <li><a href="{% url 'home' %}#localizacoes" class="text-muted text-decoration-none">{% trans "Localizações" %}</a></li>
+                    </ul>
+                </div>
+
+                <!-- Negócios -->
+                <div class="col">
+                    <h5 class="fw-bold mb-3">{% trans "Negócios" %}</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'product_view' 'cafe' %}" class="text-muted text-decoration-none">{% trans "Venda > Café" %}</a></li>
+                        <li><a href="{% url 'product_view' 'suinos' %}" class="text-muted text-decoration-none">{% trans "Venda > Suínos" %}</a></li>
+                        <li><a href="{% url 'product_view' 'bovinos' %}" class="text-muted text-decoration-none">{% trans "Venda > Bovinos" %}</a></li>
+                        <li><a href="{% url 'sales' %}" class="text-muted text-decoration-none">{% trans "Compra" %}</a></li>
+                    </ul>
+                </div>
+
+                <!-- Parcerias -->
+                <div class="col">
+                    <h5 class="fw-bold mb-3">{% trans "Parcerias" %}</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'partners_view' 'parceria-suinocultura-ah' %}" class="text-muted text-decoration-none">{% trans "Parceria Suinocultura AH+" %}</a></li>
+                    </ul>
+                </div>
+
+                <!-- Responsabilidade Social -->
+                <div class="col">
+                    <h5 class="fw-bold mb-3">{% trans "Responsabilidade Social" %}</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'event_view' 'fundacao-ah' %}" class="text-muted text-decoration-none">{% trans "Fundação AH" %}</a></li>
+                    </ul>
+                </div>
+
+                <!-- Nossos Eventos -->
+                <div class="col">
+                    <h5 class="fw-bold mb-3">{% trans "Nossos Eventos" %}</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'news' %}" class="text-muted text-decoration-none">{% trans "Notícias" %}</a></li>
+                        <li><a href="{% url 'magazine' %}" class="text-muted text-decoration-none">{% trans "Página Um" %}</a></li>
+                        <li><a href="{% url 'agricutural_prices' %}" class="text-muted text-decoration-none">{% trans "Cotações Agrícolas" %}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container mt-5 pt-4 border-top">
+            <div class="row align-items-center">
+                <div class="col-lg-3">
+                    <a href="{% url 'home' %}" title="{% trans "Ir para a Página Inicial" %}" class="d-block mb-3">
+                        <img id="logo_bottom" src="{% static 'img/logo-footer.png'%}" alt="{% trans "Agropecuária AH" %}" class="img-fluid">
+                    </a>
+                </div>
+                {% if general_info %}
+                <div class="col-lg-6">
+                    <div class="social-icons d-flex gap-3 justify-content-center">
+                        {% if general_info.config_social_facebook %}
+                            <a href="{{general_info.config_social_facebook}}" class="text-decoration-none" target="_blank" rel="noopener">
+                                <i class="fab fa-facebook-square fa-2x"></i>
+                            </a>
+                        {% endif %}
+                        {% if general_info.config_social_instagram %}
+                            <a href="{{general_info.config_social_instagram}}" class="text-decoration-none" target="_blank" rel="noopener">
+                                <i class="fab fa-instagram fa-2x"></i>
+                            </a>
+                        {% endif %}
+                        {% if general_info.config_social_youtube %}
+                            <a href="{{general_info.config_social_youtube}}" class="text-decoration-none" target="_blank" rel="noopener">
+                                <i class="fab fa-youtube fa-2x"></i>
+                            </a>
+                        {% endif %}
+                        {% if general_info.config_social_twitter %}
+                            <a href="{{general_info.config_social_twitter}}" class="text-decoration-none" target="_blank" rel="noopener">
+                                <i class="fab fa-twitter-square fa-2x"></i>
+                            </a>
+                        {% endif %}
+                        {% if general_info.config_social_linkedin %}
+                            <a href="{{general_info.config_social_linkedin}}" class="text-decoration-none" target="_blank" rel="noopener">
+                                <i class="fab fa-linkedin fa-2x"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% else %}
+                <div class="col-lg-6">
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-3">
+                            <a href="tel:+551839173262" class="text-decoration-none">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-phone me-2"></i>
+                                    <div>
+                                        <strong>{% trans "Escritório - Presidente Prudente" %}</strong>
+                                        <div>{% trans "(18) 3917-3262" %}</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="mb-3">
+                            <a href="tel:+556735461467" class="text-decoration-none">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-phone me-2"></i>
+                                    <div>
+                                        <strong>{% trans "Fazenda Córrego Azul" %}</strong>
+                                        <div>{% trans "(67) 3546-1467" %}</div>
+                                        <div>{% trans "(67) 2020-0894" %}</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                {% endif %}
+                <div class="col-lg-3">
+                    <div class="text-end">
+                        <a href="{% url 'talk_with_us' %}" class="btn btn-outline-primary mb-2">{% trans "Fale Conosco" %}</a>
+                        <div class="text-muted small">
+                            Copyright &copy; {% trans "Agropecuária AH" %} {% now "Y" %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts: jQuery deve vir primeiro! -->
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="{% static 'js/turn.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.min.js"></script>
+    <script src="{% static 'js/main.js'%}"></script>
+    <script src="{% static 'js/contact_me.js' %}"></script>
+    {% block javascript %}{% endblock javascript %}
+
+<!-- Modal PDF Moderno -->
+<div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header align-items-center" style="background: #1b3d2f; color: #fff;">
+        <i class="fas fa-file-pdf fa-lg me-2 text-danger"></i>
+        <h5 class="modal-title flex-grow-1" id="pdfModalLabel">Código de Conduta AH</h5>
+        <a id="pdfDownloadBtn" href="#" class="btn btn-outline-light btn-sm me-2" title="Baixar PDF" download target="_blank"><i class="fas fa-download"></i></a>
+        <a id="pdfNewTabBtn" href="#" class="btn btn-outline-light btn-sm me-2" title="Abrir em nova aba" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body p-0" style="height:80vh; background: #222;">
+        <div id="pdfLoader" class="d-flex justify-content-center align-items-center" style="height:100%;">
+          <div class="spinner-border text-light" role="status">
+            <span class="visually-hidden">Carregando...</span>
+          </div>
+        </div>
+        <iframe id="pdfFrame" src="" width="100%" height="100%" style="border:none; display:none; background:#222;"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function openPdfModal(pdfUrl) {
+  var modal = new bootstrap.Modal(document.getElementById('pdfModal'));
+  var frame = document.getElementById('pdfFrame');
+  var loader = document.getElementById('pdfLoader');
+  var downloadBtn = document.getElementById('pdfDownloadBtn');
+  var newTabBtn = document.getElementById('pdfNewTabBtn');
+
+  // Loader visível, iframe escondido
+  loader.style.display = 'flex';
+  frame.style.display = 'none';
+  frame.src = '';
+
+  // Caminho do visualizador PDF.js
+  var viewerUrl = '{% static 'pdfjs/web/viewer.html' %}?file=' + encodeURIComponent(pdfUrl);
+
+  // Atualiza botões
+  downloadBtn.href = pdfUrl;
+  newTabBtn.href = viewerUrl;
+
+  // Quando o PDF.js carregar, esconde loader
+  frame.onload = function() {
+    loader.style.display = 'none';
+    frame.style.display = 'block';
+  };
+  frame.src = viewerUrl;
+  modal.show();
+}
+</script>
+
+<!-- Flipbook Modal -->
+<div class="modal fade" id="flipbookModal" tabindex="-1" aria-labelledby="flipbookModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content" style="background: transparent; box-shadow: none;">
+      <div class="modal-header align-items-center" style="background: #1b3d2f; color: #fff;">
+        <i class="fas fa-book-open fa-lg me-2 text-warning"></i>
+        <h5 class="modal-title flex-grow-1" id="flipbookModalLabel">Código de Conduta AH</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body p-0" style="height:90vh; background: transparent; display: flex; align-items: center; justify-content: center;">
+        <div id="flipbookContainer" style="position:relative; width:auto; height:auto; background: transparent;">
+          <div id="flipbook"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function openFlipbookModal() {
+  var modalEl = document.getElementById('flipbookModal');
+  var modal = new bootstrap.Modal(modalEl);
+  $('#flipbook').html('');
+  $(modalEl).off('shown.bs.modal').on('shown.bs.modal', function () {
+    var flipbook = $('#flipbook');
+    flipbook.html(''); // Limpa antes de adicionar
+
+    // Lista das páginas na ordem correta
+    var paginas = [
+        'page-1.jpg',      // capa
+        'page-2.1.jpg', 'page-2.2.jpg',
+        'page-3.1.jpg', 'page-3.2.jpg',
+        'page-4.1.jpg', 'page-4.2.jpg',
+        'page-5.1.jpg', 'page-5.2.jpg',
+        'page-6.1.jpg', 'page-6.2.jpg',
+        'page-7.1.jpg', 'page-7.2.jpg',
+        'page-8.1.jpg', 'page-8.2.jpg',
+        'page-9.jpg'       // contra-capa
+    ];
+
+    var baseUrl = "{% static 'flipbook/codigo_conduta/' %}";
+
+    for (let i = 0; i < paginas.length; i++) {
+        var hardClass = (i === 0 || i === paginas.length - 1) ? 'hard' : '';
+        flipbook.append('<div class="' + hardClass + '"><img src="' + baseUrl + paginas[i] + '" style="width:100%;height:100%;display:block;object-fit:contain;"/></div>');
+    }
+    // Calcula tamanho responsivo (proporção 4:3)
+    var maxW = Math.floor(window.innerWidth * 0.95);
+    var maxH = Math.floor(window.innerHeight * 0.7); // altura menor para sobrar largura
+    // Ajustar proporção do flipbook para A4 horizontal (1.414)
+    var proporcao = 1.414;
+    var width = maxW;
+    var height = Math.round(width / proporcao);
+    if (height > maxH) {
+      height = maxH;
+      width = Math.round(height * proporcao);
+    }
+    if (width < 800) width = 800;
+    if (height < 500) height = 500;
+
+    // Inicializa o flipbook
+    flipbook.turn({
+        width: width,
+        height: height,
+        autoCenter: true,
+        elevation: 50,
+        gradients: true,
+        display: 'double'
+    });
+
+    // CSS para fundo branco sólido, sem padding, e imagem ocupando toda a página sem cortes
+    $('#flipbook, #flipbook .page, #flipbook .hard').css({
+        'background': '#fff',
+        'margin': 0,
+        'padding': 0,
+        'border-radius': '12px',
+        'box-shadow': '0 4px 24px rgba(0,0,0,0.10)'
+    });
+    $('#flipbook img').css({
+        'width': '100%',
+        'height': '100%',
+        'object-fit': 'contain',
+        'border-radius': '0'
+    });
+  });
+  modal.show();
+}
+</script>
+</body>
+</html>

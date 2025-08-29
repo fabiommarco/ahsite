@@ -1,0 +1,54 @@
+<form id="contactFormCompras" method="post" class="p-4 rounded shadow bg-white" data-url="{{ url_contact }}">
+    {% csrf_token %}
+    <div class="row g-3">
+        <div class="col-md-6">
+            <label for="name" class="form-label">Nome</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Seu nome" required>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="email" class="form-label">E-mail</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                <input type="email" class="form-control" id="email" name="email" placeholder="seu@email.com" required>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="phone" class="form-label">Telefone</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="(xx) xxxxx-xxxx" required>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="city" class="form-label">Cidade</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa fa-city"></i></span>
+                <input type="text" class="form-control" id="city" name="city" placeholder="Sua cidade" required>
+            </div>
+        </div>
+        {% if equipe_compras and equipe_compras|length > 0 %}
+        <div class="col-12">
+            <label for="destinatario" class="form-label">Escolha o destinatário</label>
+            <select class="form-select" name="destinatario" id="destinatario" required>
+                <option value="">Selecione...</option>
+                <option value="todos">Todos os responsáveis</option>
+                {% for membro in equipe_compras %}
+                    <option value="{{ membro.email }}">{{ membro.nome }} - {{ membro.local }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        {% endif %}
+        <div class="col-12">
+            <label for="message" class="form-label">Mensagem</label>
+            <textarea class="form-control" id="message" name="message" rows="4" placeholder="Digite sua mensagem" required></textarea>
+        </div>
+        <div class="col-12 text-end">
+            <button type="submit" class="btn btn-success btn-lg" id="btnSubmit">
+                <i class="fa fa-paper-plane"></i> Enviar
+            </button>
+        </div>
+    </div>
+</form>

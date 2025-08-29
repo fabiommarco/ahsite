@@ -1,0 +1,264 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+  {% block class %}dynamic-content ah-background{%endblock class%}
+  
+  {% block css %}
+  <style>
+    /* Estilos específicos para mensagens na página de compras */
+    .messages-container {
+      margin-top: 100px !important;
+      z-index: 1000;
+      position: relative;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .alert {
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+    
+    .alert-success {
+      background-color: #d4edda;
+      color: #155724;
+      border-left: 4px solid #28a745;
+    }
+    
+    .alert-danger {
+      background-color: #f8d7da;
+      color: #721c24;
+      border-left: 4px solid #dc3545;
+    }
+    
+    .alert-warning {
+      background-color: #fff3cd;
+      color: #856404;
+      border-left: 4px solid #ffc107;
+    }
+    
+    .alert-info {
+      background-color: #d1ecf1;
+      color: #0c5460;
+      border-left: 4px solid #17a2b8;
+    }
+    .compras-main-card {
+      max-width: 900px;
+      margin: 60px auto 48px auto;
+      background: #fff;
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      padding: 3.5rem 2.5rem 2.5rem 2.5rem;
+      animation: fadeInUp 0.8s cubic-bezier(.39,.575,.565,1) both;
+    }
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .compras-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #a1001f;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    .compras-subtitle {
+      font-size: 1.1rem;
+      color: #555;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .compras-form label {
+      font-weight: 500;
+      color: #a1001f;
+    }
+    .compras-form .form-control, .compras-form .form-select {
+      border-radius: 0.7rem;
+      border: 1px solid #e0e0e0;
+      box-shadow: none;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    .compras-form .input-group-text {
+      background: #f8f8f8;
+      border-radius: 0.7rem 0 0 0.7rem;
+      color: #a1001f;
+      border: 1px solid #e0e0e0;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 48px;
+      font-size: 1.2rem;
+    }
+    .compras-form textarea.form-control {
+      min-height: 120px;
+    }
+    .compras-form button[type="submit"] {
+      background: linear-gradient(90deg, #a1001f 0%, #e53935 100%);
+      border: none;
+      border-radius: 0.7rem;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 0.7rem 2.5rem;
+      box-shadow: 0 2px 8px rgba(161,0,31,0.08);
+      transition: background 0.2s;
+    }
+    .compras-form button[type="submit"]:hover {
+      background: linear-gradient(90deg, #e53935 0%, #a1001f 100%);
+    }
+    @media (max-width: 700px) {
+      .compras-main-card {
+        padding: 1.2rem 0.5rem;
+      }
+      .compras-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+  <style>
+.card {
+  border-radius: 18px;
+  transition: box-shadow 0.2s;
+}
+.card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+</style>
+  {% endblock css %}
+  
+  {% block content %}
+    <div class="compras-bg-gradient py-5">
+      <div class="container-fluid" style="max-width: 1200px; margin: 0 auto;">
+        <div class="row justify-content-center align-items-stretch g-4 mb-4 flex-wrap">
+          <div class="col-12 col-md-6 d-flex">
+            <div class="card border-0 shadow-lg rounded-4 p-5 bg-white flex-fill d-flex flex-column justify-content-between h-100" style="background: linear-gradient(135deg, #f8fafc 60%, #e8f5e9 100%);">
+              <div>
+                <div class="compras-title display-4 fw-bold mb-2 text-success" style="letter-spacing: 1px;">COMPRAS</div>
+                <div class="compras-descricao mb-3" style="text-align:justify; color:#444; font-size:1.15rem; line-height:1.7; max-width: 700px; margin: 0 auto 16px auto;">
+                    Temos uma excelente equipe de compras altamente preparada para boas negociações. Nossa filosofia é que para que seja feito um bom negócio, nenhuma parte deva ser prejudicada.<br><br>
+                    <span class="fw-semibold text-success">Seja nosso fornecedor!</span>
+                </div>
+                {% if equipe_compras and equipe_compras|length > 0 %}
+                  <div class="row row-cols-1 g-4 justify-content-center align-items-center flex-column">
+                    {% for membro in equipe_compras %}
+                      <div class="col-12">
+                        <div class="card card-compras flex-fill border-0 shadow-sm rounded-4 p-4 h-100 mb-4 position-relative hover-card" style="background: linear-gradient(120deg, #e8f5e9 60%, #fff 100%); min-width: 520px; max-width: 700px; width: 100%;">
+                          <div class="d-flex align-items-start mb-3">
+                            <div class="icon-compras me-3 d-flex align-items-center justify-content-center flex-shrink-0" style="background: #43a047; color: #fff; width: 56px; height: 56px; font-size: 2.3rem; min-width:56px; min-height:56px;">
+                              <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="w-100">
+                              <div class="fw-bold fs-4 text-dark mb-0 text-uppercase" style="letter-spacing:0.5px; color: #222;">{{ membro.nome }}</div>
+                              {% if membro.local %}<div class="small text-success mb-1" style="font-size:1.05rem; white-space:nowrap; overflow:hidden; text-overflow:clip; display:block;">{{ membro.local }}</div>{% endif %}
+                              {% if membro.escritorio %}<div class="small text-muted" style="font-size:0.98rem;">{{ membro.escritorio }}</div>{% endif %}
+                              <div class="d-flex flex-wrap gap-4 align-items-center mt-2" style="font-size:1.08rem; gap: 12px !important; margin-bottom: 0;">
+                                {% if membro.telefone %}<div class="text-secondary d-flex align-items-center"><i class="fas fa-phone-alt me-2"></i>{{ membro.telefone }}</div>{% endif %}
+                                {% if membro.email %}<div class="text-secondary d-flex align-items-center"><i class="fas fa-envelope me-2"></i><a href="mailto:{{ membro.email }}" class="text-decoration-none text-dark">{{ membro.email }}</a></div>{% endif %}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 d-flex">
+            <div class="card border-0 shadow-lg rounded-4 p-4 p-md-5 bg-white flex-fill d-flex flex-column justify-content-center h-100" style="min-height: 100%; background: linear-gradient(135deg, #e8f5e9 60%, #f8fafc 100%);">
+              <h3 class="fw-bold text-success mb-4 text-center" style="font-size: 2rem; letter-spacing: 0.5px;">Fale com nossa equipe de compras</h3>
+              <div class="compras-form">
+                {% include '_contact_form.html' with url_contact=url_contact %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endblock content %}
+
+{% block javascript %}
+    {# jQuery já está no base.html, não precisa repetir aqui #}
+    <script src="{% static 'js/jqBootstrapValidation.js' %}"></script>
+    <script src="{% static 'js/contact_me.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+{% endblock javascript %}
+
+<style>
+.compras-bg-gradient {
+  background: linear-gradient(120deg, #f8fafc 60%, #e8f5e9 100%);
+  min-height: 100vh;
+}
+.card-compras {
+  border-radius: 18px;
+  transition: box-shadow 0.2s, transform 0.2s;
+  border: 1.5px solid #e8f5e9;
+  background: #fcfcfc;
+}
+.card-compras:hover {
+  box-shadow: 0 8px 32px rgba(27,61,47,0.13);
+  transform: translateY(-2px) scale(1.01);
+  border-color: #b2dfdb;
+}
+.icon-compras {
+  width: 56px;
+  height: 56px;
+  background: #43a047;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 2.3rem;
+  box-shadow: 0 2px 8px rgba(27,61,47,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.compras-form label {
+  color: #1b3d2f;
+  font-weight: 600;
+}
+.compras-form .form-control, .compras-form .form-select {
+  font-size: 1.08rem;
+  padding: 0.7rem 1rem;
+  border-radius: 0.7rem;
+  border: 1.5px solid #e0e0e0;
+  box-shadow: none;
+  margin-bottom: 1rem;
+  background: #f8fafc;
+}
+.compras-form .form-control:focus, .compras-form .form-select:focus {
+  border-color: #388e3c;
+  box-shadow: 0 0 0 0.2rem rgba(56,142,60,.08);
+  background: #fff;
+}
+.compras-form textarea.form-control {
+  min-height: 110px;
+}
+.compras-form button[type="submit"] {
+  width: 180px;
+  margin-top: 8px;
+  font-size: 1.12rem;
+  background: linear-gradient(90deg, #1b3d2f 0%, #388e3c 100%);
+  border: none;
+  border-radius: 0.7rem;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(56,142,60,0.08);
+  transition: background 0.2s, transform 0.2s;
+}
+.compras-form button[type="submit"]:hover {
+  background: linear-gradient(90deg, #388e3c 0%, #1b3d2f 100%);
+  transform: scale(1.04);
+}
+@media (min-width: 768px) {
+  .compras-form {
+    min-height: 100%;
+  }
+}
+</style>

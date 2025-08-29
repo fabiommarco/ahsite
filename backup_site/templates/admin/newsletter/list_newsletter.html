@@ -1,0 +1,40 @@
+{% extends "admin/base_site.html" %}
+
+<!-- LOADING -->
+{% load i18n admin_modify  grp_tags %}
+
+<!-- JAVASCRIPTS -->
+{% block javascripts %}
+    {{ block.super }}
+    
+{% endblock %}
+
+<!-- COLTYPE/BODYCLASS -->
+{% block content-class %}content-flexible{% endblock %}
+
+<!-- BREADCRUMBS -->
+{% block breadcrumbs %}
+    {% if not is_popup %}
+        <div id="breadcrumbs">
+             <a href="../">{% trans "Home" %}</a> &rsaquo;
+             Exportando Newsletter             
+        </div>
+    {% endif %}
+{% endblock %}
+
+<!-- CONTENT -->
+{% block content %}
+    <div class="container-flexible">
+        <strong>Copie e Cole os endereços de email em seu cliente de email:</strong>
+        <div class="form-container">
+            {% if newsletter %}
+                {% for item in newsletter %}
+                "{{ item.news_name }}" &lt;{{ item.news_email }}&gt;{% if not forloop.last %},{% endif %} <br />
+                {% endfor %}
+            {% else %}
+                <p>Nenhum email registrado ainda.</p>
+            {% endif %}
+            
+        </div>
+    </div>
+{% endblock %}

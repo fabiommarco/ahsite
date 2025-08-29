@@ -1,0 +1,67 @@
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+
+# Virtual Environment
+.env
+.venv/
+venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.dump
+*.sql
+*.bak
+backups/
+backup_*.sql
+
+# Temporary files
+*.tmp
+*.temp
+nohup.out
+
+# Static files (collected)
+static-production/
+
+# Logs
+*.log
+logs/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Python
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Django migrations (opcional - descomente se quiser ignorar)
+# app/migrations/
+
+# Local development
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local

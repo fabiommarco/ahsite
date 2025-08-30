@@ -1,0 +1,36 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block title %}Deploy do Sistema{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <h1>🚀 Deploy do Sistema</h1>
+    
+    {% if messages %}
+    <ul class="messagelist">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    
+    <div class="module">
+        <h2>Executar Deploy</h2>
+        <p>Clique no botão abaixo para executar o deploy automático do sistema.</p>
+        <p><strong>Atenção:</strong> Esta ação irá:</p>
+        <ul>
+            <li>Fazer pull das últimas alterações do Git</li>
+            <li>Coletar arquivos estáticos</li>
+            <li>Executar migrações do banco</li>
+            <li>Reiniciar o servidor Nginx</li>
+        </ul>
+        
+        <form method="post">
+            {% csrf_token %}
+            <input type="submit" value="🔄 Executar Deploy" class="default" 
+                   onclick="return confirm('Tem certeza que deseja executar o deploy?')" />
+        </form>
+    </div>
+</div>
+{% endblock %}

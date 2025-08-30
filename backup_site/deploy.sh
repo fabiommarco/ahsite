@@ -1,59 +1,70 @@
 #!/bin/bash
+# Script de Deploy Automático - Agropecuária AH
+# Fabio Marco - 2025
 
-echo "🚀 Deploy Automático - Site AH"
+set -e  # Parar em caso de erro
+
+echo "🚀 Iniciando deploy automático..."
+echo "📅 Data/Hora: $(date)"
 echo "=================================="
 
 # Configurações
 PROJECT_DIR="/var/www/ahsite_news/ahsite/ahsite"
-VENV_PATH="/var/www/ahsite_news/ahsite/backup_site/venv"
-GIT_REPO="/var/www/ahsite_news/ahsite/backup_site"
+BACKUP_DIR="/var/www/ahsite_news/ahsite/backups"
+LOG_FILE="/var/www/ahsite_news/ahsite/deploy.log"
 
-# Função de log
+# Criar diretório de backup se não existir
+mkdir -p "$BACKUP_DIR"
+
+# Função para log
 log() {
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1"
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"
 }
 
-# 1. Atualizar código do Git
-log "📥 Atualizando código do Git..."
-cd $GIT_REPO
-git fetch origin
-git reset --hard origin/master
+# Backup do banco antes do deploy
+log "💾 Fazendo backup do banco..."
+cd "$PROJECT_DIR"
+python manage.py dumpdata > "$BACKUP_DIR/backup_$(date +%Y%m%d_%H%M%S).json"
 
-# 2. Copiar arquivos para o diretório do projeto
-log "📁 Copiando arquivos..."
-cp -r app/* $PROJECT_DIR/app/
-cp -r static/* $PROJECT_DIR/static/
-cp -r templates/* $PROJECT_DIR/templates/
-cp manage.py $PROJECT_DIR/
-cp requirements.txt $PROJECT_DIR/
+# Git pull
+log "📥 Fazendo git pull..."
+cd "$PROJECT_DIR"
+git pull origin main || {
+    log "❌ Erro no git pull"
+    exit 1
+}
 
-# 3. Ativar ambiente virtual
-log "🐍 Ativando ambiente virtual..."
-source $VENV_PATH/bin/activate
+# Instalar dependências se necessário
+log "📦 Verificando dependências..."
+if [ -f "requirements.txt" ]; then
+    pip install -r requirements.txt
+fi
 
-# 4. Instalar dependências
-log "📦 Instalando dependências..."
-cd $PROJECT_DIR
-pip install -r requirements.txt
-
-# 5. Aplicar migrações
-log "🗄️ Aplicando migrações..."
-python3 manage.py migrate
-
-# 6. Coletar arquivos estáticos
+# Coletar arquivos estáticos
 log "📁 Coletando arquivos estáticos..."
-python3 manage.py collectstatic --noinput
+python manage.py collectstatic --noinput
 
-# 7. Verificar se o Django está funcionando
-log "🔍 Verificando Django..."
-python3 manage.py check
+# Executar migrações
+log "🗄️ Executando migrações..."
+python manage.py migrate --noinput
 
-# 8. Reiniciar serviços (se necessário)
+# Verificar sintaxe Python
+log "🔍 Verificando sintaxe Python..."
+find . -name "*.py" -exec python -m py_compile {} \;
+
+# Reiniciar serviços
 log "🔄 Reiniciando serviços..."
-# Aqui você pode adicionar comandos específicos da Locaweb
-# Por exemplo, reiniciar o servidor web
+systemctl restart nginx || true
+systemctl restart gunicorn || true
 
-log "✅ Deploy concluído com sucesso!"
-log "🌐 Site disponível em: http://seudominio.com"
+# Verificar se o site está funcionando
+log "✅ Verificando se o site está online..."
+sleep 5
+if curl -f http://localhost:8000/ > /dev/null 2>&1; then
+    log "✅ Site está funcionando corretamente!"
+else
+    log "⚠️ Site pode não estar respondendo"
+fi
+
+log "🎉 Deploy concluído com sucesso!"
 echo "=================================="
-log "Deploy finalizado em: $(date)"

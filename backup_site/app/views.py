@@ -17,6 +17,112 @@ from app.utils import reload_sys
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
+from django.core.paginator import EmptyPage, InvalidPage, Paginator
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
+from django.utils.decorators import method_decorator
+from django.utils.translation import get_language, gettext as _
+from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import TemplateView
+from django.views.decorators.http import require_POST
+
+colors = [
+    "c8d6b9",
+    "faf3dd",
+    "9dbad5",
+    "769ecb",
+    "f6cacb",
+    "d99294",
+    "d4cfbd",
+    "e1cec9",
+    "b4bad4",
+    "d2c1ce",
+    "dfd8dc",
+    "ebe6e5",
+    "70A1D7",
+    "A1DE93",
+    "F7F48B",
+    "F47C7C",
+    "FFF9AA",
+    "FFD5B8",
+    "FFB9B3",
+    "ACECD5",
+]
+
+# -*- coding: utf-8 -*-
+"""
+    AH Website -
+    Fabio Marco - 2025
+      fabio.marco@ah.agr.br
+
+"""
+import functools
+import json
+import random
+import os
+import subprocess
+
+from app.forms import ApplyJobForm, ContactForm, NewsletterForm
+from app.models import *
+from app.utils import reload_sys
+from django.conf import settings
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
+from django.core.paginator import EmptyPage, InvalidPage, Paginator
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
+from django.utils.decorators import method_decorator
+from django.utils.translation import get_language, gettext as _
+from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import TemplateView
+from django.views.decorators.http import require_POST
+
+colors = [
+    "c8d6b9",
+    "faf3dd",
+    "9dbad5",
+    "769ecb",
+    "f6cacb",
+    "d99294",
+    "d4cfbd",
+    "e1cec9",
+    "b4bad4",
+    "d2c1ce",
+    "dfd8dc",
+    "ebe6e5",
+    "70A1D7",
+    "A1DE93",
+    "F7F48B",
+    "F47C7C",
+    "FFF9AA",
+    "FFD5B8",
+    "FFB9B3",
+    "ACECD5",
+]
+
+# -*- coding: utf-8 -*-
+"""
+    AH Website -
+    Fabio Marco - 2025
+      fabio.marco@ah.agr.br
+
+"""
+import functools
+import json
+import random
+import os
+import subprocess
+
+from app.forms import ApplyJobForm, ContactForm, NewsletterForm
+from app.models import *
+from app.utils import reload_sys
+from django.conf import settings
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage, InvalidPage, Paginator
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -80,8 +186,6 @@ def home(request):
     """return homepage"""
     latest_feeds = News.translated_objects.order_by("-news_date")[:4]
     farms = Farm.objects.all()
-    # Temporariamente desabilitado para evitar erro de banco de dados
-    # banners = Banner.objects.filter(ativo=True).order_by('ordem', 'data_criacao')
     banners = []
 
     for farm in farms:
@@ -103,7 +207,10 @@ def home(request):
 
 def about_company(request):
     """return about us"""
-    about = AboutCompany.translated_objects.latest("id")
+    try:
+        about = AboutCompany.translated_objects.latest("id")
+    except AboutCompany.DoesNotExist:
+        about = None
     timeline = TimeLine.translated_objects.all().order_by("year")
 
     return render(request, "about_company.html", {"about": about, "timeline": timeline})
@@ -441,21 +548,27 @@ def deploy_webhook(request):
         payload = request.body.decode('utf-8')
         
         # Executar o deploy
-        result = subprocess.run([
-            'bash', '/var/www/ahsite_news/ahsite/backup_site/deploy.sh'
-        ], capture_output=True, text=True, cwd='/var/www/ahsite_news/ahsite/ahsite')
-        
-        if result.returncode == 0:
+        try:
+            output = subprocess.check_output([
+                'bash', '/var/www/ahsite_news/ahsite/backup_site/deploy.sh'
+            ], cwd='/var/www/ahsite_news/ahsite/ahsite', stderr=subprocess.STDOUT)
+            
+            # Converter bytes para string
+            output_str = output.decode('utf-8') if isinstance(output, bytes) else str(output)
+            
             return JsonResponse({
                 'status': 'success',
                 'message': 'Deploy realizado com sucesso!',
-                'output': result.stdout
+                'output': output_str
             })
-        else:
+        except subprocess.CalledProcessError as e:
+            # Converter bytes para string
+            error_output = e.output.decode('utf-8') if isinstance(e.output, bytes) else str(e.output)
+            
             return JsonResponse({
                 'status': 'error',
                 'message': 'Erro no deploy',
-                'output': result.stderr
+                'output': error_output
             }, status=500)
             
     except Exception as e:
@@ -469,4 +582,144 @@ def deploy_page(request):
     """
     Página com botão de deploy
     """
+    return render(request, 'deploy.html')
+
+
+def robots_txt(request):
+    """Serve robots.txt dinamicamente"""
+    content = """User-agent: *
+Allow: /
+Sitemap: https://www.agropecuariaah.agr.br/sitemap.xml"""
+    return HttpResponse(content, content_type='text/plain')
+
+
+@csrf_exempt
+@require_POST
+def deploy_webhook(request):
+    """Webhook para deploy automático via GitHub"""
+    try:
+        # Verificar se é um push para a branch main
+        payload = request.body.decode('utf-8')
+        
+        # Executar o deploy
+        result = subprocess.check_output([
+            'bash', '/var/www/ahsite_news/ahsite/backup_site/deploy.sh'
+        ], stderr=subprocess.STDOUT, cwd='/var/www/ahsite_news/ahsite/ahsite')
+        
+        # Decodificar o resultado para string
+        result_str = result.decode('utf-8')
+        
+        return JsonResponse({
+            'status': 'success',
+            'message': 'Deploy realizado com sucesso!',
+            'output': result_str
+        })
+            
+    except subprocess.CalledProcessError as e:
+        return JsonResponse({
+            'status': 'error',
+            'message': 'Erro no deploy',
+            'output': e.output.decode('utf-8') if e.output else str(e)
+        }, status=500)
+    except Exception as e:
+        return JsonResponse({
+            'status': 'error',
+            'message': str(e)
+        }, status=500)
+
+
+@staff_member_required
+def admin_deploy_view(request):
+    """View para deploy via painel admin"""
+    if request.method == 'POST':
+        try:
+            # Executar o deploy
+            result = subprocess.check_output([
+                'bash', '/var/www/ahsite_news/ahsite/backup_site/deploy.sh'
+            ], stderr=subprocess.STDOUT, cwd='/var/www/ahsite_news/ahsite/ahsite')
+            
+            result_str = result.decode('utf-8')
+            messages.success(request, f'Deploy realizado com sucesso! {result_str}')
+            
+        except subprocess.CalledProcessError as e:
+            error_msg = e.output.decode('utf-8') if e.output else str(e)
+            messages.error(request, f'Erro no deploy: {error_msg}')
+        except Exception as e:
+            messages.error(request, f'Erro inesperado: {str(e)}')
+    
+    return render(request, 'admin_deploy.html')
+
+
+def deploy_page(request):
+    """Página com botão de deploy"""
+    return render(request, 'deploy.html')
+
+
+def robots_txt(request):
+    """Serve robots.txt dinamicamente"""
+    content = """User-agent: *
+Allow: /
+Sitemap: https://www.agropecuariaah.agr.br/sitemap.xml"""
+    return HttpResponse(content, content_type='text/plain')
+
+
+@csrf_exempt
+@require_POST
+def deploy_webhook(request):
+    """Webhook para deploy automático via GitHub"""
+    try:
+        # Verificar se é um push para a branch main
+        payload = request.body.decode('utf-8')
+        
+        # Executar o deploy
+        result = subprocess.check_output([
+            'bash', '/var/www/ahsite_news/ahsite/backup_site/deploy.sh'
+        ], stderr=subprocess.STDOUT, cwd='/var/www/ahsite_news/ahsite/ahsite')
+        
+        # Decodificar o resultado para string
+        result_str = result.decode('utf-8')
+        
+        return JsonResponse({
+            'status': 'success',
+            'message': 'Deploy realizado com sucesso!',
+            'output': result_str
+        })
+            
+    except subprocess.CalledProcessError as e:
+        return JsonResponse({
+            'status': 'error',
+            'message': 'Erro no deploy',
+            'output': e.output.decode('utf-8') if e.output else str(e)
+        }, status=500)
+    except Exception as e:
+        return JsonResponse({
+            'status': 'error',
+            'message': str(e)
+        }, status=500)
+
+
+@staff_member_required
+def admin_deploy_view(request):
+    """View para deploy via painel admin"""
+    if request.method == 'POST':
+        try:
+            # Executar o deploy
+            result = subprocess.check_output([
+                'bash', '/var/www/ahsite_news/ahsite/backup_site/deploy.sh'
+            ], stderr=subprocess.STDOUT, cwd='/var/www/ahsite_news/ahsite/ahsite')
+            
+            result_str = result.decode('utf-8')
+            messages.success(request, f'Deploy realizado com sucesso! {result_str}')
+            
+        except subprocess.CalledProcessError as e:
+            error_msg = e.output.decode('utf-8') if e.output else str(e)
+            messages.error(request, f'Erro no deploy: {error_msg}')
+        except Exception as e:
+            messages.error(request, f'Erro inesperado: {str(e)}')
+    
+    return render(request, 'admin_deploy.html')
+
+
+def deploy_page(request):
+    """Página com botão de deploy"""
     return render(request, 'deploy.html')

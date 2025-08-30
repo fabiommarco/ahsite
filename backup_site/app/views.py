@@ -9,6 +9,7 @@ import functools
 import json
 import random
 import os
+import subprocess
 
 from app.forms import ApplyJobForm, ContactForm, NewsletterForm
 from app.models import *
@@ -17,13 +18,14 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage, InvalidPage, Paginator
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.utils.translation import get_language, gettext as _
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
+from django.views.decorators.http import require_POST
 
 colors = [
     "c8d6b9",
@@ -426,3 +428,45 @@ def convert_year_to_integer(apps, schema_editor):
             Timeline.objects.filter(pk=timeline.pk).update(year_temp=year)
         except Exception as e:
             Timeline.objects.filter(pk=timeline.pk).update(year_temp=2020)
+
+
+@csrf_exempt
+@require_POST
+def deploy_webhook(request):
+    """
+    Webhook para deploy automático via GitHub
+    """
+    try:
+        # Verificar se é um push para a branch main
+        payload = request.body.decode('utf-8')
+        
+        # Executar o deploy
+        result = subprocess.run([
+            'bash', '/var/www/ahsite_news/ahsite/backup_site/deploy.sh'
+        ], capture_output=True, text=True, cwd='/var/www/ahsite_news/ahsite/ahsite')
+        
+        if result.returncode == 0:
+            return JsonResponse({
+                'status': 'success',
+                'message': 'Deploy realizado com sucesso!',
+                'output': result.stdout
+            })
+        else:
+            return JsonResponse({
+                'status': 'error',
+                'message': 'Erro no deploy',
+                'output': result.stderr
+            }, status=500)
+            
+    except Exception as e:
+        return JsonResponse({
+            'status': 'error',
+            'message': str(e)
+        }, status=500)
+
+
+def deploy_page(request):
+    """
+    Página com botão de deploy
+    """
+    return render(request, 'deploy.html')

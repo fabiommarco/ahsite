@@ -29,7 +29,7 @@ python manage.py dumpdata > "$BACKUP_DIR/backup_$(date +%Y%m%d_%H%M%S).json"
 # Git pull
 log "📥 Fazendo git pull..."
 cd "$PROJECT_DIR"
-git pull origin main || {
+git pull origin master || {
     log "❌ Erro no git pull"
     exit 1
 }

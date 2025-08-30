@@ -1,54 +1,59 @@
 #!/bin/bash
 
-# Script de Deploy Automático para o Site AH
-# Este script será executado automaticamente quando houver mudanças no Git
-
-echo "🚀 Iniciando deploy automático..."
+echo "🚀 Deploy Automático - Site AH"
 echo "=================================="
 
-# 1. Atualizar o código
-echo "📥 Atualizando código..."
-git pull origin main
+# Configurações
+PROJECT_DIR="/var/www/ahsite_news/ahsite/ahsite"
+VENV_PATH="/var/www/ahsite_news/ahsite/backup_site/venv"
+GIT_REPO="/var/www/ahsite_news/ahsite/backup_site"
 
-# 2. Ativar ambiente virtual
-echo "🐍 Ativando ambiente virtual..."
-source .venv2/bin/activate
+# Função de log
+log() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1"
+}
 
-# 3. Instalar/atualizar dependências
-echo "📦 Atualizando dependências..."
+# 1. Atualizar código do Git
+log "📥 Atualizando código do Git..."
+cd $GIT_REPO
+git fetch origin
+git reset --hard origin/master
+
+# 2. Copiar arquivos para o diretório do projeto
+log "📁 Copiando arquivos..."
+cp -r app/* $PROJECT_DIR/app/
+cp -r static/* $PROJECT_DIR/static/
+cp -r templates/* $PROJECT_DIR/templates/
+cp manage.py $PROJECT_DIR/
+cp requirements.txt $PROJECT_DIR/
+
+# 3. Ativar ambiente virtual
+log "🐍 Ativando ambiente virtual..."
+source $VENV_PATH/bin/activate
+
+# 4. Instalar dependências
+log "📦 Instalando dependências..."
+cd $PROJECT_DIR
 pip install -r requirements.txt
 
-# 4. Executar migrações do banco
-echo "🗄️ Executando migrações..."
+# 5. Aplicar migrações
+log "🗄️ Aplicando migrações..."
 python3 manage.py migrate
 
-# 5. Coletar arquivos estáticos
-echo "📁 Coletando arquivos estáticos..."
+# 6. Coletar arquivos estáticos
+log "📁 Coletando arquivos estáticos..."
 python3 manage.py collectstatic --noinput
 
-# 6. Verificar se há novas notícias para processar
-echo "📰 Verificando notícias..."
-python3 manage.py shell -c "
-from app.models import News
-total = News.objects.count()
-print(f'Total de notícias no banco: {total}')
-"
+# 7. Verificar se o Django está funcionando
+log "🔍 Verificando Django..."
+python3 manage.py check
 
-# 7. Reiniciar serviços (se necessário)
-echo "🔄 Reiniciando serviços..."
-# Descomente as linhas abaixo se estiver usando systemd
-# sudo systemctl restart ahsite
-# sudo systemctl restart nginx
+# 8. Reiniciar serviços (se necessário)
+log "🔄 Reiniciando serviços..."
+# Aqui você pode adicionar comandos específicos da Locaweb
+# Por exemplo, reiniciar o servidor web
 
-# 8. Verificar status
-echo "✅ Verificando status..."
-if [ $? -eq 0 ]; then
-    echo "🎉 Deploy concluído com sucesso!"
-    echo "🌐 Site disponível em: http://127.0.0.1:8000"
-else
-    echo "❌ Erro no deploy!"
-    exit 1
-fi
-
+log "✅ Deploy concluído com sucesso!"
+log "🌐 Site disponível em: http://seudominio.com"
 echo "=================================="
-echo "Deploy finalizado em: $(date)"
+log "Deploy finalizado em: $(date)"

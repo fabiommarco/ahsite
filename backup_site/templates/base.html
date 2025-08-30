@@ -430,6 +430,7 @@
                                 {% trans "Responsabilidade Social" %}
                             </a>
                             <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'foundation' %}">{% trans "Fundação" %}</a></li>
                                 {% for link in events_link %}
                                     <li><a class="dropdown-item" href="{% url 'event_view' link.event_slug %}">{{ link.event_title }}</a></li>
                                 {% endfor %}

@@ -70,6 +70,7 @@ TEMPLATES = [
                 'ahsite.context_processors.admin_dashboard_context',
                 'ahsite.context_processors.products_menu',
                 'ahsite.context_processors.events_menu',
+                'ahsite.context_processors.dashboard_stats',
             ],
         },
     },

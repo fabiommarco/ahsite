@@ -1,11 +1,11 @@
 {% extends "admin/base_site.html" %}
 {% load i18n %}
 
-{% block title %}Deploy do Sistema{% endblock %}
+{% block title %}Sistema de Deploy e Versionamento{% endblock %}
 
 {% block content %}
 <div id="content-main">
-    <h1>🚀 Deploy do Sistema</h1>
+    <h1>🚀 Sistema de Deploy e Versionamento</h1>
     
     {% if messages %}
     <ul class="messagelist">
@@ -15,22 +15,327 @@
     </ul>
     {% endif %}
     
-    <div class="module">
-        <h2>Executar Deploy</h2>
-        <p>Clique no botão abaixo para executar o deploy automático do sistema.</p>
-        <p><strong>Atenção:</strong> Esta ação irá:</p>
-        <ul>
-            <li>Fazer pull das últimas alterações do Git</li>
-            <li>Coletar arquivos estáticos</li>
-            <li>Executar migrações do banco</li>
-            <li>Reiniciar o servidor Nginx</li>
-        </ul>
+    <div class="row">
+        <!-- Botão 1: Commit e Push -->
+        <div class="col-md-6">
+            <div class="module commit-module">
+                <h2>📤 1. Enviar para GitHub</h2>
+                <p>Este botão irá:</p>
+                <ul>
+                    <li>🔍 Detectar todas as mudanças</li>
+                    <li>📦 Adicionar arquivos modificados</li>
+                    <li>💬 Gerar mensagem de commit automática</li>
+                    <li>💾 Fazer commit das mudanças</li>
+                    <li>📤 Fazer push para o GitHub</li>
+                </ul>
+                
+                <div class="alert alert-info">
+                    <strong>💡 Quando usar:</strong> Sempre que fizer alterações no código e quiser salvá-las no repositório.
+                </div>
+                
+                <a href="/admin/commit/" class="btn btn-primary btn-lg">
+                    <i class="fas fa-upload"></i> Enviar para GitHub
+                </a>
+            </div>
+        </div>
         
-        <form method="post">
-            {% csrf_token %}
-            <input type="submit" value="🔄 Executar Deploy" class="default" 
-                   onclick="return confirm('Tem certeza que deseja executar o deploy?')" />
-        </form>
+        <!-- Botão 2: Deploy -->
+        <div class="col-md-6">
+            <div class="module deploy-module">
+                <h2>🚀 2. Deploy no Servidor</h2>
+                <p>Este botão irá:</p>
+                <ul>
+                    <li>📥 Fazer pull das últimas alterações</li>
+                    <li>📦 Coletar arquivos estáticos</li>
+                    <li>🗄️ Executar migrações do banco</li>
+                    <li>🔄 Reiniciar serviços</li>
+                    <li>✅ Atualizar o site em produção</li>
+                </ul>
+                
+                <div class="alert alert-warning">
+                    <strong>⚠️ Atenção:</strong> Só execute após ter feito o commit e push das mudanças.
+                </div>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="🚀 Executar Deploy" class="btn btn-success btn-lg" 
+                           onclick="return confirm('Tem certeza que deseja executar o deploy? Esta ação irá atualizar o site em produção.')" />
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="module mt-4">
+        <h2>📋 Fluxo de Trabalho Recomendado</h2>
+        <div class="workflow-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Fazer alterações</h4>
+                    <p>Edite os arquivos do projeto</p>
+                </div>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Enviar para GitHub</h4>
+                    <p>Clique em "Enviar para GitHub"</p>
+                </div>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Deploy no Servidor</h4>
+                    <p>Clique em "Executar Deploy"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="module mt-4">
+        <h2>🔗 Links Úteis</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <a href="https://github.com/fabiommarco/ahsite" target="_blank" class="btn btn-outline-primary">
+                    <i class="fab fa-github"></i> Repositório GitHub
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="/admin/" class="btn btn-outline-secondary">
+                    <i class="fas fa-cog"></i> Painel Admin
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="/" target="_blank" class="btn btn-outline-success">
+                    <i class="fas fa-external-link-alt"></i> Ver Site
+                </a>
+            </div>
+        </div>
     </div>
 </div>
+
+<style>
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+}
+
+.col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding: 0 15px;
+}
+
+.col-md-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+    padding: 0 15px;
+}
+
+.mt-4 {
+    margin-top: 2rem;
+}
+
+.module {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.commit-module {
+    border-left: 4px solid #007bff;
+}
+
+.deploy-module {
+    border-left: 4px solid #28a745;
+}
+
+.module h2 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.module ul {
+    margin-bottom: 1.5rem;
+}
+
+.module li {
+    margin-bottom: 0.5rem;
+}
+
+.alert {
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    border: 1px solid #bee5eb;
+    color: #0c5460;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffeaa7;
+    color: #856404;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #1e7e34;
+    color: white;
+}
+
+.btn-outline-primary {
+    background-color: transparent;
+    color: #007bff;
+    border: 1px solid #007bff;
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-outline-secondary {
+    background-color: transparent;
+    color: #6c757d;
+    border: 1px solid #6c757d;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-outline-success {
+    background-color: transparent;
+    color: #28a745;
+    border: 1px solid #28a745;
+}
+
+.btn-outline-success:hover {
+    background-color: #28a745;
+    color: white;
+}
+
+.workflow-steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    min-width: 200px;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    background: #007bff;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.step-content h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: #333;
+}
+
+.step-content p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.step-arrow {
+    font-size: 1.5rem;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.messagelist {
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 4px;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+}
+
+.messagelist li {
+    margin: 5px 0;
+    font-family: monospace;
+    white-space: pre-wrap;
+}
+
+@media (max-width: 768px) {
+    .col-md-6, .col-md-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    .workflow-steps {
+        flex-direction: column;
+    }
+    
+    .step-arrow {
+        transform: rotate(90deg);
+    }
+}
+</style>
 {% endblock %}

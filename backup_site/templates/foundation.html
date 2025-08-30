@@ -1,0 +1,224 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}Fundação - Agropecuária AH{% endblock %}
+
+{% block class %}foundation-page{% endblock %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <!-- Banner da Fundação -->
+    <div class="foundation-banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 class="foundation-title">Fundação Agropecuária AH</h1>
+                    <p class="foundation-subtitle">Compromisso com o desenvolvimento social e sustentável</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <!-- Sobre a Fundação -->
+                <div class="foundation-section mb-5">
+                    <h2 class="section-title">Sobre a Fundação</h2>
+                    <p class="section-text">
+                        A Fundação Agropecuária AH foi criada com o objetivo de promover o desenvolvimento social, 
+                        educacional e ambiental nas comunidades onde a Agropecuária AH atua. Nossa missão é contribuir 
+                        para a melhoria da qualidade de vida das pessoas através de projetos sustentáveis e inovadores.
+                    </p>
+                </div>
+
+                <!-- Nossos Pilares -->
+                <div class="foundation-section mb-5">
+                    <h2 class="section-title">Nossos Pilares</h2>
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="pillar-card">
+                                <div class="pillar-icon">🎓</div>
+                                <h3>Educação</h3>
+                                <p>Promovemos a educação de qualidade e o desenvolvimento de competências para crianças e jovens.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="pillar-card">
+                                <div class="pillar-icon">🌱</div>
+                                <h3>Sustentabilidade</h3>
+                                <p>Desenvolvemos projetos que promovem a conservação ambiental e o uso sustentável dos recursos.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="pillar-card">
+                                <div class="pillar-icon">🤝</div>
+                                <h3>Comunidade</h3>
+                                <p>Fortalecimento das comunidades locais através de parcerias e projetos sociais.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projetos em Andamento -->
+                <div class="foundation-section mb-5">
+                    <h2 class="section-title">Projetos em Andamento</h2>
+                    <div class="project-list">
+                        <div class="project-item">
+                            <h4>Programa de Educação Ambiental</h4>
+                            <p>Projeto desenvolvido em parceria com escolas locais para conscientizar crianças sobre a importância da preservação ambiental.</p>
+                        </div>
+                        <div class="project-item">
+                            <h4>Capacitação Profissional</h4>
+                            <p>Cursos e treinamentos para jovens e adultos da comunidade, preparando-os para o mercado de trabalho.</p>
+                        </div>
+                        <div class="project-item">
+                            <h4>Apoio a Instituições Sociais</h4>
+                            <p>Parcerias com organizações locais para apoiar projetos sociais e comunitários.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Como Contribuir -->
+                <div class="foundation-section mb-5">
+                    <h2 class="section-title">Como Contribuir</h2>
+                    <p class="section-text">
+                        Você pode contribuir com nossos projetos de várias formas. Entre em contato conosco para saber mais sobre como participar.
+                    </p>
+                    <div class="text-center">
+                        <a href="{% url 'talk_with_us' %}" class="btn btn-primary btn-lg">
+                            Entre em Contato
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.foundation-banner {
+    background: linear-gradient(135deg, #1b3d2f 0%, #28a745 100%);
+    color: white;
+    padding: 4rem 0;
+    margin-bottom: 2rem;
+}
+
+.foundation-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.foundation-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.foundation-section {
+    padding: 2rem 0;
+}
+
+.section-title {
+    color: #1b3d2f;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.section-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #666;
+    text-align: justify;
+}
+
+.pillar-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.pillar-card:hover {
+    transform: translateY(-5px);
+}
+
+.pillar-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.pillar-card h3 {
+    color: #1b3d2f;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.pillar-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.project-item {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.5rem;
+    border-left: 4px solid #28a745;
+}
+
+.project-item h4 {
+    color: #1b3d2f;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.project-item p {
+    color: #666;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #1b3d2f 0%, #28a745 100%);
+    border: none;
+    padding: 1rem 2rem;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 768px) {
+    .foundation-title {
+        font-size: 2rem;
+    }
+    
+    .foundation-subtitle {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+}
+</style>
+{% endblock %}

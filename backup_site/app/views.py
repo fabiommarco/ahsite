@@ -51,111 +51,6 @@ colors = [
     "ACECD5",
 ]
 
-# -*- coding: utf-8 -*-
-"""
-    AH Website -
-    Fabio Marco - 2025
-      fabio.marco@ah.agr.br
-
-"""
-import functools
-import json
-import random
-import os
-import subprocess
-
-from app.forms import ApplyJobForm, ContactForm, NewsletterForm
-from app.models import *
-from app.utils import reload_sys
-from django.conf import settings
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from django.contrib.admin.views.decorators import staff_member_required
-from django.core.paginator import EmptyPage, InvalidPage, Paginator
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse
-from django.utils.decorators import method_decorator
-from django.utils.translation import get_language, gettext as _
-from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import TemplateView
-from django.views.decorators.http import require_POST
-
-colors = [
-    "c8d6b9",
-    "faf3dd",
-    "9dbad5",
-    "769ecb",
-    "f6cacb",
-    "d99294",
-    "d4cfbd",
-    "e1cec9",
-    "b4bad4",
-    "d2c1ce",
-    "dfd8dc",
-    "ebe6e5",
-    "70A1D7",
-    "A1DE93",
-    "F7F48B",
-    "F47C7C",
-    "FFF9AA",
-    "FFD5B8",
-    "FFB9B3",
-    "ACECD5",
-]
-
-# -*- coding: utf-8 -*-
-"""
-    AH Website -
-    Fabio Marco - 2025
-      fabio.marco@ah.agr.br
-
-"""
-import functools
-import json
-import random
-import os
-import subprocess
-
-from app.forms import ApplyJobForm, ContactForm, NewsletterForm
-from app.models import *
-from app.utils import reload_sys
-from django.conf import settings
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from django.core.paginator import EmptyPage, InvalidPage, Paginator
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse
-from django.utils.decorators import method_decorator
-from django.utils.translation import get_language, gettext as _
-from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import TemplateView
-from django.views.decorators.http import require_POST
-
-colors = [
-    "c8d6b9",
-    "faf3dd",
-    "9dbad5",
-    "769ecb",
-    "f6cacb",
-    "d99294",
-    "d4cfbd",
-    "e1cec9",
-    "b4bad4",
-    "d2c1ce",
-    "dfd8dc",
-    "ebe6e5",
-    "70A1D7",
-    "A1DE93",
-    "F7F48B",
-    "F47C7C",
-    "FFF9AA",
-    "FFD5B8",
-    "FFB9B3",
-    "ACECD5",
-]
-
 
 def get_or_redirect(model, language, view_name, **kwargs):
     object = get_object_or_404(model, **kwargs)
@@ -549,9 +444,22 @@ def deploy_webhook(request):
         
         # Executar o deploy
         try:
+            # Detectar o ambiente e usar caminhos apropriados
+            import os
+            current_dir = os.getcwd()
+            
+            # Se estamos em desenvolvimento local
+            if 'backup_site' in current_dir:
+                deploy_script = os.path.join(current_dir, 'deploy.sh')
+                project_dir = current_dir
+            else:
+                # Em produção
+                deploy_script = '/var/www/ahsite_news/ahsite/backup_site/deploy.sh'
+                project_dir = '/var/www/ahsite_news/ahsite/ahsite'
+            
             output = subprocess.check_output([
-                'bash', '/var/www/ahsite_news/ahsite/backup_site/deploy.sh'
-            ], cwd='/var/www/ahsite_news/ahsite/ahsite', stderr=subprocess.STDOUT)
+                'bash', deploy_script
+            ], cwd=project_dir, stderr=subprocess.STDOUT)
             
             # Converter bytes para string
             output_str = output.decode('utf-8') if isinstance(output, bytes) else str(output)
@@ -602,9 +510,22 @@ def deploy_webhook(request):
         payload = request.body.decode('utf-8')
         
         # Executar o deploy
+        # Detectar o ambiente e usar caminhos apropriados
+        import os
+        current_dir = os.getcwd()
+        
+        # Se estamos em desenvolvimento local
+        if 'backup_site' in current_dir:
+            deploy_script = os.path.join(current_dir, 'deploy.sh')
+            project_dir = current_dir
+        else:
+            # Em produção
+            deploy_script = '/var/www/ahsite_news/ahsite/backup_site/deploy.sh'
+            project_dir = '/var/www/ahsite_news/ahsite/ahsite'
+        
         result = subprocess.check_output([
-            'bash', '/var/www/ahsite_news/ahsite/backup_site/deploy.sh'
-        ], stderr=subprocess.STDOUT, cwd='/var/www/ahsite_news/ahsite/ahsite')
+            'bash', deploy_script
+        ], stderr=subprocess.STDOUT, cwd=project_dir)
         
         # Decodificar o resultado para string
         result_str = result.decode('utf-8')
@@ -634,9 +555,22 @@ def admin_deploy_view(request):
     if request.method == 'POST':
         try:
             # Executar o deploy
+            # Detectar o ambiente e usar caminhos apropriados
+            import os
+            current_dir = os.getcwd()
+            
+            # Se estamos em desenvolvimento local
+            if 'backup_site' in current_dir:
+                deploy_script = os.path.join(current_dir, 'deploy.sh')
+                project_dir = current_dir
+            else:
+                # Em produção
+                deploy_script = '/var/www/ahsite_news/ahsite/backup_site/deploy.sh'
+                project_dir = '/var/www/ahsite_news/ahsite/ahsite'
+            
             result = subprocess.check_output([
-                'bash', '/var/www/ahsite_news/ahsite/backup_site/deploy.sh'
-            ], stderr=subprocess.STDOUT, cwd='/var/www/ahsite_news/ahsite/ahsite')
+                'bash', deploy_script
+            ], stderr=subprocess.STDOUT, cwd=project_dir)
             
             result_str = result.decode('utf-8')
             messages.success(request, f'Deploy realizado com sucesso! {result_str}')
@@ -672,9 +606,22 @@ def deploy_webhook(request):
         payload = request.body.decode('utf-8')
         
         # Executar o deploy
+        # Detectar o ambiente e usar caminhos apropriados
+        import os
+        current_dir = os.getcwd()
+        
+        # Se estamos em desenvolvimento local
+        if 'backup_site' in current_dir:
+            deploy_script = os.path.join(current_dir, 'deploy.sh')
+            project_dir = current_dir
+        else:
+            # Em produção
+            deploy_script = '/var/www/ahsite_news/ahsite/backup_site/deploy.sh'
+            project_dir = '/var/www/ahsite_news/ahsite/ahsite'
+        
         result = subprocess.check_output([
-            'bash', '/var/www/ahsite_news/ahsite/backup_site/deploy.sh'
-        ], stderr=subprocess.STDOUT, cwd='/var/www/ahsite_news/ahsite/ahsite')
+            'bash', deploy_script
+        ], stderr=subprocess.STDOUT, cwd=project_dir)
         
         # Decodificar o resultado para string
         result_str = result.decode('utf-8')
@@ -698,31 +645,7 @@ def deploy_webhook(request):
         }, status=500)
 
 
-@staff_member_required
-def admin_deploy_view(request):
-    """View para deploy via painel admin"""
-    if request.method == 'POST':
-        try:
-            # Executar o deploy
-            result = subprocess.check_output([
-                'bash', '/var/www/ahsite_news/ahsite/backup_site/deploy.sh'
-            ], stderr=subprocess.STDOUT, cwd='/var/www/ahsite_news/ahsite/ahsite')
-            
-            result_str = result.decode('utf-8')
-            messages.success(request, f'Deploy realizado com sucesso! {result_str}')
-            
-        except subprocess.CalledProcessError as e:
-            error_msg = e.output.decode('utf-8') if e.output else str(e)
-            messages.error(request, f'Erro no deploy: {error_msg}')
-        except Exception as e:
-            messages.error(request, f'Erro inesperado: {str(e)}')
-    
-    return render(request, 'admin_deploy.html')
 
-
-def deploy_page(request):
-    """Página com botão de deploy"""
-    return render(request, 'deploy.html')
 
 
 @staff_member_required
@@ -731,9 +654,20 @@ def commit_automatico_view(request):
     if request.method == 'POST':
         try:
             # Executar o script de commit automático
+            # Detectar o ambiente e usar caminhos apropriados
+            import os
+            current_dir = os.getcwd()
+            
+            # Se estamos em desenvolvimento local
+            if 'backup_site' in current_dir:
+                script_dir = current_dir
+            else:
+                # Em produção
+                script_dir = '/var/www/ahsite_news/ahsite/backup_site'
+            
             resultado = subprocess.check_output([
                 'python', 'commit_automatico.py'
-            ], stderr=subprocess.STDOUT, cwd='/var/www/ahsite_news/ahsite/backup_site')
+            ], stderr=subprocess.STDOUT, cwd=script_dir)
             
             resultado_str = resultado.decode('utf-8')
             messages.success(request, f'Commit automático realizado com sucesso! {resultado_str}')
@@ -745,3 +679,8 @@ def commit_automatico_view(request):
             messages.error(request, f'Erro inesperado: {str(e)}')
     
     return render(request, 'commit_automatico.html')
+
+
+def foundation(request):
+    """View para a página da Fundação"""
+    return render(request, 'foundation.html')

@@ -39,6 +39,7 @@ urlpatterns += i18n_patterns(
     path('newsletter/', views.new_newsletter, name="new_newsletter"),
     re_path(r'new_contact/(?P<contact_type>.*)$', views.new_contact, name="new_contact"),
     path('denuncia/', views.denuncia_view, name='denuncia'),
+    path('fundacao/', views.foundation, name="foundation"),
     
     prefix_default_language=False
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

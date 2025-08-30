@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.template import RequestContext, Template
 from django.urls import reverse
 from django.utils.translation import activate, get_language
-from app.models import GeneralConfig, Event, Partners, Products
+from app.models import GeneralConfig, Event, Partners, Products, News
 from django.conf import settings
 
 
@@ -59,3 +59,23 @@ def events_menu(request):
     idioma = get_language()
     eventos = Event.objects.filter(language=idioma)
     return {"events_link": eventos}
+
+
+def dashboard_stats(request):
+    """Adiciona estatísticas para o dashboard"""
+    if request.path == '/admin/' or request.path == '/admin':
+        try:
+            return {
+                'news_count': News.objects.count(),
+                'events_count': Event.objects.count(),
+                'partners_count': Partners.objects.count(),
+                'contacts_count': 0,  # Modelo Contact não existe
+            }
+        except:
+            return {
+                'news_count': 0,
+                'events_count': 0,
+                'partners_count': 0,
+                'contacts_count': 0,  # Modelo Contact não existe
+            }
+    return {}

@@ -2,7 +2,7 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}{{ title }} | {{ site_title|default:_('Agropecuária AH - Admin') }}{% endblock %}
+{% block title %}{{ title }} | Sistema Administrativo - Agropecuária AH{% endblock %}
 
 {% block extrastyle %}
 <style>
@@ -20,9 +20,9 @@
 
     /* Header personalizado */
     #header {
-        background: linear-gradient(135deg, var(--primary-color) 0%, #20c997 100%);
+        background: linear-gradient(135deg, #1b3d2f 0%, #28a745 100%);
         color: white;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     #header a:link, #header a:visited {
@@ -31,8 +31,15 @@
     }
 
     #branding h1 {
-        font-weight: 600;
-        font-size: 1.5rem;
+        color: white;
+        font-weight: 700;
+    }
+
+    #branding h1 a {
+        color: white;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
     }
 
     /* Sidebar melhorada */
@@ -55,18 +62,20 @@
 
     /* Cards para módulos */
     .module {
+        background: white;
         border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        border: none;
-        margin-bottom: 20px;
-        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        border: 1px solid #e9ecef;
+        margin-bottom: 1rem;
     }
 
     .module h2 {
-        background: var(--primary-color);
-        color: white;
-        padding: 15px;
+        background: #f8f9fa;
+        color: #333;
+        padding: 1rem;
         margin: 0;
+        border-bottom: 1px solid #e9ecef;
+        border-radius: 8px 8px 0 0;
         font-size: 1.1rem;
         font-weight: 600;
     }
@@ -104,20 +113,29 @@
     }
 
     /* Botões melhorados */
-    .button, input[type=submit], input[type=button], .submit-row input {
-        background: var(--primary-color);
+    .button, input[type=submit], input[type=button], .submit-row input, a.button {
+        background: #007bff;
         color: white;
         border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: 600;
         transition: all 0.3s ease;
     }
 
-    .button:hover, input[type=submit]:hover, input[type=button]:hover {
-        background: #218838;
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+    .button:hover, input[type=submit]:hover, input[type=button]:hover, .submit-row input:hover, a.button:hover {
+        background: #0056b3;
+        color: white;
+        text-decoration: none;
+    }
+
+    .button.default, input[type=submit].default, .submit-row input.default {
+        background: #28a745;
+    }
+
+    .button.default:hover, input[type=submit].default:hover, .submit-row input.default:hover {
+        background: #1e7e34;
     }
 
     .deletelink {
@@ -130,7 +148,7 @@
 
     /* Formulários melhorados */
     .form-row {
-        padding: 15px;
+        padding: 1rem;
         border-bottom: 1px solid #e9ecef;
     }
 
@@ -140,9 +158,7 @@
 
     .form-row label {
         font-weight: 600;
-        color: var(--dark-color);
-        margin-bottom: 5px;
-        display: block;
+        color: #333;
     }
 
     .form-row input, .form-row select, .form-row textarea {
@@ -160,50 +176,60 @@
 
     /* Breadcrumbs melhorados */
     .breadcrumbs {
-        background: var(--light-color);
-        padding: 10px 15px;
-        border-radius: 5px;
-        margin-bottom: 20px;
+        background: #f8f9fa;
+        border-bottom: 1px solid #e9ecef;
+        padding: 0.75rem 1rem;
         font-size: 0.9rem;
     }
 
     .breadcrumbs a {
-        color: var(--primary-color);
+        color: #007bff;
         text-decoration: none;
     }
 
     .breadcrumbs a:hover {
+        color: #0056b3;
         text-decoration: underline;
     }
 
     /* Mensagens melhoradas */
     .messagelist {
-        margin: 20px 0;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     .messagelist li {
-        padding: 12px 15px;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        border-left: 4px solid;
+        padding: 1rem;
+        border-bottom: 1px solid #e9ecef;
     }
 
-    .messagelist li.success {
+    .messagelist li:last-child {
+        border-bottom: none;
+    }
+
+    .messagelist .success {
         background: #d4edda;
         color: #155724;
-        border-left-color: var(--success-color);
+        border-left: 4px solid #28a745;
     }
 
-    .messagelist li.error {
+    .messagelist .error {
         background: #f8d7da;
         color: #721c24;
-        border-left-color: var(--danger-color);
+        border-left: 4px solid #dc3545;
     }
 
-    .messagelist li.warning {
+    .messagelist .warning {
         background: #fff3cd;
         color: #856404;
-        border-left-color: var(--warning-color);
+        border-left: 4px solid #ffc107;
+    }
+
+    .messagelist .info {
+        background: #d1ecf1;
+        color: #0c5460;
+        border-left: 4px solid #17a2b8;
     }
 
     /* Filtros melhorados */
@@ -280,6 +306,10 @@
         .results {
             font-size: 0.9rem;
         }
+
+        .quick-actions-header {
+            display: none;
+        }
     }
 
     /* Animações suaves */
@@ -316,14 +346,61 @@
         font-size: 0.8rem;
         font-weight: 600;
     }
+
+    /* Quick Action Buttons */
+    .quick-actions-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-left: auto;
+    }
+
+    .quick-action-btn {
+        background: rgba(255,255,255,0.2);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255,255,255,0.3);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .quick-action-btn:hover {
+        background: rgba(255,255,255,0.3);
+        color: white;
+        text-decoration: none;
+        transform: translateY(-1px);
+    }
+
+    .quick-action-btn.commit {
+        background: rgba(0,123,255,0.8);
+        border-color: rgba(0,123,255,0.9);
+    }
+
+    .quick-action-btn.deploy {
+        background: rgba(40,167,69,0.8);
+        border-color: rgba(40,167,69,0.9);
+    }
+
+    .quick-action-btn.view {
+        background: rgba(23,162,184,0.8);
+        border-color: rgba(23,162,184,0.9);
+    }
 </style>
 <link rel="stylesheet" type="text/css" href="{% static 'css/admin-custom.css' %}">
 {% endblock %}
 
 {% block branding %}
 <h1 id="site-name">
-    <img src="{% static 'img/favicon.ico' %}" alt="AH Logo" style="width: 24px; height: 24px; margin-right: 8px; vertical-align: middle;">
-    <a href="{% url 'admin:index' %}">Sistema Administrativo</a>
+    <a href="{% url 'admin:index' %}">
+        <img src="{% static 'img/logo-header.png' %}" alt="AH" style="height: 30px; margin-right: 10px;">
+        Sistema Administrativo - Agropecuária AH
+    </a>
 </h1>
 {% endblock %}
 
@@ -342,7 +419,246 @@
 </div>
 {% endblock %}
 
-{% block nav-global %}{% endblock %} 
+{% block nav-global %}
+<style>
+/* Custom Admin Header */
+#header {
+    background: linear-gradient(135deg, #1b3d2f 0%, #28a745 100%);
+    color: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#branding h1 {
+    color: white;
+    font-weight: 700;
+}
+
+#branding h1 a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+/* Quick Action Buttons */
+.quick-actions-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: auto;
+}
+
+.quick-action-btn {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.3);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.quick-action-btn:hover {
+    background: rgba(255,255,255,0.3);
+    color: white;
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+.quick-action-btn.commit {
+    background: rgba(0,123,255,0.8);
+    border-color: rgba(0,123,255,0.9);
+}
+
+.quick-action-btn.deploy {
+    background: rgba(40,167,69,0.8);
+    border-color: rgba(40,167,69,0.9);
+}
+
+.quick-action-btn.view {
+    background: rgba(23,162,184,0.8);
+    border-color: rgba(23,162,184,0.9);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .quick-actions-header {
+        display: none;
+    }
+    
+    #branding h1 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Custom Breadcrumbs */
+.breadcrumbs {
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+}
+
+.breadcrumbs a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Custom Module Styling */
+.module {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: 1px solid #e9ecef;
+    margin-bottom: 1rem;
+}
+
+.module h2 {
+    background: #f8f9fa;
+    color: #333;
+    padding: 1rem;
+    margin: 0;
+    border-bottom: 1px solid #e9ecef;
+    border-radius: 8px 8px 0 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Custom Button Styling */
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.button:hover, input[type=submit]:hover, input[type=button]:hover, .submit-row input:hover, a.button:hover {
+    background: #0056b3;
+    color: white;
+    text-decoration: none;
+}
+
+.button.default, input[type=submit].default, .submit-row input.default {
+    background: #28a745;
+}
+
+.button.default:hover, input[type=submit].default:hover, .submit-row input.default:hover {
+    background: #1e7e34;
+}
+
+/* Custom Table Styling */
+#changelist table {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#changelist thead th {
+    background: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Custom Form Styling */
+.form-row {
+    padding: 1rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.form-row:last-child {
+    border-bottom: none;
+}
+
+.form-row label {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Custom Message Styling */
+.messagelist {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.messagelist li {
+    padding: 1rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.messagelist li:last-child {
+    border-bottom: none;
+}
+
+.messagelist .success {
+    background: #d4edda;
+    color: #155724;
+    border-left: 4px solid #28a745;
+}
+
+.messagelist .error {
+    background: #f8d7da;
+    color: #721c24;
+    border-left: 4px solid #dc3545;
+}
+
+.messagelist .warning {
+    background: #fff3cd;
+    color: #856404;
+    border-left: 4px solid #ffc107;
+}
+
+.messagelist .info {
+    background: #d1ecf1;
+    color: #0c5460;
+    border-left: 4px solid #17a2b8;
+}
+</style>
+
+<script>
+// Adicionar botões de ação rápida ao header
+document.addEventListener('DOMContentLoaded', function() {
+    var header = document.getElementById('header');
+    if (header) {
+        var userTools = header.querySelector('.user-tools');
+        if (userTools) {
+            var quickActions = document.createElement('div');
+            quickActions.className = 'quick-actions-header';
+            quickActions.innerHTML = `
+                <a href="/admin/commit/" class="quick-action-btn commit">
+                    <i class="fas fa-upload"></i>
+                    Commit
+                </a>
+                <a href="/admin/deploy/" class="quick-action-btn deploy">
+                    <i class="fas fa-rocket"></i>
+                    Deploy
+                </a>
+                <a href="/" target="_blank" class="quick-action-btn view">
+                    <i class="fas fa-external-link-alt"></i>
+                    Ver Site
+                </a>
+            `;
+            userTools.appendChild(quickActions);
+        }
+    }
+});
+</script>
+{% endblock %}
 
 {% include "admin/progress_bar.html" %}
 <script src="{% static 'js/progress_bar.js' %}"></script> 

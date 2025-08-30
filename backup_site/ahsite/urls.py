@@ -19,7 +19,9 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     # Admin URLs - IMPORTANTE: Colocar ANTES do admin.site.urls
     path('admin/deploy/', views.admin_deploy_view, name='admin_deploy'),
+    path('admin/deploy', views.admin_deploy_view, name='admin_deploy_no_slash'),
     path('admin/commit/', views.commit_automatico_view, name='commit_automatico'),
+    path('admin/commit', views.commit_automatico_view, name='commit_automatico_no_slash'),
     path('admin/list_newsletter/', newsletterView.as_view()),
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),

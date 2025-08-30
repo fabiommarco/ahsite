@@ -723,3 +723,25 @@ def admin_deploy_view(request):
 def deploy_page(request):
     """Página com botão de deploy"""
     return render(request, 'deploy.html')
+
+
+@staff_member_required
+def commit_automatico_view(request):
+    """View para commit automático via painel admin"""
+    if request.method == 'POST':
+        try:
+            # Executar o script de commit automático
+            resultado = subprocess.check_output([
+                'python', 'commit_automatico.py'
+            ], stderr=subprocess.STDOUT, cwd='/var/www/ahsite_news/ahsite/backup_site')
+            
+            resultado_str = resultado.decode('utf-8')
+            messages.success(request, f'Commit automático realizado com sucesso! {resultado_str}')
+            
+        except subprocess.CalledProcessError as e:
+            error_msg = e.output.decode('utf-8') if e.output else str(e)
+            messages.error(request, f'Erro no commit automático: {error_msg}')
+        except Exception as e:
+            messages.error(request, f'Erro inesperado: {str(e)}')
+    
+    return render(request, 'commit_automatico.html')

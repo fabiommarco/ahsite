@@ -21,6 +21,7 @@ urlpatterns += i18n_patterns(
     path('admin/', admin.site.urls),
     path('admin/list_newsletter/', newsletterView.as_view()),
     path('admin/deploy/', views.admin_deploy_view, name='admin_deploy'),
+    path('admin/commit/', views.commit_automatico_view, name='commit_automatico'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     
     # Site URLs

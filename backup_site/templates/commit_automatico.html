@@ -1,0 +1,107 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block title %}Commit Automático{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <h1>🤖 Commit Automático</h1>
+    
+    {% if messages %}
+    <ul class="messagelist">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    
+    <div class="module">
+        <h2>Executar Commit Automático</h2>
+        <p>Clique no botão abaixo para executar o commit automático do sistema.</p>
+        <p><strong>O que será feito:</strong></p>
+        <ul>
+            <li>🔍 Detectar mudanças automaticamente</li>
+            <li>📦 Adicionar todos os arquivos modificados</li>
+            <li>💬 Gerar mensagem de commit inteligente</li>
+            <li>💾 Fazer commit com as mudanças</li>
+            <li>📤 Fazer push para o GitHub</li>
+            <li>🚀 Executar deploy automático</li>
+        </ul>
+        
+        <div style="background: #f8f9fa; padding: 15px; border-radius: 4px; margin: 15px 0;">
+            <h3>⚠️ Atenção:</h3>
+            <ul>
+                <li>Este processo irá commitar <strong>TODAS</strong> as mudanças pendentes</li>
+                <li>A mensagem de commit será gerada automaticamente</li>
+                <li>O deploy será executado automaticamente após o push</li>
+                <li>Certifique-se de que as mudanças estão corretas antes de executar</li>
+            </ul>
+        </div>
+        
+        <form method="post">
+            {% csrf_token %}
+            <input type="submit" value="🤖 Executar Commit Automático" class="default" 
+                   onclick="return confirm('Tem certeza que deseja executar o commit automático? Isso irá commitar todas as mudanças pendentes.')" />
+        </form>
+    </div>
+    
+    <div class="module">
+        <h2>📋 Status do Repositório</h2>
+        <p>Para verificar o status atual do repositório, você pode:</p>
+        <ul>
+            <li>Acessar o <a href="https://github.com/fabiommarco/ahsite" target="_blank">repositório no GitHub</a></li>
+            <li>Verificar o histórico de commits</li>
+            <li>Monitorar o status do deploy</li>
+        </ul>
+    </div>
+</div>
+
+<style>
+.messagelist {
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 4px;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+}
+
+.messagelist li {
+    margin: 5px 0;
+    font-family: monospace;
+    white-space: pre-wrap;
+}
+
+.module {
+    margin: 20px 0;
+    padding: 20px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.module h2 {
+    color: #007cba;
+    margin-top: 0;
+}
+
+.module h3 {
+    color: #721c24;
+    margin-top: 0;
+}
+
+input[type="submit"] {
+    background: #28a745;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+input[type="submit"]:hover {
+    background: #218838;
+}
+</style>
+{% endblock %}

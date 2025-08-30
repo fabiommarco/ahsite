@@ -1,0 +1,8 @@
+-r common.txt
+
+# Ferramentas de desenvolvimento
+django-debug-toolbar==3.2.4
+django-extensions==3.1.5
+
+# Banco de dados para desenvolvimento (MySQL)
+mysqlclient==2.0.3

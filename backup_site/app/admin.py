@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+"""
+    AH Website Admin - Fábio Marco - 2025
+    fabio.marco@ah.agr.br
+"""
+
 from app.models import *
 from django.contrib import admin
 from django.contrib.contenttypes.admin import GenericTabularInline

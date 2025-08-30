@@ -1,0 +1,64 @@
+{% extends 'admin/base_site.html' %}
+{% load static %}
+
+{% block content %}
+<h1>Backup Manual</h1>
+<form id="backup-form">
+  <label><input type="radio" name="tipo_backup" value="banco" checked> Somente Banco de Dados</label>
+  <label><input type="radio" name="tipo_backup" value="site"> Somente Arquivos do Site</label>
+  <label><input type="radio" name="tipo_backup" value="completo"> Banco + Site (Completo)</label>
+  <button type="submit" id="start-backup-btn">Iniciar Backup</button>
+</form>
+
+<!-- Barra de Progresso -->
+<div id="progress-bar" style="width:100%;background:#eee;margin-top:20px; display:none;">
+  <div id="progress" style="width:0%;background:#4caf50;color:#fff;text-align:center;">0%</div>
+</div>
+
+<script>
+document.getElementById('backup-form').onsubmit = function(e) {
+    e.preventDefault();
+    var tipo = document.querySelector('input[name="tipo_backup"]:checked').value;
+    fetch('{% url "start_backup_ajax" %}', {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': '{{ csrf_token }}',
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'tipo_backup=' + encodeURIComponent(tipo)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.task_id) {
+            document.getElementById('progress-bar').style.display = 'block';
+            var interval = setInterval(function() {
+                fetch('/gestao/backup-progress/' + data.task_id + '/')
+                    .then(response => response.json())
+                    .then(data => {
+                        var progress = data.progress;
+                        document.getElementById('progress').style.width = progress + '%';
+                        document.getElementById('progress').innerText = progress + '%';
+                        if (progress >= 100) clearInterval(interval);
+                    });
+            }, 1000);
+        }
+    });
+};
+</script>
+
+<style>
+#start-backup-btn {
+    display: inline-block !important;
+    background: #218c4c !important;
+    color: #fff !important;
+    font-weight: bold !important;
+    padding: 12px 28px !important;
+    border-radius: 8px !important;
+    border: none !important;
+    font-size: 1.1em !important;
+    min-width: 180px !important;
+    text-align: center !important;
+    margin-bottom: 16px !important;
+}
+</style>
+{% endblock %} 

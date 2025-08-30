@@ -80,7 +80,8 @@ class DeployAutomatico:
             resultado = subprocess.run(
                 ["./deploy.sh"],
                 cwd=self.projeto_path,
-                capture_output=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
                 text=True,
                 timeout=300  # 5 minutos de timeout
             )
@@ -107,7 +108,8 @@ class DeployAutomatico:
                 comando,
                 shell=True,
                 cwd=cwd or self.projeto_path,
-                capture_output=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
                 text=True,
                 timeout=60
             )

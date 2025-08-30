@@ -23,18 +23,11 @@ logging.basicConfig(
 def run_command(command, cwd=None):
     """Executa um comando e retorna o resultado"""
     try:
-        result = subprocess.run(
-            command, 
-            shell=True, 
-            cwd=cwd, 
-            capture_output=True, 
-            text=True, 
-            check=True
-        )
-        return result.stdout
+        output = subprocess.check_output(command, shell=True, cwd=cwd, stderr=subprocess.STDOUT)
+        return output
     except subprocess.CalledProcessError as e:
         logging.error(f"Erro ao executar comando: {e}")
-        logging.error(f"Stderr: {e.stderr}")
+        logging.error(f"Stderr: {e.output}")
         return None
 
 def check_git_changes():

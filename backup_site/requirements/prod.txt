@@ -1,0 +1,10 @@
+-r common.txt
+
+# Banco de dados para produção (PostgreSQL)
+psycopg2-binary==2.9.5
+
+# Servidor WSGI para produção
+gunicorn==19.10.0
+
+# Cache para produção
+redis==3.5.3

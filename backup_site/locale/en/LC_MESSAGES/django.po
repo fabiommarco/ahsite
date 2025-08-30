@@ -1,0 +1,573 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-26 13:45+0000\n"
+"PO-Revision-Date: 2016-12-06 17:58-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.11\n"
+
+#: ahsite/urls.py:19
+msgid "^quem-somos/$"
+msgstr "^about-us/$"
+
+#: ahsite/urls.py:21
+msgid "^brasilandia-ms-history/$"
+msgstr ""
+
+#: ahsite/urls.py:26
+msgid "^cotacoes-agricolas/$"
+msgstr "^agriculture-quotes/$"
+
+#: ahsite/urls.py:31
+msgid "^responsabilidade-ambiental/$"
+msgstr "^environmental-responsibility/$"
+
+#: ahsite/urls.py:36
+msgid "^responsabilidade-social/(?P<event_slug>.*)$"
+msgstr "^social-responsibility/(?P<event_slug>.*)$"
+
+#: ahsite/urls.py:40
+msgid "^compras/$"
+msgstr "^purchasing/$"
+
+#: ahsite/urls.py:42
+msgid "^vendas/(?P<product_slug>.*)$"
+msgstr "^sales/(?P<product_slug>.*)$"
+
+#: ahsite/urls.py:44
+msgid "^noticias/$"
+msgstr "^news/$"
+
+#: ahsite/urls.py:45
+msgid "^noticias/(?P<news_slug>.*)$"
+msgstr "^news/(?P<news_slug>.*)$"
+
+#: ahsite/urls.py:47
+msgid "^parcerias/(?P<partner_slug>.*)$"
+msgstr "^partnerships/(?P<partner_slug>.*)$"
+
+#: ahsite/urls.py:51
+msgid "^revista-pagina-um/$"
+msgstr "^pagina-um-magazine/$"
+
+#: ahsite/urls.py:52
+msgid "^fale-conosco/$"
+msgstr "^contact-us/$"
+
+#: ahsite/urls.py:53
+msgid "^trabalhe-conosco/$"
+msgstr "^work-with-us/$"
+
+#: app/views.py:271
+msgid ""
+"Parece que algo de errado aconteceu. Por favor, tente novamente mais tarde!"
+msgstr "Oh, no! Something wrong happened. Please try again shortly."
+
+#: app/views.py:281
+msgid "Obrigado! Sua mensagem foi enviada."
+msgstr "Thank you. Your message has been sent."
+
+#: templates/404.html:10
+msgid "A página que você esta tentando visitar não existe."
+msgstr "The page you are trying to access does not exist."
+
+#: templates/404.html:11 templates/base.html:39 templates/base.html:223
+msgid "Ir para a Página Inicial"
+msgstr "Go to the Home Page."
+
+#: templates/_contact_form.html:6 templates/_contact_form.html:7
+msgid "Nome"
+msgstr "Name"
+
+#: templates/_contact_form.html:7
+msgid "Campo Nome é obrigatório."
+msgstr "Name is required."
+
+#: templates/_contact_form.html:13 templates/_contact_form.html:14
+msgid "Email"
+msgstr "Email"
+
+#: templates/_contact_form.html:14
+msgid "Campo Email é obrigatório."
+msgstr "Email is required."
+
+#: templates/_contact_form.html:20 templates/_contact_form.html:21
+msgid "Telefone"
+msgstr "Phone"
+
+#: templates/_contact_form.html:21
+msgid "Campo Telefone é obrigatório."
+msgstr "Phone is required."
+
+#: templates/_contact_form.html:27 templates/_contact_form.html:28
+msgid "Cidade"
+msgstr "City"
+
+#: templates/_contact_form.html:28
+msgid "Campo Cidade é obrigatório."
+msgstr "City is required."
+
+#: templates/_contact_form.html:36 templates/_contact_form.html:37
+#: templates/_contact_form.html:38
+msgid "Curriculum"
+msgstr "Resume"
+
+#: templates/_contact_form.html:37
+msgid "Campo Curriculum é obrigatório."
+msgstr "Resume is required."
+
+#: templates/_contact_form.html:46 templates/_contact_form.html:47
+msgid "Mensagem"
+msgstr "Message"
+
+#: templates/_contact_form.html:47
+msgid "Campo Mensagem é obrigatório."
+msgstr "Message is required."
+
+#: templates/_contact_form.html:56 templates/index.html:135
+msgid "Enviar"
+msgstr "Send"
+
+#: templates/_prod.html:8 templates/_prod.html:10 templates/index.html:63
+#: templates/index.html:76 templates/index.html:110
+msgid "Saiba mais"
+msgstr "Read more"
+
+#: templates/about_company.html:8 templates/base.html:76
+#: templates/base.html:170
+msgid "Institucional"
+msgstr "About Us"
+
+#: templates/about_company.html:34 templates/environmental.html:22
+#: templates/event_view.html:25 templates/news_view.html:21
+#: templates/product_view.html:18
+msgid "Galeria de Imagens"
+msgstr "Image Gallery"
+
+#: templates/about_company.html:48 templates/environmental.html:35
+#: templates/event_view.html:39 templates/news_view.html:35
+#: templates/product_view.html:32
+msgid "Anexos"
+msgstr "Attachments"
+
+#: templates/admin/index.html:18 templates/admin/newsletter/change_list.html:54
+#: templates/admin/newsletter/list_newsletter.html:19
+msgid "Home"
+msgstr "Home"
+
+#: templates/admin/index.html:45
+msgid "Add"
+msgstr "Add"
+
+#: templates/admin/index.html:49
+msgid "Export"
+msgstr ""
+
+#: templates/admin/index.html:59
+msgid "You don´t have permission to edit anything."
+msgstr ""
+
+#: templates/admin/index.html:64
+msgid "Custom Views"
+msgstr ""
+
+#: templates/admin/index.html:76
+msgid "Recent actions"
+msgstr ""
+
+#: templates/admin/index.html:78
+msgid "My actions"
+msgstr ""
+
+#: templates/admin/index.html:81
+msgid "None available"
+msgstr ""
+
+#: templates/admin/newsletter/change_list.html:40
+msgid "Search"
+msgstr ""
+
+#: templates/admin/newsletter/change_list.html:79
+#, python-format
+msgid "Add %(name)s"
+msgstr ""
+
+#: templates/admin/newsletter/change_list.html:97
+msgid "Filter"
+msgstr ""
+
+#: templates/admin/newsletter/change_list.html:125
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/agricutural_prices.html:8 templates/base.html:119
+#: templates/base.html:213
+msgid "Cotações Agrícolas"
+msgstr "Agriculture Quotes"
+
+#: templates/agricutural_prices.html:9
+msgid ""
+"Nós disponibilizamos cotações agrícolas periodicamente. Faça o download "
+"abaixo:"
+msgstr ""
+"We post new agriculture quotes periodically. Download the latest below:"
+
+#: templates/agricutural_prices.html:14
+msgid "Clique para fazer o download."
+msgstr "Click to download."
+
+#: templates/agricutural_prices.html:24 templates/index.html:116
+#: templates/magazine.html:32
+msgid "Nenhum item encontrado."
+msgstr "No items found."
+
+#: templates/base.html:14 templates/base.html:39 templates/base.html:79
+#: templates/base.html:172 templates/base.html:288 templates/index.html:11
+msgid "Agropecuária AH"
+msgstr ""
+
+#: templates/base.html:56
+msgid "Idioma: "
+msgstr "Language: "
+
+#: templates/base.html:80 templates/base.html:173
+msgid "Missão e Visão"
+msgstr "Mission and Vision"
+
+#: templates/base.html:82 templates/base.html:175
+msgid "Valores e Competência"
+msgstr "Values and Competency"
+
+#: templates/base.html:84 templates/base.html:177
+msgid "Localizações"
+msgstr "Locations"
+
+#: templates/base.html:88 templates/base.html:182
+msgid "Negócios"
+msgstr "Business"
+
+#: templates/base.html:92 templates/base.html:185
+msgid "Venda"
+msgstr "Sales"
+
+# This is weird. How do I translate Compra? Buying? Acquisition?
+#: templates/base.html:101 templates/base.html:189
+msgid "Compra"
+msgstr "Purchasing"
+
+#: templates/base.html:105 templates/base.html:194 templates/index.html:56
+#: templates/index.html:69
+msgid "Parcerias"
+msgstr "Partnerships"
+
+#: templates/base.html:114 templates/base.html:210
+msgid "Mídia"
+msgstr "Press"
+
+#: templates/base.html:117
+msgid "AH Notícias"
+msgstr "AH News"
+
+#: templates/base.html:118 templates/base.html:212
+msgid "Página Um"
+msgstr "Página Um"
+
+#: templates/base.html:125 templates/base.html:202
+msgid "Responsabilidade Social"
+msgstr "Social Responsibility"
+
+#: templates/base.html:134
+msgid "Responsabilidade Ambiental"
+msgstr "Environmental Responsibility"
+
+#: templates/base.html:136 templates/base.html:287 templates/index.html:122
+#: templates/work-with-us.html:10
+msgid "Trabalhe Conosco"
+msgstr "Work with us"
+
+#: templates/base.html:138
+msgid "Entre em contato conosco"
+msgstr "Reach out to us"
+
+#: templates/base.html:211
+msgid "Notícias"
+msgstr "News"
+
+#: templates/base.html:246
+msgid "Escritório - Presidente Prudente"
+msgstr "Presidente Prudente Office"
+
+#: templates/base.html:249 templates/talk-with-us.html:27
+msgid "(18) 3917-3262"
+msgstr "+55 (18) 3917-3262"
+
+#: templates/base.html:257 templates/talk-with-us.html:36
+msgid "Fazenda Córrego Azul"
+msgstr "Córrego Azul Farm"
+
+#: templates/base.html:260 templates/talk-with-us.html:42
+msgid "(67) 3546-1467"
+msgstr "+55 (67) 3546-1467"
+
+#: templates/base.html:264 templates/talk-with-us.html:44
+msgid "(67) 2020-0894"
+msgstr "+55 (67) 2020-0894"
+
+#: templates/base.html:272 templates/talk-with-us.html:53
+msgid "Fazenda Ouro Verde"
+msgstr "Ouro Verde Farm"
+
+#: templates/base.html:275 templates/talk-with-us.html:58
+msgid "(31) 4063-7729"
+msgstr "+55 (31) 4063-7729"
+
+#: templates/base.html:286 templates/talk-with-us.html:10
+msgid "Fale Conosco"
+msgstr "Contact Us"
+
+#: templates/environmental.html:13
+msgid "Confira nosso Video"
+msgstr "Check out our video"
+
+#: templates/event_view.html:16 templates/news_view.html:13
+msgid "Confira o Video do evento"
+msgstr "Check out a video"
+
+#: templates/events.html:17 templates/index.html:92 templates/news.html:16
+msgid "Leia mais"
+msgstr "Read more"
+
+#: templates/events.html:21
+msgid "Nenhum evento em andamento. Volte em breve para conferir as novidades."
+msgstr "No events available at the moment. Please try again shortly."
+
+#: templates/index.html:12
+msgid ""
+"A AH é uma das importantes agropecuárias do Brasil, com áreas produtivas que "
+"somam mais de 50.000 hectares e sistemas de produção implantados em quatro "
+"estados brasileiros - Mato Grosso do Sul, Mato Grosso, Minas Gerais e "
+"Distrito Federal."
+msgstr ""
+"AH is one of Brazil's important agricultural and livestock farms, with "
+"production areas totaling more than 50,000 hectares and production systems "
+"in four Brazilian states - Mato Grosso do Sul, Mato Grosso, Minas Gerais and "
+"Federal District."
+
+#: templates/index.html:14
+msgid "Conheca a nossa história"
+msgstr "Get to know more about us"
+
+#: templates/index.html:45
+msgid "Localizações AH"
+msgstr "Locations"
+
+#: templates/index.html:46
+msgid "A Agropecuária AH possui unidades nas seguintes localidades:"
+msgstr "Agropecuária AH has units in the following locations:"
+
+#: templates/index.html:56
+msgid "Fomento Bezerro AH+"
+msgstr "Bezerro AH+ Program"
+
+#: templates/index.html:57
+msgid ""
+"O Programa Fomento AH+ consiste em fomentar a inseminação artificial "
+"(Convencional e/ou em Tempo Fixo – IATF), e o cruzamento com as raças Angus "
+"e Hereford. A Agropecuária AH garante em contrato, e por um valor "
+"diferenciado atrelado indicador CEPEA, a compra de toda a progênie do "
+"cruzamento provenientes do programa."
+msgstr ""
+"The Bezerro AH+ Program consists of promoting artificial insemination "
+"(Conventional and/or Fixed Time - IATF), and Angus-Hereford crossbreeding. "
+"Agropecuária AH guarantees the purchase, for a priced tied to the CEPEA "
+"indicator, of the entire offspring originating from the program."
+
+#: templates/index.html:58 templates/index.html:71
+msgid "Benefícios"
+msgstr "Benefits"
+
+#: templates/index.html:60
+msgid "Solicitação de adiantamento de sêmen"
+msgstr "Ability to request a semen advance"
+
+#: templates/index.html:61
+#, python-format
+msgid "Retenção de até 50%% de fêmeas para reposição"
+msgstr "Retention of up to 50%% females for replacement"
+
+#: templates/index.html:69
+msgid "Parceria Suinocultura"
+msgstr "Pig Farming Partnership"
+
+#: templates/index.html:70
+msgid ""
+"A parceria suinocultura consiste no sistema de criação de animais em que a "
+"Agropecuária AH transfere a fase de terminação da engorda de suínos ao "
+"produtor rural INTEGRADO, além das melhores tecnologias existentes, de "
+"animais com a melhor genética..."
+msgstr ""
+"The pig farming partnership consists in a system of raising animals where "
+"Agropecuária AH transfers the pig fattening and finishing phases to the "
+"partnered producers. It offers the best technologies as well as animals with "
+"better genetics.."
+
+#: templates/index.html:73
+msgid "Índices de eficência no topo dos melhores padrões mundiais"
+msgstr "Efficiency indices at the top of the world's best standards"
+
+#: templates/index.html:74
+msgid "Forte foco especialização pelos parceiros"
+msgstr "Strong focus on specialization from partners"
+
+#: templates/index.html:85 templates/news.html:9
+msgid "<strong>AH</strong> Notícias"
+msgstr "<strong>AH</strong> News"
+
+#: templates/index.html:95
+msgid "Nenhuma notícia encontrada."
+msgstr "New news found."
+
+#: templates/index.html:101
+msgid "Responsabilidade <strong>Social</strong>"
+msgstr "<strong>Social</strong> Responsibility"
+
+#: templates/index.html:123
+msgid ""
+"Nossa empresa tem o desejo de transformar o País. Para isso, precisamos de "
+"uma equipe forte e coesa, formada por gente de qualidade."
+msgstr ""
+"Our company is set out to change the country. For that, we need a strong and "
+"cohesive team that is comprised of quality members."
+
+#: templates/index.html:124
+msgid "Envie seu currículo"
+msgstr "Send your resume"
+
+#: templates/index.html:128
+msgid "Newsletter"
+msgstr "Newsletter"
+
+#: templates/index.html:129
+msgid "Receba nossas novidades diretamente no seu e-mail."
+msgstr "Receive notifications about us directly in your email."
+
+#: templates/index.html:133
+msgid "Digite o seu nome."
+msgstr "Name"
+
+#: templates/index.html:134
+msgid "Digite o seu e-mail."
+msgstr "Email address"
+
+#: templates/magazine.html:18
+msgid "Confira as Edições Anteriores"
+msgstr "Past Editions"
+
+#: templates/magazine.html:26
+msgid "Download"
+msgstr "Download"
+
+#: templates/magazine.html:37
+msgid "Nenhuma revista disponivel."
+msgstr "No magazines available."
+
+#: templates/news.html:19
+msgid ""
+"Nenhuma notícia em andamento. Volte em breve para conferir as novidades."
+msgstr "No news found. Please come back in the near future."
+
+# This is weird. How do I translate Compra? Buying? Acquisition?
+#: templates/sales.html:8
+msgid "Compras"
+msgstr "Purchasing"
+
+#: templates/sales.html:12
+msgid ""
+"Preencha o formulário abaixo para entrar em contato com um de nossos "
+"consultores. Teremos prazer de respondê-lo o mais rápido possível."
+msgstr ""
+"Fill out the form below to get in touch with our sales team. We’ll respond "
+"as soon as possible."
+
+#: templates/talk-with-us.html:11
+msgid ""
+"Preencha o formulário abaixo para entrar em contato com a Agropecuária AH."
+msgstr "Fill out the form below to get in touch with us."
+
+#: templates/talk-with-us.html:16
+msgid "Telefones de Contato"
+msgstr "Phone numbers"
+
+#: templates/talk-with-us.html:22
+msgid "Escritório"
+msgstr "Office"
+
+#: templates/work-with-us.html:11
+msgid ""
+"Deseja trabalhar em uma empresa séria, em franco crescimento e com ótimas "
+"oportunidades de carreira? <br>Selecione uma vaga abaixo e envie seu "
+"currículo através do formulário para que possamos contactá-lo."
+msgstr ""
+"Would you like to work for a serious company that has been growing and has "
+"great career opportunities? <br> Select one of the openings below and send "
+"us your resume via the form. We will contact you shortly."
+
+#: templates/work-with-us.html:15
+msgid "Vagas disponíveis"
+msgstr "Open Positions"
+
+#: templates/work-with-us.html:29
+msgid "Enviar currículo"
+msgstr "Send resume"
+
+#: templates/work-with-us.html:33
+msgid "Nenhuma vaga disponível no momento."
+msgstr "No open positions at this moment."
+
+#: templates/work-with-us.html:33
+msgid "Entre em contato conosco para mais esclarecimendos"
+msgstr "Please reach out to us with any further questions"
+
+#: templates/work-with-us.html:54
+msgid ""
+"Para se candidatar, por favor preencha o formulário abaixo e analisaremos "
+"seu curriculum."
+msgstr "To apply, please fill out the form below."
+
+#: templates/work-with-us.html:60
+msgid "Fechar"
+msgstr "Close"
+
+#~ msgid "A História e memória de Brasilândia/MS"
+#~ msgstr "The History and memory of Brasilândia/MS"
+
+#~ msgid "Language: "
+#~ msgstr "Idioma: "
+
+#, fuzzy
+#~| msgid "Newsletter"
+#~ msgid "^newsletter/$"
+#~ msgstr "Newsletter"
+
+#~ msgid "Inglês"
+#~ msgstr "English"
+
+#~ msgid "Português"
+#~ msgstr "Portuguese"
+
+#~ msgid "Saiba Mais"
+#~ msgstr "Read more"

@@ -1,0 +1,8 @@
+rm do windows mstsc
+138.122.14.37:40401
+usuario: tatiana.golfe@agropecuariaah.local
+SenhaGolfe@2025
+
+
+root@agropecuariaah.agr.br
+WCvXtqF7g/2kw

@@ -1,0 +1,35 @@
+{% extends 'admin/base_site.html' %}
+{% load static %}
+
+{% block content %}
+<h1>Aplicar Update</h1>
+<input type="text" id="update-file" placeholder="Nome do arquivo de update" style="width:300px; padding:6px;">
+<button id="start-backup-btn" style="background:#218c4c;color:#fff;font-weight:bold;padding:12px 28px;border-radius:8px;border:none;font-size:1.1em;">Iniciar Backup</button>
+
+<!-- Barra de Progresso -->
+<div id="progress-bar" style="width:100%;background:#eee;margin-top:20px; display:none;">
+  <div id="progress" style="width:0%;background:#4caf50;color:#fff;text-align:center;">0%</div>
+</div>
+
+<script>
+document.getElementById('start-backup-btn').onclick = function() {
+    fetch('{% url "start_backup_ajax" %}', {method: 'POST', headers: {'X-CSRFToken': '{{ csrf_token }}'}})
+        .then(response => response.json())
+        .then(data => {
+            if (data.task_id) {
+                document.getElementById('progress-bar').style.display = 'block';
+                var interval = setInterval(function() {
+                    fetch('/gestao/backup-progress/' + data.task_id + '/')
+                        .then(response => response.json())
+                        .then(data => {
+                            var progress = data.progress;
+                            document.getElementById('progress').style.width = progress + '%';
+                            document.getElementById('progress').innerText = progress + '%';
+                            if (progress >= 100) clearInterval(interval);
+                        });
+                }, 1000);
+            }
+        });
+};
+</script>
+{% endblock %} 

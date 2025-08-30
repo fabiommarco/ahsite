@@ -1,0 +1,28 @@
+# COMANDOS PARA EXECUTAR NO SERVIDOR DA LOCAWEB
+# Execute estes comandos um por um no servidor
+
+# 1. Adicionar encoding ao admin.py
+sed -i '1i# -*- coding: utf-8 -*-' app/admin.py
+
+# 2. Remover chaves extras do settings.py
+sed -i '83,84d' ahsite/settings.py
+
+# 3. Corrigir BASE_DIR no settings.py
+sed -i "s/BASE_DIR \/ 'db.sqlite3'/os.path.join(BASE_DIR, 'db.sqlite3')/g" ahsite/settings.py
+
+# 4. Remover referência ao Banner no views.py
+sed -i '/banners = Banner.objects.filter(ativo=True).order_by/d' app/views.py
+
+# 5. Testar sintaxe
+python -m py_compile ahsite/settings.py
+python -m py_compile app/admin.py
+python -m py_compile app/views.py
+
+# 6. Testar Django
+python manage.py check
+
+# 7. Se tudo estiver OK, iniciar servidor
+python manage.py runserver 0.0.0.0:8000 --noreload &
+
+# 8. Verificar se está funcionando
+curl http://localhost:8000/
